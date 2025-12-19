@@ -75,6 +75,15 @@ export default [
                     icon: 'cog',
                 },
             },
+            {
+                path: 'literaryDrama',
+                name: 'literaryDrama',
+                component: () => import('@/views/literaryDrama/index.vue'),
+                meta: {
+                    title: 'literaryDrama',
+                    icon: 'cog',
+                },
+            },
         ],
     },
 ];

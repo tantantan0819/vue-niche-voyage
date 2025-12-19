@@ -29,6 +29,10 @@ const pages = ref([
     name: '历史',
     url: '/voyage/history'
   },
+  {
+    name: '文学戏剧',
+    url: '/voyage/literaryDrama'
+  }
 ])
 
 
