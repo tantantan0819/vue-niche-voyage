@@ -27,6 +27,7 @@ const returnHome = () => {
   display: flex;
   justify-content: center;
   align-items: center;
+  user-select: none;
   .return-btn-core{
     width: 112px;
     height: 56px;

@@ -4,25 +4,25 @@
     <section class="horizontal-wrapper" ref="horizontalWrapper">
       <div class="horizontal-scroll-container" ref="container">
         <div class="content" ref="contentRef">
-<!--          &lt;!&ndash; 象雄 &ndash;&gt;-->
-<!--          <xiangxiong></xiangxiong>-->
-<!--          &lt;!&ndash; 吐蕃 &ndash;&gt;-->
-<!--          <tubo></tubo>-->
-<!--          &lt;!&ndash; 元朝 &ndash;&gt;-->
-<!--          <yuan></yuan>-->
-<!--          &lt;!&ndash; 茶马古道 &ndash;&gt;-->
-<!--          <chamagudao></chamagudao>-->
-          <!-- 近代 -->
+          <!-- 象雄 -->
+          <xiangxiong></xiangxiong>
+          <!-- 吐蕃 -->
+          <tubo></tubo>
+          <!-- 元朝 -->
+          <yuan></yuan>
+          <!-- 茶马古道 -->
+          <chamagudao></chamagudao>
+<!--           近代-->
           <jindai></jindai>
         </div>
       </div>
     </section>
     <!-- 竖向布局 -->
     <section class="vertical">
-      <!-- 美术篇 -->
-      <culture></culture>
       <!-- 建筑篇 -->
       <architecture></architecture>
+      <!-- 美术篇 -->
+      <culture></culture>
     </section>
   </div>
 </template>
