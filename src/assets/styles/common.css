@@ -82,6 +82,9 @@ div{
 
     }
 }
+._flex{
+    display: flex;
+}
 /* 外圈缩放动画 */
 @keyframes pulseOuter {
     0% {
