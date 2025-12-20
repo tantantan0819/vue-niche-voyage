@@ -1,9 +1,9 @@
 <template>
-  <!-- 第八屏字体需要更换 -->
-
   <div class="literary-drama">
     <!-- 第一屏 -->
-    <div class="screen first-screen"></div>
+    <div class="screen first-screen">
+      <div class="linear-gradient-container"></div>
+    </div>
     <!-- 第二屏 -->
     <div class="screen second-screen">
       <div class="second-screen-left">
@@ -151,11 +151,39 @@
     <!-- 第十屏 -->
     <div class="screen tenth-screen">
       <div class="cloud-img"></div>
-      <!-- <div class="portrait-container">
-          <img class="portrait-img" src="../../assets/images/literaryDrama/drama-image-3.jpg"></img>
-          <p class="illustration-title-font">文成公主入藏图</p>
-      </div> -->
+      <div class="portrait-container">
+          <img class="portrait-img" src="../../assets/images/literaryDrama/drama-image-4.jpg"></img>
+          <p class="illustration-title-font">长青春科尔寺僧人表演的康巴藏戏</p>
+      </div>
+      <div class="text-container text-font">
+        <div class="background-text-img"></div>
+        <p class="first-paragraph">藏戏是藏族传统戏剧形式，主要以面具遮面、结合歌舞表演故事，形成于14世纪，广泛流传于青藏高原地区。</p>
+        <p>除了《文成公主》外，还有《诺桑法王》《朗萨雯蚌》《卓瓦桑姆》《苏吉尼玛》《白玛文巴》《顿月顿珠》和《智美更登》共八大传统剧目。这些剧目通过面具、舞蹈、唱腔等多种表现手法，生动再现历史故事和民族传说，反映藏族人民的生活信仰和思想情感。</p>
+      </div>
     </div>
+    <!-- 第十一屏 -->
+    <div class="screen eleventh-screen">
+      <div class="text-container">
+        <div class="illustration-title-font">道孚惠远寺藏戏中的温巴面具</div>
+        <div class="illustration-content-font">藏戏演出分“温巴顿”、“雄”、“扎西”三部分：“温巴顿”是开场戏，为观众祈福，求神祖护佑；“雄”即正戏，主要演出剧目为八大传统藏戏；“扎西”则为结尾，以歌舞形式向观众祝福致谢。贯穿全场的“温巴”角色负责串讲剧情、调节气氛。</div>
+      </div>
+      <div>
+        <img class="portrait-img" src="../../assets/images/literaryDrama/drama-image-5.jpg" alt="">
+      </div>
+      <div class="cloud-img"></div>
+    </div>
+    <!-- 第十二屏 -->
+    <div class="screen twelveth-screen">
+      <div class="text-container text-font">
+        从雄浑壮阔的《格萨尔》到跌宕多姿的《支格阿鲁》，再到古朴动人的藏戏，高原文脉不但没有消失，反而历久弥新、广泛流传，绽放出新的生命力与光彩。
+      </div>
+      <div class="cloud-container">
+        <div class="cloud-img-1"></div>
+        <div class="cloud-img-2"></div>
+      </div>
+    </div>
+    <!-- 第十三屏 -->
+     <div class="last-screen"></div>
   </div>
 </template>
 
@@ -197,6 +225,12 @@ const showNinthPopover = () => {
   line-height: 50px;
   color: #534833;
 }
+.illustration-content-font{
+  font-size: 25px;
+  font-family: 'Alibaba-PuHuiTi-Light';
+  line-height: 50px;
+  color: #534833;
+}
 .dot-content-container{
   position: relative;
   display: inline-block;
@@ -204,12 +238,26 @@ const showNinthPopover = () => {
 .literary-drama {
   width: 100vw;
   position: relative;
+  overflow-x: hidden;
   background: url('../../assets/images/literaryDrama/drama-bg.jpg') no-repeat center center / cover;
   .screen {
     position: relative;
     width: 100vw;
     height: 100vh;
   }
+}
+.first-screen .linear-gradient-container{
+  width: 100vw;
+  height: 100vh;
+  background-image: 
+  linear-gradient(
+    to bottom,
+    #f0e8b078 0%,
+    #c8e0c0d8 30%,
+    #e8d8d093 70%,
+    transparent 100%
+  );
+background-blend-mode: overlay; 
 }
 .second-screen {
   position: relative;
@@ -562,7 +610,7 @@ const showNinthPopover = () => {
     left: 200px;
     transform: translateY(-50%);
     writing-mode: vertical-rl; /* 从右向左 从上向下 */
-    /* font-family: ; */
+    font-family: 'EarlySummerSerif-Bold';
     font-size: 40px;
     line-height: 80px;
     color: #534833;
@@ -612,11 +660,90 @@ const showNinthPopover = () => {
 .tenth-screen{
   .cloud-img{
     position: absolute;
-    top: 40px;
+    top: 20px;
     left: 0;
     width: 655px;
     height: 325px;
     background: url('../../assets/images/literaryDrama/drama-element-2-9.png') no-repeat center center / cover;
   }
+  .portrait-container{
+    position: absolute;
+    top: 380px;
+    left: 300px;
+    .portrait-img{
+      width: 500px;
+    }
+  }
+  .text-container{
+    position: absolute;
+    top: 300px;
+    right: 200px;
+    width: 800px;
+    .first-paragraph{
+      margin-bottom: 40px;
+    }
+  }
+  .background-text-img{
+    position: absolute;
+    top: -100px;
+    right: 0;
+    width: 332px;
+    height: 160px;
+    background: url('../../assets/images/literaryDrama/drama-character-7.png') no-repeat center center / cover;
+  }
+}
+.eleventh-screen{
+  .text-container{
+    position: absolute;
+    top: 150px;
+    left: 200px;
+    width: 700px;
+  }
+  .portrait-img{
+    position: absolute;
+    top: 100px;
+    right: 200px;
+    width: 650px;
+  }
+  .cloud-img{
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    transform: translateY(50%);
+    width: 946px;
+    height: 548px;
+    background: url('../../assets/images/literaryDrama/drama-element-2-10.png') no-repeat center center / cover;
+  }
+}
+.twelveth-screen{
+  .text-container{
+    position: absolute;
+    top: 380px;
+    left: 100px;
+    width: 1200px;
+  }
+  .cloud-container{
+    .cloud-img-1{
+      position: absolute;
+      right: 0;
+      bottom: 50%;
+      transform: translateY(50%);
+      width: 537px;
+      height: 611px;
+      background: url('../../assets/images/literaryDrama/drama-element-2-11.png') no-repeat center center / cover;
+    }
+     .cloud-img-2{
+      position: absolute;
+      right: 200px;
+      bottom: 0;
+      width: 709px;
+      height: 445px;
+      background: url('../../assets/images/literaryDrama/drama-element-2-12.png') no-repeat center center / cover;
+    }
+  }
+}
+.last-screen{
+  width: 100vw;
+  height: 80vh;
 }
 </style>
