@@ -10,16 +10,16 @@
 import { onMounted,ref } from 'vue';
 const pages = ref([
   {
-    name: '资源',
-    url: '/voyage/resource'
-  },
-  {
     name: '答题',
     url: '/voyage/answer'
   },
   {
     name: '水系',
     url: '/voyage/landscape'
+  },
+  {
+    name: '资源',
+    url: '/voyage/resource'
   },
   {
     name: '气候',
@@ -36,9 +36,9 @@ const pages = ref([
 <style scoped>
 a{
   display: block;
-  font-size: 40px;
+  font-size: 20px;
   padding: 20px;
-  background-color: #c7daf8;
+  background-color: rgba(199, 218, 248, 0.65);
   margin-bottom: 20px;
 }
 </style>

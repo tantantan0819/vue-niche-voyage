@@ -60,7 +60,7 @@
           <div class="medal-content">
             <div class="medal-close" @click="challengeAgain"></div>
             <div class="medal-img">
-              <dib class="medal-img-inner"></dib>
+              <div class="medal-img-inner"></div>
             </div>
             <div class="medal-title">
               <div class="medal-cloud medal-cloud-1"></div>
