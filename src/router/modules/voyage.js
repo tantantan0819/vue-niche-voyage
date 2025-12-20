@@ -102,6 +102,15 @@ export default [
                     icon: 'cog',
                 },
             },
+            {
+                path: 'folkways',
+                name: 'folkways',
+                component: () => import('@/views/folkways/index.vue'),
+                meta: {
+                    title: 'folkways',
+                    icon: 'cog',
+                },
+            },
         ],
     },
 ];

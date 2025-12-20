@@ -171,7 +171,7 @@
 </template>
 
 <script setup>
-import DotPopover from './dotPopover.vue';
+import DotPopover from '../../components/dotPopover.vue';
 </script>
 
 <style scoped>
@@ -406,12 +406,12 @@ import DotPopover from './dotPopover.vue';
     .portrait-detail{
       display: flex;
       .dot-popover{
-        top: -20px;
-        left: 10px;
+        top: 10px;
+        left: 30px;
       }
       & >>> .popover-container{
         top: -60px; 
-        left: 80px;
+        left: 50px;
       }
     }
   }
@@ -478,7 +478,11 @@ import DotPopover from './dotPopover.vue';
     height:359px;
     background: url('../../assets/images/literaryDrama/drama-character-4.png') no-repeat center center / contain;
   }
-  & >>> .popover-container{
+  .dot-popover{
+    top:20px;
+    left: 20px;
+  }
+   >>> .popover-container{
     top: 0;
     left: 70px;
   }
@@ -537,10 +541,11 @@ import DotPopover from './dotPopover.vue';
     width: 1000px;
   }
   .dot-popover{
-    top: 20px;
+    top: 30px;
+    left: 20px;
     & >>> .popover-container{
-      top: 20px;
-      left: 60px;
+      top: 10px;
+      left: 40px;
     }
   }
 }
@@ -563,6 +568,10 @@ import DotPopover from './dotPopover.vue';
     font-size: 40px;
     line-height: 80px;
     color: #534833;
+  }
+  .dot-popover{
+    top: 10px;
+    left: 20px;
   }
    >>> .popover-container{
     top: 30px;
@@ -597,12 +606,13 @@ import DotPopover from './dotPopover.vue';
       text-align: right;
     }
     .dot-popover{
-      right: 50px;
+      top: 30px;
+      right: 10px;
     }
     >>> .popover-container{
       text-align: left;
       top: -10px;
-      right: 40px;
+      right: 60px;
     }
   }
 }
