@@ -1,110 +1,122 @@
 <template>
   <div class="climate">
-    <div class="first-screen screen">
-      <div class="mountain-1"></div>
-      <div class="mountain-2"></div>
-      <div class="mountain-3"></div>
-      <div class="mountain-4"></div>
-      <div class="mountain-5"></div>
-      <div class="cloud-1"></div>
-      <div class="cloud-2"></div>
-      <div class="cloud-3"></div>
-      <div class="cloud-4"></div>
-      <div class="cloud-5"></div>
-      <div class="cloud-6"></div>
-      <div class="text"><span>青藏高原</span>的平均海拔超过<span>4000</span>米，从冰雪冻原到山地雨林，从干燥荒漠到温润谷地，高原以独特的气候节律，铺展出一幅壮丽而多变的自然画卷。</div>
+    <div class="first-content-wrapper">
+      <div class="first-screen screen">
+        <div class="mountain-1"></div>
+        <div class="mountain-2"></div>
+        <div class="mountain-3"></div>
+        <div class="mountain-4"></div>
+        <div class="mountain-5"></div>
+        <div class="cloud-1"></div>
+        <div class="cloud-2"></div>
+        <div class="cloud-3"></div>
+        <div class="cloud-4"></div>
+        <div class="cloud-5"></div>
+        <div class="cloud-6"></div>
+        <div class="text"><span>青藏高原</span>的平均海拔超过<span>4000</span>米，从冰雪冻原到山地雨林，从干燥荒漠到温润谷地，高原以独特的气候节律，铺展出一幅壮丽而多变的自然画卷。</div>
+      </div>
     </div>
-    <div class="second-screen screen second-single">
-      <div class="img-bg"></div>
-      <div class="content-wrapper">
-        <div class="img-map"></div>
-        <div class="img-picture"></div>
-        <div class="detail">
-          <div class="title">羌塘高原区域</div>
-          <p>羌塘高原大部分地区都寒冷干燥，特别是北部羌塘高原，日最低气温几乎全年都在0℃以下。这里降水量稀少，而且主要以固态形式，比如降雪、冰雹为主。冬春季节多有大风、酷寒，气候十分恶劣。因为高寒和干燥，这里的植被也稀疏而贫瘠。即便是南部羌塘高原，要种植农作物也难以正常生长成熟。属于我国高原寒带干旱和高原亚寒带半干旱气候区。</p>
+    <div class="content-box">
+      <div class="second-screen screen second-single">
+        <div class="img-bg"></div>
+        <div class="content-wrapper">
+          <div class="img-map"></div>
+          <div class="img-picture"></div>
+          <div class="detail">
+            <div class="title">羌塘高原区域</div>
+            <p>羌塘高原大部分地区都寒冷干燥，特别是北部羌塘高原，日最低气温几乎全年都在0℃以下。这里降水量稀少，而且主要以固态形式，比如降雪、冰雹为主。冬春季节多有大风、酷寒，气候十分恶劣。因为高寒和干燥，这里的植被也稀疏而贫瘠。即便是南部羌塘高原，要种植农作物也难以正常生长成熟。属于我国高原寒带干旱和高原亚寒带半干旱气候区。</p>
+          </div>
         </div>
       </div>
     </div>
-    <div class="third-screen screen second-single">
-      <div class="img-bg"></div>
-      <div class="img-bg-video">
-        <video
-            src="@/assets/images/climate/climate-cdm-storm.webm"
-            autoplay
-            loop
-            disablePictureInPicture
-            muted
-            playsinline
-        ></video>
-      </div>
-      <div class="content-wrapper">
-        <div class="img-map"></div>
-        <div class="img-picture"></div>
-        <div class="detail">
-          <div class="title">柴达木盆地区域</div>
-          <p>大风、干燥、黄沙，可能是柴达木盆地给人们的第一印象。由于青藏高原抬升阻挡了印度洋季风水汽，使得这里年降水量自东南部的200毫米可以逐渐递减到西北部的15毫米，是我国著名的干旱盆地之一。柴达木盆地的风力也极为强盛，8级以上大风日数全年可达25～75天，也正因如此，奇特的风蚀地貌在这里非常常见。</p>
+    <div class="content-box">
+      <div class="third-screen screen second-single">
+        <div class="img-bg"></div>
+        <div class="img-bg-video">
+          <video
+              src="@/assets/images/climate/climate-cdm-storm.webm"
+              autoplay
+              loop
+              disablePictureInPicture
+              muted
+              playsinline
+          ></video>
+        </div>
+        <div class="content-wrapper">
+          <div class="img-map"></div>
+          <div class="img-picture"></div>
+          <div class="detail">
+            <div class="title">柴达木盆地区域</div>
+            <p>大风、干燥、黄沙，可能是柴达木盆地给人们的第一印象。由于青藏高原抬升阻挡了印度洋季风水汽，使得这里年降水量自东南部的200毫米可以逐渐递减到西北部的15毫米，是我国著名的干旱盆地之一。柴达木盆地的风力也极为强盛，8级以上大风日数全年可达25～75天，也正因如此，奇特的风蚀地貌在这里非常常见。</p>
+          </div>
         </div>
       </div>
     </div>
-    <div class="four-screen screen second-single">
-      <div class="img-bg">
-        <video
-            src="@/assets/images/climate/climate-zngd-bg-1.mp4"
-            autoplay
-            loop
-            muted
-            playsinline
-            disablePictureInPicture
-        ></video>
-      </div>
-      <div class="img-bg-2"></div>
-      <div class="content-wrapper">
-        <div class="img-map"></div>
-        <div class="img-picture"></div>
-        <div class="detail">
-          <div class="title">藏南谷地区域</div>
-          <p>这里被誉为“西藏粮仓”，也是西藏古文明的发祥地，属于我国的高原温带半干旱气候区。藏南谷地位于冈底斯山至念青唐古拉山以南、雅鲁藏布江中游的宽谷地带。最暖月平均气温在10-15℃，年降水量约400毫米，普遍在夜间降雨，是青藏高原夜雨最多的地区之一。因此，藏南谷地也成为高原上最为重要的农业区：小麦、青稞等作物都能获得较高的产量。</p>
+    <div class="content-box">
+      <div class="four-screen screen second-single">
+        <div class="img-bg">
+          <video
+              src="@/assets/images/climate/climate-zngd-bg-1.mp4"
+              autoplay
+              loop
+              muted
+              playsinline
+              disablePictureInPicture
+          ></video>
+        </div>
+        <div class="img-bg-2"></div>
+        <div class="content-wrapper">
+          <div class="img-map"></div>
+          <div class="img-picture"></div>
+          <div class="detail">
+            <div class="title">藏南谷地区域</div>
+            <p>这里被誉为“西藏粮仓”，也是西藏古文明的发祥地，属于我国的高原温带半干旱气候区。藏南谷地位于冈底斯山至念青唐古拉山以南、雅鲁藏布江中游的宽谷地带。最暖月平均气温在10-15℃，年降水量约400毫米，普遍在夜间降雨，是青藏高原夜雨最多的地区之一。因此，藏南谷地也成为高原上最为重要的农业区：小麦、青稞等作物都能获得较高的产量。</p>
+          </div>
         </div>
       </div>
     </div>
-    <div class="five-screen screen second-single">
-      <div class="img-bg"></div>
-      <div class="img-bg-2">
-        <video
-            src="@/assets/images/climate/climate-hds-cloud.webm"
-            autoplay
-            loop
-            muted
-            playsinline
-            disablePictureInPicture
-        ></video>
-      </div>
-      <div class="content-wrapper">
-        <div class="img-map"></div>
-        <div class="img-picture"></div>
-        <div class="detail">
-          <div class="title">横断山脉区域</div>
-          <p>横断山脉地处青藏高原的东部边缘，地形复杂、山高谷深、海拔垂直变化大，所以这里的气候也具有明显的垂直气候分布差异。海拔较高处主要以冷杉等针叶林为主，往下则以桦树、铁杉等针阔混交林和落叶阔叶林为主。受南亚季风和东亚季风共同影响，横断山脉区域的降水较为丰沛，年降水量约500-1000毫米，属于我国高原温带湿润气候区。</p>
+    <div class="content-box">
+      <div class="five-screen screen second-single">
+        <div class="img-bg"></div>
+        <div class="img-bg-2">
+          <video
+              src="@/assets/images/climate/climate-hds-cloud.webm"
+              autoplay
+              loop
+              muted
+              playsinline
+              disablePictureInPicture
+          ></video>
+        </div>
+        <div class="content-wrapper">
+          <div class="img-map"></div>
+          <div class="img-picture"></div>
+          <div class="detail">
+            <div class="title">横断山脉区域</div>
+            <p>横断山脉地处青藏高原的东部边缘，地形复杂、山高谷深、海拔垂直变化大，所以这里的气候也具有明显的垂直气候分布差异。海拔较高处主要以冷杉等针叶林为主，往下则以桦树、铁杉等针阔混交林和落叶阔叶林为主。受南亚季风和东亚季风共同影响，横断山脉区域的降水较为丰沛，年降水量约500-1000毫米，属于我国高原温带湿润气候区。</p>
+          </div>
         </div>
       </div>
     </div>
-    <div class="six-screen screen second-single">
-      <div class="img-bg-video img-bg">
-        <video
-            src="@/assets/images/climate/climate-zdn-bg.mp4"
-            autoplay
-            loop
-            muted
-            playsinline
-            disablePictureInPicture
-        ></video>
-      </div>
-      <div class="content-wrapper">
-        <div class="img-map"></div>
-        <div class="img-picture"></div>
-        <div class="detail">
-          <div class="title">藏东南区域</div>
-          <p>这里是喜马拉雅山脉南翼低山地区。因为水流侵蚀，峡谷深切，垂直高差很大，察隅、墨脱等地都处在这个区域。越靠近喜马拉雅山南翼外缘，海拔越低，全年日平均气温越高，几乎都在10℃以上，降水量多达2500毫米。气候温暖湿润，热带常绿雨林、季雨林在这里非常常见，甚至可以种植香蕉等热带水果。属于我国亚热带和热带山地湿润气候区。</p>
+    <div class="content-box">
+      <div class="six-screen screen second-single">
+        <div class="img-bg-video img-bg">
+          <video
+              src="@/assets/images/climate/climate-zdn-bg.mp4"
+              autoplay
+              loop
+              muted
+              playsinline
+              disablePictureInPicture
+          ></video>
+        </div>
+        <div class="content-wrapper">
+          <div class="img-map"></div>
+          <div class="img-picture"></div>
+          <div class="detail">
+            <div class="title">藏东南区域</div>
+            <p>这里是喜马拉雅山脉南翼低山地区。因为水流侵蚀，峡谷深切，垂直高差很大，察隅、墨脱等地都处在这个区域。越靠近喜马拉雅山南翼外缘，海拔越低，全年日平均气温越高，几乎都在10℃以上，降水量多达2500毫米。气候温暖湿润，热带常绿雨林、季雨林在这里非常常见，甚至可以种植香蕉等热带水果。属于我国亚热带和热带山地湿润气候区。</p>
+          </div>
         </div>
       </div>
     </div>
@@ -122,9 +134,9 @@ const calDistance = (distance) =>{
 const firstAnimation = () =>{
   const tl = gsap.timeline({
     scrollTrigger: {
-      trigger: '.first-screen',
+      trigger: '.first-content-wrapper',
       start: 'top top',
-      end: '+=1500',
+      end: '+=1000',
       scrub: 0.1, // 增加延迟
       pin: true,
       pinSpacing: false,
@@ -174,36 +186,33 @@ const firstAnimation = () =>{
   tl.to('.first-screen .cloud-4',{ translateZ: 200, duration: 0.2},'<0.1')
   tl.to('.first-screen .cloud-3',{ translateZ: 200, duration: 0.2},'<0.1')
   tl.to('.first-screen .mountain-1',{ translateZ: 200, duration: 0.2},'<0.1')
-  tl.to('.first-screen',
-      {
-        opacity: 0,
-        display: 'none',
-        delay: 1
-      },'<0.1')
+  // tl.to('.first-screen',
+  //     {
+  //       opacity: 0,
+  //       display: 'none',
+  //       delay: 1
+  //     },'<0.1')
 
 
 }
 const contentAnimation = () =>{
-    gsap.set('.content-wrapper',{ y: -1000})
+    gsap.set('.content-wrapper',{ y: -1000, opacity: 0})
     gsap.set('.img-picture',{ y: -2000})
-    const screens = document.querySelectorAll('.second-single')
+    const screens = document.querySelectorAll('.content-box')
     screens.forEach((screen,index)=>{
-      gsap.set(screen,{
-        'margin-bottom': 100
-      })
       const tl = gsap.timeline({
         scrollTrigger:{
           trigger: screen,
-             start: 'top+500 top',
-             end: '+=1000',
+             start: 'top top',
+             end: '+=1080',
              scrub: true,
              pin: true,
-             // pinSpacing: false,
-             // onComplete: () => tl.scrollTrigger.kill()
+             pinSpacing: false
         }
       })
       tl.to(screen.querySelector('.content-wrapper'),{
-        y: 0
+        y: 0,
+        opacity: 1
       })
       tl.to(screen.querySelectorAll('.content-wrapper .img-map'),{
         y: 300,
@@ -218,7 +227,6 @@ const contentAnimation = () =>{
         ease: 'power2.out'
       },'-=1')
       if(index < 4){
-
         tl.to(screen,{
           y: -1080,
         })
@@ -258,6 +266,10 @@ onMounted(()=>{
 })
 </script>
 <style scoped>
+.content-warpper{
+  //padding-top: 1000px;
+  //margin-bottom: 1000px;
+}
 .img-bg-video {
   position: absolute;
   top: 0;
@@ -275,46 +287,16 @@ onMounted(()=>{
 }
 .climate {
   position: relative;
-  height: 6000px; /* 6个屏幕 × 1080px */
+  //height: 10000px; /* 6个屏幕 × 1080px */
 }
 .screen{
-  //overflow: hidden;
-  position: absolute;
-  top: 0;
-  width: 1920px;
-  height: 1080px;
+  overflow: hidden;
+  //position: absolute;
+  //top: 0;
+  //width: 1920px;
+  //height: 1080px;
 }
-.first-screen {
-  top: 0;
-  z-index: 6;
-}
-.second-screen {
-  top: 1080px;
-  z-index: 5;
-}
-.third-screen {
-  top: 2160px;
-  z-index: 4;
-}
-.four-screen {
-  top: 3240px;
-  z-index: 3;
-}
-.five-screen {
-  top: 4220px;
-  z-index: 2;
-}
-.six-screen {
-  top: 5220px;
-  z-index: 1;
-}
-.content-wrapper{
-  width: 1920px;
-  height: 1080px;
-  position: absolute;
-  top: 0;
-  left: 0;
-}
+
 .first-screen{
   width: 1920px;
   height: 1080px;
@@ -327,9 +309,9 @@ onMounted(()=>{
   transform-style: preserve-3d;
   transform: translateZ(0);
   will-change: transform;
-  position: absolute;
-  left: 0;
-  margin-bottom: 100px;
+  //position: absolute;
+  //left: 0;
+  //paddings-bottom: 1000px;
   .mountain-1{
     width: 1588px;
     height: 612px;
@@ -478,7 +460,6 @@ onMounted(()=>{
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
-  z-index: 5;
   .img-bg{
     width: 1920px;
     height: 356px;
@@ -537,7 +518,6 @@ onMounted(()=>{
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
-  z-index: 4;
   .img-bg{
     width: 1920px;
     height: 492px;
@@ -597,6 +577,7 @@ onMounted(()=>{
   //background-position: center center;
   //background-repeat: no-repeat;
   //z-index: 3;
+
   .img-bg{
     video{
       width: 1920px;
@@ -614,9 +595,9 @@ onMounted(()=>{
     background-position: center center;
     background-repeat: no-repeat;
     position: absolute;
-    top: 180px;
+    top: 0;
     left: 0;
-    z-index: 3;
+    //z-index: 3;
   }
   .img-map{
     width: 699px;
@@ -657,16 +638,12 @@ onMounted(()=>{
       line-height: 48px;
     }
   }
-  .content-wrapper{
-    position: relative;
-    z-index: 4;
-  }
 }
 .five-screen{
   width: 1920px;
   height: 1080px;
   background: #557ea3;
-  z-index: 2;
+
   .img-bg{
     width: 1920px;
     height: 768px;

@@ -1,5 +1,7 @@
 <template>
   <div class="landscape" @click="handleScreenClick">
+    <!-- 返回按钮 -->
+    <return-button/>
     <div class="landscape-video">
       <!-- 视频元素1 -->
       <video
@@ -60,6 +62,7 @@
 <script setup>
 import { ref, onMounted, computed } from "vue";
 import gsap from "gsap";
+import ReturnButton from "@/components/ReturnButton.vue";
 
 // 入场视频
 import glacierInto from '@/assets/images/landscape/videos/glacier-into.mp4'
@@ -621,8 +624,8 @@ const changeVideo = async (videoSrc) => {
 <style scoped>
 .landscape{
   background: #000;
-  width: 100%;
-  height: 100%;
+  width: 1920px;
+  height: 1080px;
   overflow: hidden;
   position: relative;
 }

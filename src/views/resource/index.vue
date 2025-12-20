@@ -1,5 +1,7 @@
 <template>
   <div class="gsap" ref="gsapContainer">
+    <!-- 返回按钮 -->
+    <return-button/>
     <div class="wrapper">
       <div class="resource-background-wrapper">
         <div class="resource-background-wrapper-bg" ref="backgroundBgRef"></div>
@@ -187,6 +189,7 @@
 <script setup lang="ts">
 import { onMounted, onUnmounted, ref } from "vue";
 import gsap from "gsap";
+import ReturnButton from "@/components/ReturnButton.vue";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { pxToVw, pxToVh } from '../../utils/viewportUtils';
 gsap.registerPlugin(ScrollTrigger);
