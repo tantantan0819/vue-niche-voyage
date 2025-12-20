@@ -222,12 +222,14 @@ const showNinthPopover = () => {
 .illustration-title-font{
   font-size: 33px;
   font-family: 'Alibaba-PuHuiTi-Light';
+  font-weight: 300;
   line-height: 50px;
   color: #534833;
 }
 .illustration-content-font{
   font-size: 25px;
   font-family: 'Alibaba-PuHuiTi-Light';
+  font-weight: 300;
   line-height: 50px;
   color: #534833;
 }

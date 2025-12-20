@@ -22,6 +22,7 @@ const props = defineProps({
         font-family: 'Alibaba-PuHuiTi-Light';
         line-height: 40px;
         color: #403321;
+        font-weight: 300;
         .popover-divider{
             height: 2px;
             margin: 10px 0;

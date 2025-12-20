@@ -93,6 +93,15 @@ export default [
                     icon: 'cog',
                 },
             },
+            {
+                path: 'newChina',
+                name: 'newChina',
+                component: () => import('@/views/newChina/index.vue'),
+                meta: {
+                    title: 'newChina',
+                    icon: 'cog',
+                },
+            },
         ],
     },
 ];
