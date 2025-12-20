@@ -1,9 +1,7 @@
 <template>
   <div class="literary-drama">
     <!-- 第一屏 -->
-    <div class="screen first-screen">
-      <div class="linear-gradient-container"></div>
-    </div>
+    <div class="screen first-screen"></div>
     <!-- 第二屏 -->
     <div class="screen second-screen">
       <div class="second-screen-left">
@@ -53,10 +51,7 @@
           <img class="portrait-img" src="../../assets/images/literaryDrama/drama-image-1.jpg"></img>
           <div class="portrait-detail">
             <p class="illustration-title-font">格萨尔王和三十员大将降伏恶魔</p>
-            <div class="dot-content-container">
-              <Dot @click="showForthPopover" />
-              <Popover title="内容来自" content="《情系高原——新藏画精品细赏》 四川民族出版社 2025" v-if="forthScreenPopover"></Popover>
-            </div>
+            <DotPopover class="dot-popover" title="内容来自" content="《情系高原——新藏画精品细赏》 四川民族出版社 2025"></DotPopover>
           </div>
       </div>
       <div class="text-container">
@@ -75,10 +70,7 @@
       <div class="wrapper">
         <div class="fifth-screen-content text-font">
           <span>在我国境内，《格萨尔》史诗广泛传布在西藏、内蒙古、新疆、青海、甘肃、四川、云南地区，被藏、蒙古、土、裕固、东乡、撒拉、纳西、门巴、珞巴、普米、白、独龙、傈僳13个民族传唱千年，已内化为各民族的传统文化，构建起了各民族共有共享的精神家园。</span>
-          <div class="dot-content-container">
-              <Dot @click="showFifthPopover" />
-              <Popover title="阅读更多" content="《雪域雄狮:除暴安良格萨尔王》 四川民族出版社 2024" v-if="fifthScreenPopover"></Popover>
-          </div>
+          <DotPopover class="dot-popover" title="阅读更多" content="《雪域雄狮:除暴安良格萨尔王》 四川民族出版社 2024"></DotPopover>
           <div class="background-text-img"></div>
         </div>
         <div class="character-img"></div>
@@ -103,10 +95,7 @@
          <p>彝族英雄史诗《支格阿鲁》同样以口头文本形式在云南、四川、贵州等地的彝族民间代代相传，影响广泛。</p>
          <p>
           <span>相传在远古时代，支格阿鲁的母亲原是一位待字闺中的姑娘。一天，她在屋外纺线织布时，空中飞过一只雄鹰，三滴鹰血落在她身上，使她感孕并生下了支格阿鲁（彝语中“鲁”意为“龙”）。阿鲁出生后整日啼哭，哭声惊扰天界。天帝恩体古子遂派食人魔王塔博阿莫前来捉拿母子。当母子二人被抓至空中时，母亲为救儿子，将阿鲁抛下，使他落入万丈深渊的龙巢。阿鲁在龙的养育下成长为一位神力无比、降妖除魔的英雄。</span>
-          <div class="dot-content-container">
-              <Dot @click="showSeventhPopover" />
-              <Popover title="阅读更多" content="《支格阿龙1》四川民族出版社 2018" v-if="seventhScreenPopover"></Popover>
-          </div>
+          <DotPopover class="dot-popover" title="阅读更多" content="《支格阿龙1》四川民族出版社 2018"></DotPopover>
          </p>
       </div>
     </div>
@@ -126,10 +115,7 @@
         <p>四要知礼识廉耻，</p>
         <p>
           <span>四事牢牢记心间。</span>   
-          <div class="dot-content-container">
-              <Dot @click="showEighthPopover" />
-              <Popover title="内容来自" content="《文成公主·诺桑王子》 四川民族出版社 2023" v-if="eighthScreenPopover"></Popover>
-          </div>
+          <DotPopover class="dot-popover" title="内容来自" content="《文成公主·诺桑王子》 四川民族出版社 2023"></DotPopover>
         </p>
       </div>
     </div>
@@ -140,10 +126,7 @@
       <div class="portrait-container">
           <img class="portrait-img" src="../../assets/images/literaryDrama/drama-image-3.jpg"></img>
           <div class="portrait-detail">
-             <div class="dot-content-container">
-              <Dot @click="showNinthPopover" />
-              <Popover title="内容来自" content="《情系高原——新藏画精品细赏》 四川民族出版社 2025" v-if="ninthScreenPopover"></Popover>
-            </div>
+            <DotPopover class="dot-popover" title="内容来自" content="《情系高原——新藏画精品细赏》 四川民族出版社 2025"></DotPopover>
             <span class="illustration-title-font">文成公主入藏图</span>
           </div>
       </div>
@@ -188,30 +171,7 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
-import Dot from './dot.vue';
-import Popover from './popover.vue';
-
-const forthScreenPopover = ref(false)
-const fifthScreenPopover = ref(false)
-const seventhScreenPopover = ref(false)
-const eighthScreenPopover = ref(false)
-const ninthScreenPopover = ref(false)
-const showForthPopover = () => {
-  forthScreenPopover.value = !forthScreenPopover.value
-}
-const showFifthPopover = () => {
-  fifthScreenPopover.value = !fifthScreenPopover.value
-}
-const showSeventhPopover = () => {
-  seventhScreenPopover.value = !seventhScreenPopover.value
-}
-const showEighthPopover = () => {
-  eighthScreenPopover.value = !eighthScreenPopover.value
-}
-const showNinthPopover = () => {
-  ninthScreenPopover.value = !ninthScreenPopover.value
-}
+import DotPopover from './dotPopover.vue';
 </script>
 
 <style scoped>
@@ -233,10 +193,6 @@ const showNinthPopover = () => {
   line-height: 50px;
   color: #534833;
 }
-.dot-content-container{
-  position: relative;
-  display: inline-block;
-}
 .literary-drama {
   width: 100vw;
   position: relative;
@@ -247,19 +203,6 @@ const showNinthPopover = () => {
     width: 100vw;
     height: 100vh;
   }
-}
-.first-screen .linear-gradient-container{
-  width: 100vw;
-  height: 100vh;
-  background-image: 
-  linear-gradient(
-    to bottom,
-    #f0e8b078 0%,
-    #c8e0c0d8 30%,
-    #e8d8d093 70%,
-    transparent 100%
-  );
-background-blend-mode: overlay; 
 }
 .second-screen {
   position: relative;
@@ -462,9 +405,13 @@ background-blend-mode: overlay;
     }
     .portrait-detail{
       display: flex;
-      .popover-container{
+      .dot-popover{
+        top: -20px;
+        left: 10px;
+      }
+      & >>> .popover-container{
         top: -60px; 
-        left: 50px;
+        left: 80px;
       }
     }
   }
@@ -531,9 +478,9 @@ background-blend-mode: overlay;
     height:359px;
     background: url('../../assets/images/literaryDrama/drama-character-4.png') no-repeat center center / contain;
   }
-  .popover-container{
+  & >>> .popover-container{
     top: 0;
-    left: 30px;
+    left: 70px;
   }
 }
 .sixth-screen{
@@ -589,11 +536,11 @@ background-blend-mode: overlay;
     right: 200px;
     width: 1000px;
   }
-  .dot-content-container{
+  .dot-popover{
     top: 20px;
-    .popover-container{
-      position: absolute;
-      left: 30px;
+    & >>> .popover-container{
+      top: 20px;
+      left: 60px;
     }
   }
 }
@@ -617,7 +564,7 @@ background-blend-mode: overlay;
     line-height: 80px;
     color: #534833;
   }
-  .popover-container{
+   >>> .popover-container{
     top: 30px;
     left: 40px;
     writing-mode:horizontal-tb; 
@@ -649,12 +596,12 @@ background-blend-mode: overlay;
     .portrait-detail{
       text-align: right;
     }
-    .dot-content-container{
-      right: 10px;
+    .dot-popover{
+      right: 50px;
     }
-    .popover-container{
+    >>> .popover-container{
       text-align: left;
-      top: -20px;
+      top: -10px;
       right: 40px;
     }
   }

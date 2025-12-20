@@ -75,7 +75,6 @@
                 <div class="train-img"></div>
                 <div class="forest-container">
                     <div class="forest-img"></div>
-                    <!-- <div class="cloud-img"></div> -->
                 </div>
             </div>
             <div class="dove-img"></div>
@@ -102,7 +101,11 @@
             </div>
         </div>
         <!-- 第十屏 -->
-         <div class="snap-panel panel-10">111</div>
+         <div class="snap-panel panel-10">
+            <p>走过云影掠动的群峰，翻罢岁月雕琢的时光。</p>
+            <p>现在</p>
+            <p>请暂时从宏阔的自然与历史中抽身，</p>
+         </div>
     </div>
 </template>
 <script setup>
@@ -380,5 +383,23 @@ import DotPopover from './dotPopover.vue';
             width: 900px;
         }
     }
-    .panel-10{}
+    .panel-10{
+        padding-top: 500px;
+        z-index: 2;
+        p{
+            color: #6e643b;
+            text-align: center;
+            &:nth-child(1){
+                font-size: 50px;
+                margin-bottom: 170px;
+            }
+            &:nth-child(2){
+                font-size: 100px;
+            }
+            &:nth-child(3){
+                font-size: 25px;
+            }
+        }
+  
+    }
 </style>
