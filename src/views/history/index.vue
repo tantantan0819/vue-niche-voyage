@@ -1,5 +1,12 @@
 <template>
   <div class="history-container" ref="rootContainer">
+<!--    <div-->
+<!--        class="vertical-wrapper"-->
+<!--        :class="{ 'visible': true }"-->
+<!--        ref="verticalWrapper"-->
+<!--    >-->
+<!--      <hero ref="verticalComponent"/>-->
+<!--    </div>-->
     <!--  横向布局  -->
     <div 
       class="horizontal-wrapper" 
@@ -20,6 +27,7 @@
 </template>
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue'
+import hero from './hero/index.vue'
 import horizontal from './horizontal/index.vue'
 import vertical from './vertical/index.vue'
 

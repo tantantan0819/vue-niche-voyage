@@ -1,5 +1,5 @@
 /**
- * 系统管理路由
+ * 极境之旅路由
  */
 export default [
     {
@@ -12,6 +12,15 @@ export default [
             orderNo: 10,
         },
         children: [
+            {
+                path: 'hero',
+                name: 'hero',
+                component: () => import('@/views/history/hero/index.vue'),
+                meta: {
+                    title: '开屏',
+                    icon: 'cog',
+                },
+            },
             {
                 path: 'resource',
                 name: 'resource',
