@@ -109,7 +109,7 @@
     </div>
 </template>
 <script setup>
-import DotPopover from './dotPopover.vue';
+import DotPopover from '@/components/dotPopover.vue';
 </script>
 <style scoped>
     .text-font{
@@ -245,7 +245,8 @@ import DotPopover from './dotPopover.vue';
                 width: 400px;
             }
             .dot-popover{
-                left: 20px;
+                top: 20px;
+                left: 30px;
             }
             .dot-popover >>> .popover-container{
                 top: -50px;
@@ -306,12 +307,12 @@ import DotPopover from './dotPopover.vue';
             bottom: 200px;
             right: 200px;
             .dot-popover{
-                top: -20px;
-                left: 20px;
+                top: 20px;
+                left: 30px;
             }
             .dot-popover >>> .popover-container{
-                top: -150px;
-                right: 30px;
+                top: -180px;
+                right: 60px;
             }
         }
     }
