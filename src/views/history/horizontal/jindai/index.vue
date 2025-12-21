@@ -27,7 +27,7 @@
           data-parallax-to="-500"
           data-parallax-speed="1.2"
           data-parallax-center-lock="true"
-      ><span class="change-number">19</span>世纪末-<span class="change-number">20</span>世纪初</div>
+      ><span class="change-number" ref="number19Ref">{{ displayNumber19 }}</span>世纪末-<span class="change-number" ref="number20Ref">{{ displayNumber20 }}</span>世纪初</div>
       <div
           class="cloud-2"
           data-parallax="true"
@@ -99,10 +99,10 @@
           data-parallax-center-lock="true"
       >
         <div class="detail-wrapper-solid"></div>
-        <div class="title-1 third-title change-number">1888</div>
+        <div class="title-1 third-title change-number" ref="number1888Ref">{{ displayNumber1888 }}</div>
         <div class="description-0 third-description">1888年和1903年，英军两次入侵西藏。</div>
         <div class="description-1 third-description">1888年，英军入侵西藏边境，隆吐山成为藏军守护家园的前线。藏军在山谷间筑起石堡与土墙，使用火绳枪和石块阻击敌军，展现出顽强抵抗的精神。</div>
-        <div class="title-2 third-title change-number">1903</div>
+        <div class="title-2 third-title change-number" ref="number1903Ref">{{ displayNumber1903 }}</div>
         <div class="description-2 third-description">藏军虽奋勇抗击，终因防御工事被炸毁以及晚清政府的消极态度，寡不敌众，损失惨重。最终，清政府与英国签订了《中英会议藏印条约》与《中英会议藏印续约》两个不平等条约。</div>
         <div class="description-3 third-description">西藏各阶层僧俗群众对丧权辱国的条约不予承认， 英帝国主义不甘心失败，又在1903年再度入侵西藏。</div>
       </div>
@@ -470,4 +470,64 @@
 }
 </style>
 <script setup>
+import { ref, onMounted, onUnmounted } from 'vue'
+import { useAnimateNumber } from '@/utils/animateNumber'
+
+// 数字动画 refs
+const number19Ref = ref(null)
+const number20Ref = ref(null)
+const number1888Ref = ref(null)
+const number1903Ref = ref(null)
+
+// 数字动画
+const { 
+  displayValue: displayNumber19, 
+  cleanup: cleanupNumber19
+} = useAnimateNumber({
+  elementRef: number19Ref,
+  targetValue: 19,
+  startValue: 0,
+  duration: 1,
+  ease: 'power2.out'
+})
+
+const { 
+  displayValue: displayNumber20, 
+  cleanup: cleanupNumber20
+} = useAnimateNumber({
+  elementRef: number20Ref,
+  targetValue: 20,
+  startValue: 0,
+  duration: 1,
+  ease: 'power2.out'
+})
+
+const { 
+  displayValue: displayNumber1888, 
+  cleanup: cleanupNumber1888
+} = useAnimateNumber({
+  elementRef: number1888Ref,
+  targetValue: 1888,
+  startValue: 1000,
+  duration: 1.5,
+  ease: 'power2.out'
+})
+
+const { 
+  displayValue: displayNumber1903, 
+  cleanup: cleanupNumber1903
+} = useAnimateNumber({
+  elementRef: number1903Ref,
+  targetValue: 1903,
+  startValue: 1000,
+  duration: 1.5,
+  ease: 'power2.out'
+})
+
+onUnmounted(() => {
+  cleanupNumber19()
+  cleanupNumber20()
+  cleanupNumber1888()
+  cleanupNumber1903()
+})
 </script>

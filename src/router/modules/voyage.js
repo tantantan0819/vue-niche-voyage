@@ -78,7 +78,7 @@ export default [
             {
                 path: 'literaryDrama',
                 name: 'literaryDrama',
-                component: () => import('@/views/literaryDrama/index.vue'),
+                component: () => import('@/views/history/vertical/literaryDrama/index.vue'),
                 meta: {
                     title: 'literaryDrama',
                     icon: 'cog',
@@ -87,9 +87,18 @@ export default [
             {
                 path: 'newChina',
                 name: 'newChina',
-                component: () => import('@/views/newChina/index.vue'),
+                component: () => import('@/views/history/horizontal/newChina/index.vue'),
                 meta: {
                     title: 'newChina',
+                    icon: 'cog',
+                },
+            },
+            {
+                path: 'folkways',
+                name: 'folkways',
+                component: () => import('@/views/history/vertical/folkways/index.vue'),
+                meta: {
+                    title: 'folkways',
                     icon: 'cog',
                 },
             },

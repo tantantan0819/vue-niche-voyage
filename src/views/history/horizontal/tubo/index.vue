@@ -6,7 +6,7 @@
       <div class="first-img-1"></div>
       <div class="first-img-2"></div>
       <p class="description tubo-ad">
-        公元<span ref="tuboBcNumberRef">{{tuboBcNumber}}</span>世纪-<span>{{tuboAdNumber}}</span>世纪
+        公元<span class="change-number" ref="number7Ref">{{ displayNumber7 }}</span>世纪-<span class="change-number" ref="number9Ref">{{ displayNumber9 }}</span>世纪
       </p>
       <div class="description tubo-description">
         <p class="title">吐蕃王朝</p>
@@ -120,39 +120,39 @@ import { gsap } from 'gsap';
 import { pxToVw, pxToVh } from '@/utils/viewportUtils';
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import AnnotationDot from '@/components/AnnotationDot.vue';
+import { useAnimateNumber } from '@/utils/animateNumber';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const tuboBcNumberRef = ref(null);
-const tuboBcNumber = ref(9);
-const tuboAdNumber = ref(9);
+// 数字动画 refs
+const number7Ref = ref(null)
+const number9Ref = ref(null)
+
+// 数字动画
+const { 
+  displayValue: displayNumber7, 
+  cleanup: cleanupNumber7
+} = useAnimateNumber({
+  elementRef: number7Ref,
+  targetValue: 7,
+  startValue: 0,
+  duration: 1,
+  ease: 'power2.out'
+})
+
+const { 
+  displayValue: displayNumber9, 
+  cleanup: cleanupNumber9
+} = useAnimateNumber({
+  elementRef: number9Ref,
+  targetValue: 9,
+  startValue: 0,
+  duration: 1,
+  ease: 'power2.out'
+})
 
 
 const initTuboNumberAnimation = () => {
-  // 确保元素已准备好
-  if (!tuboBcNumberRef.value) {
-    console.warn('tuboBcNumberRef not ready');
-    return;
-  }
-
-  // 吐蕃数字滚动变化动画
-  ScrollTrigger.create({
-    trigger: tuboBcNumberRef.value,
-    scroller: '.horizontal-scroll-container',
-    horizontal: true,
-    start: 'left right',
-    end: 'left center',
-    scrub: true,
-    onUpdate: (self) => {
-      if (self.progress >= 1) {
-        tuboBcNumber.value = '7';
-        tuboAdNumber.value = '9';
-      } else if (self.isActive) {
-        tuboBcNumber.value = (Math.floor(Math.random() * 9) + 1).toString();
-        tuboAdNumber.value = (Math.floor(Math.random() * 9) + 1).toString();
-      }
-    },
-  });
 
   // 吐蕃first-img-bg pin动画
   ScrollTrigger.create({
@@ -244,17 +244,12 @@ const initTuboNumberAnimation = () => {
 onMounted(async ()=>{
   // 等待DOM完全渲染
   await nextTick();
-  // 确保ref已准备好
-  if (tuboBcNumberRef.value) {
-    initTuboNumberAnimation();
-  } else {
-    // 如果还没准备好，延迟执行
-    setTimeout(() => {
-      if (tuboBcNumberRef.value) {
-        initTuboNumberAnimation();
-      }
-    }, 100);
-  }
+  initTuboNumberAnimation();
+})
+
+onUnmounted(() => {
+  cleanupNumber7()
+  cleanupNumber9()
 })
 
 </script>

@@ -1,13 +1,22 @@
 <template>
    <div class="dot-content-container">
-     <div class="dot-box"  @click="showPopover" >
+     <!-- <div class="dot-box"  @click="showPopover" >
         <div class="dot-outer"> <div class="dot-inner"> </div></div>
-     </div>
-     <div class="popover-container" v-if="popoverVisible">
+     </div> -->
+       <!-- <div class="popover-container" v-if="popoverVisible">
+        <div class="popover-title">·{{ title }}</div>
+        <div class="popover-divider"></div>
+        <div class="popover-content"></div>
+    </div> -->
+      <div class="lamp-item-wrap" @click="showPopover">
+        <div class="lamp-item-core"></div>
+        <div class="lamp-item"></div>
+      </div>
+      <div class="popover-container" v-if="popoverVisible">
         <div class="popover-title">·{{ title }}</div>
         <div class="popover-divider"></div>
         <div class="popover-content">{{ content }}</div>
-    </div>
+      </div>
    </div>
 </template>
 <script setup>

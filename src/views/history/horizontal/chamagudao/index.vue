@@ -22,7 +22,7 @@
           data-parallax-to="-400"
           data-parallax-speed="2"
           data-parallax-center-lock="true"
-      >公元<span class="change-number">14</span>世纪-<span class="change-number">19</span>世纪</div>
+      >公元<span class="change-number" ref="number14Ref">{{ displayNumber14 }}</span>世纪-<span class="change-number" ref="number19Ref">{{ displayNumber19 }}</span>世纪</div>
       <div
           class="grass"
           data-parallax="true"
@@ -287,6 +287,7 @@ import { ref, onMounted, onUnmounted, nextTick, computed } from 'vue';
 import { gsap } from 'gsap';
 import { pxToVw, pxToVh } from '@/utils/viewportUtils';
 import AnnotationDot from "@/components/AnnotationDot.vue";
+import { useAnimateNumber } from '@/utils/animateNumber';
 
 
 /**
@@ -315,6 +316,38 @@ const closeBottle = () => {
     duration: 0.5
   });
 };
+
+// 数字动画 refs
+const number14Ref = ref(null)
+const number19Ref = ref(null)
+
+// 数字动画
+const { 
+  displayValue: displayNumber14, 
+  cleanup: cleanupNumber14
+} = useAnimateNumber({
+  elementRef: number14Ref,
+  targetValue: 14,
+  startValue: 0,
+  duration: 1,
+  ease: 'power2.out'
+})
+
+const { 
+  displayValue: displayNumber19, 
+  cleanup: cleanupNumber19
+} = useAnimateNumber({
+  elementRef: number19Ref,
+  targetValue: 19,
+  startValue: 0,
+  duration: 1,
+  ease: 'power2.out'
+})
+
+onUnmounted(() => {
+  cleanupNumber14()
+  cleanupNumber19()
+})
 </script>
 <style scoped>
 .screen{
@@ -666,5 +699,3 @@ const closeBottle = () => {
 }
 
 </style>
-<script setup>
-</script>
