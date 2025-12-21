@@ -40,7 +40,7 @@ const openOrClosePopover = () => {
   
 }
 /**
- * 打开步辇图弹窗
+ * 打开弹窗
  */
 const showPopover = () => {
   gsap.to(popoverElement.value, {
@@ -55,7 +55,7 @@ const showPopover = () => {
 };
 
 /**
- * 关闭步辇图弹窗
+ * 关闭弹窗
  */
 const closeProcession = () => {
   gsap.to(popoverElement.value, {

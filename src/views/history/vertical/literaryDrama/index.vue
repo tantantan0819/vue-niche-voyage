@@ -12,8 +12,7 @@
       <!-- 中间标题部分 -->
       <div class="second-screen-center">
         <div class="drama-crane-left-img"></div>
-        <div class="drama-character-title">
-        </div>
+        <div class="drama-character-title"></div>
         <div class="drama-character-subtitle">
            <div class="drama-crane-right-img"></div>
         </div>
