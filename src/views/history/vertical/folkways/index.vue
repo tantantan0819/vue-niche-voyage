@@ -682,7 +682,7 @@ import DotPopover from '@/components/dotPopover.vue';
         .left-cloud-img-1{
             position: absolute;
             left: 0;
-            bottom: 200px;
+            bottom: 180px;
             width: 212px;
             height: 206px;
             background: url('@/assets/images/folkways/folkways-element-4-2.png') no-repeat center center / cover;
@@ -690,7 +690,7 @@ import DotPopover from '@/components/dotPopover.vue';
         .left-cloud-img-2{
             position: absolute;
             left: 0;
-            bottom: 20px;
+            bottom: 0px;
             width: 659px;
             height: 240px;
             background: url('@/assets/images/folkways/folkways-element-4-3.png') no-repeat center center / cover;
@@ -709,6 +709,7 @@ import DotPopover from '@/components/dotPopover.vue';
             left: 50%;
             transform: translate(-50%,-50%);
             text-align: center;
+            width: 1200px;
             .big-content p{
                 font-family: 'EarlySummerSerif-Bold' !important;
                 font-size: 36px;
