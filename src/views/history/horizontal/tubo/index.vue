@@ -69,17 +69,9 @@
           <p>鸿胪寺官员、吐蕃使臣</p>
           <p>禄东赞、鸿胪寺译员。</p>
         </div>
-        <div class="procession-description">
-          <div class="lamp-item-wrap" @click="openProcession">
-            <div class="lamp-item-core"></div>
-            <div class="lamp-item"></div>
-          </div>
-          <div class="popularization-wrapper">
-            <div class="close" @click="closeProcession">x</div>
-            <div class="title"><span>·</span>内容来自</div>
-            <p class="popularization-content">《浸润与融通 : 西藏各民族交往、交流与交融的故事.古代卷》四川民族出版社 2022</p>
-          </div>
-        </div>
+        <annotation-dot>
+          <p class="popularization-content">《浸润与融通 : 西藏各民族交往、交流与交融的故事.古代卷》四川民族出版社 2022</p>
+        </annotation-dot>
       </div>
       <div class="person-left"></div>
       <div class="person-right"></div>
@@ -125,8 +117,10 @@
 <script setup>
 import { ref, onMounted, onUnmounted, nextTick } from 'vue';
 import { gsap } from 'gsap';
-import { pxToVw, pxToVh } from '../../utils/viewportUtils';
+import { pxToVw, pxToVh } from '@/utils/viewportUtils';
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import AnnotationDot from '@/components/AnnotationDot.vue';
+
 gsap.registerPlugin(ScrollTrigger);
 
 const tuboBcNumberRef = ref(null);
@@ -135,6 +129,12 @@ const tuboAdNumber = ref(9);
 
 
 const initTuboNumberAnimation = () => {
+  // 确保元素已准备好
+  if (!tuboBcNumberRef.value) {
+    console.warn('tuboBcNumberRef not ready');
+    return;
+  }
+
   // 吐蕃数字滚动变化动画
   ScrollTrigger.create({
     trigger: tuboBcNumberRef.value,
@@ -241,36 +241,22 @@ const initTuboNumberAnimation = () => {
       .to('.tubo .six-screen .stele-img-1', { x: pxToVw(-800), duration: 0.1 }, '-=0.05')
       .to('.tubo .six-screen .stele-description-fixed', { opacity: 1, duration: 0.1 },'-=0.05')
 };
-onMounted(()=>{
-  initTuboNumberAnimation();
+onMounted(async ()=>{
+  // 等待DOM完全渲染
+  await nextTick();
+  // 确保ref已准备好
+  if (tuboBcNumberRef.value) {
+    initTuboNumberAnimation();
+  } else {
+    // 如果还没准备好，延迟执行
+    setTimeout(() => {
+      if (tuboBcNumberRef.value) {
+        initTuboNumberAnimation();
+      }
+    }, 100);
+  }
 })
 
-/**
- * 打开步辇图弹窗
- */
-const openProcession = () => {
-  gsap.to('.procession-description .popularization-wrapper', {
-    x: pxToVw(-50),
-    scale: 1,
-    opacity: 1,
-    duration: 0.5
-  });
-  const tl = gsap.timeline();
-  tl.to('.procession-description .lamp-item-core', { scale: 0.6, duration: 0.1 })
-      .to('.procession-description .lamp-item-core', { scale: 1, duration: 0.1 });
-};
-
-/**
- * 关闭步辇图弹窗
- */
-const closeProcession = () => {
-  gsap.to('.procession-description .popularization-wrapper', {
-    x: pxToVw(+50),
-    scale: 0.5,
-    opacity: 0,
-    duration: 0.5
-  });
-};
 </script>
 <style>
 .tubo .first-screen .first-img-bg,
@@ -569,7 +555,7 @@ const closeProcession = () => {
     }
     .popularization-wrapper{
       position: absolute;
-      left: -420px;
+      left: -500px;
       top: 50px;
       .title{
         border-color: #967c58;

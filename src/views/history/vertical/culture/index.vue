@@ -108,7 +108,7 @@
            data-parallax-to="-110"
            data-parallax-speed="1.2"
            data-parallax-center-lock="true"></div>
-      <div class="text-wrapper detail-text-wrapper"
+      <div class="text-wrapper detail-text-wrapper description"
            data-parallax="true"
            data-parallax-axis="y"
            data-parallax-from="100"
@@ -117,6 +117,9 @@
            data-parallax-center-lock="true">
         <div class="title">吐蕃时期敦煌壁画</div>
         <p>这幅壁画绘制于公元8-9世纪，画面描绘了卫士护送、侍从执香炉开道、侍女手持伞盖，敬献曼荼罗供品，以迎送吐蕃赞普的场景。侍女们丰腴的体态契合唐朝时期的审美。</p>
+        <annotation-dot>
+          <p class="popularization-content">藏族美术集成·绘画艺术·唐卡卷·1》（藏英对照） 四川民族出版社 2024</p>
+        </annotation-dot>
       </div>
     </div>
     <div class="five-screen screen">
@@ -128,6 +131,9 @@
            data-parallax-speed="1.1"
            data-parallax-center-lock="true">
         <div class="detail-text">绘制唐卡需遵循严格的流程，包括仪式准备、画布制作、草图构思、上色勾勒、金箔银饰装饰、缝制装裱等。整个创作周期通常需要数月乃至十余年，堪称佛教艺术的漫长修行。以下是一些主要画派及其特点：</div>
+        <annotation-dot>
+          <p class="popularization-content">藏族美术集成·绘画艺术·唐卡卷·1》（藏英对照） 四川民族出版社 2024</p>
+        </annotation-dot>
       </div>
       <div class="cloud-1"
            data-parallax="true"
@@ -312,7 +318,7 @@
            data-parallax="true"
            data-parallax-axis="y"
            data-parallax-from="0"
-           data-parallax-to="-400"
+           data-parallax-to="-50"
            data-parallax-speed="1.1"
            data-parallax-center-lock="true"></div>
       <div class="img-river"
@@ -325,73 +331,76 @@
       <div class="img-corridor"
            data-parallax="true"
            data-parallax-axis="y"
-           data-parallax-from="200"
-           data-parallax-to="-200"
+           data-parallax-from="-50"
+           data-parallax-to="-50"
            data-parallax-speed="1.1"
            data-parallax-center-lock="true"></div>
       <div class="img-tree-1"
            data-parallax="true"
            data-parallax-axis="y"
            data-parallax-from="100"
-           data-parallax-to="-100"
+           data-parallax-to="-150"
            data-parallax-speed="1.1"
            data-parallax-center-lock="true"></div>
       <div class="img-tree-2"
            data-parallax="true"
            data-parallax-axis="y"
            data-parallax-from="20"
-           data-parallax-to="-20"
+           data-parallax-to="-80"
            data-parallax-speed="1.1"
            data-parallax-center-lock="true"></div>
     </div>
     <div class="twelve-screen screen">
-        <div class="title"
-             data-parallax="true"
-             data-parallax-axis="y"
-             data-parallax-from="20"
-             data-parallax-to="-20"
-             data-parallax-speed="1.1"
-             data-parallax-center-lock="true"></div>
-        <div class="detail-text"
-             data-parallax="true"
-             data-parallax-axis="y"
-             data-parallax-from="100"
-             data-parallax-to="-100"
-             data-parallax-speed="1.1"
-             data-parallax-center-lock="true">藏族织毯则兼具信仰、装饰和御寒防潮的功能，一般分为挂毯，坐卧用毯和马匹用毯。挂毯多在寺院中使用；坐卧用毯既出现在寺院中，也融入藏族人民的日常生活；马匹用毯则体现藏族人民对于马匹装饰的重视。植物、山石、鸟兽、格子等等符号让织毯在视觉样式上十分丰富，极具特色。</div>
-        <div class="img-picture"
-             data-parallax="true"
-             data-parallax-axis="y"
-             data-parallax-from="300"
-             data-parallax-to="-100"
-             data-parallax-speed="1.1"
-             data-parallax-center-lock="true">
-          <div class="img-picture-1"></div>
-          <div class="img-picture-2"></div>
-        </div>
+      <div class="title"
+           data-parallax="true"
+           data-parallax-axis="y"
+           data-parallax-from="20"
+           data-parallax-to="-20"
+           data-parallax-speed="1.1"
+           data-parallax-center-lock="true"></div>
+      <div class="detail-text"
+           data-parallax="true"
+           data-parallax-axis="y"
+           data-parallax-from="100"
+           data-parallax-to="-100"
+           data-parallax-speed="1.1"
+           data-parallax-center-lock="true">藏族织毯则兼具信仰、装饰和御寒防潮的功能，一般分为挂毯，坐卧用毯和马匹用毯。挂毯多在寺院中使用；坐卧用毯既出现在寺院中，也融入藏族人民的日常生活；马匹用毯则体现藏族人民对于马匹装饰的重视。植物、山石、鸟兽、格子等等符号让织毯在视觉样式上十分丰富，极具特色。</div>
+      <div class="img-picture"
+           data-parallax="true"
+           data-parallax-axis="y"
+           data-parallax-from="300"
+           data-parallax-to="-100"
+           data-parallax-speed="1.1"
+           data-parallax-center-lock="true">
+        <div class="img-picture-1"></div>
+        <div class="img-picture-2"></div>
+      </div>
     </div>
     <div class="thirteen-screen screen">
-        <div class="img-picture-wrapper"
-             data-parallax="true"
-             data-parallax-axis="y"
-             data-parallax-from="400"
-             data-parallax-to="-400"
-             data-parallax-speed="1.1"
-             data-parallax-center-lock="true">
-          <div class="img-picture"></div>
-          <div class="img-bg-1"></div>
-          <div class="img-bg-2"></div>
-        </div>
-        <div class="text-wrapper detail-text"
-             data-parallax="true"
-             data-parallax-axis="y"
-             data-parallax-from="100"
-             data-parallax-to="-100"
-             data-parallax-speed="1.1"
-             data-parallax-center-lock="true">
-          <div class="title">寺院正面龙挂毯 ：</div>
-          <p>这是一块小尺寸的寺院用毯，应该属于寺院经堂中龙抱柱的类型。其中的龙纹符号织造规整，用色沉稳。</p>
-        </div>
+      <div class="img-picture-wrapper"
+           data-parallax="true"
+           data-parallax-axis="y"
+           data-parallax-from="400"
+           data-parallax-to="-400"
+           data-parallax-speed="1.1"
+           data-parallax-center-lock="true">
+        <div class="img-picture"></div>
+        <div class="img-bg-1"></div>
+        <div class="img-bg-2"></div>
+      </div>
+      <div class="text-wrapper detail-text"
+           data-parallax="true"
+           data-parallax-axis="y"
+           data-parallax-from="100"
+           data-parallax-to="-100"
+           data-parallax-speed="1.1"
+           data-parallax-center-lock="true">
+        <div class="title">寺院正面龙挂毯 ：</div>
+        <p>这是一块小尺寸的寺院用毯，应该属于寺院经堂中龙抱柱的类型。其中的龙纹符号织造规整，用色沉稳。</p>
+        <annotation-dot>
+          <p class="popularization-content">藏族美术集成·工艺美术·织毯卷》（藏汉对照） 四川民族出版社 2018</p>
+        </annotation-dot>
+      </div>
     </div>
     <div class="fourteen-screen screen">
       <div class="img-picture-1"
@@ -449,6 +458,9 @@
            data-parallax-center-lock="true">
         <div class="title">羌绣挑花绣图案</div>
         <p>羌绣包含挑花、绣花、纳花、盘花、刺绣等多种技艺，其中“挑花”最具特色。挑花作品多以粗布为底、棉线为材，色彩醒目的棉线与质朴厚实的布料相互映衬，形成强烈而又和谐的色彩对比。</p>
+        <annotation-dot>
+          <p class="popularization-content">《藏族美术集成·工艺美术·织毯卷》（藏汉对照） 四川民族出版社 2018</p>
+        </annotation-dot>
       </div>
     </div>
     <div class="sixteen-screen screen">
@@ -495,6 +507,10 @@
     </div>
   </div>
 </template>
+<script setup>
+import AnnotationDot from "@/components/AnnotationDot.vue";
+
+</script>
 <style scoped>
 .culture{
   background-image: url("@/assets/images/culture/art-bg.jpg");
@@ -662,6 +678,7 @@
       position: absolute;
       top: 332px;
       right: 220px;
+
     }
     .img-bg{
       width: 1920px;
@@ -674,6 +691,19 @@
       top: -2020px;
       right: 0px;
     }
+    .text-wrapper :deep(.popularization-description) {
+      position: absolute;
+      bottom: -256px;
+      right: -320px;
+      width: 500px;
+    }
+    .text-wrapper :deep(.popularization-description .popularization-wrapper) {
+      position: relative;
+      left: -600px;
+    }
+    .text-wrapper :deep(.popularization-description .popularization-wrapper .popularization-content) {
+      position: relative;
+    }
   }
   .five-screen{
     .detail-text{
@@ -682,6 +712,21 @@
       top: 450px;
       right: 274px;
     }
+    :deep(.popularization-description) {
+      position: absolute;
+      top: 644px;
+      right: -220px;
+      width: 500px;
+    }
+    :deep(.popularization-description .popularization-wrapper) {
+      position: relative;
+      top: 0px;
+      left: -500px;
+    }
+    :deep(.popularization-description .popularization-wrapper .popularization-content) {
+      position: relative;
+    }
+
     .cloud-1{
       width: 855px;
       height: 218px;
@@ -754,7 +799,7 @@
       left: 240px;
     }
     .text-wrapper-1{
-      //width: 650px;
+    //width: 650px;
       position: absolute;
       top: 134px;
       left: 1036px;
@@ -911,17 +956,17 @@
 
   }
   .twelve-screen{
-      .title{
-        width: 326px;
-        height: 158px;
-        background-image: url("@/assets/images/culture/art-characters-4.png");
-        background-size: cover;
-        background-position: center center;
-        background-repeat: no-repeat;
-        position: absolute;
-        top: 360px;
-        left: 248px;
-      }
+    .title{
+      width: 326px;
+      height: 158px;
+      background-image: url("@/assets/images/culture/art-characters-4.png");
+      background-size: cover;
+      background-position: center center;
+      background-repeat: no-repeat;
+      position: absolute;
+      top: 360px;
+      left: 248px;
+    }
     .detail-text{
       width: 906px;
       position: absolute;
@@ -1001,6 +1046,19 @@
       top: 460px;
       left: 1008px;
     }
+    .popularization-description {
+      position: absolute;
+      top: 200px;
+      left: 300px;
+      width: 500px;
+      .popularization-wrapper {
+        position: absolute;
+        top: -100px;
+        margin-top: 0px!important;
+        left: -600px;
+      }
+    }
+
   }
   .fourteen-screen{
     .img-picture-1{
@@ -1055,6 +1113,18 @@
     }
   }
   .fifteen-screen{
+    .popularization-description {
+      position: absolute;
+      top: 260px;
+      left: 260px;
+      width: 500px;
+      .popularization-wrapper {
+        position: absolute;
+        top: -100px;
+        margin-top: 0px!important;
+        left: -600px;
+      }
+    }
     .img-picture{
       width: 496px;
       height: 496px;

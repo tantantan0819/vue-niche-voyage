@@ -81,7 +81,7 @@
 
 <script setup>
 import { ref, onMounted, onBeforeUnmount } from 'vue'
-import { pxToVw } from '../../utils/viewportUtils'
+import { pxToVw } from '@/utils/viewportUtils'
 import { gsap } from 'gsap'
 import { SplitText } from 'gsap/SplitText'
 

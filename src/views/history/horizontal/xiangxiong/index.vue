@@ -1,158 +1,161 @@
 <template>
-       <div class="xiangxiong">
-        <div class="xiangxiong-bg"></div>
-        <div class="first-screen">
-          <p class="first-screen-title">约公元前<span ref="bcNumberRef">{{bcNumber}}</span>世纪-公元<span>{{adNumber}}</span>世纪</p>
-          <div class="first-screen-stone"></div>
-        </div>
-        <div class="second-screen">
-          <p class="title">象雄文明</p>
-          <div class="palace"></div>
-          <div class="stone"></div>
-        </div>
-        <div class="third-screen">
-          <div class="palace"></div>
-          <!-- 视差元素：wind -->
-          <div class="wind" data-speed="1.2"></div>
-          <p class="description-0 description">象雄文明是吐蕃兴起前青藏高原的核心文明，约公元前4世纪至公元7世纪存续。其宗教与文字都深刻影响了此后高原社会的各个方面。</p>
-          <p class="description-1 description">据相关典籍所载，象雄分为里象雄、中象雄和外象雄三部分。虽至今没有确切的地域范围，但中象雄大致位于今西藏西部阿里地区冈底斯山脉附近，以象泉河流域札达盆地为中心，国都“穹窿银城”也位于中象雄境内。</p>
+  <div class="xiangxiong">
+    <div class="xiangxiong-bg"></div>
+    <div class="first-screen">
+      <p class="first-screen-title">约公元前<span ref="bcNumberRef">{{bcNumber}}</span>世纪-公元<span>{{adNumber}}</span>世纪</p>
+      <div class="first-screen-stone"></div>
+    </div>
+    <div class="second-screen">
+      <p class="title">象雄文明</p>
+      <div class="palace"></div>
+      <div class="stone"></div>
+    </div>
+    <div class="third-screen">
+      <div class="palace"></div>
+      <!-- 视差元素：wind -->
+      <div class="wind" data-speed="1.2"></div>
+      <p class="description-0 description">象雄文明是吐蕃兴起前青藏高原的核心文明，约公元前4世纪至公元7世纪存续。其宗教与文字都深刻影响了此后高原社会的各个方面。</p>
+      <p class="description-1 description">据相关典籍所载，象雄分为里象雄、中象雄和外象雄三部分。虽至今没有确切的地域范围，但中象雄大致位于今西藏西部阿里地区冈底斯山脉附近，以象泉河流域札达盆地为中心，国都“穹窿银城”也位于中象雄境内。</p>
 
-          <p class="description-2 description xiangxiongPinText">“象雄”一词，可引申译为“受穹鸟护佑的人们居住的地方”，古代汉文文献中则被记载为“羊同”。</p>
-          <p class="description-3 xiangxiongPinTextNew">唐代史学家杜佑所著《通典·边防卷六》中就载有：“大羊同东接吐蕃，西接小羊同，北直于阗，东西千余里，胜兵八九万人。”</p>
+      <p class="description-2 description xiangxiongPinText">“象雄”一词，可引申译为“受穹鸟护佑的人们居住的地方”，古代汉文文献中则被记载为“羊同”。</p>
+      <p class="description-3 xiangxiongPinTextNew">唐代史学家杜佑所著《通典·边防卷六》中就载有：“大羊同东接吐蕃，西接小羊同，北直于阗，东西千余里，胜兵八九万人。”</p>
+    </div>
+    <div class="four-screen screen">
+      <p
+          class="description"
+          data-parallax="true"
+          data-parallax-axis="x"
+          data-parallax-from="150"
+          data-parallax-to="-150"
+          data-parallax-speed="1.1"
+          data-parallax-center-lock="true"
+      >虽然有关象雄文明的官方史料较少，但近年来一系列的考古发现可以让我们一窥古象雄的踪迹。</p>
+      <div
+          class="cloud-1"
+          data-parallax="true"
+          data-parallax-axis="x"
+          data-parallax-from="250"
+          data-parallax-to="-250"
+          data-parallax-speed="1.2"
+          data-parallax-center-lock="true"
+      ></div>
+      <div
+          class="cloud-2"
+          data-parallax="true"
+          data-parallax-axis="x"
+          data-parallax-from="300"
+          data-parallax-to="-300"
+          data-parallax-speed="1.2"
+          data-parallax-center-lock="true"
+      ></div>
+      <div
+          class="mountain-1"
+          data-parallax="true"
+          data-parallax-axis="x"
+          data-parallax-from="600"
+          data-parallax-to="-600"
+          data-parallax-speed="1.2"
+          data-parallax-center-lock="true"
+      ></div>
+      <div
+          class="mountain-2"
+          data-parallax="true"
+          data-parallax-axis="x"
+          data-parallax-from="200"
+          data-parallax-to="-200"
+          data-parallax-speed="1.2"
+          data-parallax-center-lock="true"
+      ></div>
+    </div>
+    <div class="five-screen screen">
+      <div class="brocade">
+        <div class="brocade-wrapper">
+          <div class="brocade-img-1"></div>
+          <div class="brocade-img-2"></div>
         </div>
-        <div class="four-screen screen">
-          <p
+        <div class="description description-wrapper">
+          <p class="brocade-title">王侯”汉字织锦</p>
+          <p class="brocade-first">出土于阿里地区象泉河流域的著名苯教寺院故如甲木寺。 根据科学测定，其年代可追溯到东汉时期。</p>
+          <p class="brocade-second">该织物为平纹织锦，有波浪、祥云、对鸟、神树、朱雀、白虎、青龙、玄武等纹饰。空白处可见“王侯”及其镜像的反字。此类织锦被学界认为是中原官方制作赐予地方藩王的物品，可能经新疆一带输入到西藏地区，也是青藏高原上发现的最早的丝绸。</p>
+        </div>
+      </div>
+      <div class="mask">
+        <div class="mask-img-wrapper">
+          <div class="mask-img-1"></div>
+          <div class="mask-img-2"></div>
+        </div>
+        <div class="description description-wrapper description-1">
+          <p>黄金面具</p>
+          <p>故如甲木墓地出土的黄金面具，被用来遮盖死者面部。</p>
+        </div>
+        <div class="description description-2">
+          <p>黄金面具在中亚和我国新疆等地的墓葬并不少见。“其酋豪死，抉去其脑，实以珠玉，剖其五脏，易以黄金，假造金鼻银齿，以人为殉”则是《通典》对这一习俗的记载。</p>
+        </div>
+        <div
+            class="mountain-1"
+            data-parallax="true"
+            data-parallax-axis="x"
+            data-parallax-from="100"
+            data-parallax-to="-100"
+            data-parallax-speed="1.1"
+            data-parallax-center-lock="true"
+        ></div>
+        <div
+            class="cloud-1"
+            data-parallax="true"
+            data-parallax-axis="x"
+            data-parallax-from="400"
+            data-parallax-to="-400"
+            data-parallax-speed="1.2"
+            data-parallax-center-lock="true"
+        ></div>
+      </div>
+      <div class="popularization">
+        <div >
+          <div
               class="description"
-              data-parallax="true"
-              data-parallax-axis="x"
-              data-parallax-from="150"
-              data-parallax-to="-150"
-              data-parallax-speed="1.1"
-              data-parallax-center-lock="true"
-          >虽然有关象雄文明的官方史料较少，但近年来一系列的考古发现可以让我们一窥古象雄的踪迹。</p>
-          <div
-              class="cloud-1"
-              data-parallax="true"
-              data-parallax-axis="x"
-              data-parallax-from="250"
-              data-parallax-to="-250"
-              data-parallax-speed="1.2"
-              data-parallax-center-lock="true"
-          ></div>
-          <div
-              class="cloud-2"
-              data-parallax="true"
-              data-parallax-axis="x"
-              data-parallax-from="300"
-              data-parallax-to="-300"
-              data-parallax-speed="1.2"
-              data-parallax-center-lock="true"
-          ></div>
-          <div
-              class="mountain-1"
-              data-parallax="true"
-              data-parallax-axis="x"
-              data-parallax-from="600"
-              data-parallax-to="-600"
-              data-parallax-speed="1.2"
-              data-parallax-center-lock="true"
-          ></div>
-          <div
-              class="mountain-2"
               data-parallax="true"
               data-parallax-axis="x"
               data-parallax-from="200"
               data-parallax-to="-200"
               data-parallax-speed="1.2"
               data-parallax-center-lock="true"
-          ></div>
-        </div>
-        <div class="five-screen screen">
-          <div class="brocade">
-            <div class="brocade-wrapper">
-              <div class="brocade-img-1"></div>
-              <div class="brocade-img-2"></div>
-            </div>
-            <div class="description description-wrapper">
-              <p class="brocade-title">王侯”汉字织锦</p>
-              <p class="brocade-first">出土于阿里地区象泉河流域的著名苯教寺院故如甲木寺。 根据科学测定，其年代可追溯到东汉时期。</p>
-              <p class="brocade-second">该织物为平纹织锦，有波浪、祥云、对鸟、神树、朱雀、白虎、青龙、玄武等纹饰。空白处可见“王侯”及其镜像的反字。此类织锦被学界认为是中原官方制作赐予地方藩王的物品，可能经新疆一带输入到西藏地区，也是青藏高原上发现的最早的丝绸。</p>
-            </div>
-          </div>
-          <div class="mask">
-            <div class="mask-img-wrapper">
-              <div class="mask-img-1"></div>
-              <div class="mask-img-2"></div>
-            </div>
-            <div class="description description-wrapper description-1">
-              <p>黄金面具</p>
-              <p>故如甲木墓地出土的黄金面具，被用来遮盖死者面部。</p>
-            </div>
-            <div class="description description-2">
-              <p>黄金面具在中亚和我国新疆等地的墓葬并不少见。“其酋豪死，抉去其脑，实以珠玉，剖其五脏，易以黄金，假造金鼻银齿，以人为殉”则是《通典》对这一习俗的记载。</p>
-            </div>
-            <div
-                class="mountain-1"
-                data-parallax="true"
-                data-parallax-axis="x"
-                data-parallax-from="100"
-                data-parallax-to="-100"
-                data-parallax-speed="1.1"
-                data-parallax-center-lock="true"
-            ></div>
-            <div
-                class="cloud-1"
-                data-parallax="true"
-                data-parallax-axis="x"
-                data-parallax-from="400"
-                data-parallax-to="-400"
-                data-parallax-speed="1.2"
-                data-parallax-center-lock="true"
-            ></div>
-          </div>
-          <div
-              class="popularization"
           >
-            <div
-                class="description"
-                data-parallax="true"
-                data-parallax-axis="x"
-                data-parallax-from="200"
-                data-parallax-to="-200"
-                data-parallax-speed="1.2"
-                data-parallax-center-lock="true"
-            >
-              无论是汉字织锦还是黄金面具，都彰示着多元文化在象雄时代的高原上已然发生碰撞与融合，也是阿里地区与祖国新疆、内地乃至中亚地区文化交流的铁证。
-            </div>
-            <div class="popularization-description">
-              <div class="lamp-item-wrap" @click="openPopularization">
-                <div class="lamp-item-core"></div>
-                <div class="lamp-item"></div>
-              </div>
-              <div class="popularization-wrapper">
-                <div class="close" @click="closePopularization">x</div>
-                <div class="title"><span>·</span>内容来自</div>
-                <p class="popularization-content">《物里中华：一文一物话西藏》四川民族出版社 2025</p>
-              </div>
-            </div>
-            <div
-                class="mountain-1"
-                data-parallax="true"
-                data-parallax-axis="x"
-                data-parallax-from="400"
-                data-parallax-to="-400"
-                data-parallax-speed="1.2"
-                data-parallax-center-lock="true"
-            ></div>
+            无论是汉字织锦还是黄金面具，都彰示着多元文化在象雄时代的高原上已然发生碰撞与融合，也是阿里地区与祖国新疆、内地乃至中亚地区文化交流的铁证。
           </div>
+          <div class="popularization-parallax"
+               data-parallax="true"
+               data-parallax-axis="x"
+               data-parallax-from="200"
+               data-parallax-to="-200"
+               data-parallax-speed="1.2"
+               data-parallax-center-lock="true">
+            <annotation-dot>
+              <p class="popularization-content">《物里中华：一文一物话西藏》四川民族出版社 2025</p>
+            </annotation-dot>
+          </div>
+
         </div>
+
+        <div
+            class="mountain-1"
+            data-parallax="true"
+            data-parallax-axis="x"
+            data-parallax-from="400"
+            data-parallax-to="-400"
+            data-parallax-speed="1.2"
+            data-parallax-center-lock="true"
+        ></div>
       </div>
+    </div>
+  </div>
 </template>
 <script setup>
 import { ref, onMounted, onUnmounted, nextTick } from 'vue';
 import { gsap } from 'gsap';
-import { pxToVw, pxToVh } from '../../utils/viewportUtils';
+import { pxToVw, pxToVh } from '@/utils/viewportUtils';
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import AnnotationDot from '@/components/AnnotationDot.vue';
 gsap.registerPlugin(ScrollTrigger);
 
 const bcNumberRef = ref(null);
@@ -160,6 +163,12 @@ const bcNumber = ref(9);
 const adNumber = ref(9);
 
 const initXiangxiongNumberAnimation = () => {
+  // 确保元素已准备好
+  if (!bcNumberRef.value) {
+    console.warn('bcNumberRef not ready');
+    return;
+  }
+
   // 象雄数字变化
   ScrollTrigger.create({
     trigger: bcNumberRef.value,
@@ -316,37 +325,21 @@ const initXiangxiongNumberAnimation = () => {
     }
   });
 };
-onMounted(()=>{
-  initXiangxiongNumberAnimation();
+onMounted(async ()=>{
+  // 等待DOM完全渲染
+  await nextTick();
+  // 确保ref已准备好
+  if (bcNumberRef.value) {
+    initXiangxiongNumberAnimation();
+  } else {
+    // 如果还没准备好，延迟执行
+    setTimeout(() => {
+      if (bcNumberRef.value) {
+        initXiangxiongNumberAnimation();
+      }
+    }, 100);
+  }
 })
-
-// ===================== 弹窗交互 =====================
-/**
- * 打开织锦/黄金面具弹窗
- */
-const openPopularization = () => {
-  gsap.to('.popularization .popularization-wrapper', {
-    x: pxToVw(50),
-    scale: 1,
-    opacity: 1,
-    duration: 0.5
-  });
-  const tl = gsap.timeline();
-  tl.to('.popularization .lamp-item-core', { scale: 0.6, duration: 0.1 })
-      .to('.popularization .lamp-item-core', { scale: 1, duration: 0.1 });
-};
-
-/**
- * 关闭织锦/黄金面具弹窗
- */
-const closePopularization = () => {
-  gsap.to('.popularization .popularization-wrapper', {
-    x: pxToVw(-50),
-    scale: 0.5,
-    opacity: 0,
-    duration: 0.5
-  });
-};
 
 </script>
 <style>
@@ -442,9 +435,11 @@ const closePopularization = () => {
     position: relative;
     margin-left: -2900px;
     margin-right: 600px;
+    padding-right: 1000px;
     .palace{
-      width: 2625px;
-      height: 1068px;
+      width: 1958px;
+      height: 572px;
+      background-color: rgba(255, 255, 255, 0.01);
       background-image: url("@/assets/images/xiangxiong/xx-multiply-line-art.png");
       background-size: cover;
       background-position: center center;
@@ -452,7 +447,7 @@ const closePopularization = () => {
       mix-blend-mode: multiply;
       position: relative;
       top: 510px;
-      left: 300px;
+      left: 1100px;
       z-index: 4;
     }
     .wind{
@@ -511,6 +506,7 @@ const closePopularization = () => {
   }
   .four-screen{
     margin-left: 140px;
+    margin-right: 600px;
     .description{
       width: 790px;
       position: absolute;
@@ -537,7 +533,8 @@ const closePopularization = () => {
       background-position: center center;
       background-repeat: no-repeat;
       position: relative;
-      top: -240px;
+      top: -940px;
+      left: 800px;
       z-index: 3;
       animation: cloudFloat 8s infinite alternate ease-in-out;
       animation-delay: 3s;
@@ -696,9 +693,18 @@ const closePopularization = () => {
         position: absolute;
         top: 480px;
       }
+      .popularization-parallax{
+        position: absolute;
+        top: 0px;
+        left: 50px;
+        z-index: 100;
+        width: auto;
+        height: auto;
+        pointer-events: auto;
+      }
       .popularization-description{
         position: absolute;
-        top: 450px;
+        top: 488px;
         left: 850px;
       }
       .mountain-1{
