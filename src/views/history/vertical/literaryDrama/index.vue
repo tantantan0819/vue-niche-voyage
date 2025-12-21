@@ -92,6 +92,7 @@
         <div class="rock-img"></div>
       </div>
       <div class="text-container text-font">
+         <div class="background-text-img"></div>
          <p>彝族英雄史诗《支格阿鲁》同样以口头文本形式在云南、四川、贵州等地的彝族民间代代相传，影响广泛。</p>
          <p>
           <span>相传在远古时代，支格阿鲁的母亲原是一位待字闺中的姑娘。一天，她在屋外纺线织布时，空中飞过一只雄鹰，三滴鹰血落在她身上，使她感孕并生下了支格阿鲁（彝语中“鲁”意为“龙”）。阿鲁出生后整日啼哭，哭声惊扰天界。天帝恩体古子遂派食人魔王塔博阿莫前来捉拿母子。当母子二人被抓至空中时，母亲为救儿子，将阿鲁抛下，使他落入万丈深渊的龙巢。阿鲁在龙的养育下成长为一位神力无比、降妖除魔的英雄。</span>
@@ -171,7 +172,7 @@
 </template>
 
 <script setup>
-import DotPopover from './dotPopover.vue';
+import DotPopover from '@/components/dotPopover.vue';
 </script>
 
 <style scoped>
@@ -378,10 +379,10 @@ import DotPopover from './dotPopover.vue';
     }
     .clound-img-3{
       position: absolute;
-      top: 160px;
+      top: 120px;
       right: 0;
-      width: 470px;
-      height: 165px;
+      width: 435px;
+      height: 203px;
       background: url('@/assets/images/literaryDrama/drama-element-1-14.png') no-repeat center center / cover;
     }
   }
@@ -406,8 +407,8 @@ import DotPopover from './dotPopover.vue';
     .portrait-detail{
       display: flex;
       .dot-popover{
-        top: -20px;
-        left: 10px;
+        top: 30px;
+        left: 30px;
       }
       & >>> .popover-container{
         top: -60px; 
@@ -478,7 +479,11 @@ import DotPopover from './dotPopover.vue';
     height:359px;
     background: url('@/assets/images/literaryDrama/drama-character-4.png') no-repeat center center / contain;
   }
-  & >>> .popover-container{
+  .dot-popover{
+    top: 30px;
+    left: 20px;
+  }
+   >>> .popover-container{
     top: 0;
     left: 70px;
   }
@@ -535,6 +540,14 @@ import DotPopover from './dotPopover.vue';
     top: 100px;
     right: 200px;
     width: 1000px;
+    .background-text-img{
+      position: absolute;
+      top: -100px;
+      right: 0;
+      width: 671px;
+      height: 161px;
+      background: url('@/assets/images/literaryDrama/drama-character-5.png') no-repeat center center / cover;
+    }
   }
   .dot-popover{
     top: 20px;
@@ -597,22 +610,23 @@ import DotPopover from './dotPopover.vue';
       text-align: right;
     }
     .dot-popover{
-      right: 50px;
+      top: 30px;
+      right: 30px;
     }
     >>> .popover-container{
       text-align: left;
-      top: -10px;
-      right: 40px;
+      top: -20px;
+      right: 80px;
     }
   }
 }
 .tenth-screen{
   .cloud-img{
     position: absolute;
-    top: 20px;
+    top: 10px;
     left: 0;
     width: 655px;
-    height: 325px;
+    height: 352px;
     background: url('@/assets/images/literaryDrama/drama-element-2-9.png') no-repeat center center / cover;
   }
   .portrait-container{
