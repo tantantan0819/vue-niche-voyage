@@ -67,24 +67,6 @@ export default [
                 },
             },
             {
-                path: 'direction',
-                name: 'direction',
-                component: () => import('@/views/direction/index.vue'),
-                meta: {
-                    title: 'direction',
-                    icon: 'cog',
-                },
-            },
-            {
-                path: 'culture',
-                name: 'culture',
-                component: () => import('@/views/culture/index.vue'),
-                meta: {
-                    title: 'culture',
-                    icon: 'cog',
-                },
-            },
-            {
                 path: 'literaryDrama',
                 name: 'literaryDrama',
                 component: () => import('@/views/literaryDrama/index.vue'),

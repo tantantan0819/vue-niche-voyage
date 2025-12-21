@@ -1,13 +1,13 @@
 <template>
   <div class="architecture">
-    <div class="first-screen screen">
-      <p
-      >走过云影掠动的群峰，翻罢岁月雕琢的时光。</p>
-      <p
-      >现在</p>
-      <p
-      >请暂时从宏阔的自然与历史中抽身，</p>
-    </div>
+<!--    <div class="first-screen screen">-->
+<!--      <p-->
+<!--      >走过云影掠动的群峰，翻罢岁月雕琢的时光。</p>-->
+<!--      <p-->
+<!--      >现在</p>-->
+<!--      <p-->
+<!--      >请暂时从宏阔的自然与历史中抽身，</p>-->
+<!--    </div>-->
     <div class="second-screen screen">
       <div class="cloud-1"
            data-parallax="true"
@@ -151,7 +151,11 @@
            data-parallax-center-lock="true">
         <p>马尔康脚木足扎依碉楼</p>
         <div class="img-1"></div>
+        <annotation-dot :openDirection="-50" :closeDirection="50">
+          <p class="popularization-content">《嘉绒藏族古碉文明》四川民族出版社 2020</p>
+        </annotation-dot>
       </div>
+
       <div class="five-screen-detail"
            data-parallax="true"
            data-parallax-axis="y"
@@ -171,7 +175,11 @@
            data-parallax-center-lock="true">
         <div class="img-1"></div>
         <p>汶川县龙溪乡阿尔寨碉楼</p>
+        <annotation-dot >
+          <p class="popularization-content">《羌族建筑》 四川民族出版社 2021</p>
+        </annotation-dot>
       </div>
+
       <div class="six-screen-detail"
            data-parallax="true"
            data-parallax-axis="y"
@@ -185,6 +193,7 @@
       </div>
     </div>
     <div class="seven-screen screen">
+
       <div class="seven-screen-bg"></div>
       <div class="img-wrapper-1"
            data-parallax="true"
@@ -195,6 +204,9 @@
            data-parallax-center-lock="true">
         <div class="img-1"></div>
         <p>巴底吐司官寨结构图</p>
+        <annotation-dot >
+          <p class="popularization-content">《藏族美术集成·建筑艺术·民居建筑·川滇卷》（藏汉对照）四川民族出版社 2023</p>
+        </annotation-dot>
       </div>
       <div class="seven-screen-detail"
            data-parallax="true"
@@ -246,26 +258,31 @@
       </div>
     </div>
     <div class="nine-screen screen">
-        <div class="img-wrapper-1"
-             data-parallax="true"
-             data-parallax-axis="y"
-             data-parallax-from="200"
-             data-parallax-to="-200"
-             data-parallax-speed="1.2"
-             data-parallax-center-lock="true">
-          <div class="img-1"></div>
-          <p>布达拉宫近景</p>
-        </div>
-        <div class="img-wrapper-2"
-             data-parallax="true"
-             data-parallax-axis="y"
-             data-parallax-from="200"
-             data-parallax-to="-200"
-             data-parallax-speed="1.3"
-             data-parallax-center-lock="true">
-          <div class="img-2"></div>
-          <p>布达拉宫始建于公元7世纪，17世纪重建扩建后成为政治与宗教中心。它依山而筑，气势雄浑。红宫居中、白宫横展，十余层红墙与金色屋檐在高原阳光下熠熠生辉。1994年，布达拉宫被列入《世界遗产名录》，它不仅是文成公主入藏，汉藏交流等早期历史的见证，更成为中华民族文化互鉴融通的重要标志和全人类共同的文化财</p>
-        </div>
+
+      <div class="img-wrapper-1"
+           data-parallax="true"
+           data-parallax-axis="y"
+           data-parallax-from="200"
+           data-parallax-to="-200"
+           data-parallax-speed="1.2"
+           data-parallax-center-lock="true">
+        <div class="img-1"></div>
+        <p>布达拉宫近景</p>
+      </div>
+      <div class="img-wrapper-2"
+           data-parallax="true"
+           data-parallax-axis="y"
+           data-parallax-from="200"
+           data-parallax-to="-200"
+           data-parallax-speed="1.3"
+           data-parallax-center-lock="true">
+        <div class="img-2"></div>
+        <p>布达拉宫</p>
+        <p class="description">布达拉宫始建于公元7世纪，17世纪重建扩建后成为政治与宗教中心。它依山而筑，气势雄浑。红宫居中、白宫横展，十余层红墙与金色屋檐在高原阳光下熠熠生辉。1994年，布达拉宫被列入《世界遗产名录》，它不仅是文成公主入藏，汉藏交流等早期历史的见证，更成为中华民族文化互鉴融通的重要标志和全人类共同的文化财</p>
+        <annotation-dot :openDirection="-50" :closeDirection="50">
+          <p class="popularization-content">《物里中华：一文一物话西藏》 四川民族出版社 2025</p>
+        </annotation-dot>
+      </div>
     </div>
     <div class="ten-screen screen">
       <p
@@ -292,23 +309,10 @@
            data-parallax-speed="1.2"
            data-parallax-center-lock="true">
         <div class="img-1"></div>
-        <p data-parallax="true"
-           data-parallax-axis="y"
-           data-parallax-from="80"
-           data-parallax-to="-80"
-           data-parallax-speed="1.1"
-           data-parallax-center-lock="true">桑耶寺乌孜大殿</p>
-        <div class="popularization-description">
-          <div class="lamp-item-wrap" @click="openProcession">
-            <div class="lamp-item-core"></div>
-            <div class="lamp-item"></div>
-          </div>
-          <div class="popularization-wrapper">
-            <div class="close" @click="closeProcession">x</div>
-            <div class="title"><span>·</span>内容来自</div>
-            <p class="popularization-content">《物里中华：一文一物话西藏》 四川民族出版社 2025</p>
-          </div>
-        </div>
+        <p>桑耶寺乌孜大殿</p>
+        <annotation-dot>
+          <p class="popularization-content">《物里中华：一文一物话西藏》 四川民族出版社 2025</p>
+        </annotation-dot>
       </div>
       <div class="eleven-screen-warpper-2"
            data-parallax="true"
@@ -332,7 +336,8 @@
 <script setup>
 import { ref, onMounted, onBeforeUnmount } from 'vue'
 import { gsap } from 'gsap';
-import { pxToVw, pxToVh } from '../../utils/viewportUtils';
+import { pxToVw, pxToVh } from '@/utils/viewportUtils';
+import AnnotationDot from "@/components/AnnotationDot.vue";
 
 /**
  * 打开步辇图弹窗
@@ -366,9 +371,9 @@ const closeProcession = () => {
   width: 100vw;
   background-image: url("@/assets/images/architecture/architecture-bg.jpg");
   background-size: cover;
-  background-position: center center;
   background-repeat: no-repeat;
-  min-height: 12960px;
+  min-height: 11380px;
+  background-position: center -1080px;
   overflow-x: hidden;
   .first-screen{
     padding-top: 500px;
@@ -487,14 +492,15 @@ const closeProcession = () => {
         background-repeat: no-repeat;
       }
       p{
+        width: 260px;
         font-size: 33px;
         color: #534833;
         margin-left: 42px;
       }
       .popularization-description{
         position: absolute;
-        bottom: -180px;
-        right: 120px;
+        bottom: -210px;
+        left: 980px;
         .popularization-wrapper{
           position: relative;
           top: -160px;
@@ -516,6 +522,8 @@ const closeProcession = () => {
         background-repeat: no-repeat;
       }
       p{
+        width: 230px;
+
         font-size: 33px;
         color: #534833;
         margin-right: 42px;
@@ -546,6 +554,19 @@ const closeProcession = () => {
     }
   }
   .nine-screen{
+    .popularization-description {
+      position: absolute;
+      top: 460px;
+      left: -80px;
+      width: 600px;
+      .popularization-wrapper {
+        background-color: #fff;
+        position: relative;
+        top: -100px;
+        margin-top: 0px!important;
+        left: -600px;
+      }
+    }
     .img-wrapper-1{
       display: flex;
       align-items: flex-end;
@@ -581,12 +602,19 @@ const closeProcession = () => {
         background-position: center center;
         background-repeat: no-repeat;
       }
+      .description{
+        margin-top: 148px;
+      }
       p{
         width: 824px;
         font-size: 33px;
         line-height: 54px;
         color: #534833;
-        margin-top: 148px;
+        &:nth-child(2){
+          position: absolute;
+          left: -50px;
+          top: 430px;
+        }
       }
     }
   }
@@ -638,6 +666,21 @@ const closeProcession = () => {
     }
   }
   .seven-screen{
+    .popularization-description{
+      position: absolute;
+      top: 456px;
+      left: 940px;
+      width: 600px;
+      .popularization-wrapper{
+        .popularization-content{
+          width: 550px;
+          position: relative;
+          left: 100px;
+        }
+        position: relative;
+        top: -100px;
+      }
+    }
     .seven-screen-bg{
       width: 1920px;
       height: 1488px;
@@ -679,6 +722,17 @@ const closeProcession = () => {
     }
   }
   .six-screen{
+    .popularization-description{
+      position: absolute;
+      top: 396px;
+      left: 1070px;
+      width: 480px;
+      .popularization-wrapper{
+        position: relative;
+        top: -100px;
+        left: 0px;
+      }
+    }
     .six-screen-bg{
       width: 1920px;
       height: 1488px;
@@ -748,6 +802,17 @@ const closeProcession = () => {
         font-size: 33px;
         line-height: 54px;
         color: #534833;
+      }
+    }
+    .popularization-description{
+      position: absolute;
+      bottom: -200px;
+      left: -30px;
+      width: 500px;
+      .popularization-wrapper{
+        position: relative;
+        top: -120px;
+        left: -480px;
       }
     }
   }
@@ -837,7 +902,7 @@ const closeProcession = () => {
       position: absolute;
       top: 214px;
       right: 90px;
-      //right: 312px;
+    //right: 312px;
     }
     .third-screen-bg-text{
       width: 1371px;

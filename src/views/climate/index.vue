@@ -1,5 +1,7 @@
 <template>
   <div class="climate">
+    <!-- 返回按钮 -->
+    <return-button/>
     <div class="first-screen screen">
       <div class="mountain-1"></div>
       <div class="mountain-2"></div>
@@ -113,12 +115,12 @@
 <script setup>
 import { ref, onMounted, onBeforeUnmount } from 'vue'
 import { gsap } from 'gsap';
-import { pxToVw, pxToVh } from '../../utils/viewportUtils';
+import { pxToVw, pxToVh } from '@/utils/viewportUtils';
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import ReturnButton from "@/components/ReturnButton.vue";
+
 gsap.registerPlugin(ScrollTrigger)
-const calDistance = (distance) =>{
-  return distance / 6480
-}
+
 const firstAnimation = () =>{
   const tl = gsap.timeline({
     scrollTrigger: {

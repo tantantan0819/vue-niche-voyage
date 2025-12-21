@@ -1,52 +1,52 @@
 <template>
   <div class="jindai">
     <div class="first-screen screen">
-      <div 
-       class="cloud-1"
-       data-parallax="true"
-       data-parallax-axis="x"
-       data-parallax-from="200"
-       data-parallax-to="-200"
-       data-parallax-speed="1.2"
-       data-parallax-center-lock="true"
+      <div
+          class="cloud-1"
+          data-parallax="true"
+          data-parallax-axis="x"
+          data-parallax-from="200"
+          data-parallax-to="-200"
+          data-parallax-speed="1.2"
+          data-parallax-center-lock="true"
       ></div>
-      <div 
-         class="house-1"
-         data-parallax="true"
-         data-parallax-axis="x"
-         data-parallax-from="200"
-         data-parallax-to="-600"
-         data-parallax-speed="1.3"
-         data-parallax-center-lock="true"
+      <div
+          class="house-1"
+          data-parallax="true"
+          data-parallax-axis="x"
+          data-parallax-from="200"
+          data-parallax-to="-600"
+          data-parallax-speed="1.3"
+          data-parallax-center-lock="true"
       ></div>
-      <div 
-       class="title"
-       data-parallax="true"
-       data-parallax-axis="x"
-       data-parallax-from="500"
-       data-parallax-to="-500"
-       data-parallax-speed="1.2"
-       data-parallax-center-lock="true"
+      <div
+          class="title"
+          data-parallax="true"
+          data-parallax-axis="x"
+          data-parallax-from="500"
+          data-parallax-to="-500"
+          data-parallax-speed="1.2"
+          data-parallax-center-lock="true"
       ><span class="change-number">19</span>世纪末-<span class="change-number">20</span>世纪初</div>
-      <div 
-        class="cloud-2"
-        data-parallax="true"
-        data-parallax-axis="x"
-        data-parallax-from="600"
-        data-parallax-to="-600"
-        data-parallax-speed="1.5"
-        data-parallax-center-lock="true"
+      <div
+          class="cloud-2"
+          data-parallax="true"
+          data-parallax-axis="x"
+          data-parallax-from="600"
+          data-parallax-to="-600"
+          data-parallax-speed="1.5"
+          data-parallax-center-lock="true"
       ></div>
     </div>
     <div class="second-screen screen">
-      <div 
-       class="title"
-       data-parallax="true"
-       data-parallax-axis="x"
-       data-parallax-from="10"
-       data-parallax-to="-600"
-       data-parallax-speed="1.2"
-       data-parallax-center-lock="true"
+      <div
+          class="title"
+          data-parallax="true"
+          data-parallax-axis="x"
+          data-parallax-from="10"
+          data-parallax-to="-600"
+          data-parallax-speed="1.2"
+          data-parallax-center-lock="true"
       >守土抗侵</div>
       <div
           class="cloud-1"
@@ -98,13 +98,13 @@
           data-parallax-speed="1.05"
           data-parallax-center-lock="true"
       >
-          <div class="detail-wrapper-solid"></div>
-          <div class="title-1 third-title change-number">1888</div>
-          <div class="description-0 third-description">1888年和1903年，英军两次入侵西藏。</div>
-          <div class="description-1 third-description">1888年，英军入侵西藏边境，隆吐山成为藏军守护家园的前线。藏军在山谷间筑起石堡与土墙，使用火绳枪和石块阻击敌军，展现出顽强抵抗的精神。</div>
-          <div class="title-2 third-title change-number">1903</div>
-          <div class="description-2 third-description">藏军虽奋勇抗击，终因防御工事被炸毁以及晚清政府的消极态度，寡不敌众，损失惨重。最终，清政府与英国签订了《中英会议藏印条约》与《中英会议藏印续约》两个不平等条约。</div>
-          <div class="description-3 third-description">西藏各阶层僧俗群众对丧权辱国的条约不予承认， 英帝国主义不甘心失败，又在1903年再度入侵西藏。</div>
+        <div class="detail-wrapper-solid"></div>
+        <div class="title-1 third-title change-number">1888</div>
+        <div class="description-0 third-description">1888年和1903年，英军两次入侵西藏。</div>
+        <div class="description-1 third-description">1888年，英军入侵西藏边境，隆吐山成为藏军守护家园的前线。藏军在山谷间筑起石堡与土墙，使用火绳枪和石块阻击敌军，展现出顽强抵抗的精神。</div>
+        <div class="title-2 third-title change-number">1903</div>
+        <div class="description-2 third-description">藏军虽奋勇抗击，终因防御工事被炸毁以及晚清政府的消极态度，寡不敌众，损失惨重。最终，清政府与英国签订了《中英会议藏印条约》与《中英会议藏印续约》两个不平等条约。</div>
+        <div class="description-3 third-description">西藏各阶层僧俗群众对丧权辱国的条约不予承认， 英帝国主义不甘心失败，又在1903年再度入侵西藏。</div>
       </div>
       <div
           class="stone"
@@ -145,7 +145,7 @@
           data-parallax-to="-350"
           data-parallax-speed="1.20"
           data-parallax-center-lock="true"
-          >英军侵藏路线图</div>
+      >英军侵藏路线图</div>
     </div>
     <div class="five-screen screen">
       <div
@@ -205,7 +205,7 @@
   position: relative;
   display: flex;
   .first-screen{
-    //background: red;
+  //background: red;
     .cloud-1{
       width: 2609px;
       height: 959px;

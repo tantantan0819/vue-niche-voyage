@@ -125,7 +125,7 @@
 <script setup>
 import { ref, onMounted, onBeforeUnmount } from 'vue'
 import { gsap } from 'gsap';
-import { pxToVw, pxToVh } from '../../utils/viewportUtils';
+import { pxToVw, pxToVh } from '@/utils/viewportUtils';
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger)
 const calDistance = (distance) =>{

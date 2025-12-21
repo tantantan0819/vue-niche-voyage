@@ -1,10 +1,35 @@
 <template>
-  <div class="gsap" ref="gsapContainer">
+  <div class="resource-page">
     <!-- 返回按钮 -->
     <return-button/>
+    <!-- 水平滚动容器 -->
+    <section ref="videoSection" class="snap-section video-section">
+      <div ref="snapTrack" class="snap-track">
+        <!-- 视频面板 -->
+        <div class="snap-panel video-panel">
+    <div class="play-video">
+      <div ref="panelOverlayBefore" class="panel-overlay-before">
+        <p class="panel-index-before">从光能等可再生能源，到盐湖锂矿</p>
+        <p class="panel-index-before">
+          再到广布的冻土，让我们一览世界屋脊上的宝藏！
+        </p>
+      </div>
+      <video
+          ref="panelVideo"
+          class="panel-video"
+          :src="panelVideoSrc"
+          preload="auto"
+          muted
+          playsinline
+      ></video>
+    </div>
+        </div>
+        <!-- 内容面板 -->
+        <div class="snap-panel content-panel" ref="gsapContainer">
     <div class="wrapper">
-      <div class="resource-background-wrapper">
+      <div class="resource-background-wrapper" ref="backgroundWrapperRef">
         <div class="resource-background-wrapper-bg" ref="backgroundBgRef"></div>
+        <div class="resource-background-content" ref="backgroundContentRef">
         <!-- 光能 -->
         <div class="light-energy-warpper">
           <div class="light-energy-introduction">
@@ -98,6 +123,7 @@
             <div class="salt-energy-introduction-2 scroller-img"></div>
           </div>
         </div>
+        </div>
       </div>
       <div class="green-wrapper">
         <!-- 冻土 -->
@@ -183,185 +209,462 @@
         </div>
       </div>
     </div>
+      </div>
+      </div>
+    </section>
   </div>
 </template>
 
 <script setup lang="ts">
-import { onMounted, onUnmounted, ref } from "vue";
+import { onMounted, onUnmounted, onBeforeUnmount, ref } from "vue";
 import gsap from "gsap";
 import ReturnButton from "@/components/ReturnButton.vue";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { pxToVw, pxToVh } from '../../utils/viewportUtils';
+import { pxToVw, pxToVh } from '@/utils/viewportUtils';
 gsap.registerPlugin(ScrollTrigger);
 
+const videoSection = ref<HTMLElement | null>(null);
+const snapTrack = ref<HTMLDivElement | null>(null);
 const gsapContainer = ref<HTMLDivElement | null>(null);
-let wheelDeltaBuffer = 0;
-let wheelRafId: number | null = null;
+const panelVideo = ref<HTMLVideoElement | null>(null);
+const panelOverlayBefore = ref<HTMLDivElement | null>(null);
+const backgroundWrapperRef = ref<HTMLDivElement | null>(null);
+const backgroundContentRef = ref<HTMLDivElement | null>(null);
+const panelVideoSrc = new URL(
+  "@/assets/videos/resource-animation-baking.mp4",
+  import.meta.url
+).href;
 
-const applyBufferedWheel = () => {
-  wheelRafId = null;
-  const el = gsapContainer.value;
-  if (!el) return;
-  // 纵向滚轮转为横向滚动
-  const nextLeft = el.scrollLeft + wheelDeltaBuffer;
-  wheelDeltaBuffer = 0;
-  const maxScroll = el.scrollWidth - el.clientWidth;
-  el.scrollLeft = Math.max(0, Math.min(nextLeft, maxScroll));
-};
+const VIDEO_SCRUB_AMPLIFIER = 0.4;
+let scrollAnimation: gsap.core.Timeline | null = null;
+let panelVideoHandler: (() => void) | null = null;
+let panelVideoReady = false;
+let panelVideoDuration = 0;
+const videoProgressProxy = { progress: 0 };
+let videoWeight = 0;
+let horizontalWeight = 0;
+const createScrollTrigger = async () => {
+  const sectionEl = videoSection.value;
+  const trackEl = snapTrack.value;
+  if (!sectionEl || !trackEl || !panelVideoReady || !panelVideo.value) return;
 
-const handleWheel = (e: WheelEvent) => {
-  const el = gsapContainer.value;
-  if (!el) return;
-  // 仅在容器内拦截，防止页面默认纵向滚动
-  e.preventDefault();
-  wheelDeltaBuffer += e.deltaY;
-  if (!wheelRafId) {
-    wheelRafId = requestAnimationFrame(applyBufferedWheel);
+  scrollAnimation?.scrollTrigger?.kill();
+  scrollAnimation?.kill();
+  scrollAnimation = null;
+
+  gsap.set(trackEl, { x: 0 });
+
+  // 等待两帧确保布局完全稳定
+  await new Promise(resolve => {
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        resolve(null);
+      });
+    });
+  });
+
+  // 计算需要移动的距离：track 的总宽度减去视口宽度
+  // 这样 track 向左移动这个距离后，内容就会显示出来
+  const horizontalDistance = Math.max(
+    trackEl.scrollWidth - window.innerWidth,
+    0
+  );
+
+  videoWeight = Math.max(panelVideoDuration * VIDEO_SCRUB_AMPLIFIER, 0.1);
+  
+  if (horizontalDistance > 0) {
+    const viewportWidth = window.innerWidth;
+    // 计算比例：内容宽度 / 视频宽度
+    const widthRatio = horizontalDistance / viewportWidth;
+    // horizontalWeight 应该与 videoWeight 成比例，让内容滚动使用与视频播放相同的滚动节奏
+    horizontalWeight = videoWeight * widthRatio;
+  } else {
+    horizontalWeight = 0;
   }
-};
+  
+  const totalWeight = videoWeight + (horizontalDistance > 0 ? horizontalWeight : 0);
+  if (totalWeight === 0) return;
 
-onMounted(() => {
-  if (gsapContainer.value) {
-    gsapContainer.value.addEventListener("wheel", handleWheel, {
-      passive: false,
+  videoProgressProxy.progress = panelVideo.value
+    ? panelVideo.value.currentTime / panelVideoDuration || 0
+    : 0;
+
+  const timeline = gsap.timeline({ defaults: { ease: "none" } });
+
+  // 视频播放部分
+  timeline.to(videoProgressProxy, {
+    progress: 1,
+    duration: videoWeight,
+    onUpdate: () => {
+      if (!panelVideo.value) return;
+      const targetTime = videoProgressProxy.progress * panelVideoDuration;
+      if (Math.abs(panelVideo.value.currentTime - targetTime) > 0.02) {
+        panelVideo.value.currentTime = targetTime;
+      }
+      if (panelOverlayBefore.value && panelVideoDuration) {
+        const elapsedSeconds = videoProgressProxy.progress * panelVideoDuration;
+        const beforeProgress = Math.min(Math.max(elapsedSeconds / 2, 0), 1);
+        panelOverlayBefore.value.style.transform = `translateX(-${
+          beforeProgress * 120
+        }px)`;
+        panelOverlayBefore.value.style.opacity = (
+          1 - beforeProgress
+        ).toString();
+      }
+    },
+  });
+
+  // 水平滚动部分 - 移动整个 track 向左，显示内容区域
+  if (horizontalDistance > 0) {
+    timeline.to(trackEl, {
+      x: -horizontalDistance,
+      duration: horizontalWeight,
+      ease: "none",
     });
   }
 
-  // 太阳板顺时针旋转动画
-  gsap.to(".light-energy-windmill img", {
-    rotation: 360,
-    duration: 10,
-    ease: "linear",
-    repeat: -1,
-    transformOrigin: "center center",
-    overwrite: true, // 确保不会有动画冲突
+  scrollAnimation = timeline;
+  const scrollTrigger = ScrollTrigger.create({
+    trigger: sectionEl,
+    start: "top top",
+    end: () => `+=${window.innerHeight * totalWeight}`,
+    scrub: true,
+    pin: true,
+    anticipatePin: 1,
+    animation: timeline,
+    onUpdate: (self) => {
+      // 确保在视频播放期间 track 保持不动
+      const videoFraction = videoWeight / totalWeight;
+      if (self.progress <= videoFraction) {
+        gsap.set(trackEl, { x: 0, immediateRender: true });
+      }
+    },
   });
 
-  // 图片水平视差位移
+  // 在主滚动动画创建后，设置其他动画
+  setupContentAnimations();
+};
+
+// 设置内容区域的动画
+const setupContentAnimations = () => {
+  if (!scrollAnimation) return;
+
+  // 图片水平视差位移 - 使用 containerAnimation 与主滚动动画同步
   const imgEls = document.querySelectorAll(".scroller-img");
-  if (!imgEls) return;
-  imgEls.forEach(item=>{
-    // 创建动画并关联 ScrollTrigger
-    gsap.to(item, {
-      // 随滚动移动的距离（可根据需求调整）
-      x: pxToVw(-300),
+  if (imgEls && imgEls.length > 0) {
+    imgEls.forEach(item => {
+      if (item) {
+        // 先清理可能存在的旧动画
+        const existingTriggers = ScrollTrigger.getAll().filter(trigger => {
+          return trigger.vars && trigger.vars.trigger === item;
+        });
+        existingTriggers.forEach(trigger => trigger.kill());
+        
+        gsap.to(item, {
+          x: pxToVw(-300),
+          scrollTrigger: {
+            trigger: item,
+            containerAnimation: scrollAnimation,
+            start: "left right",
+            end: "right left",
+            scrub: 4,
+            invalidateOnRefresh: true,
+            markers: false,
+          },
+        });
+      }
+    });
+  }
+
+  // 水电站升起 - 使用 containerAnimation 与主滚动动画同步
+  const waterStation = document.querySelector('.water-energy-station');
+  if (waterStation) {
+    // 先清理可能存在的旧动画
+    const existingTriggers = ScrollTrigger.getAll().filter(trigger => {
+      return trigger.vars && trigger.vars.trigger === waterStation;
+    });
+    existingTriggers.forEach(trigger => trigger.kill());
+
+    const stationTimeLine = gsap.timeline({
       scrollTrigger: {
-        trigger: item, // 监听的触发元素
-        scroller: ".gsap", // 关键：指定水平滚动的容器（非window）
-        start: "left right", // trigger左侧进入scroller右侧时开始
-        end: "right left", // trigger右侧离开scroller左侧时结束
-        scrub: 4, // 滚动联动的平滑度
-        horizontal: true, // 明确监听水平滚动
-        invalidateOnRefresh: true, // 响应式窗口重计算
-        markers: false, // 调试标记（上线后可删除，帮助查看触发点）
+        trigger: waterStation,
+        containerAnimation: scrollAnimation,
+        start: "left+=500 right",
+        end: "+=500",
+        scrub: 4,
+        invalidateOnRefresh: true,
+        markers: false,
+      }
+    });
+
+    const river = waterStation.querySelector('.river');
+    const mountain = waterStation.querySelector('.mountain');
+    const dam = waterStation.querySelector('.dam');
+    
+    if (river) {
+      stationTimeLine.to(river, {
+        y: pxToVh(-700),
+        duration: 0.1
+      });
+    }
+    if (mountain) {
+      stationTimeLine.to(mountain, {
+        y: pxToVh(-500),
+        duration: 0.1
+      });
+    }
+    if (dam) {
+      stationTimeLine.to(dam, {
+        y: pxToVh(-700),
+        duration: 0.1
+      }, '-=0.1');
+    }
+  }
+
+  // 高山拔地而起 - 使用 containerAnimation 与主滚动动画同步
+  const img1 = document.querySelector('.tjaele-enery-interduction-img1');
+  const img2 = document.querySelector('.tjaele-enery-interduction-img2');
+  const img3 = document.querySelector('.tjaele-enery-interduction-img3');
+
+  if (img1) {
+    // 先清理可能存在的旧动画
+    const existingTriggers1 = ScrollTrigger.getAll().filter(trigger => {
+      return trigger.vars && trigger.vars.trigger === img1;
+    });
+    existingTriggers1.forEach(trigger => trigger.kill());
+
+    gsap.to(img1, {
+      y: pxToVh(-704),
+      scrollTrigger: {
+        trigger: img1,
+        containerAnimation: scrollAnimation,
+        start: "left right",
+        end: "+=1300",
+        scrub: 4,
+        invalidateOnRefresh: true,
+        markers: false,
       },
     });
-  })
+  }
+  if (img2) {
+    // 先清理可能存在的旧动画
+    const existingTriggers2 = ScrollTrigger.getAll().filter(trigger => {
+      return trigger.vars && trigger.vars.trigger === img2;
+    });
+    existingTriggers2.forEach(trigger => trigger.kill());
 
-  // 水电站升起
-  const stationTimeLine = gsap.timeline({
-    scrollTrigger:{
-      trigger: '.water-energy-station', // 监听的触发元素
-      scroller: ".gsap", // 关键：指定水平滚动的容器（非window）
-      start: "left+=500 right", // trigger左侧进入scroller右侧时开始
-      end: "+=500", // trigger右侧离开scroller左侧时结束
-      scrub: 4, // 滚动联动的平滑度
-      horizontal: true, // 明确监听水平滚动
-      invalidateOnRefresh: true, // 响应式窗口重计算
-      markers: false, // 调试标记（上线后可删除，帮助查看触发点）
+    gsap.to(img2, {
+      y: pxToVh(-541),
+      scrollTrigger: {
+        trigger: img2,
+        containerAnimation: scrollAnimation,
+        start: "left right",
+        end: "+=1200",
+        scrub: 4,
+        invalidateOnRefresh: true,
+        markers: false,
+      },
+    });
+  }
+  if (img3) {
+    // 先清理可能存在的旧动画
+    const existingTriggers3 = ScrollTrigger.getAll().filter(trigger => {
+      return trigger.vars && trigger.vars.trigger === img3;
+    });
+    existingTriggers3.forEach(trigger => trigger.kill());
+
+    gsap.to(img3, {
+      y: pxToVh(-416),
+      scrollTrigger: {
+        trigger: img3,
+        containerAnimation: scrollAnimation,
+        start: "left right",
+        end: "+=1100",
+        scrub: 4,
+        invalidateOnRefresh: true,
+        markers: false,
+      },
+    });
+  }
+  // 内容视差 - 让 resource-background-wrapper 的内容移动，背景图保持固定
+  // 这样内容会相对背景图移动，产生视差效果，同时背景图与视频最后一帧保持衔接
+  const backgroundContent = backgroundContentRef.value || document.querySelector('.resource-background-content');
+  const backgroundWrapper = backgroundWrapperRef.value || document.querySelector('.resource-background-wrapper');
+  
+  if (backgroundContent && backgroundWrapper) {
+    // 先清理可能存在的旧动画
+    const existingTriggersContent = ScrollTrigger.getAll().filter(trigger => {
+      return trigger.vars && trigger.vars.trigger === backgroundContent || trigger.vars?.trigger === backgroundWrapper;
+    });
+    existingTriggersContent.forEach(trigger => trigger.kill());
+
+    // 让内容向右移动（x 正值），产生视差效果
+    // 背景图保持固定，内容相对背景图移动
+    gsap.to(backgroundContent, {
+      x: pxToVw(700), // 向右移动，产生视差效果
+      scrollTrigger: {
+        trigger: backgroundWrapper,
+        containerAnimation: scrollAnimation,
+        start: "left right",
+        end: "right left",
+        scrub: 4,
+        invalidateOnRefresh: true,
+        markers: false,
+      },
+    });
+  }
+};
+
+const handleResize = () => {
+  requestAnimationFrame(async () => {
+    await createScrollTrigger();
+  });
+};
+
+onMounted(async () => {
+  // 初始化视频
+  const videoEl = panelVideo.value;
+  if (videoEl) {
+    panelVideoHandler = () => {
+      panelVideoReady = true;
+      panelVideoDuration = videoEl.duration || 0;
+      videoEl.pause();
+      videoEl.currentTime = 0;
+      if (panelOverlayBefore.value) {
+        panelOverlayBefore.value.style.opacity = "1";
+        panelOverlayBefore.value.style.transform = "translateX(0)";
+      }
+      createScrollTrigger();
+    };
+
+    if (videoEl.readyState >= 1) {
+      panelVideoHandler();
+    } else {
+      videoEl.addEventListener("loadedmetadata", panelVideoHandler);
     }
-  })
+  } else {
+    // 如果视频元素不存在，也尝试创建 ScrollTrigger（用于调试）
+    await createScrollTrigger();
+  }
 
-  stationTimeLine.to('.water-energy-station .river',{
-    y: pxToVh(-700),
-    duration: 0.1
-  })
-  stationTimeLine.to('.water-energy-station .mountain',{
-    y: pxToVh(-500),
-    duration: 0.1
-  })
-  stationTimeLine.to('.water-energy-station .dam',{
-    y: pxToVh(-700),
-    duration: 0.1
-  },'-=0.1')
+  // 不再需要单独的水平滚动事件处理，ScrollTrigger 会处理
 
-  const tl = gsap.timeline()
-  // 高山拔地而起
-  tl.to('.tjaele-enery-interduction-img1', {
-    y: pxToVh(-704),
-    scrollTrigger: {
-      trigger: '.tjaele-enery-interduction-img1',
-      scroller: ".gsap",
-      start: "left right",
-      end: "+=1300",
-      scrub: 4,
-      horizontal: true,
-      invalidateOnRefresh: true,
-      markers: false,
-    },
-  });
-  tl.to('.tjaele-enery-interduction-img2', {
-    y: pxToVh(-541),
-    scrollTrigger: {
-      trigger: '.tjaele-enery-interduction-img2',
-      scroller: ".gsap",
-      start: "left right",
-      end: "+=1200",
-      scrub: 4,
-      horizontal: true,
-      invalidateOnRefresh: true,
-      markers: false,
-    },
-  });
-  tl.to('.tjaele-enery-interduction-img3', {
-    y: pxToVh(-416),
-    scrollTrigger: {
-      trigger: '.tjaele-enery-interduction-img3',
-      scroller: ".gsap",
-      start: "left right",
-      end: "+=1100",
-      scrub: 4,
-      horizontal: true,
-      invalidateOnRefresh: true,
-      markers: false,
-    },
-  });
-  // 背景图视差
-  tl.to('.resource-background-wrapper-bg', {
-    x: pxToVw(-700),
-    scrollTrigger: {
-      trigger: '.resource-background-wrapper-bg',
-      scroller: ".gsap",
-      start: "left right",
-      end: "right left",
-      scrub: 4,
-      horizontal: true,
-      invalidateOnRefresh: true,
-      markers: false,
-    },
-  });
+  window.addEventListener("resize", handleResize);
+
+  // 等待 DOM 更新和 ScrollTrigger 创建完成后再设置其他动画
+  await createScrollTrigger();
+  
+  // 使用 nextTick 确保 DOM 完全渲染
+  await new Promise(resolve => setTimeout(resolve, 100));
+
+  // 太阳板顺时针旋转动画
+  const windmillImg = document.querySelector(".light-energy-windmill img");
+  if (windmillImg) {
+    gsap.to(windmillImg, {
+      rotation: 360,
+      duration: 10,
+      ease: "linear",
+      repeat: -1,
+      transformOrigin: "center center",
+      overwrite: true,
+    });
+  }
+});
+
+onBeforeUnmount(() => {
+  window.removeEventListener("resize", handleResize);
+  if (panelVideoHandler && panelVideo.value) {
+    panelVideo.value.removeEventListener("loadedmetadata", panelVideoHandler);
+  }
+  scrollAnimation?.scrollTrigger?.kill();
+  scrollAnimation?.kill();
+  scrollAnimation = null;
 });
 
 onUnmounted(() => {
-  if (gsapContainer.value) {
-    gsapContainer.value.removeEventListener("wheel", handleWheel);
-  }
-  if (wheelRafId) {
-    cancelAnimationFrame(wheelRafId);
-    wheelRafId = null;
-  }
+  // 清理工作已在 onBeforeUnmount 中完成
 });
 </script>
 
 <style scoped>
-.gsap {
-  height: 1080px;
-  overflow-y: hidden;
-  overflow-x: auto; /* 关键：允许水平滚动 */
-  scrollbar-width: none; /* 可选：隐藏滚动条 */
+.resource-page {
+  width: 100%;
+  min-height: 100vh;
+  background-color: #030303;
+  color: #fff;
+  overflow-x: hidden;
 }
-.gsap::-webkit-scrollbar {
-  display: none; /* 可选：隐藏滚动条 */
+
+.snap-section {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+}
+
+.snap-track {
+  display: flex;
+  height: 100vh;
+  will-change: transform;
+  position: relative;
+  width: fit-content;
+}
+
+.video-panel {
+  flex: 0 0 100vw;
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+  z-index: 2;
+}
+
+.content-panel {
+  flex: 0 0 auto;
+  height: 100vh;
+  overflow: visible;
+  position: relative;
+  z-index: 1;
+  min-width: fit-content;
+}
+
+.play-video {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.panel-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.panel-overlay-before {
+  position: absolute;
+  top: 40%;
+  left: 30%;
+  color: rgba(255, 255, 255, 0.9);
+  text-transform: uppercase;
+  letter-spacing: 0.4em;
+  padding: 1.2rem 1.6rem;
+  border-radius: 20px;
+  transition: transform 0.2s linear, opacity 0.2s linear;
+  opacity: 1;
+  z-index: 999;
+  font-size: 32px;
+  transform: translateX(0);
+}
+
+.panel-index-before {
+  font-family: "alibaba", sans-serif;
+  margin: 0.5rem 0;
+}
+
+.gsap {
+  height: 100vh;
+  overflow: hidden;
 }
 
 .wrapper {
@@ -388,18 +691,29 @@ onUnmounted(() => {
 .resource-background-wrapper {
   display: flex;
   height: 100vh;
-  width: 18940px;
+  width: 18840px;
   position: relative;
   .resource-background-wrapper-bg{
     position: absolute;
     top: 0;
-    left: 0px;
+    left: -530px;
     height: 100vh;
-    width: 18940px;
+    width: 19940px;
     background-image: url("@/assets/images/resource/resource-background-2.jpg");
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
+    z-index: 0;
+  }
+  .resource-background-content {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    will-change: transform;
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
   }
 }
 .light-energy-warpper {
@@ -751,6 +1065,7 @@ onUnmounted(() => {
   background-color: #1b1d10;
   height: 100vh;
   display: flex;
+  margin-left: 1000px;
 }
 .tjaele-enery-wrapper {
   background-color: #1b1d10;

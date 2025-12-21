@@ -8,9 +8,11 @@
       <!-- 元朝 -->
       <yuan></yuan>
       <!-- 茶马古道 -->
-       <chamagudao></chamagudao>
+      <chamagudao></chamagudao>
       <!-- 近代 -->
       <jindai></jindai>
+      <!-- 新中国 -->
+      <new-china/>
     </div>
   </div>
 </template>
@@ -18,15 +20,20 @@
 <script setup>
 import { ref, onMounted, onUnmounted, nextTick } from 'vue';
 import { gsap } from 'gsap';
-import { pxToVw, pxToVh } from '../../utils/viewportUtils';
+import { pxToVw, pxToVh } from '@/utils/viewportUtils';
 
-import xiangxiong from './xiangxiong.vue'
-import tubo from './tubo.vue'
-import yuan from './yuan.vue'
-import chamagudao from './chamagudao.vue'
-import jindai from './jindai.vue'
+import xiangxiong from './xiangxiong/index.vue'
+import tubo from './tubo/index.vue'
+import yuan from './yuan/index.vue'
+import jindai from './jindai/index.vue'
+import NewChina from './newChina/index.vue'
+import chamagudao from './chamagudao/index.vue'
+
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { preloadImages } from "@/utils/preloadImages";
+
+// 定义事件
+const emit = defineEmits(['scroll-complete']);
 
 // ===================== 全局初始化 =====================
 gsap.registerPlugin(ScrollTrigger);
@@ -58,6 +65,7 @@ let scrollAmount = 0;
 let parallaxElements = []; // 存储视差元素信息
 let parallaxSetters = []; // gsap quickSetter列表
 let lazyBgElements = []; // 缓存待懒加载的元素及位置信息
+let isScrollComplete = false; // 标记横向滚动是否完成
 
 // ===================== 工具函数 =====================
 /**
@@ -92,10 +100,38 @@ const applyBufferedWheel = () => {
 
   const maxScroll = container.value.scrollWidth - container.value.clientWidth;
   scrollAmount = Math.max(0, Math.min(scrollAmount, maxScroll));
+
+  // 检测是否到达最右端（允许1px的误差）
+  const isAtEnd = scrollAmount >= maxScroll - 1;
+
+  // 如果刚到达最右端，发出完成事件
+  if (isAtEnd && !isScrollComplete) {
+    isScrollComplete = true;
+    emit('scroll-complete');
+  }
+
+  // 如果还没到达最右端，重置完成状态
+  if (!isAtEnd && isScrollComplete) {
+    isScrollComplete = false;
+  }
+
   smoothScrollLeft(scrollAmount);
 };
 
 const handleWheel = (e) => {
+  if (!container.value) return;
+
+  const maxScroll = container.value.scrollWidth - container.value.clientWidth;
+  const currentScroll = container.value.scrollLeft;
+  const isAtEnd = currentScroll >= maxScroll - 1;
+
+  // 如果已经到达最右端且继续向右滚动，不阻止默认行为，让滚轮事件传递到竖向滚动
+  if (isAtEnd && e.deltaY > 0) {
+    // 不阻止默认行为，允许竖向滚动
+    return;
+  }
+
+  // 否则，阻止默认行为并处理横向滚动
   e.preventDefault();
   wheelDeltaBuffer += e.deltaY;
   if (!wheelRafId) {
@@ -106,13 +142,13 @@ const handleWheel = (e) => {
 // ===================== 批量视差功能使用说明 =====================
 /**
  * 批量视差功能基于ScrollTrigger和fromTo实现，支持通过HTML属性灵活配置
- * 
+ *
  * 使用方法：
  * 在需要添加视差效果的元素上添加以下data属性：
- * 
+ *
  * 必选属性：
  * - data-parallax="true" - 启用视差效果
- * 
+ *
  * 可选属性：
  * - data-parallax-axis="x|y" - 视差方向（默认：x）
  * - data-parallax-from="数值" - 元素进入视口时的起始位置（默认：0）
@@ -122,9 +158,9 @@ const handleWheel = (e) => {
  * - data-parallax-trigger-end="字符串" - 触发结束点（默认："right left"）
  * - data-parallax-center-lock="true|false" - 是否在视口中心时保持原位置（默认：true）
  * - data-parallax-ease="字符串" - 动画缓动函数（默认："power1.out"）
- * 
+ *
  * 示例：
- * <div 
+ * <div
  *   data-parallax="true"
  *   data-parallax-axis="x"
  *   data-parallax-from="-200"
@@ -134,7 +170,7 @@ const handleWheel = (e) => {
  * >
  *   视差元素
  * </div>
- * 
+ *
  * 核心特性：
  * 1. 中心锁定：元素在视口中心时保持预期位置，进入和离开时产生视差
  * 2. 批量配置：通过HTML属性快速配置多个视差元素
@@ -196,7 +232,7 @@ const initBatchParallax = async () => {
 
   // 获取所有带data-parallax属性的元素
   const parallaxElements = document.querySelectorAll('[data-parallax]');
-  
+
   parallaxElements.forEach(el => {
     // 解析视差配置
     const config = {
@@ -220,7 +256,7 @@ const initBatchParallax = async () => {
 
     // 根据视差轴选择合适的单位转换函数
     const convertUnit = config.axis === 'x' ? pxToVw : pxToVh;
-    
+
     // 转换像素值为视口单位
     const convertValue = (value) => {
       // 如果值是字符串且包含单位，直接使用
@@ -236,16 +272,16 @@ const initBatchParallax = async () => {
     if (config.centerLock) {
       // 中心锁定模式：元素在视口中心时保持原位置，进入和离开时产生视差
       const centerValue = 0;
-      
+
       // 计算从起始位置到结束位置的总距离
       const totalDistance = Math.abs(config.toValue - config.fromValue);
-      
+
       // 根据轴选择合适的视口单位转换函数
       const convertToViewportUnit = config.axis === 'x' ? pxToVw : pxToVh;
-      
+
       // 将距离的一半转换为视口单位
       const halfDistance = convertToViewportUnit(totalDistance / 2);
-      
+
       // 根据起始和结束位置的关系确定方向
       if (config.fromValue < config.toValue) {
         // 从左到右/从上到下移动
@@ -266,16 +302,16 @@ const initBatchParallax = async () => {
     // 解决CSS动画与GSAP视差冲突的核心方案
     // 创建一个包装元素来分离CSS动画和GSAP视差效果
     let parallaxWrapper;
-    
+
     // 检查元素是否已经有包装器
     if (!el.dataset.parallaxWrapper) {
       // 获取元素的计算样式
       const computedStyle = window.getComputedStyle(el);
-      
+
       // 创建包装器元素
       parallaxWrapper = document.createElement('div');
       parallaxWrapper.className = 'parallax-animation-wrapper';
-      
+
       // 设置包装器的样式，使其与原元素完全一致
       parallaxWrapper.style.position = computedStyle.position;
       parallaxWrapper.style.top = computedStyle.top;
@@ -289,18 +325,18 @@ const initBatchParallax = async () => {
       parallaxWrapper.style.display = computedStyle.display;
       parallaxWrapper.style.float = computedStyle.float;
       parallaxWrapper.style.zIndex = computedStyle.zIndex;
-      
+
       // 关键：确保包装器不会影响布局
       parallaxWrapper.style.boxSizing = 'border-box';
       parallaxWrapper.style.transformStyle = 'preserve-3d';
-      
+
       // 将元素移动到包装器内
       el.parentNode.insertBefore(parallaxWrapper, el);
       parallaxWrapper.appendChild(el);
-      
+
       // 标记元素已经有包装器
       el.dataset.parallaxWrapper = 'true';
-      
+
       // 重置元素的定位属性，使其在包装器内正常显示
       // 但保留其他样式不变，确保CSS动画仍然有效
       el.style.position = 'relative';
@@ -313,25 +349,25 @@ const initBatchParallax = async () => {
       // 如果已经有包装器，找到它（应该是父元素）
       parallaxWrapper = el.parentNode;
     }
-    
+
     // 现在将视差效果应用到包装器上，而不是直接应用到有CSS动画的元素上
     // 这样CSS动画在内部元素上运行，视差效果在外部包装器上运行，两者互不干扰
-    gsap.fromTo(parallaxWrapper, 
-      fromProps, // 起始状态
-      {
-        ...toProps, // 结束状态
-        ease: config.ease,
-        scrollTrigger: {
-          trigger: parallaxWrapper, // 使用包装器作为触发器
-          scroller: container.value,
-          horizontal: config.axis === 'x',
-          vertical: config.axis === 'y',
-          start: config.triggerStart,
-          end: config.triggerEnd,
-          scrub: config.speed, // scrub值控制视差速度
-          invalidateOnRefresh: true
+    gsap.fromTo(parallaxWrapper,
+        fromProps, // 起始状态
+        {
+          ...toProps, // 结束状态
+          ease: config.ease,
+          scrollTrigger: {
+            trigger: parallaxWrapper, // 使用包装器作为触发器
+            scroller: container.value,
+            horizontal: config.axis === 'x',
+            vertical: config.axis === 'y',
+            start: config.triggerStart,
+            end: config.triggerEnd,
+            scrub: config.speed, // scrub值控制视差速度
+            invalidateOnRefresh: true
+          }
         }
-      }
     );
   });
 };
@@ -350,6 +386,23 @@ const scheduleLazyLoad = () => {
     lazyLoadRafId = null;
     lazyLoadImages();
   });
+};
+
+/**
+ * 检测横向滚动是否完成
+ */
+const checkScrollComplete = () => {
+  if (!container.value) return;
+  const maxScroll = container.value.scrollWidth - container.value.clientWidth;
+  const currentScroll = container.value.scrollLeft;
+  const isAtEnd = currentScroll >= maxScroll - 1;
+
+  if (isAtEnd && !isScrollComplete) {
+    isScrollComplete = true;
+    emit('scroll-complete');
+  } else if (!isAtEnd && isScrollComplete) {
+    isScrollComplete = false;
+  }
 };
 
 
@@ -404,10 +457,14 @@ onMounted(async () => {
     container.value.addEventListener('wheel', handleWheel, { passive: false });
     container.value.addEventListener('scroll', scheduleLazyLoad, { passive: true });
     container.value.addEventListener('scroll', scheduleTraditionalParallax, { passive: true });
+    container.value.addEventListener('scroll', checkScrollComplete, { passive: true });
 
     // 初始化动画
     initParallax(); // 视差元素
     initDescriptionOpacityAnimation(); // 描述文本渐显
+
+    // 初始检查一次滚动状态
+    checkScrollComplete();
   }
 });
 
@@ -416,6 +473,7 @@ onUnmounted(() => {
   if (container.value) {
     container.value.removeEventListener('wheel', handleWheel);
     container.value.removeEventListener('scroll', scheduleLazyLoad);
+    container.value.removeEventListener('scroll', checkScrollComplete);
   }
 
   if (wheelRafId) cancelAnimationFrame(wheelRafId);

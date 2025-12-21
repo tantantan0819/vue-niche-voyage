@@ -23,7 +23,7 @@
     <div class="four-screen screen">
       <div class="img-picture"></div>
       <div class="img-bg"></div>
-      <div class="text-wrapper detail-text-wrapper">
+      <div class="text-wrapper detail-text-wrapper description">
         <div class="title">吐蕃时期敦煌壁画</div>
         <p>这幅壁画绘制于公元8-9世纪，画面描绘了卫士护送、侍从执香炉开道、侍女手持伞盖，敬献曼荼罗供品，以迎送吐蕃赞普的场景。侍女们丰腴的体态契合唐朝时期的审美。</p>
       </div>
@@ -37,13 +37,13 @@
     </div>
     <div class="six-screen screen">
       <div class="img-picture"></div>
-      <div class="text-wrapper text-wrapper-1 detail-text">
+      <div class="text-wrapper text-wrapper-1 detail-text description">
         <div class="title">尼泊尔画派：</div>
         <p>流行于公元11-13世纪，画面以暖色调为主，</p>
         <p>画面中央的主尊地位突出，而护法诸尊往往</p>
         <p>被安排在画面四周的方格之中。</p>
       </div>
-      <div class="text-wrapper text-wrapper-2 detail-text-wrapper">
+      <div class="text-wrapper text-wrapper-2 detail-text-wrapper description">
         <div class="title">释迦牟尼佛</div>
         <p>画中是释迦牟尼佛及两位随侍菩萨，周围饰以六位上师。画面顶部的六佛与七宝珠相得益彰。</p>
       </div>
@@ -51,13 +51,13 @@
     <div class="seven-screen screen">
       <div class="cloud-1"></div>
       <div class="img-picture"></div>
-      <div class="text-wrapper text-wrapper-1 detail-text">
+      <div class="text-wrapper text-wrapper-1 detail-text description">
         <div class="title">齐乌岗巴画派：</div>
         <p>流行于13-14世纪，构图上大致遵循尼泊尔画派</p>
         <p>的形式。色彩运用上偏大红和暖黄色，色彩艳丽。</p>
         <p>人物描绘上自然流畅、笔触细腻，服饰变化多样。</p>
       </div>
-      <div class="text-wrapper text-wrapper-2 detail-text-wrapper">
+      <div class="text-wrapper text-wrapper-2 detail-text-wrapper description">
         <div class="title">释迦牟尼佛</div>
         <p>画面中央的帕竹·多杰嘉波周围环绕着噶举派八个分支的上师、佛陀和菩萨。深蓝与朱红的背景图案既和谐又得体，人物形象亲切而生动。</p>
       </div>

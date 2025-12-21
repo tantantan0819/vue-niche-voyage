@@ -27,6 +27,10 @@ const returnHome = () => {
   display: flex;
   justify-content: center;
   align-items: center;
+  user-select: none;
+  border-radius: 46px;
+  border: 1px dotted  transparent;
+
   .return-btn-core{
     width: 112px;
     height: 56px;
@@ -59,8 +63,7 @@ const returnHome = () => {
     }
   }
   &:hover{
-    border: 1px dotted  rgba(255,255,255,0.5);
-    border-radius: 46px;
+    border-color: rgba(255,255,255,0.35);
     .return-btn-core{
       background-color: rgba(255,255,255,0.35);
     }
