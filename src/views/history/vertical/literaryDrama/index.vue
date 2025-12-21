@@ -572,10 +572,12 @@ import DotPopover from '@/components/dotPopover.vue';
     left: 200px;
     transform: translateY(-50%);
     writing-mode: vertical-rl; /* 从右向左 从上向下 */
-    font-family: 'EarlySummerSerif-Bold';
-    font-size: 40px;
-    line-height: 80px;
-    color: #534833;
+    p{
+      font-family: 'EarlySummerSerif-Bold' !important;
+      font-size: 40px;
+      line-height: 80px;
+      color: #534833;
+    }
   }
    >>> .popover-container{
     top: 30px;

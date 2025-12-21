@@ -1,5 +1,6 @@
 <template>
     <div class="folkways-container">
+        <div class="screen"></div>
         <!-- 第一幕 -->
         <div class="screen first-screen">
             <div class="left-pattern-container">
@@ -121,7 +122,7 @@
             <div class="picture-container">
                 <div>
                     <img src="@/assets/images/folkways/folkways-image-6.png" alt="" class="picture-img-1">
-                    <img src="@/assets/images/folkways/folkways-image-6.png" alt="" class="picture-img-2">
+                    <img src="@/assets/images/folkways/folkways-image-7.jpg" alt="" class="picture-img-2">
                 </div>
                 <div class="illustration-title-font">
                     <DotPopover class="dot-popover" title="内容来自" content="《中国彝族传统服饰图典籍》四川民族出版社 2019"></DotPopover>
@@ -134,11 +135,106 @@
             </div>
         </div>
         <!-- 第九幕 -->
-        <!-- <div class="screen ninth-screen"></div> -->
+        <div class="screen ninth-screen">
+            <div class="back-pattern-img"></div>
+            <div class="front-pattern-img"></div>
+        </div>
         <!-- 第十幕 -->
-        <!-- <div class="screen tenth-screen"></div> -->
+        <div class="screen tenth-screen">
+            <div class="left-pattern-contain">
+                  <div class="left-cloud-img-1"></div>
+                  <div class="left-cloud-img-2"></div>
+            </div>
+            <div class="right-cloud-img"></div>
+            <div class="text-container">
+                <div>
+                    <div class="big-content">
+                        <p>恭喜您，您已经在“极境之旅”跨越亿万年，领略了</p>
+                        <p>这片雪域之上自然的壮美和历史文化的厚重。</p>
+                        <p>现在，是时候开启属于您的荣誉挑战了！</p>
+                        <p>立即答题，收获属于你的“极境荣誉”！</p>
+                    </div>
+                    <div class="answer-btn text-font">立即答题</div>
+                </div>
+                <div class="small-content">参与“极境智旅”互动答题，您将有机会获取积分解锁精品图书在线阅读！</div>
+            </div>
+        </div>
         <!-- 第十一幕 -->
-        <!-- <div class="screen eleventh-screen"></div> -->
+        <div class="eleventh-screen">
+            <div class="container-header">
+                <p>参考资料</p>
+                <div class="cloud-img"></div>
+                <div class="header-divider-img"></div>
+            </div>
+            <div class="books-resource-container">
+                <p class="books-resource-header">图书资源</p>
+                <div>
+                    <p>·《物里中华——一文一物话西藏》，四川大学中国藏学研究所编著，霍巍主编，四川民族出版社，2025.4</p>
+                    <p>·《浸润与融通：西藏各民族交往、交流与交融的故事·古代卷》，黄维忠、喜饶尼玛主编，四川民族出版社，2022.10</p>
+                    <p>·《藏族史要》，王辅仁、索文清编著，四川民族出版社，1982</p>
+                    <p>·《藏族史要》，王辅仁、索文清编著，四川民族出版社，1982</p>
+                    <p>·《嘉绒藏族古碉文明：藏、汉》，红音著，阿坝州藏族历史文化古籍研究协会编，四川民族出版社，2020.9</p>
+                    <p>·《羌族建筑：汉、羌》，《中华羌族历史文化集成》编纂委员会编，张曦主编，四川民族出版社，2021.1</p>
+                    <p>·《建筑艺术.民居建筑.川滇卷:藏汉对照》，《藏族美术集成》编撰委员会编，杨环主编，四川民族出版社, 2023.8</p>
+                    <p>·《绘画艺术.唐卡.格萨尔卷.2:藏汉对照》，降边嘉措主编，《藏族美术集成》编撰委员会编，四川民族出版社，2018.11</p>
+                    <p>·《绘画艺术.壁画.日喀则卷.1:藏汉对照》，和靖主编，《藏族美术集成》编撰委员会编，2018.12</p>
+                    <p>·《绘画艺术.壁画.四川卷2:藏汉对照》，《藏族美术集成》编撰委员会编，根秋多吉主编，四川民族出版社,2021.12</p>
+                    <p>·《工艺美术·织毯卷：藏汉对照》，陆晋生主编；《藏族美术集成》编撰委员会编，四川民族出版社，2018.12</p>
+                    <p>·《文成公主；诺桑王子》，赤烈曲扎译，四川民族出版社, 2023.12</p>
+                    <p>·《中国藏餐》，尕藏才旦、高老著，四川民族出版社，2023.2</p>
+                    <p>·《晶珠本草药录》，罗达尚主编，四川民族出版社，2017</p>
+                    <p>·《四川藏羌彝民族医药图鉴》，赖先荣、杨福寿、张丹编著，四川民族出版社，2020.4</p>
+                    <p>·《情系高原：新藏画精品细赏》，梅定开编著，四川民族出版社, 2025.6</p>
+                    <p>·《藏族传统工艺美术新作集锦:藏汉对照》，根秋多吉主编，四川民族出版社, 2021.12</p>
+                    <a href="" class="more-link">更多图书资源，点击在线阅读平台跳转阅读</a>
+                </div>
+            </div>
+            <div class="other-literature-container">
+                <p>其他文献</p>
+                <div>
+                    <p>·《青藏高原的核心来自南半球冈瓦纳大陆》，丁林、李震宇、宋培平，中国科学院院刊，2017</p>
+                    <p>·《特提斯地球动力系统研究新进展》，丁林，中国科学：地球科学，2024</p>
+                    <p>·《青藏高原气候区划》，林振耀、吴祥定，地理学报，1981</p>
+                    <p>·《横断山——中国冰川的“绿色”故乡》，张文敬，今日科苑，2013</p>
+                    <p>·《青藏高原冰川资源及其分布特征》，刘宗香、苏珍、姚檀栋、王文悌、邵文章，资源科学，2000</p>
+                    <p>·《青藏高原地热资源与地壳结构》，白嘉启、梅琳、杨美伶，地质力学学报，2006</p>
+                    <p>·《阿里高原象雄考古揭秘“王侯”丝绸与黄金面罩》，崔巍，大众考古，2015</p>
+                    <p>·《再探古老的象雄文明》，才让太，中国藏学，2005</p>
+                    <p>·《明茶马贸易<四川省四路关驿图>考》，蓝勇，中国边疆史地研究，2013</p>
+                    <p>·《简论1904年江孜抗英保卫战》，陈钢、黄维伟、李永琴，西藏民族学院学报（哲学社会科学版），2004</p>
+                    <p>·《论隆吐山战役及其在中国近代史上的地位》，苏发祥，中央民族大学学报（哲学社会科学版），2006</p>
+                    <p>·《青藏高原民族建筑研究70年回眸》，马扎·索南周扎，建筑，2021</p>
+                    <p>·《羌族民居建筑艺术的审美意味及其当代价值》，罗晓飞，中外艺术研究，2021</p>
+                    <p>·《羌族碉楼建筑与嘉绒藏族碉楼建筑对比研究》，何威，中国民族美术，2017</p>
+                </div>
+            </div>
+            <div class="end-resource-container">
+                <p>·张镱锂. (2019). 青藏高原边界数据总集. 国家青藏高原科学数据中心. https://doi.org/10.11888/Geogra.tpdc.270099</p>
+                <p>·Cao, W., Zahirovic, S., Flament, N., Williams, S., Golonka, J., and Müller, R. D., 2017, Improving global paleogeography since the late Paleozoic using paleobiology: Biogeosciences, v. 14, no. 23, p. 5425-5439, DOI:10.5194/bg-14-5425-2017.</p>
+                <p>·Müller, R. D., Cannon, J., Tetley, M., Williams, S. E., Cao, X., Flament, N., Bodur, Ö. F., Zahirovic, S., and Merdith, A., 2022, A tectonic-rules based mantle reference frame since 1 billion years ago–implications for supercontinent cycles and plate-mantle system evolution: Solid Earth, p. 1-42, doi: 10.5194/se-13-1127-2022</p>
+                <p>·Merdith, A., Williams, S. E., Collins, A. S., Tetley, M. G., Mulder, J. A., Blades, M. L., Young, A., Armistead, S., Cannon, J., Zahirovic, S., and Müller, R. D., 2021, Extending Whole-Plate Tectonic Models into Deep Time: Linking the Neoproterozoic and the Phanerozoic: Earth Science Reviews, v. 214.</p>
+                <p>·国家地理信息公共服务平台</p>
+                <p>·资源环境科学数据平台</p>
+                <p>·丝绸之路历史地理信息开放平台</p>
+                <p>·中国古典文献资源导航系统</p>
+                <p>·中国科学院中国生物物种名录2025版</p>
+                <p>·中国科学院青藏高原研究所官方网站</p>
+                <p>·故宫博物院官方网站</p>
+                <p>·中华珍宝馆官方网站</p>
+                <p>·中国藏学研究中心官方网站</p>
+                <p>·中国气象局官方网站</p>
+                <p>·中国文化研究院官方网站</p>
+                <p>·中国政府网</p>
+                <p>·新华网</p>
+                <p>·西藏自治区文化和旅游厅官方网站</p>
+                <p>·国家能源局官方网站</p>
+                <p>·青藏高原国家种质资源库官方网站</p>
+                <p>·中国国家地理官方网站</p>
+                <p>·道孚县人民政府官方网站</p>
+                <p>·湖南省博物馆官方网站</p>
+                <p>·四川省文物考古研究院官方网站</p>
+            </div>
+        </div>
     </div>
 </template>
 <script setup>
@@ -164,9 +260,10 @@ import DotPopover from '@/components/dotPopover.vue';
     }
     .folkways-container {
         width: 100vw;
-        /* height: 1000vh; */
+        height: 1500vh;
         overflow-x: hidden;
-        background: url('@/assets/images/folkways/folkways-bg.png') no-repeat center center / cover;
+        background: url('@/assets/images/folkways/folkways-bg.png') no-repeat center center;
+        background-size: 100vw 1500vh;
     }
     .first-screen{
         .background-people-img{
@@ -537,7 +634,12 @@ import DotPopover from '@/components/dotPopover.vue';
                 margin-top: 20px;
             }
             .dot-popover{
-                
+                top: 80px;
+                left: -40px;
+            }
+            >>> .popover-container{
+                top: -100px;
+                right: 80px;
             }
         }
         .right-pattern-img-1{
@@ -548,14 +650,140 @@ import DotPopover from '@/components/dotPopover.vue';
             height: 758px;
             background: url('@/assets/images/folkways/folkways-element-3-13.png') no-repeat center center / cover;
         }
+        .right-pattern-img-2{
+            position: absolute;
+            top: 40px;
+            right: 200px;
+            width: 331px;
+            height: 882px;
+            background: url('@/assets/images/folkways/folkways-element-3-14.png') no-repeat center center / cover;
+        }
     }
-    .third-screen{
-        
+    .ninth-screen{
+        .back-pattern-img{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            width: 959px;
+            height: 931px;
+            background: url('@/assets/images/folkways/folkways-element-3-15.png') no-repeat center center / cover;
+        }
+        .front-pattern-img{
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 100vw;
+            height: 510px;
+            background: url('@/assets/images/folkways/folkways-element-3-16.png') no-repeat center center / cover;
+        }
     }
-     .third-screen{
-        
+    .tenth-screen{
+        .left-cloud-img-1{
+            position: absolute;
+            left: 0;
+            bottom: 200px;
+            width: 212px;
+            height: 206px;
+            background: url('@/assets/images/folkways/folkways-element-4-2.png') no-repeat center center / cover;
+        }
+        .left-cloud-img-2{
+            position: absolute;
+            left: 0;
+            bottom: 20px;
+            width: 659px;
+            height: 240px;
+            background: url('@/assets/images/folkways/folkways-element-4-3.png') no-repeat center center / cover;
+        }
+        .right-cloud-img{
+            position: absolute;
+            top: 40px;
+            right: 0;
+            width: 555px;
+            height: 208px;
+            background: url('@/assets/images/folkways/folkways-element-4-1.png') no-repeat center center / cover;
+        }
+        .text-container{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            text-align: center;
+            .big-content p{
+                font-family: 'EarlySummerSerif-Bold' !important;
+                font-size: 36px;
+                line-height: 72px;
+                color: #534833;
+            }
+            .answer-btn{
+                display: inline-block;
+                width: 290px;
+                height: 80px;
+                line-height: 80px;
+                margin-top: 40px;
+                margin-bottom: 20px;
+                cursor: pointer;
+                background: url('@/assets/images/folkways/end-ui.png') no-repeat center center / cover;
+            }
+            .small-content{
+                font-size: 33px;
+                font-weight: 300;
+                font-family: 'Alibaba-PuHuiTi-Light';
+                line-height: 54px;
+                color: #534833;
+            }
+        }
     }
-     .third-screen{
-        
+    .eleventh-screen{
+        position: relative;
+        box-sizing: border-box;
+        width: 100vw;
+        padding: 100px 120px;
+        .container-header{
+            padding: 20px 0;
+            font-size: 33px;
+            line-height: 54px;
+            color: #8d613a;
+            border-bottom: 4px solid;
+            border-image: url('@/assets/images/folkways/end-line.png') 30 30 round;
+            .header-divider-img{
+                position: absolute;
+                top: 20px;
+                right: 100px;
+                width: 424px;
+                height: 142px;
+                background: url('@/assets/images/folkways/folkways-element-4-4.png') no-repeat center center / cover;
+            }
+        }
+        .books-resource-container{
+            margin-top: 20px;
+            p{
+                font-size: 25px;
+                line-height: 50px;
+                color: #8d613a;
+            }
+            .more-link{
+                font-family: 'Alibaba-PuHuiTi-Regular', 'Alibaba-PuHuiTi-Light', sans-serif;
+                font-size: 25px;
+                line-height: 50px;
+                color: #0d86c4;
+            }
+        }
+        .other-literature-container{
+            margin-top: 40px;
+            p{
+                font-size: 25px;
+                line-height: 50px;
+                color: #8d613a;
+            }
+        }
+        .end-resource-container{
+            margin-top: 40px;
+            p{
+                font-size: 25px;
+                line-height: 50px;
+                color: #8d613a;
+            }
+        }
     }
 </style>
