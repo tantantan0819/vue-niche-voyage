@@ -229,21 +229,16 @@ import { ref, onMounted, onUnmounted } from 'vue'
 import { gsap } from 'gsap';
 import { pxToVw, pxToVh } from '@/utils/viewportUtils';
 import DotPopover from '@/components/dotPopover.vue';
-let displayNumber = ref(0)
-const numberRef = ref(null)
-let observer = null
+import { useAnimateNumber } from '@/utils/animateNumber';
 
-const animateNumber = () => {
-     const obj = { value: 1000 };
-      gsap.to(obj, {
-        value: 1949,
-        duration: 1, // 动画持续时间（秒）
-        ease: 'power2.out', // 缓动函数
-        onUpdate: () => {
-          displayNumber.value = Math.floor(obj.value);
-        },
-      });
-}
+const numberRef = ref(null)
+const { displayValue: displayNumber, cleanup: cleanupNumberAnimation } = useAnimateNumber({
+  elementRef: numberRef,
+  targetValue: 1949,
+  startValue: 1000,
+  duration: 1,
+  ease: 'power2.out'
+})
 const initGsapAnimation = () => {
     gsap.to('.panel-04 .text-container-1', {
         opacity: 1,
@@ -292,27 +287,12 @@ const initGsapAnimation = () => {
     });
 }
 onMounted(() => {
-  // 确保元素已挂载
-  if (numberRef.value) {
-    observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            animateNumber()
-          }
-        })
-      },
-      { threshold: 0.1 }
-    )
-    observer.observe(numberRef.value)
-  }
   initGsapAnimation()
-  
 })
 
 onUnmounted(() => {
-  // 销毁监听，防止内存泄漏
-  observer?.disconnect()
+  // 清理数字动画
+  cleanupNumberAnimation()
 })
 </script>
 <style scoped>

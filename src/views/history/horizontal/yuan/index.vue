@@ -27,7 +27,7 @@
           data-parallax-to="-400"
           data-parallax-speed="1.5"
           data-parallax-center-lock="true"
-        >公元1247年</div>
+        >公元<span class="change-number" ref="number1247Ref">{{ displayNumber1247 }}</span>年</div>
       </div>
       <div class="second-screen">
         <div class="description title">盟启一统</div>
@@ -166,12 +166,26 @@
   import { gsap } from 'gsap';
   import { pxToVw, pxToVh } from '@/utils/viewportUtils';
   import AnnotationDot from '@/components/AnnotationDot.vue';
-  
-  
-  
-  
-  
-  
+  import { useAnimateNumber } from '@/utils/animateNumber';
+
+  // 数字动画 refs
+  const number1247Ref = ref(null)
+
+  // 数字动画
+  const { 
+    displayValue: displayNumber1247, 
+    cleanup: cleanupNumber1247
+  } = useAnimateNumber({
+    elementRef: number1247Ref,
+    targetValue: 1247,
+    startValue: 1000,
+    duration: 1.5,
+    ease: 'power2.out'
+  })
+
+  onUnmounted(() => {
+    cleanupNumber1247()
+  })
   </script>
   
   <style scoped>
