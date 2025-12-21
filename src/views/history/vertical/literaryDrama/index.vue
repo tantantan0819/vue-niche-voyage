@@ -1,21 +1,58 @@
 <template>
-  <div class="literary-drama">
+  <div class="literary-drama" ref="container">
     <!-- 第一屏 -->
     <div class="screen first-screen"></div>
     <!-- 第二屏 -->
-    <div class="screen second-screen">
+    <div class="screen second-screen" data-parallax="true"
+           data-parallax-axis="y"
+           data-parallax-from="300"
+           data-parallax-to="-300"
+           data-parallax-speed="1.1"
+           data-parallax-center-lock="true"
+    >
       <div class="second-screen-left">
-        <div class="mountain-img-1"></div>
+        <div class="mountain-img-1" ></div>
         <div class="mountain-img-2"></div>
-        <div class="mountain-img-3"></div>
+        <div 
+          class="mountain-img-3"
+          data-parallax="true"
+          data-parallax-axis="y"
+          data-parallax-from="200"
+          data-parallax-to="-200"
+          data-parallax-speed="1.1"
+          data-parallax-center-lock="true"
+         ></div>
       </div>
       <!-- 中间标题部分 -->
       <div class="second-screen-center">
         <div class="drama-crane-left-img"></div>
-        <div class="drama-character-title"></div>
-        <div class="drama-character-subtitle">
-           <div class="drama-crane-right-img"></div>
+        <div 
+          class="drama-character-title"
+          data-parallax="true"
+          data-parallax-axis="y"
+          data-parallax-from="200"
+          data-parallax-to="-200"
+          data-parallax-speed="1.1"
+          data-parallax-center-lock="true"></div>
+        <div 
+          class="drama-character-subtitle"
+          data-parallax="true"
+          data-parallax-axis="y"
+          data-parallax-from="400"
+          data-parallax-to="-400"
+          data-parallax-speed="1.3"
+          data-parallax-center-lock="true"
+          >
         </div>
+        <div 
+          class="drama-crane-right-img"
+          data-parallax="true"
+          data-parallax-axis="y"
+          data-parallax-from="400"
+          data-parallax-to="-400"
+          data-parallax-speed="1.3"
+          data-parallax-center-lock="true"
+        ></div>
       </div>
        <div class="second-screen-right">
           <div class="mountain-img-4"></div>
@@ -25,18 +62,34 @@
         </div>
     </div>
     <!-- 第三屏 -->
-    <div class="screen third-screen">
+    <div 
+        class="screen third-screen"  
+    >
       <div class="background-silk-img"></div>
-      <div class="left-pattern-container">
+      <div 
+        class="left-pattern-container"
+        data-parallax="true"
+        data-parallax-axis="y"
+        data-parallax-from="80"
+        data-parallax-to="-80"
+        data-parallax-speed="1.1"
+        data-parallax-center-lock="true">
         <div class="fire-img-1"></div>
         <div class="cloud-img-1"></div>
         <div class="cloud-img-2"></div>
         <div class="character-img"></div>
       </div>
-      <div class="text-content text-font">
+      <div 
+        class="text-content text-font"
+        data-parallax="true"
+        data-parallax-axis="y"
+        data-parallax-from="200"
+        data-parallax-to="-200"
+        data-parallax-speed="1.3"
+        data-parallax-center-lock="true">
         “很久很久以前，天灾人祸遍及高原，妖怪横行，百姓遭殃。菩萨为了普渡众生逃出苦海，便向佛祖请求派天神之子下凡降魔。天神之子推巴噶瓦来到人间，他就是格萨尔。”
       </div>
-      <div class="right-pattern-container">
+      <div class="right-pattern-container" >
         <div class="fire-container">
           <div class="fire-img-2"></div>
           <div class="fire-img-3"></div>
@@ -46,7 +99,14 @@
     </div>
     <!-- 第四屏 -->
     <div class="screen forth-screen">
-      <div class="portrait-container">
+      <div 
+        class="portrait-container"
+        data-parallax="true"
+        data-parallax-axis="y"
+        data-parallax-from="300"
+        data-parallax-to="-300"
+        data-parallax-speed="1.3"
+        data-parallax-center-lock="true">
           <img class="portrait-img" src="../../../../assets/images/literaryDrama/drama-image-1.jpg"></img>
           <div class="portrait-detail">
             <p class="illustration-title-font">格萨尔王和三十员大将降伏恶魔</p>
@@ -56,41 +116,102 @@
       <div class="text-container">
         <div class="text-containter-wrapper">
           <div class="background-text-img"></div>
-          <p class="text-font">《格萨尔》是一部传颂千年的民族史诗，讲述了藏族英雄格萨尔王降妖伏魔、造福百姓的征战事迹，被誉为“东方的荷马史诗”，也是世界上篇幅最长、规模最大、唯一“活态”的民间文学作品。</p>
+          <p 
+            class="text-font"
+            data-parallax="true"
+            data-parallax-axis="y"
+            data-parallax-from="100"
+            data-parallax-to="-100"
+            data-parallax-speed="1.3"
+            data-parallax-center-lock="true"
+            >《格萨尔》是一部传颂千年的民族史诗，讲述了藏族英雄格萨尔王降妖伏魔、造福百姓的征战事迹，被誉为“东方的荷马史诗”，也是世界上篇幅最长、规模最大、唯一“活态”的民间文学作品。</p>
         </div>
       </div>
       <div class="cane-clound-container">
         <div class="cane-img"></div>
-        <div class="cloud-img"></div>
+        <div 
+          class="cloud-img"
+            data-parallax="true"
+            data-parallax-axis="y"
+            data-parallax-from="50"
+            data-parallax-to="-50"
+            data-parallax-speed="1.1"
+            data-parallax-center-lock="true"></div>
       </div>
     </div>
     <!-- 第五屏 -->
     <div class="screen fifth-screen">
       <div class="wrapper">
         <div class="fifth-screen-content text-font">
-          <span>在我国境内，《格萨尔》史诗广泛传布在西藏、内蒙古、新疆、青海、甘肃、四川、云南地区，被藏、蒙古、土、裕固、东乡、撒拉、纳西、门巴、珞巴、普米、白、独龙、傈僳13个民族传唱千年，已内化为各民族的传统文化，构建起了各民族共有共享的精神家园。</span>
-          <DotPopover class="dot-popover" title="阅读更多" content="《雪域雄狮:除暴安良格萨尔王》 四川民族出版社 2024"></DotPopover>
+          <div
+            class="fifth-screen-text"
+            data-parallax="true"
+            data-parallax-axis="y"
+            data-parallax-from="100"
+            data-parallax-to="-100"
+            data-parallax-speed="1.2"
+            data-parallax-center-lock="true">
+            <span>在我国境内，《格萨尔》史诗广泛传布在西藏、内蒙古、新疆、青海、甘肃、四川、云南地区，被藏、蒙古、土、裕固、东乡、撒拉、纳西、门巴、珞巴、普米、白、独龙、傈僳13个民族传唱千年，已内化为各民族的传统文化，构建起了各民族共有共享的精神家园。</span>
+            <DotPopover class="dot-popover" title="阅读更多" content="《雪域雄狮:除暴安良格萨尔王》 四川民族出版社 2024"></DotPopover>
+          </div>
           <div class="background-text-img"></div>
         </div>
-        <div class="character-img"></div>
+        <div 
+          class="character-img"
+          data-parallax="true"
+          data-parallax-axis="y"
+          data-parallax-from="300"
+          data-parallax-to="-300"
+          data-parallax-speed="1.3"
+          data-parallax-center-lock="true"
+          ></div>
       </div>
     </div>
     <!-- 第六屏 -->
-    <div class="screen sixth-screen">
-      <div class="portrait-container">
+    <div class="screen sixth-screen"  
+        data-parallax="true"
+        data-parallax-axis="y"
+        data-parallax-from="100"
+        data-parallax-to="-100"
+        data-parallax-speed="1.1"
+        data-parallax-center-lock="true">
+      <div 
+        data-parallax="true"
+        data-parallax-axis="y"
+        data-parallax-from="150"
+        data-parallax-to="-150"
+        data-parallax-speed="1.3"
+        data-parallax-center-lock="true">
+        <div class="portrait-container">
           <img class="portrait-img" src="../../../../assets/images/literaryDrama/drama-image-2.jpg"></img>
           <p class="illustration-title-font">四川德格竹庆格萨尔藏戏</p>
+        </div>
+        <div class="silk-ribbon-img"></div>
       </div>
       <div class="forest-img"></div>
-      <div class="silk-ribbon-img"></div>
+      <!-- <div class="silk-ribbon-img"></div> -->
     </div>
     <!-- 第七屏 -->
     <div class="screen seventh-screen">
-      <div class="forest-container">
+      <div 
+        class="forest-container"
+        data-parallax="true"
+        data-parallax-axis="y"
+        data-parallax-from="300"
+        data-parallax-to="-300"
+        data-parallax-speed="1.1"
+        data-parallax-center-lock="true">
         <div class="tree-img"></div>
         <div class="rock-img"></div>
       </div>
-      <div class="text-container text-font">
+      <div 
+        class="text-container text-font"
+        data-parallax="true"
+        data-parallax-axis="y"
+        data-parallax-from="200"
+        data-parallax-to="-200"
+        data-parallax-speed="1.3"
+        data-parallax-center-lock="true">
          <div class="background-text-img"></div>
          <p>彝族英雄史诗《支格阿鲁》同样以口头文本形式在云南、四川、贵州等地的彝族民间代代相传，影响广泛。</p>
          <p>
@@ -160,7 +281,9 @@
       <div class="text-container text-font">
         从雄浑壮阔的《格萨尔》到跌宕多姿的《支格阿鲁》，再到古朴动人的藏戏，高原文脉不但没有消失，反而历久弥新、广泛流传，绽放出新的生命力与光彩。
       </div>
-      <div class="cloud-container">
+      <div 
+        class="cloud-container"
+        >
         <div class="cloud-img-1"></div>
         <div class="cloud-img-2"></div>
       </div>
@@ -170,8 +293,296 @@
   </div>
 </template>
 
-<script setup>
+<!-- <script setup>
 import DotPopover from '@/components/dotPopover.vue';
+</script> -->
+<script setup>
+import { ref, onMounted, onUnmounted,nextTick } from 'vue'
+import { gsap } from 'gsap';
+import DotPopover from '@/components/dotPopover.vue';
+
+const initGsapAnimation = () => {
+    gsap.to('.forth-screen .text-font', {
+        opacity: 1,
+        duration: 2,
+        scrollTrigger: {
+            trigger: '.forth-screen .text-font', // 触发元素
+            start: 'bottom center+=400',
+            end: 'top top',
+        }
+    });
+    gsap.to('.fifth-screen-text', {
+        opacity: 1,
+        duration: 2,
+        scrollTrigger: {
+            trigger: '.fifth-screen-text', // 触发元素
+            start: 'bottom center+=400',
+            end: 'top top',
+        }
+    });
+  }
+onMounted(() => {
+  initGsapAnimation()
+})
+
+
+
+
+
+// import { ref, onMounted, onUnmounted, nextTick } from 'vue';
+// import { gsap } from 'gsap';
+import { pxToVw, pxToVh } from '@/utils/viewportUtils';
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+// ===================== 全局初始化 =====================
+gsap.registerPlugin(ScrollTrigger);
+// GSAP 全局配置（优化性能和精度）
+gsap.config({
+  autoSleep: false, // 禁用自动休眠
+  precision: 0.001  // 提高动画精度
+});
+ScrollTrigger.config({
+  ignoreMobileResize: true, // 忽略移动端resize抖动
+  force3D: true, // 强制硬件加速
+  limitCallbacks: true // 限制重复回调
+});
+
+// ===================== DOM 引用 =====================
+const container = ref(null);
+
+// ===================== 批量视差功能 =====================
+/**
+ * 批量视差功能：基于ScrollTrigger和fromTo的高级视差控制
+ * 支持通过data属性配置视差参数，并自动转换像素值为视口单位
+ * 针对竖向滚动优化
+ */
+const initBatchParallax = async () => {
+  await nextTick(); // 等待DOM完全渲染
+  if (!container.value) return;
+
+  // 获取所有带data-parallax属性的元素
+  const parallaxElements = document.querySelectorAll('[data-parallax]');
+
+  parallaxElements.forEach(el => {
+    // 解析视差配置
+    const config = {
+      // 视差方向：x 或 y
+      axis: el.dataset.parallaxAxis || 'y',
+      // 起始位置（元素进入视口时的位置）
+      fromValue: parseFloat(el.dataset.parallaxFrom) || 0,
+      // 结束位置（元素离开视口时的位置）
+      toValue: parseFloat(el.dataset.parallaxTo) || 100,
+      // 视差速度（影响动画进度）
+      speed: parseFloat(el.dataset.parallaxSpeed) || 1,
+      // 触发点：元素进入视口的位置（竖向滚动默认值）
+      triggerStart: el.dataset.parallaxTriggerStart || "top bottom",
+      // 结束点：元素离开视口的位置（竖向滚动默认值）
+      triggerEnd: el.dataset.parallaxTriggerEnd || "bottom top",
+      // 是否在视口中心时保持预期位置
+      centerLock: el.dataset.parallaxCenterLock !== "false",
+      // 动画缓动函数
+      ease: el.dataset.parallaxEase || "power1.out"
+    };
+
+    // 根据视差轴选择合适的单位转换函数
+    const convertUnit = config.axis === 'x' ? pxToVw : pxToVh;
+
+    // 转换像素值为视口单位
+    const convertValue = (value) => {
+      // 如果值是字符串且包含单位，直接使用
+      if (typeof value === 'string' && /[a-z%]/.test(value)) {
+        return value;
+      }
+      // 否则将数值转换为视口单位
+      return convertUnit(value);
+    };
+
+    // 计算中心锁定的位置（如果启用）
+    let fromProps, toProps;
+    if (config.centerLock) {
+      // 中心锁定模式：元素在视口中心时保持原位置，进入和离开时产生视差
+      const centerValue = 0;
+
+      // 计算从起始位置到结束位置的总距离
+      const totalDistance = Math.abs(config.toValue - config.fromValue);
+
+      // 根据轴选择合适的视口单位转换函数
+      const convertToViewportUnit = config.axis === 'x' ? pxToVw : pxToVh;
+
+      // 将距离的一半转换为视口单位
+      const halfDistance = convertToViewportUnit(totalDistance / 2);
+
+      // 根据起始和结束位置的关系确定方向
+      if (config.fromValue < config.toValue) {
+        // 从左到右/从上到下移动
+        fromProps = { [config.axis]: `-${halfDistance}` };
+        toProps = { [config.axis]: halfDistance };
+      } else {
+        // 从右到左/从下到上移动
+        fromProps = { [config.axis]: halfDistance };
+        toProps = { [config.axis]: `-${halfDistance}` };
+      }
+    } else {
+      // 普通模式：直接从fromValue动画到toValue，并转换为视口单位
+      const convertToViewportUnit = config.axis === 'x' ? pxToVw : pxToVh;
+      fromProps = { [config.axis]: convertToViewportUnit(config.fromValue) };
+      toProps = { [config.axis]: convertToViewportUnit(config.toValue) };
+    }
+
+    // 解决CSS动画与GSAP视差冲突的核心方案
+    // 创建一个包装元素来分离CSS动画和GSAP视差效果
+    let parallaxWrapper;
+
+    // 检查元素是否已经有包装器
+    if (!el.dataset.parallaxWrapper) {
+      // 获取元素的计算样式
+      const computedStyle = window.getComputedStyle(el);
+
+      // 创建包装器元素
+      parallaxWrapper = document.createElement('div');
+      parallaxWrapper.className = 'parallax-animation-wrapper';
+
+      // 设置包装器的样式，使其与原元素完全一致
+      parallaxWrapper.style.position = computedStyle.position;
+      parallaxWrapper.style.top = computedStyle.top;
+      parallaxWrapper.style.left = computedStyle.left;
+      parallaxWrapper.style.right = computedStyle.right;
+      parallaxWrapper.style.bottom = computedStyle.bottom;
+      parallaxWrapper.style.width = computedStyle.width;
+      parallaxWrapper.style.height = computedStyle.height;
+      parallaxWrapper.style.margin = computedStyle.margin;
+      parallaxWrapper.style.marginTop = computedStyle.marginTop;
+      parallaxWrapper.style.marginRight = computedStyle.marginRight;
+      parallaxWrapper.style.marginBottom = computedStyle.marginBottom;
+      parallaxWrapper.style.marginLeft = computedStyle.marginLeft;
+      parallaxWrapper.style.padding = computedStyle.padding;
+      parallaxWrapper.style.display = computedStyle.display;
+      parallaxWrapper.style.float = computedStyle.float;
+      parallaxWrapper.style.zIndex = computedStyle.zIndex;
+
+      // 复制 flex 相关属性，确保 flex 布局不被破坏
+      parallaxWrapper.style.flexDirection = computedStyle.flexDirection;
+      parallaxWrapper.style.alignItems = computedStyle.alignItems;
+      parallaxWrapper.style.justifyContent = computedStyle.justifyContent;
+      parallaxWrapper.style.flexWrap = computedStyle.flexWrap;
+      parallaxWrapper.style.alignContent = computedStyle.alignContent;
+      parallaxWrapper.style.gap = computedStyle.gap;
+
+      // 关键：确保包装器不会影响布局
+      parallaxWrapper.style.boxSizing = 'border-box';
+      parallaxWrapper.style.transformStyle = 'preserve-3d';
+      // 重要：对于有绝对定位子元素的元素，确保包装器不会创建新的定位上下文
+      // 通过设置 will-change 来优化性能，但不影响定位
+      parallaxWrapper.style.willChange = 'transform';
+
+      // 将元素移动到包装器内
+      el.parentNode.insertBefore(parallaxWrapper, el);
+      parallaxWrapper.appendChild(el);
+
+      // 标记元素已经有包装器
+      el.dataset.parallaxWrapper = 'true';
+
+      // 重置元素的定位属性，使其在包装器内正常显示
+      // 但保留其他样式不变，确保CSS动画仍然有效
+      // 重要：保持原元素的 position 属性，这样其绝对定位的子元素（如 annotation-dot）仍能正确定位
+      el.style.position = computedStyle.position === 'static' ? 'relative' : computedStyle.position;
+      el.style.top = 'auto';
+      el.style.left = 'auto';
+      el.style.right = 'auto';
+      el.style.bottom = 'auto';
+      // margin 已经在包装器上了，所以子元素的 margin 应该被移除
+      el.style.margin = '0';
+
+      // 如果原元素是 flex 容器，需要保持其 flex 属性，确保内部布局正常
+      if (computedStyle.display === 'flex' || computedStyle.display === 'inline-flex') {
+        el.style.display = computedStyle.display;
+        el.style.flexDirection = computedStyle.flexDirection;
+        el.style.alignItems = computedStyle.alignItems;
+        el.style.justifyContent = computedStyle.justifyContent;
+        el.style.flexWrap = computedStyle.flexWrap;
+        el.style.alignContent = computedStyle.alignContent;
+        el.style.gap = computedStyle.gap;
+      }
+
+      // 关键修复：确保原元素完全填充包装器，这样绝对定位的子元素能正确定位
+      // 对于 flex 容器，保持自动尺寸；对于其他元素，填充包装器
+      if (computedStyle.display === 'flex' || computedStyle.display === 'inline-flex') {
+        // flex 容器保持自动尺寸，但确保它能正确填充
+        el.style.width = '100%';
+        el.style.height = '100%';
+        el.style.minWidth = '0';
+        el.style.minHeight = '0';
+        el.style.boxSizing = 'border-box';
+      } else {
+        // 非 flex 元素：确保完全填充包装器
+        if (!computedStyle.width || computedStyle.width === 'auto') {
+          el.style.width = '100%';
+        } else {
+          el.style.width = computedStyle.width;
+        }
+        if (!computedStyle.height || computedStyle.height === 'auto') {
+          el.style.height = '100%';
+        } else {
+          el.style.height = computedStyle.height;
+        }
+      }
+    } else {
+      // 如果已经有包装器，找到它（应该是父元素）
+      parallaxWrapper = el.parentNode;
+    }
+
+    // 现在将视差效果应用到包装器上，而不是直接应用到有CSS动画的元素上
+    // 这样CSS动画在内部元素上运行，视差效果在外部包装器上运行，两者互不干扰
+    gsap.fromTo(parallaxWrapper,
+        fromProps, // 起始状态
+        {
+          ...toProps, // 结束状态
+          ease: config.ease,
+          scrollTrigger: {
+            trigger: parallaxWrapper, // 使用包装器作为触发器
+            start: config.triggerStart,
+            end: config.triggerEnd,
+            scrub: config.speed, // scrub值控制视差速度
+            invalidateOnRefresh: true
+          }
+        }
+    );
+  });
+};
+
+/**
+ * 初始化描述文本渐显动画
+ */
+const initDescriptionOpacityAnimation = () => {
+  document.querySelectorAll('.description').forEach((desc) => {
+    gsap.fromTo(
+        desc,
+        { opacity: 0 },
+        {
+          opacity: 1,
+          duration: 1,
+          scrollTrigger: {
+            trigger: desc,
+            start: 'bottom-=300px center+=100',
+            end: 'top top+=100px',
+            scrub: true,
+          },
+        }
+    );
+  });
+};
+
+onMounted(async () => {
+  // 初始化视差效果
+  await initBatchParallax();
+  // 初始化描述文本渐显动画
+  initDescriptionOpacityAnimation()
+});
+
+onUnmounted(() => {
+  // 清理所有 ScrollTrigger 实例
+  ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+});
 </script>
 
 <style scoped>
@@ -224,7 +635,7 @@ import DotPopover from '@/components/dotPopover.vue';
   }
   .drama-character-subtitle{
     position: relative;
-    top: -50px;
+    top: -130px;
     width: 950px;
     height: 152px;
     background: url('@/assets/images/literaryDrama/drama-character-2.png') no-repeat center center / cover;
@@ -240,8 +651,8 @@ import DotPopover from '@/components/dotPopover.vue';
   }
   .drama-crane-right-img{
     position: absolute;
-    top: -85%;
-    right: -35%;
+    top: 100px;
+    right: -200px;
     width: 592px;
     height: 298px;
     background: url('@/assets/images/literaryDrama/drama-element-1-8.png') no-repeat center center / cover;
@@ -419,6 +830,9 @@ import DotPopover from '@/components/dotPopover.vue';
     position: relative;
     width: 900px;
     height: 450px;
+    .text-font{
+      opacity: 0;
+    }
     .background-text-img{
       position: absolute;
       top: -130px;
@@ -460,12 +874,15 @@ import DotPopover from '@/components/dotPopover.vue';
   .fifth-screen-content{
     width: 900px;
   }
+  .fifth-screen-text{
+    opacity: 0;
+  }
   .text-container{
     display: flex;
   }
   .character-img{
     position: relative;
-    top:-50px;
+    top: 50px;
     left: 50px;
     width:640px;
     height:280px;
@@ -473,7 +890,7 @@ import DotPopover from '@/components/dotPopover.vue';
   }
   .background-text-img{
     position: relative;
-    top: -100px;
+    top: -150px;
     width:1147px;
     height:359px;
     background: url('@/assets/images/literaryDrama/drama-character-4.png') no-repeat center center / contain;
@@ -481,6 +898,7 @@ import DotPopover from '@/components/dotPopover.vue';
   .dot-popover{
     top: 30px;
     left: 20px;
+    z-index: 999;
   }
    >>> .popover-container{
     top: 0;
@@ -497,10 +915,11 @@ import DotPopover from '@/components/dotPopover.vue';
   }
   .portrait-img{
     width: 500px;
+    margin-bottom: 20px;
   }
   .forest-img{
     position: absolute;
-    top: 180px;
+    top: 120px;
     right: 0;
     width: 981px;
     height: 653px;
@@ -508,8 +927,9 @@ import DotPopover from '@/components/dotPopover.vue';
   }
   .silk-ribbon-img{
     position: absolute;
-    left: 0;
-    bottom: -60%;
+    top: 800px;
+    left: 0px;
+    
     width: 821px;
     height: 801px;
     background: url('@/assets/images/literaryDrama/drama-element-2-7.png') no-repeat center center / cover;
@@ -521,22 +941,22 @@ import DotPopover from '@/components/dotPopover.vue';
   .tree-img{
     position: absolute;
     left: 0;
-    bottom: 100px;
+    top: 200px;
     width: 695px;
     height: 472px;
     background: url('@/assets/images/literaryDrama/drama-element-2-5.png') no-repeat center center / cover;
   }
   .rock-img{
     position: absolute;
-    left: 0;
-    bottom: -40px;
+    left: 50px;
+    top: 600px;
     width: 701px;
     height: 205px;
     background: url('@/assets/images/literaryDrama/drama-element-2-6.png') no-repeat center center / cover;
   }
   .text-container{
     position: absolute;
-    top: 100px;
+    top: -100px;
     right: 200px;
     width: 1000px;
     .background-text-img{
