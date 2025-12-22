@@ -89,6 +89,25 @@
         <div class="bird"></div>
       </div>
     </div>
+    <div class="lives">
+      <div class="first-screen">
+          <div class="mountain-img"></div>
+          <div class="cloud-img"></div>
+          <div class="goose">
+            <div class="goose-img"></div>
+            <div class="goose-chinese goose-name">斑头雁</div>
+            <div class="goose-english goose-name">Anser indicus</div>
+            <div class="goose-description">
+              <div class="goose-description-img"></div>
+              <div class="goose-description-text">主要繁殖在我国青海、西藏、新疆西部的高山湖泊等地区，越冬迁飞至陕西、湖南、四川、云南等地。身体大都呈现灰褐色，头顶具两道黑斑纹，嘴和脚呈现黄色。喜欢栖息在高原湖泊沼泽，飞行能力极强，能翻越喜马拉雅山，是世界上飞行高度最高的鸟类之一。</div>
+            </div>
+          </div>
+      </div>
+      <div class="second-screen">
+        <div class="second-screen-bg"></div>
+        <div class="cloud-img"></div>
+      </div>
+    </div>
   </div>
 </template>
 <script setup>
@@ -360,10 +379,41 @@ const onOriginVideoEnded = () => {
   }
   showAccessories();
 }
+// 生物部分视角位移
+let viewDisplacementTrigger = null;
+const viewDisplacement = async () => {
+  await nextTick();
+  
+  const firstScreen = document.querySelector('.first-screen');
+
+  if (!firstScreen) return;
+  
+  // 如果已经创建过，先清理
+  if (viewDisplacementTrigger) {
+    viewDisplacementTrigger.kill();
+  }
+  
+  // viewDisplacementTrigger = ScrollTrigger.create({
+  //   trigger: '.lives',
+  //   start: 'top top', // 当容器顶部到达视口顶部时开始
+  //   end: () => `+=960`, // 横向滚动需要的滚动距离（1倍视口高度）
+  //   scrub: true, // 与滚动同步，平滑跟随
+  //   pin: true, // 在横向滚动期间固定容器，防止向下滚动
+  //   anticipatePin: 1,
+  //   animation: gsap.to('.first-screen', {
+  //     x: -960, // 横向位移到最右边
+  //     ease: 'none' // 线性动画，与滚动完全同步
+  //   }),
+  //   invalidateOnRefresh: true,
+  // });
+}
 
 onMounted(() => {
   initVideoScroll();
+  // 视角位移
+  viewDisplacement();
 });
+
 
 onUnmounted(() => {
   if (scrollTrigger) {
@@ -372,12 +422,16 @@ onUnmounted(() => {
   if (originScrollTrigger) {
     originScrollTrigger.kill();
   }
+  if (viewDisplacementTrigger) {
+    viewDisplacementTrigger.kill();
+  }
   ScrollTrigger.getAll().forEach(trigger => {
     if (trigger.vars?.trigger === videoContainer.value || trigger.vars?.trigger === originContainer.value) {
       trigger.kill();
     }
   });
 });
+
 </script>
 <style scoped>
 .grology {
@@ -607,4 +661,110 @@ onUnmounted(() => {
     position: absolute;
   }
 }
+.lives{
+  width: 1920px;
+  height: 1080px;
+  overflow: hidden;
+  //overflow-x: hidden; /* 隐藏横向溢出，确保位移效果正常 */
+  .first-screen{
+    width: 2880px;
+    height: 2160px;
+    background-image: url("@/assets/images/lives/lives-bty-bg.png");
+    background-size: cover;
+    position: relative;
+    &:before{
+      content: '';
+      width: 2873px;
+      height: 1472px;
+      background-image: url("@/assets/images/lives/lives-bty-snow.png");
+      background-size: cover;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+    .mountain-img{
+      width: 2880px;
+      height: 1605px;
+      background-image: url("@/assets/images/lives/lives-bty-mountain.png");
+      background-size: cover;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+    }
+    .cloud-img{
+      width: 2880px;
+      height: 1190px;
+      background-image: url("@/assets/images/lives/lives-bty-cloud.png");
+      background-size: cover;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+    }
+    .goose{
+      position: absolute;
+      top: 278px;
+      left: 468px;
+      .goose-img{
+        width: 814px;
+        height: 397px;
+        background-image: url("@/assets/images/lives/lives-bty.png");
+        background-size: cover;
+      }
+     .goose-name{
+       font-size: 36px;
+       color: #4b4b4b;
+     }
+      .goose-english{
+        margin-top: 20px;
+      }
+      .goose-description{
+        padding: 30px;
+        width: 590px;
+        border-radius: 30px;
+        background-color: rgba(112,168,203,0.8);
+        position: absolute;
+        top: -30px;
+        left: 570px;
+        .goose-description-img{
+          width: 530px;
+          height: 340px;
+          background-image: url("@/assets/images/lives/lives-bty-image.jpg");
+          background-size: cover;
+        }
+        .goose-description-text{
+          font-size: 22px;
+          color: #fff;
+          line-height: 54px;
+          width: 530px;
+          margin-top: 40px;
+        }
+      }
+    }
+  }
+  .second-screen{
+    width: 1080px;
+    height: 1920px;
+    position: relative;
+    .second-screen-bg{
+      width: 1920px;
+      height: 2740px;
+      background-image: url("@/assets/images/lives/lives-xm-bg.png");
+      background-size: cover;
+      left: 0px;
+      top: 0px;
+      position: absolute;
+    }
+    .cloud-img{
+      width: 2139px;
+      height: 912px;
+      background-image: url("@/assets/images/lives/lives-transition-cloud-3.png");
+      background-size: cover;
+      left: 0px;
+      top: -300px;
+      position: absolute;
+    }
+  }
+
+}
+
 </style>
