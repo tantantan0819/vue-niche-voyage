@@ -14,7 +14,7 @@
           </div>
           <div class="rule-bottom">
             <div class="rule-submit-btn" @click="startAnswer">开始答题</div>
-            <div class="rule-submit-btn">返回极境之旅</div>
+            <div class="rule-submit-btn" @click="goBack">返回极境之旅</div>
           </div>
         </div>
       </div>
@@ -81,11 +81,15 @@
 
 <script setup>
 import { ref, onMounted, onBeforeUnmount } from 'vue'
+import { useRouter } from 'vue-router'
 import { pxToVw } from '@/utils/viewportUtils'
 import { gsap } from 'gsap'
 import { SplitText } from 'gsap/SplitText'
 
 gsap.registerPlugin(SplitText)
+
+// 路由
+const router = useRouter()
 
 // 答题状态
 const currentQuestionIndex = ref(0)
@@ -296,6 +300,10 @@ const challengeAgain = () => {
   selectedAnswers.value = {}
 
   moveToQuestion(0)
+}
+
+const goBack = () => {
+  router.push('/home')
 }
 </script>
 

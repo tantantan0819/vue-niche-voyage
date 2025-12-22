@@ -110,6 +110,28 @@
         </div>
       </div>
     </div>
+    <div class="climate-indicator" v-show="showIndicator">
+      <div
+        class="climate-indicator-dot" 
+        :class="{ active: currentScreenIndex === 1 }"
+      ></div>
+      <div 
+        class="climate-indicator-dot" 
+        :class="{ active: currentScreenIndex === 2 }"
+      ></div>
+      <div 
+        class="climate-indicator-dot" 
+        :class="{ active: currentScreenIndex === 3 }"
+      ></div>
+      <div 
+        class="climate-indicator-dot" 
+        :class="{ active: currentScreenIndex === 4 }"
+      ></div>
+      <div 
+        class="climate-indicator-dot" 
+        :class="{ active: currentScreenIndex === 5 }"
+      ></div>
+    </div>
   </div>
 </template>
 <script setup>
@@ -121,7 +143,26 @@ import ReturnButton from "@/components/ReturnButton.vue";
 
 gsap.registerPlugin(ScrollTrigger)
 
+// 指示器相关状态
+const showIndicator = ref(false) // 是否显示指示器
+const currentScreenIndex = ref(0) // 当前激活的屏幕索引（从第二屏开始，0-4）
+
 const firstAnimation = () =>{
+  // 监听第一屏的滚动，控制指示器的显示/隐藏
+  ScrollTrigger.create({
+    trigger: '.first-screen',
+    start: 'top top',
+    end: 'bottom top',
+    onLeave: () => {
+      // 离开第一屏时，显示指示器
+      showIndicator.value = true
+    },
+    onEnterBack: () => {
+      // 回到第一屏时，隐藏指示器
+      showIndicator.value = false
+    }
+  })
+  
   const tl = gsap.timeline({
     scrollTrigger: {
       trigger: '.first-screen',
@@ -193,6 +234,7 @@ const contentAnimation = () =>{
       gsap.set(screen,{
         'margin-bottom': 100
       })
+      
       const tl = gsap.timeline({
         scrollTrigger:{
           trigger: screen,
@@ -202,6 +244,29 @@ const contentAnimation = () =>{
              pin: true,
              // pinSpacing: false,
              // onComplete: () => tl.scrollTrigger.kill()
+             onUpdate: (self) => {
+               if (index < 4) {
+                 // 计算屏幕向上移动动画在时间轴中的大概位置
+                 // 屏幕向上移动是在 img-picture 动画之后，大约在进度 0.6-0.7 左右
+                 const screenMoveProgress = 0.8
+                 if (self.progress >= screenMoveProgress) {
+                   // 进度达到屏幕向上移动时，更新到下一个屏幕的索引
+                   if (currentScreenIndex.value !== index + 2) {
+                     currentScreenIndex.value = index + 2
+                   }
+                 } else {
+                   // 进度未达到屏幕向上移动时，保持当前屏幕的索引
+                   if (currentScreenIndex.value !== index + 1) {
+                     currentScreenIndex.value = index + 1
+                   }
+                 }
+               } else {
+                 // 最后一个屏幕，直接设置当前索引
+                 if (currentScreenIndex.value !== index + 1) {
+                   currentScreenIndex.value = index + 1
+                 }
+               }
+             }
         }
       })
       tl.to(screen.querySelector('.content-wrapper'),{
@@ -220,7 +285,6 @@ const contentAnimation = () =>{
         ease: 'power2.out'
       },'-=1')
       if(index < 4){
-
         tl.to(screen,{
           y: -1080,
         })
@@ -291,11 +355,11 @@ onMounted(()=>{
   z-index: 6;
 }
 .second-screen {
-  top: 1080px;
+  top: 1280px;
   z-index: 5;
 }
 .third-screen {
-  top: 2160px;
+  top: 2260px;
   z-index: 4;
 }
 .four-screen {
@@ -303,11 +367,11 @@ onMounted(()=>{
   z-index: 3;
 }
 .five-screen {
-  top: 4220px;
+  top: 4260px;
   z-index: 2;
 }
 .six-screen {
-  top: 5220px;
+  top: 5240px;
   z-index: 1;
 }
 .content-wrapper{
@@ -774,6 +838,30 @@ onMounted(()=>{
       color: #fff;
       line-height: 48px;
     }
+  }
+}
+.climate-indicator{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  z-index: 99;
+  bottom: 74px;
+  .climate-indicator-dot{
+    width: 14px;
+    height: 14px;
+    background-color: rgba(255,255,255,0.7);
+    border-radius: 50%;
+    margin-right: 40px;
+    transition: all ease-in-out 0.1s;
+    &:last-child{
+      margin-right: 0;
+    }
+  }
+  .active{
+    width: 18px;
+    height: 18px;
+    background-color: #fff;
   }
 }
 </style>
