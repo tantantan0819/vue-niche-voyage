@@ -2,7 +2,14 @@
     <div class="folkways-container">
         <div class="screen"></div>
         <!-- 第一幕 -->
-        <div class="screen first-screen">
+        <div 
+            class="screen first-screen"
+            data-parallax="true"
+            data-parallax-axis="y"
+            data-parallax-from="100"
+            data-parallax-to="-100"
+            data-parallax-speed="1.1"
+            data-parallax-center-lock="true">
             <div class="left-pattern-container">
                 <div class="left-pattern-img"></div>
                 <div
@@ -290,24 +297,74 @@
         </div>
         <!-- 第七幕 -->
         <div class="screen seventh-screen">
-           <div class="left-pattern-img"></div>
+           <div 
+            class="left-pattern-img"
+            data-parallax="true"
+            data-parallax-axis="y"
+            data-parallax-from="200"
+            data-parallax-to="-200"
+            data-parallax-speed="1.1"
+            data-parallax-center-lock="true"></div>
            <div class="text-container">
-                <div class="text-header-img"></div>
-                <div class="text-font">每年火把节期间，无论男女老少都会盛装出席——古朴的纹饰、浓烈的色彩、精美的刺绣……每一处细节都承载着人们对自然的礼敬、对生活的热望和对美的追求，在火光与歌舞交织的夜晚共同织绘出高原民族热烈奔放的节日华彩。</div>
+                <div 
+                    class="text-header-img"
+                    data-parallax="true"
+                    data-parallax-axis="y"
+                    data-parallax-from="100"
+                    data-parallax-to="-100"
+                    data-parallax-speed="1.1"
+                    data-parallax-center-lock="true"></div>
+                <div 
+                    class="text-font seventh-screen-text-content"
+                    data-parallax="true"
+                    data-parallax-axis="y"
+                    data-parallax-from="100"
+                    data-parallax-to="-100"
+                    data-parallax-speed="1.1"
+                    data-parallax-center-lock="true">每年火把节期间，无论男女老少都会盛装出席——古朴的纹饰、浓烈的色彩、精美的刺绣……每一处细节都承载着人们对自然的礼敬、对生活的热望和对美的追求，在火光与歌舞交织的夜晚共同织绘出高原民族热烈奔放的节日华彩。</div>
             </div>
             <div class="right-pattern-container">
-                <div class="right-pattern-img-1"></div>
-                <div class="right-pattern-img-2"></div>
+                <div 
+                    class="right-pattern-img-1"
+                    data-parallax="true"
+                    data-parallax-axis="y"
+                    data-parallax-from="300"
+                    data-parallax-to="-300"
+                    data-parallax-speed="1.2"
+                    data-parallax-center-lock="true"></div>
+                <div 
+                    class="right-pattern-img-2"
+                    data-parallax="true"
+                    data-parallax-axis="y"
+                    data-parallax-from="200"
+                    data-parallax-to="-200"
+                    data-parallax-speed="1.2"
+                    data-parallax-center-lock="true"></div>
             </div>
         </div>
         <!-- 第八幕 -->
         <div class="screen eighth-screen">
             <div class="left-pattern-container">
-                <div class="left-pattern-img-1"></div>
-                <div class="left-pattern-img-2"></div>
+                <div 
+                    class="left-pattern-img-1"
+                    ></div>
+                <div 
+                    class="left-pattern-img-2"
+                    data-parallax="true"
+                    data-parallax-axis="y"
+                    data-parallax-from="200"
+                    data-parallax-to="-200"
+                    data-parallax-speed="1.1"
+                    data-parallax-center-lock="true"></div>
             </div>
             <div class="picture-container">
-                <div>
+                <div
+                    data-parallax="true"
+                    data-parallax-axis="y"
+                    data-parallax-from="200"
+                    data-parallax-to="-200"
+                    data-parallax-speed="1.2"
+                    data-parallax-center-lock="true">
                     <img src="@/assets/images/folkways/folkways-image-6.png" alt="" class="picture-img-1">
                     <img src="@/assets/images/folkways/folkways-image-7.jpg" alt="" class="picture-img-2">
                 </div>
@@ -317,33 +374,82 @@
                 </div>
             </div>
             <div class="right-pattern-container">
-                <div class="right-pattern-img-1"></div>
+                <div 
+                    class="right-pattern-img-1"
+                    data-parallax="true"
+                    data-parallax-axis="y"
+                    data-parallax-from="100"
+                    data-parallax-to="-100"
+                    data-parallax-speed="1.1"
+                    data-parallax-center-lock="true"></div>
                 <div class="right-pattern-img-2"></div>
             </div>
         </div>
         <!-- 第九幕 -->
         <div class="screen ninth-screen">
-            <div class="back-pattern-img"></div>
-            <div class="front-pattern-img"></div>
+            <div 
+                class="back-pattern-img"
+                data-parallax="true"
+                data-parallax-axis="y"
+                data-parallax-from="100"
+                data-parallax-to="-100"
+                data-parallax-speed="1.1"
+                data-parallax-center-lock="true"></div>
+            <div 
+                class="front-pattern-img"
+                data-parallax="true"
+                data-parallax-axis="y"
+                data-parallax-from="300"
+                data-parallax-to="-300"
+                data-parallax-speed="1.2"
+                data-parallax-center-lock="true"></div>
         </div>
         <!-- 第十幕 -->
         <div class="screen tenth-screen">
-            <div class="left-pattern-contain">
-                  <div class="left-cloud-img-1"></div>
-                  <div class="left-cloud-img-2"></div>
+            <div 
+                class="left-pattern-contain"
+                data-parallax="true"
+                data-parallax-axis="y"
+                data-parallax-from="100"
+                data-parallax-to="-100"
+                data-parallax-speed="1.1"
+                data-parallax-center-lock="true">
+                <div class="left-cloud-img-1"></div>
+                <div class="left-cloud-img-2"></div>
             </div>
-            <div class="right-cloud-img"></div>
+            <div 
+                class="right-cloud-img"
+                data-parallax="true"
+                data-parallax-axis="y"
+                data-parallax-from="300"
+                data-parallax-to="-300"
+                data-parallax-speed="1.2"
+                data-parallax-center-lock="true"></div>
             <div class="text-container">
                 <div>
-                    <div class="big-content">
+                    <div 
+                        class="big-content"
+                        data-parallax="true"
+                        data-parallax-axis="y"
+                        data-parallax-from="100"
+                        data-parallax-to="-100"
+                        data-parallax-speed="1.1"
+                        data-parallax-center-lock="true">
                         <p>恭喜您，您已经在“极境之旅”跨越亿万年，领略了</p>
                         <p>这片雪域之上自然的壮美和历史文化的厚重。</p>
                         <p>现在，是时候开启属于您的荣誉挑战了！</p>
                         <p>立即答题，收获属于你的“极境荣誉”！</p>
+                         <div class="answer-btn text-font">立即答题</div>
                     </div>
-                    <div class="answer-btn text-font">立即答题</div>
                 </div>
-                <div class="small-content">参与“极境智旅”互动答题，您将有机会获取积分解锁精品图书在线阅读！</div>
+                <div 
+                    class="small-content"
+                    data-parallax="true"
+                    data-parallax-axis="y"
+                    data-parallax-from="200"
+                    data-parallax-to="-200"
+                    data-parallax-speed="1.1"
+                    data-parallax-center-lock="true">参与“极境智旅”互动答题，您将有机会获取积分解锁精品图书在线阅读！</div>
             </div>
         </div>
         <!-- 第十一幕 -->
@@ -424,9 +530,6 @@
         </div>
     </div>
 </template>
-<!-- <script setup>
-import DotPopover from '@/components/dotPopover.vue';
-</script> -->
 <script setup>
 import { ref, onMounted, onUnmounted, nextTick } from 'vue';
 import { gsap } from 'gsap';
@@ -474,12 +577,22 @@ const initGsapAnimation = () => {
             end: 'top top',
         }
     })
-     gsap.to('.sixth-screen-text-content', {
+    gsap.to('.sixth-screen-text-content', {
         y: pxToVh(-100),
         opacity: 1,
         duration: 2,
         scrollTrigger: {
             trigger: '.sixth-screen-text-content', // 触发元素
+            start: 'bottom center+=400',
+            end: 'top top',
+        }
+    })
+    gsap.to('.seventh-screen-text-content', {
+        y: pxToVh(-100),
+        opacity: 1,
+        duration: 2,
+        scrollTrigger: {
+            trigger: '.seventh-screen-text-content', // 触发元素
             start: 'bottom center+=400',
             end: 'top top',
         }
@@ -526,7 +639,7 @@ onMounted(() => {
         }
         .left-pattern-img{
             position: absolute;
-            top: 160px;
+            top: 200px;
             width: 501px;
             height: 1114px;
             background: url('@/assets/images/folkways/folkways-element-1-4.png') no-repeat center center / cover;
@@ -534,7 +647,7 @@ onMounted(() => {
         .left-cloud-img-1{
             position: absolute;
             left: 160px;
-            top: 700px;
+            top: 740px;
             width: 775px;
             height: 570px;
             background: url('@/assets/images/folkways/folkways-element-1-6.png') no-repeat center center / cover;
@@ -857,14 +970,17 @@ onMounted(() => {
             .text-header-img{
                 width: 821px;
                 height: 102px;
-                margin-bottom: 40px;
+                margin-bottom: 80px;
                 background: url('@/assets/images/folkways/folkways-element-2-6.png') no-repeat center center / cover;
+            }
+            .seventh-screen-text-content{
+                opacity: 0;
             }
         }
         .right-pattern-img-1{
             position: absolute;
             right: 0;
-            top: 80px;
+            top: 180px;
             width: 603px;
             height: 1010px;
             background: url('@/assets/images/folkways/folkways-element-3-8.png') no-repeat center center / cover;
@@ -881,7 +997,7 @@ onMounted(() => {
     .eighth-screen{
         .left-pattern-img-1{
             position: absolute;
-            top: 20px;
+            top: 0px;
             left: 0;
             width: 453px;
             height: 930px;
@@ -906,9 +1022,11 @@ onMounted(() => {
             .picture-img-2{
                 width: 400px;
                 margin-left: 50px;
+                margin-top: 100px;
             }
             .illustration-title-font{
-                margin-top: 20px;
+                position: absolute;
+                top: 500px;
             }
             .dot-popover{
                 top: 80px;
@@ -929,7 +1047,7 @@ onMounted(() => {
         }
         .right-pattern-img-2{
             position: absolute;
-            top: 40px;
+            top: -20px;
             right: 200px;
             width: 331px;
             height: 882px;
@@ -937,6 +1055,7 @@ onMounted(() => {
         }
     }
     .ninth-screen{
+        margin-top: 100px;
         .back-pattern-img{
             position: absolute;
             top: 50%;
@@ -956,6 +1075,11 @@ onMounted(() => {
         }
     }
     .tenth-screen{
+        .left-pattern-contain{
+            position: absolute;
+            left: 0;
+            bottom:100px;
+        }
         .left-cloud-img-1{
             position: absolute;
             left: 0;
@@ -974,7 +1098,7 @@ onMounted(() => {
         }
         .right-cloud-img{
             position: absolute;
-            top: 40px;
+            top: 250px;
             right: 0;
             width: 555px;
             height: 208px;
@@ -999,7 +1123,6 @@ onMounted(() => {
                 height: 80px;
                 line-height: 80px;
                 margin-top: 40px;
-                margin-bottom: 20px;
                 cursor: pointer;
                 background: url('@/assets/images/folkways/end-ui.png') no-repeat center center / cover;
             }
