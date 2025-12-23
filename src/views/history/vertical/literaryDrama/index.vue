@@ -1,5 +1,5 @@
 <template>
-  <div class="literary-drama" ref="container">
+  <div class="literary-drama">
     <!-- 第一屏 -->
     <div class="screen first-screen"></div>
     <!-- 第二屏 -->
