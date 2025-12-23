@@ -30,7 +30,7 @@ const pages = ref([
     url: '/voyage/horizontal'
   },
   {
-    name: '横向',
+    name: '竖向',
     url: '/voyage/vertical'
   },
   // {

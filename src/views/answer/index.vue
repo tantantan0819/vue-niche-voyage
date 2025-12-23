@@ -303,7 +303,7 @@ const challengeAgain = () => {
 }
 
 const goBack = () => {
-  router.push('/home')
+  router.push('/voyage/answer')
 }
 </script>
 

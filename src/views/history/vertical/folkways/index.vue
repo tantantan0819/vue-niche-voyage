@@ -439,7 +439,7 @@
                         <p>这片雪域之上自然的壮美和历史文化的厚重。</p>
                         <p>现在，是时候开启属于您的荣誉挑战了！</p>
                         <p>立即答题，收获属于你的“极境荣誉”！</p>
-                         <div class="answer-btn text-font">立即答题</div>
+                         <div class="answer-btn text-font" @click="toAnswerPage">立即答题</div>
                     </div>
                 </div>
                 <div 
@@ -536,6 +536,8 @@ import { gsap } from 'gsap';
 import { pxToVw, pxToVh } from '@/utils/viewportUtils';
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import DotPopover from '@/components/dotPopover.vue';
+import { useRouter } from 'vue-router'
+const router = useRouter()
 const initGsapAnimation = () => {
     gsap.to('.second-screen-text-content', {
         y: pxToVh(-100),
@@ -602,6 +604,10 @@ const initGsapAnimation = () => {
 onMounted(() => {
     initGsapAnimation()
 })
+
+const toAnswerPage = () =>{
+  router.push('/home')
+}
 </script>
 
 <style scoped>
