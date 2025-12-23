@@ -31,17 +31,17 @@
                     class="title-img"
                     data-parallax="true"
                     data-parallax-axis="y"
-                    data-parallax-from="100"
-                    data-parallax-to="-100"
-                    data-parallax-speed="1.1"
+                    data-parallax-from="200"
+                    data-parallax-to="-200"
+                    data-parallax-speed="1.2"
                     data-parallax-center-lock="true"></div>
                 <div 
                     class="subtitle-img"
                     data-parallax="true"
                     data-parallax-axis="y"
-                    data-parallax-from="140"
-                    data-parallax-to="-140"
-                    data-parallax-speed="1.2"
+                    data-parallax-from="300"
+                    data-parallax-to="-300"
+                    data-parallax-speed="1.1"
                     data-parallax-center-lock="true"></div>
             </div>
             <div class="right-pattern-container">
@@ -679,7 +679,7 @@ const toAnswerPage = () =>{
             }
             .subtitle-img{
                 position: relative;
-                top: -60px;
+                top: -100px;
                 left: 50%;
                 transform: translateX(-50%);
                 width: 469px;
