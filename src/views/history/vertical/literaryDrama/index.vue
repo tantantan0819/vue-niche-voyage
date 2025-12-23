@@ -423,9 +423,6 @@
   </div>
 </template>
 
-<!-- <script setup>
-import DotPopover from '@/components/dotPopover.vue';
-</script> -->
 <script setup>
 import { ref, onMounted, onUnmounted,nextTick } from 'vue'
 import { gsap } from 'gsap';
