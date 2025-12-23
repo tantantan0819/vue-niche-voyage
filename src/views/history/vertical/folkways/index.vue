@@ -5,27 +5,86 @@
         <div class="screen first-screen">
             <div class="left-pattern-container">
                 <div class="left-pattern-img"></div>
+                <div
+                    class="first-screen-cloud-container"
+                    data-parallax="true"
+                    data-parallax-axis="y"
+                    data-parallax-from="200"
+                    data-parallax-to="-200"
+                    data-parallax-speed="1.2"
+                    data-parallax-center-lock="true"
+                >
                 <div class="left-cloud-img-1"></div>
                 <div class="left-cloud-img-2"></div>
             </div>
+            </div>
             <div class="background-people-img"></div>
             <div class="center-title-container">
-                <div class="title-img"></div>
-                <div class="subtitle-img"></div>
+                <div 
+                    class="title-img"
+                    data-parallax="true"
+                    data-parallax-axis="y"
+                    data-parallax-from="100"
+                    data-parallax-to="-100"
+                    data-parallax-speed="1.1"
+                    data-parallax-center-lock="true"></div>
+                <div 
+                    class="subtitle-img"
+                    data-parallax="true"
+                    data-parallax-axis="y"
+                    data-parallax-from="140"
+                    data-parallax-to="-140"
+                    data-parallax-speed="1.2"
+                    data-parallax-center-lock="true"></div>
             </div>
             <div class="right-pattern-container">
                 <div class="right-pattern-img"></div>
-                <div class="right-ribbon-img"></div>
-                <div class="right-human-img"></div>
+                <div 
+                    class="right-ribbon-img"
+                    data-parallax="true"
+                    data-parallax-axis="y"
+                    data-parallax-from="100"
+                    data-parallax-to="-100"
+                    data-parallax-speed="1.1"
+                    data-parallax-center-lock="true"></div>
+                <div 
+                    class="right-human-img"
+                    data-parallax="true"
+                    data-parallax-axis="y"
+                    data-parallax-from="200"
+                    data-parallax-to="-200"
+                    data-parallax-speed="1.2"
+                    data-parallax-center-lock="true"></div>
             </div>
         </div>
         <!-- 第二幕 -->
         <div class="screen second-screen">
             <div class="text-container">
-                <div class="text-header-img"></div>
-                <div class="text-content text-font">在辽阔的青藏高原之上，各民族习俗是比山谷更深邃、比河流更绵长的文化记忆。火把节、雪顿节、望果节等节日编织出高原民族的欢庆画卷；酥油茶、青稞酒散发出独特的雪域风味；传统医药则承载着高原人民对生命与自然的深刻理解。</div>
+                <div 
+                    class="text-header-img"
+                    data-parallax="true"
+                    data-parallax-axis="y"
+                    data-parallax-from="100"
+                    data-parallax-to="-100"
+                    data-parallax-speed="1.2"
+                    data-parallax-center-lock="true"></div>
+                <div 
+                    class="text-content text-font second-screen-text-content"
+                    data-parallax="true"
+                    data-parallax-axis="y"
+                    data-parallax-from="100"
+                    data-parallax-to="-100"
+                    data-parallax-speed="1.1"
+                    data-parallax-center-lock="true">在辽阔的青藏高原之上，各民族习俗是比山谷更深邃、比河流更绵长的文化记忆。火把节、雪顿节、望果节等节日编织出高原民族的欢庆画卷；酥油茶、青稞酒散发出独特的雪域风味；传统医药则承载着高原人民对生命与自然的深刻理解。</div>
             </div>
-            <div class="picture-container">
+            <div 
+                class="picture-container"
+                data-parallax="true"
+                data-parallax-axis="y"
+                data-parallax-from="200"
+                data-parallax-to="-200"
+                data-parallax-speed="1.2"
+                data-parallax-center-lock="true">
                 <img class="picture-img" src="@/assets/images/folkways/folkways-image-1.png"></img>
                 <div class="illustration-title-font">
                     <DotPopover class="dot-popover" title="内容来自" content="《中国藏餐》 四川民族出版社 2023"></DotPopover>
@@ -36,8 +95,21 @@
         </div>
         <!-- 第三幕 -->
         <div class="screen third-screen">
-            <div class="background-pattern-img-1"></div>
-            <div class="picture-container">
+            <div 
+                class="background-pattern-img-1"
+                data-parallax="true"
+                data-parallax-axis="y"
+                data-parallax-from="150"
+                data-parallax-to="-150"
+                data-parallax-speed="1.2"
+                data-parallax-center-lock="true"></div>
+            <div 
+                class="picture-container" data-parallax="true"
+                data-parallax-axis="y"
+                data-parallax-from="250"
+                data-parallax-to="-250"
+                data-parallax-speed="1.2"
+                data-parallax-center-lock="true">
                 <img class="picture-img" src="@/assets/images/folkways/folkways-image-2.png" alt="">
                 <div class="illustration-title-font">
                     <span>冬虫夏草：藏药珍贵药材，有补肺益肾，止血止痛，止咳化痰等功效。</span>
@@ -45,8 +117,22 @@
                 </div>
             </div>
             <div class="text-container">
-                <div class="text-header-img"></div>
-                <div class="text-content text-font">
+                <div 
+                    class="text-header-img"
+                    data-parallax="true"
+                    data-parallax-axis="y"
+                    data-parallax-from="100"
+                    data-parallax-to="-100"
+                    data-parallax-speed="1.1"
+                    data-parallax-center-lock="true"></div>
+                <div 
+                    class="text-content text-font third-screen-text-content"
+                    data-parallax="true"
+                    data-parallax-axis="y"
+                    data-parallax-from="100"
+                    data-parallax-to="-100"
+                    data-parallax-speed="1.1"
+                    data-parallax-center-lock="true">
                     <p>作为中国重要的藏羌彝聚居区，四川具有得天独厚的民族文化资源，医药资源即是其中的瑰宝，它既造就了各民族医药既竞相生发又兼容并蓄的历史图景，也反映出各民族长期交往交流交融的历史事实。</p>
                     <p>藏医药源远流长，是藏族人民长期在与自然环境抗争中不断积累和总结的成果。其在发展过程中广泛吸收了中医、古印度医药和大食医药的精华，经过历代藏医的补充与完善，最终形成了体系完整、理论成熟的民族医学，是我国传统医学的重要组成部分。</p>
                 </div>
@@ -56,31 +142,97 @@
         <!-- 第四幕 -->
         <div class="screen forth-screen">
             <div class="text-container">
-                <div class="text-title-img"></div>
-                <div class="text-font">彝医药则在继承中华古代医药思想的基础上，与彝族文化、信仰、习俗及其特定的自然环境相结合，并在长期实践中发展出独具特色的理论体系。</div>
+                <div 
+                    class="text-title-img"
+                    data-parallax="true"
+                    data-parallax-axis="y"
+                    data-parallax-from="100"
+                    data-parallax-to="-100"
+                    data-parallax-speed="1.1"
+                    data-parallax-center-lock="true"></div>
+                <div 
+                    class="text-font forth-screen-text-content"
+                    data-parallax="true"
+                    data-parallax-axis="y"
+                    data-parallax-from="100"
+                    data-parallax-to="-100"
+                    data-parallax-speed="1.1"
+                    data-parallax-center-lock="true">彝医药则在继承中华古代医药思想的基础上，与彝族文化、信仰、习俗及其特定的自然环境相结合，并在长期实践中发展出独具特色的理论体系。</div>
             </div>
             <div class="picture-container">
-                <img class="picture-img" src="@/assets/images/folkways/folkways-image-3.png" alt="">
-                <div class="illustration-title-font">
+                <div
+                    data-parallax="true"
+                    data-parallax-axis="y"
+                    data-parallax-from="200"
+                    data-parallax-to="-200"
+                    data-parallax-speed="1.2"
+                    data-parallax-center-lock="true">
+                    <img class="picture-img" src="@/assets/images/folkways/folkways-image-3.png" alt="">
+                </div>
+                <div 
+                    class="illustration-title-font"
+                    data-parallax="true"
+                    data-parallax-axis="y"
+                    data-parallax-from="100"
+                    data-parallax-to="-100"
+                    data-parallax-speed="1.1"
+                    data-parallax-center-lock="true">
                     <DotPopover class="dot-popover" title="内容来自" content="《晶珠本草药录》 四川民族出版社 2017 "></DotPopover>
                     <span>菊科植物短葶飞蓬，是彝医药代表性品种灯盏细辛（改都诺起）的基材，有活血通络止痛，祛风散寒的功效。</span>
                 </div>
             </div>
-            <div class="background-img-1"></div>
-            <div class="background-img-2"></div>
+            <div
+                data-parallax="true"
+                data-parallax-axis="y"
+                data-parallax-from="100"
+                data-parallax-to="-100"
+                data-parallax-speed="1.1"
+                data-parallax-center-lock="true">
+                <div class="background-img-1"></div>
+                <div class="background-img-2"></div>
+            </div>
         </div>
         <!-- 第五幕 -->
         <div class="screen fifth-screen">
             <div class="picture-container">
-                <img src="@/assets/images/folkways/folkways-image-4.png" alt="" class="picture-img">
-                <div class="illustration-title-font">
+                <div
+                    data-parallax="true"
+                    data-parallax-axis="y"
+                    data-parallax-from="200"
+                    data-parallax-to="-200"
+                    data-parallax-speed="1.2"
+                    data-parallax-center-lock="true">
+                    <img src="@/assets/images/folkways/folkways-image-4.png" alt="" class="picture-img">
+                </div>
+                <div 
+                    class="illustration-title-font"
+                    data-parallax="true"
+                    data-parallax-axis="y"
+                    data-parallax-from="100"
+                    data-parallax-to="-100"
+                    data-parallax-speed="1.1"
+                    data-parallax-center-lock="true">
                     <span>高山龙胆（日达姆郎帕）是羌医药代表性品种，具有泻火镇咳、利咽、止痒等功效。</span>
                     <DotPopover class="dot-popover" title="内容来自" content="《晶珠本草药录》 四川民族出版社 2017 "></DotPopover>
                 </div>
             </div>
             <div class="text-container">
-                <div class="text-header-img"></div>
-                <div class="text-font">
+                <div 
+                    class="text-header-img"
+                    data-parallax="true"
+                    data-parallax-axis="y"
+                    data-parallax-from="100"
+                    data-parallax-to="-100"
+                    data-parallax-speed="1.1"
+                    data-parallax-center-lock="true"></div>
+                <div 
+                    class="text-font fifth-screen-text-content"
+                    data-parallax="true"
+                    data-parallax-axis="y"
+                    data-parallax-from="100"
+                    data-parallax-to="-100"
+                    data-parallax-speed="1.1"
+                    data-parallax-center-lock="true">
                     <span>羌医药因为受到历史变迁和战争影响，明清以后文献大多散佚，典籍多由家族嫡传而鲜有公开，因此主要通过民间口授、家传和方药交换的方式延续。</span>
                     <DotPopover class="dot-popover" title="内容来自" content="《四川藏羌彝民族医药图鉴》 四川民族出版社 2020"></DotPopover>
                 </div>
@@ -88,15 +240,50 @@
         </div>
         <!-- 第六幕 -->
         <div class="screen sixth-screen">
-            <div class="left-fire-img"></div>
+            <div 
+                class="left-fire-img"
+                data-parallax="true"
+                data-parallax-axis="y"
+                data-parallax-from="200"
+                data-parallax-to="-200"
+                data-parallax-speed="1.2"
+                data-parallax-center-lock="true"></div>
             <div class="text-container">
-                <div class="text-header-img"></div>
-                <div class="text-font">而在青藏高原东缘，每年盛夏，人们点燃火把，载歌载舞，庆祝丰收与吉祥。这种以点燃火把为主要庆祝方式的节日就是火把节。火把节不仅是彝族、白族、纳西族等民族最重要的传统节日，也承载了祭祀祖先、祈求风调雨顺的文化意涵。熊熊火光映照高原的夜空，舞蹈和歌声在山谷间回响，人们将土地、火焰同生命的节奏紧密相连</div>
+                <div 
+                    class="text-header-img"
+                    data-parallax="true"
+                    data-parallax-axis="y"
+                    data-parallax-from="100"
+                    data-parallax-to="-100"
+                    data-parallax-speed="1.1"
+                    data-parallax-center-lock="true"></div>
+                <div 
+                    class="text-font sixth-screen-text-content"
+                    data-parallax="true"
+                    data-parallax-axis="y"
+                    data-parallax-from="100"
+                    data-parallax-to="-100"
+                    data-parallax-speed="1.1"
+                    data-parallax-center-lock="true">而在青藏高原东缘，每年盛夏，人们点燃火把，载歌载舞，庆祝丰收与吉祥。这种以点燃火把为主要庆祝方式的节日就是火把节。火把节不仅是彝族、白族、纳西族等民族最重要的传统节日，也承载了祭祀祖先、祈求风调雨顺的文化意涵。熊熊火光映照高原的夜空，舞蹈和歌声在山谷间回响，人们将土地、火焰同生命的节奏紧密相连</div>
             </div>
-            <div class="picture-container">
+            <div 
+                class="picture-container"
+                data-parallax="true"
+                data-parallax-axis="y"
+                data-parallax-from="200"
+                data-parallax-to="-200"
+                data-parallax-speed="1.2"
+                data-parallax-center-lock="true">
                 <img src="@/assets/images/folkways/folkways-image-5.jpg" alt="" class="picture-img">
             </div>
-            <div class="right-fire-container">
+            <div 
+                class="right-fire-container"
+                data-parallax="true"
+                data-parallax-axis="y"
+                data-parallax-from="100"
+                data-parallax-to="-100"
+                data-parallax-speed="1.1"
+                data-parallax-center-lock="true">
                 <div class="right-fire-img-1"></div>
                 <div class="right-fire-img-2"></div>
             </div>
@@ -237,8 +424,71 @@
         </div>
     </div>
 </template>
-<script setup>
+<!-- <script setup>
 import DotPopover from '@/components/dotPopover.vue';
+</script> -->
+<script setup>
+import { ref, onMounted, onUnmounted, nextTick } from 'vue';
+import { gsap } from 'gsap';
+import { pxToVw, pxToVh } from '@/utils/viewportUtils';
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import DotPopover from '@/components/dotPopover.vue';
+const initGsapAnimation = () => {
+    gsap.to('.second-screen-text-content', {
+        y: pxToVh(-100),
+        opacity: 1,
+        duration: 2,
+        scrollTrigger: {
+            trigger: '.second-screen-text-content', // 触发元素
+            start: 'bottom center+=400',
+            end: 'top top',
+        }
+    })
+    gsap.to('.third-screen-text-content', {
+        y: pxToVh(-100),
+        opacity: 1,
+        duration: 2,
+        scrollTrigger: {
+            trigger: '.third-screen-text-content', // 触发元素
+            start: 'bottom center+=400',
+            end: 'top top',
+        }
+    })
+    gsap.to('.forth-screen-text-content', {
+        y: pxToVh(-100),
+        opacity: 1,
+        duration: 2,
+        scrollTrigger: {
+            trigger: '.forth-screen-text-content', // 触发元素
+            start: 'bottom center+=400',
+            end: 'top top',
+        }
+    })
+    gsap.to('.fifth-screen-text-content', {
+        y: pxToVh(-100),
+        opacity: 1,
+        duration: 2,
+        scrollTrigger: {
+            trigger: '.fifth-screen-text-content', // 触发元素
+            start: 'bottom center+=400',
+            end: 'top top',
+        }
+    })
+     gsap.to('.sixth-screen-text-content', {
+        y: pxToVh(-100),
+        opacity: 1,
+        duration: 2,
+        scrollTrigger: {
+            trigger: '.sixth-screen-text-content', // 触发元素
+            start: 'bottom center+=400',
+            end: 'top top',
+        }
+    })
+}
+
+onMounted(() => {
+    initGsapAnimation()
+})
 </script>
 
 <style scoped>
@@ -284,7 +534,7 @@ import DotPopover from '@/components/dotPopover.vue';
         .left-cloud-img-1{
             position: absolute;
             left: 160px;
-            bottom: -100px;
+            top: 700px;
             width: 775px;
             height: 570px;
             background: url('@/assets/images/folkways/folkways-element-1-6.png') no-repeat center center / cover;
@@ -292,7 +542,7 @@ import DotPopover from '@/components/dotPopover.vue';
         .left-cloud-img-2{
             position: absolute;
             left: 700px;
-            bottom: -150px;
+            top: 860px;
             width: 703px;
             height: 448px;
             background: url('@/assets/images/folkways/folkways-element-1-7.png') no-repeat center center / cover;
@@ -305,6 +555,7 @@ import DotPopover from '@/components/dotPopover.vue';
             .title-img{
                 width: 1383px;
                 height: 331px;
+                z-index: 99;
                 background: url('@/assets/images/folkways/folkways-character-1.png') no-repeat center center / cover;
             }
             .subtitle-img{
@@ -343,22 +594,27 @@ import DotPopover from '@/components/dotPopover.vue';
         }
     }
     .second-screen{
+        margin-top: 100px;
         .text-container{
             position: absolute;
             top: 220px;
             left: 160px;
             width: 801px;
+            .text-content{
+                opacity: 0;
+            }
             .text-header-img{
                 width: 801px;
                 height: 102px;
-                margin-bottom: 40px;
+                margin-bottom: 80px;
                 background: url('@/assets/images/folkways/folkways-element-2-1.png') no-repeat center center / cover;
             }
         }
         .picture-container{
             position: absolute;
-            top: 380px;
+            top: 420px;
             right: 160px;
+            z-index: 999;
             .picture-img{
                 width: 700px;
             }
@@ -382,7 +638,7 @@ import DotPopover from '@/components/dotPopover.vue';
     .third-screen{
         .background-pattern-img-1{
             position: absolute;
-            top: -200px;
+            top: -300px;
             left: 0;
             width: 339px;
             height: 597px;
@@ -418,13 +674,16 @@ import DotPopover from '@/components/dotPopover.vue';
             .text-header-img{
                 width: 821px;
                 height: 102px;
-                margin-bottom: 40px;
+                margin-bottom: 80px;
                 background: url('@/assets/images/folkways/folkways-element-2-2.png') no-repeat center center / cover;
+            }
+            .text-content{
+                opacity: 0;
             }
         }
         .background-pattern-img-2{
             position: absolute;
-            top: 0p;
+            top: -80px;
             right: 10px;
             width: 552px;
             height: 908px;
@@ -440,8 +699,11 @@ import DotPopover from '@/components/dotPopover.vue';
             .text-title-img{
                 width: 819px;
                 height: 102px;
-                margin-bottom: 40px;
+                margin-bottom: 80px;
                 background: url('@/assets/images/folkways/folkways-element-2-3.png') no-repeat center center / cover;
+            }
+            .forth-screen-text-content{
+                opacity: 0;
             }
         }
         .picture-container{
@@ -454,6 +716,11 @@ import DotPopover from '@/components/dotPopover.vue';
             align-items: center;
             .picture-img{
                 width: 360px;
+            }
+             .illustration-title-font{
+                position: absolute;
+                top: 400px;
+
             }
             .dot-popover{
                 top: 200px;
@@ -493,6 +760,10 @@ import DotPopover from '@/components/dotPopover.vue';
             .picture-img{
                 width: 350px;
             }
+            .illustration-title-font{
+                position: absolute;
+                top: 400px;
+            }
             .dot-popover{
                 top: 50px;
                 left: 40px;
@@ -506,8 +777,11 @@ import DotPopover from '@/components/dotPopover.vue';
             .text-header-img{
                 width: 800px;
                 height: 102px;
-                margin-bottom: 40px;
+                margin-bottom: 80px;
                 background: url('@/assets/images/folkways/folkways-element-2-4.png') no-repeat center center / cover;
+            }
+            .fifth-screen-text-content{
+                opacity: 0;
             }
             .dot-popover{
                 top: 40px;
@@ -536,20 +810,23 @@ import DotPopover from '@/components/dotPopover.vue';
             .text-header-img{
                 width: 821px;
                 height: 102px;
-                margin-bottom: 40px;
+                margin-bottom: 80px;
                 background: url('@/assets/images/folkways/folkways-element-2-5.png') no-repeat center center / cover;
+            }
+            .sixth-screen-text-content{
+                opacity: 0;
             }
         }
         .picture-img{
             position: absolute;
             right: 200px;
-            top: 200px;
+            top: 320px;
             width: 700px;
         }
         .right-fire-img-1{
             position: absolute;
             right:0;
-            bottom: 200px;
+            top: 300px;
             width: 184px;
             height: 419px;
             background: url('@/assets/images/folkways/folkways-element-3-6.png') no-repeat center center / cover;
@@ -557,7 +834,7 @@ import DotPopover from '@/components/dotPopover.vue';
         .right-fire-img-2{
             position: absolute;
             right:0;
-            bottom: 100px;
+            top: 600px;
             width: 102px;
             height: 228px;
             background: url('@/assets/images/folkways/folkways-element-3-7.png') no-repeat center center / cover;
