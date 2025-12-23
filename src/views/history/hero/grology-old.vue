@@ -1,15 +1,15 @@
 <template>
   <div class="grology">
-<!--    <div class="grology-welcome" ref="videoContainer">-->
-<!--      <video-->
-<!--          ref="welcomeVideo"-->
-<!--          class="welcome-video"-->
-<!--          :src="welcomeVideoSrc"-->
-<!--          preload="auto"-->
-<!--          muted-->
-<!--          playsinline-->
-<!--      ></video>-->
-<!--    </div>-->
+    <div class="grology-welcome" ref="videoContainer">
+      <video
+          ref="welcomeVideo"
+          class="welcome-video"
+          :src="welcomeVideoSrc"
+          preload="auto"
+          muted
+          playsinline
+      ></video>
+    </div>
     <div class="grology-origin" ref="originContainer">
       <video
           ref="originVideo"
@@ -27,17 +27,17 @@
           <p :style="{width: originInfos[originCurrentIndex].width}">{{ originInfos[originCurrentIndex].description }}</p>
         </div>
         <div
-            class="video-sound"
-            :class="{ active: isSoundOn }"
-            @click="toggleSound"
+          class="video-sound"
+          :class="{ active: isSoundOn }"
+          @click="toggleSound"
         ></div>
         <div class="video-indicator">
           <div
-              class="video-dot"
-              v-for="(item, index) in originInfos.length"
-              :key="index"
-              :class="{ active: originCurrentIndex === index }"
-              @click="switchVideo(index)"
+            class="video-dot"
+            v-for="(item, index) in originInfos.length"
+            :key="index"
+            :class="{ active: originCurrentIndex === index }"
+            @click="switchVideo(index)"
           ></div>
         </div>
       </div>
@@ -45,13 +45,13 @@
     <div class="grology-water" style="margin-top: 1000px">
       <div class="water-cloud-1"></div>
       <div class="water-bg-video">
-        <video
-            src="@/assets/images/geology/geology-to-water-climate-video.mp4"
-            autoplay
-            preload="auto"
-            muted
-            playsinline
-        ></video>
+          <video
+              src="@/assets/images/geology/geology-to-water-climate-video.mp4"
+              autoplay
+              preload="auto"
+              muted
+              playsinline
+          ></video>
         <video
             src="@/assets/images/geology/geology-to-water-climate-snow-video.webm"
             autoplay
@@ -91,32 +91,21 @@
     </div>
     <div class="lives">
       <div class="first-screen">
-        <div class="mountain-img"></div>
-        <div class="cloud-img"></div>
-        <div class="goose">
-          <div class="goose-img"></div>
-          <div class="goose-chinese goose-name">斑头雁</div>
-          <div class="goose-english goose-name">Anser indicus</div>
-          <div class="goose-description">
-            <div class="goose-description-img"></div>
-            <div class="goose-description-text">主要繁殖在我国青海、西藏、新疆西部的高山湖泊等地区，越冬迁飞至陕西、湖南、四川、云南等地。身体大都呈现灰褐色，头顶具两道黑斑纹，嘴和脚呈现黄色。喜欢栖息在高原湖泊沼泽，飞行能力极强，能翻越喜马拉雅山，是世界上飞行高度最高的鸟类之一。</div>
+          <div class="mountain-img"></div>
+          <div class="cloud-img"></div>
+          <div class="goose">
+            <div class="goose-img"></div>
+            <div class="goose-chinese goose-name">斑头雁</div>
+            <div class="goose-english goose-name">Anser indicus</div>
+            <div class="goose-description">
+              <div class="goose-description-img"></div>
+              <div class="goose-description-text">主要繁殖在我国青海、西藏、新疆西部的高山湖泊等地区，越冬迁飞至陕西、湖南、四川、云南等地。身体大都呈现灰褐色，头顶具两道黑斑纹，嘴和脚呈现黄色。喜欢栖息在高原湖泊沼泽，飞行能力极强，能翻越喜马拉雅山，是世界上飞行高度最高的鸟类之一。</div>
+            </div>
           </div>
-        </div>
       </div>
       <div class="second-screen">
         <div class="second-screen-bg"></div>
-        <div class="cloud-img-1"></div>
-        <div class="cloud-img-2"></div>
-        <div class="mountain-img"></div>
-        <div class="panthera">
-          <div class="panthera-img"></div>
-          <div class="panthera-name panthera-chinese">雪豹</div>
-          <div class="panthera-name panthera-english">Panthera uncia</div>
-          <div class="panthera-description">
-            <div class="panthera-description-img"></div>
-            <div class="panthera-description-text">主要分布于青藏高原和新疆、青海、四川等地，国家一级保护野生动物。全身呈灰白色且满布黑斑，尾巴粗长，超过体长的2／3，四肢短粗。喜欢栖居在海拔3000—6000米的高山空旷多岩地带。主要捕食野羊、岩羊，有时也猎取狍子、旱獭、黄鼠、野兔等动物。</div>
-          </div>
-        </div>
+        <div class="cloud-img"></div>
       </div>
     </div>
   </div>
@@ -394,38 +383,25 @@ const onOriginVideoEnded = () => {
 let viewDisplacementTrigger = null;
 const viewDisplacement = async () => {
   await nextTick();
-
+  
   const firstScreen = document.querySelector('.first-screen');
 
   if (!firstScreen) return;
-
+  
   // 如果已经创建过，先清理
   if (viewDisplacementTrigger) {
     viewDisplacementTrigger.kill();
   }
-
-  // viewDisplacementTrigger = ScrollTrigger.create({
-  //   trigger: '.first-screen',
-  //   start: 'top top', // 当容器顶部到达视口顶部时开始
-  //   end: 'right right', // 横向滚动需要的滚动距离（1倍视口高度）
-  //   scrub: true, // 与滚动同步，平滑跟随
-  //   pin: true, // 在横向滚动期间固定容器，防止向下滚动
-  //   anticipatePin: 1,
-  //   animation: gsap.to('.lives', {
-  //     x: -960, // 横向位移到最右边
-  //     ease: 'none' // 线性动画，与滚动完全同步
-  //   }),
-  //   invalidateOnRefresh: true,
-  // });
+  
   // viewDisplacementTrigger = ScrollTrigger.create({
   //   trigger: '.lives',
-  //   start: 'right right', // 当容器顶部到达视口顶部时开始
-  //   end: () => `+=1080`, // 横向滚动需要的滚动距离（1倍视口高度）
+  //   start: 'top top', // 当容器顶部到达视口顶部时开始
+  //   end: () => `+=960`, // 横向滚动需要的滚动距离（1倍视口高度）
   //   scrub: true, // 与滚动同步，平滑跟随
   //   pin: true, // 在横向滚动期间固定容器，防止向下滚动
   //   anticipatePin: 1,
-  //   animation: gsap.to('.second-screen', {
-  //     y: -1080, // 横向位移到最右边
+  //   animation: gsap.to('.first-screen', {
+  //     x: -960, // 横向位移到最右边
   //     ease: 'none' // 线性动画，与滚动完全同步
   //   }),
   //   invalidateOnRefresh: true,
@@ -563,7 +539,7 @@ onUnmounted(() => {
   background-image: url("@/assets/images/geology/geology-to-water-bg.jpg");
   background-size: cover;
   background-repeat: no-repeat;
-//background-position: center -1080px;
+  //background-position: center -1080px;
 
   .water-cloud-1{
     width: 1920px;
@@ -686,28 +662,17 @@ onUnmounted(() => {
   }
 }
 .lives{
-  //width: 1920px;
-  //height: 1080px;
-  //overflow: hidden;
-//overflow-x: hidden; /* 隐藏横向溢出，确保位移效果正常 */
+  width: 1920px;
+  height: 1080px;
+  overflow: hidden;
+  //overflow-x: hidden; /* 隐藏横向溢出，确保位移效果正常 */
   .first-screen{
     width: 2880px;
     height: 2160px;
-    background-color: #fff;
-    //background-image: url("@/assets/images/lives/lives-bty-bg.png");
-    //background-size: cover;
+    background-image: url("@/assets/images/lives/lives-bty-bg.png");
+    background-size: cover;
     position: relative;
     &:before{
-      content: '';
-      width: 2880px;
-      height: 2160px;
-      background-image: url("@/assets/images/lives/lives-bty-bg.png");
-      background-size: cover;
-      position: absolute;
-      top: 0;
-      left: 0;
-    }
-    &:after{
       content: '';
       width: 2873px;
       height: 1472px;
@@ -745,10 +710,10 @@ onUnmounted(() => {
         background-image: url("@/assets/images/lives/lives-bty.png");
         background-size: cover;
       }
-      .goose-name{
-        font-size: 36px;
-        color: #4b4b4b;
-      }
+     .goose-name{
+       font-size: 36px;
+       color: #4b4b4b;
+     }
       .goose-english{
         margin-top: 20px;
       }
@@ -777,10 +742,9 @@ onUnmounted(() => {
     }
   }
   .second-screen{
-    width: 1920px;
-    height: 1080px;
+    width: 1080px;
+    height: 1920px;
     position: relative;
-    background-color: #fff;
     .second-screen-bg{
       width: 1920px;
       height: 2740px;
@@ -790,80 +754,14 @@ onUnmounted(() => {
       top: 0px;
       position: absolute;
     }
-    .cloud-img-1{
-      width: 1611px;
-      height: 753px;
-      background-image: url("@/assets/images/lives/lives-transition-cloud-1.png");
+    .cloud-img{
+      width: 2139px;
+      height: 912px;
+      background-image: url("@/assets/images/lives/lives-transition-cloud-3.png");
       background-size: cover;
-      left: -300px;
-      top: -340px;
+      left: 0px;
+      top: -300px;
       position: absolute;
-    }
-    .cloud-img-2{
-      width: 1792px;
-      height: 959px;
-      background-image: url("@/assets/images/lives/lives-transition-cloud-2.png");
-      background-size: cover;
-      right: -600px;
-      top: -540px;
-      position: absolute;
-    }
-    .mountain-img{
-      width: 1920px;
-      height: 736px;
-      background-image: url("@/assets/images/lives/lives-xb-hill.png");
-      background-size: cover;
-      left: 0;
-      bottom: 0;
-      position: absolute;
-    }
-    .panthera{
-      position: absolute;
-      left: 680px;
-      bottom: 240px;
-      .panthera-img{
-        width: 657px;
-        height: 451px;
-        background-image: url("@/assets/images/lives/lives-xb.png");
-        background-size: cover;
-      }
-      .panthera-name{
-        font-size: 36px;
-        color: #434343;
-        position: absolute;
-        top: 50px;
-        left: 730px;
-        width: 100px;
-      }
-      .panthera-english{
-        margin-top: 20px;
-        position: absolute;
-        top: 100px;
-        left: 730px;
-      }
-
-      .panthera-description{
-        padding: 30px;
-        width: 590px;
-        border-radius: 30px;
-        background-color: rgba(214,230,244,0.7);
-        position: absolute;
-        top: -250px;
-        left: -440px;
-        .panthera-description-img{
-          width: 530px;
-          height: 340px;
-          background-image: url("@/assets/images/lives/lives-xb-image.jpg");
-          background-size: cover;
-        }
-        .panthera-description-text{
-          font-size: 22px;
-          color: #434343;
-          line-height: 54px;
-          width: 530px;
-          margin-top: 40px;
-        }
-      }
     }
   }
 
