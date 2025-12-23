@@ -26,21 +26,25 @@ const pages = ref([
     url: '/voyage/climate'
   },
   {
-    name: '历史',
-    url: '/voyage/history'
+    name: '横向',
+    url: '/voyage/horizontal'
   },
   {
-    name: '文学戏剧',
-    url: '/voyage/literaryDrama'
+    name: '横向',
+    url: '/voyage/vertical'
   },
-  {
-    name: '新中国',
-    url: '/voyage/newChina'
-  },
-  {
-    name: '民俗',
-    url: '/voyage/folkways'
-  }
+  // {
+  //   name: '文学戏剧',
+  //   url: '/voyage/literaryDrama'
+  // },
+  // {
+  //   name: '新中国',
+  //   url: '/voyage/newChina'
+  // },
+  // {
+  //   name: '民俗',
+  //   url: '/voyage/folkways'
+  // }
 ])
 
 

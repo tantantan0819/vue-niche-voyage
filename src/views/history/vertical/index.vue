@@ -6,6 +6,8 @@
     <culture/>
     <!-- 戏剧篇 -->
     <literaryDrama/>
+    <!-- 民俗篇 -->
+    <folkways/>
   </div>
 </template>
 <script setup>
@@ -15,6 +17,7 @@ import { pxToVw, pxToVh } from '@/utils/viewportUtils';
 import architecture from './architecture/index.vue'
 import literaryDrama from './literaryDrama/index.vue'
 import culture from './culture/index.vue'
+import folkways from './folkways/index.vue'
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { preloadImages } from "@/utils/preloadImages";
 
