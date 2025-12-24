@@ -111,6 +111,15 @@ export default [
                     icon: 'cog',
                 },
             },
+            {
+                path: 'sqhx',
+                name: 'sqhx',
+                component: () => import('@/views/history/horizontal/sqhx/index.vue'),
+                meta: {
+                    title: 'sqhx',
+                    icon: 'cog',
+                },
+            },
         ],
     },
 ];
