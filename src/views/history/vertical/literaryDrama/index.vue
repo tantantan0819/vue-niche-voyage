@@ -225,7 +225,6 @@
         data-parallax-speed="1.1"
         data-parallax-center-lock="true">
         <div class="tree-img"></div>
-        <div class="rock-img"></div>
       </div>
       <div 
         class="text-container"
@@ -851,18 +850,10 @@ onMounted(() => {
   .tree-img{
     position: absolute;
     left: 0;
-    top: 200px;
-    width: 695px;
-    height: 472px;
+    top: 300px;
+    width: 740px;
+    height: 644px;
     background: url('@/assets/images/literaryDrama/drama-element-2-5.png') no-repeat center center / cover;
-  }
-  .rock-img{
-    position: absolute;
-    left: 50px;
-    top: 600px;
-    width: 701px;
-    height: 205px;
-    background: url('@/assets/images/literaryDrama/drama-element-2-6.png') no-repeat center center / cover;
   }
   .text-container{
     position: absolute;

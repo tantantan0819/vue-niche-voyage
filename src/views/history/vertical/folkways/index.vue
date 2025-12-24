@@ -281,7 +281,20 @@
                 data-parallax-to="-200"
                 data-parallax-speed="1.2"
                 data-parallax-center-lock="true">
-                <img src="@/assets/images/folkways/folkways-image-5.jpg" alt="" class="picture-img">
+                <div
+                    data-parallax="true"
+                    data-parallax-axis="y"
+                    data-parallax-from="100"
+                    data-parallax-to="-100"
+                    data-parallax-speed="1.2"
+                    data-parallax-center-lock="true">
+                    <img src="@/assets/images/folkways/folkways-image-5.jpg" alt="" class="picture-img">
+                </div>
+                <div class="illustration-title-font">
+                    <span>彝族火把节场景</span>
+                    <DotPopover class="dot-popover" title="内容来自" content="《中国凉山彝族火把节》 四川民族出版社 2020"></DotPopover>
+                </div>
+
             </div>
             <div 
                 class="right-fire-container"
@@ -936,12 +949,28 @@ const toAnswerPage = () =>{
                 opacity: 0;
             }
         }
-        .picture-img{
+        .picture-container{
             position: absolute;
             right: 200px;
             top: 320px;
-            width: 700px;
+            .picture-img{
+                width: 700px;
+                margin-bottom: 20px;
+            }
+            .illustration-title-font{
+                position: absolute;
+                top: 500px;
+            }
+            .dot-popover{
+                top: 30px;
+                left: 40px;
+            }
+            >>> .popover-container{
+                top: -20px;
+                left: 40px;
+            }
         }
+       
         .right-fire-img-1{
             position: absolute;
             right:0;
