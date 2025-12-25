@@ -43,7 +43,8 @@ export function useAnimateNumber(options = {}) {
     ease = 'power2.out',
     threshold = 0.1,
     onComplete = null,
-    once = false
+    once = false,
+    keyframes = null,
   } = options
 
   // 计算起始值
@@ -68,10 +69,7 @@ export function useAnimateNumber(options = {}) {
 
     // 重置为起始值
     displayValue.value = calculatedStartValue
-
-    const obj = { value: calculatedStartValue }
-    animationTween = gsap.to(obj, {
-      value: targetValue,
+    const animateParams =  {
       duration,
       ease,
       onUpdate: () => {
@@ -84,7 +82,16 @@ export function useAnimateNumber(options = {}) {
           onComplete()
         }
       }
-    })
+    }
+    // keyframes可实现多阶段动画
+    if(keyframes){
+      animateParams.keyframes = keyframes
+    }else{
+      animateParams.value = targetValue
+    }
+
+    const obj = { value: calculatedStartValue }
+    animationTween = gsap.to(obj, animateParams)
   }
 
   // 重置函数（当元素离开视口时调用）
