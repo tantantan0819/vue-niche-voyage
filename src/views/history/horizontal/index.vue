@@ -1,6 +1,8 @@
 <template>
   <div class="horizontal-scroll-container" ref="container">
     <div class="content" ref="contentRef">
+      <!-- 史前回响 -->
+      <sqhx/>
       <!-- 象雄 -->
       <xiangxiong></xiangxiong>
       <!-- 吐蕃 -->
@@ -28,6 +30,7 @@ import yuan from './yuan/index.vue'
 import jindai from './jindai/index.vue'
 import NewChina from './newChina/index.vue'
 import chamagudao from './chamagudao/index.vue'
+import sqhx from './sqhx/index.vue'
 
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { preloadImages } from "@/utils/preloadImages";

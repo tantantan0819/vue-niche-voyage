@@ -33,6 +33,10 @@ const pages = ref([
     name: '竖向',
     url: '/voyage/vertical'
   },
+  {
+    name: '史前回响',
+    url: '/voyage/sqhx'
+  },
   // {
   //   name: '文学戏剧',
   //   url: '/voyage/literaryDrama'
