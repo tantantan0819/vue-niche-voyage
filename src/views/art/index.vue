@@ -153,7 +153,7 @@ const closeProcession = () => {
 <style>
 .art{
   width: 1920px;
-  background-image: url("@/assets/images/art/architecture-bg.jpg");
+  background-image: url("@/assets/images/architecture/architecture-bg.jpg");
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
@@ -191,7 +191,7 @@ const closeProcession = () => {
       .second-screen-img-3{
         width: 40px;
         height: 581px;
-        background-image: url("@/assets/images/art/architecture-element-arrow.png");
+        background-image: url("@/assets/images/architecture/architecture-element-arrow.png");
         background-size: cover;
         background-position: center center;
         background-repeat: no-repeat;
@@ -202,7 +202,7 @@ const closeProcession = () => {
       .second-screen-img-1{
         width: 176px;
         height: 492px;
-        background-image: url("@/assets/images/art/architecture-element-speed-line-1.png");
+        background-image: url("@/assets/images/architecture/architecture-element-speed-line-1.png");
         background-size: cover;
         background-position: center center;
         background-repeat: no-repeat;
@@ -213,7 +213,7 @@ const closeProcession = () => {
       .second-screen-img-2{
         width: 176px;
         height: 492px;
-        background-image: url("@/assets/images/art/architecture-element-speed-line-2.png");
+        background-image: url("@/assets/images/architecture/architecture-element-speed-line-2.png");
         background-size: cover;
         background-position: center center;
         background-repeat: no-repeat;
@@ -226,7 +226,7 @@ const closeProcession = () => {
     .cloud-1{
       width: 3962px;
       height: 1826px;
-      background-image: url("@/assets/images/art/architecture-element-cloud.png");
+      background-image: url("@/assets/images/architecture/architecture-element-cloud.png");
       background-size: cover;
       background-position: center center;
       background-repeat: no-repeat;
@@ -246,7 +246,7 @@ const closeProcession = () => {
       .art-text-1{
         width: 369px;
         height: 94px;
-        background-image: url("@/assets/images/art/architecture-characters-1.png");
+        background-image: url("@/assets/images/architecture/architecture-characters-1.png");
         background-size: cover;
         background-position: center center;
         background-repeat: no-repeat;
@@ -270,7 +270,7 @@ const closeProcession = () => {
       .img-1{
         width: 646px;
         height: 410px;
-        background-image: url("@/assets/images/art/architecture-image-7.jpg");
+        background-image: url("@/assets/images/architecture/architecture-image-7.jpg");
         background-size: cover;
         background-position: center center;
         background-repeat: no-repeat;
@@ -299,7 +299,7 @@ const closeProcession = () => {
       .img-2{
         width: 610px;
         height: 408px;
-        background-image: url("@/assets/images/art/architecture-image-8.jpg");
+        background-image: url("@/assets/images/architecture/architecture-image-8.jpg");
         background-size: cover;
         background-position: center center;
         background-repeat: no-repeat;
@@ -325,7 +325,7 @@ const closeProcession = () => {
     .img-1{
       width: 1448px;
       height: 817px;
-      background-image: url("@/assets/images/art/architecture-element-sys.png");
+      background-image: url("@/assets/images/architecture/architecture-element-sys.png");
       background-size: cover;
       background-position: center center;
       background-repeat: no-repeat;
@@ -344,7 +344,7 @@ const closeProcession = () => {
       .img-1{
         width: 360px;
         height: 470px;
-        background-image: url("@/assets/images/art/architecture-image-6.jpg");
+        background-image: url("@/assets/images/architecture/architecture-image-6.jpg");
         background-size: cover;
         background-position: center center;
         background-repeat: no-repeat;
@@ -365,7 +365,7 @@ const closeProcession = () => {
       .img-2{
         width: 710px;
         height: 470px;
-        background-image: url("@/assets/images/art/architecture-image-7.jpg");
+        background-image: url("@/assets/images/architecture/architecture-image-7.jpg");
         background-size: cover;
         background-position: center center;
         background-repeat: no-repeat;
@@ -383,7 +383,7 @@ const closeProcession = () => {
     .eight-screen-bg{
       width: 1920px;
       height: 1488px;
-      background-image: url("@/assets/images/art/architecture-element-guidingline-3.png");
+      background-image: url("@/assets/images/architecture/architecture-element-guidingline-3.png");
       background-size: cover;
       background-position: center center;
       background-repeat: no-repeat;
@@ -413,7 +413,7 @@ const closeProcession = () => {
       .img-1{
         width: 694px;
         height: 524px;
-        background-image: url("@/assets/images/art/architecture-image-7.jpg");
+        background-image: url("@/assets/images/architecture/architecture-image-7.jpg");
         background-size: cover;
         background-position: center center;
         background-repeat: no-repeat;
@@ -430,7 +430,7 @@ const closeProcession = () => {
     .seven-screen-bg{
       width: 1920px;
       height: 1488px;
-      background-image: url("@/assets/images/art/architecture-element-guidingline-2.png");
+      background-image: url("@/assets/images/architecture/architecture-element-guidingline-2.png");
       background-size: cover;
       background-position: center center;
       background-repeat: no-repeat;
@@ -446,7 +446,7 @@ const closeProcession = () => {
       .img-1{
         width: 672px;
         height: 484px;
-        background-image: url("@/assets/images/art/architecture-image-3.png");
+        background-image: url("@/assets/images/architecture/architecture-image-3.png");
         background-size: cover;
         background-position: center center;
         background-repeat: no-repeat;
@@ -471,7 +471,7 @@ const closeProcession = () => {
     .six-screen-bg{
       width: 1920px;
       height: 1488px;
-      background-image: url("@/assets/images/art/architecture-element-guidingline-1.png");
+      background-image: url("@/assets/images/architecture/architecture-element-guidingline-1.png");
       background-size: cover;
       background-position: center center;
       background-repeat: no-repeat;
@@ -495,7 +495,7 @@ const closeProcession = () => {
       .img-1{
         width: 640px;
         height: 430px;
-        background-image: url("@/assets/images/art/architecture-image-2.jpg");
+        background-image: url("@/assets/images/architecture/architecture-image-2.jpg");
         background-size: cover;
         background-position: center center;
         background-repeat: no-repeat;
@@ -527,7 +527,7 @@ const closeProcession = () => {
       .img-1{
         width: 440px;
         height: 600px;
-        background-image: url("@/assets/images/art/architecture-image-1.jpg");
+        background-image: url("@/assets/images/architecture/architecture-image-1.jpg");
         background-size: cover;
         background-position: center center;
         background-repeat: no-repeat;
@@ -544,7 +544,7 @@ const closeProcession = () => {
     .four-screen-bg-1{
       width: 1920px;
       height: 1869px;
-      background-image: url("@/assets/images/art/architecture-element-qzjz-1.png");
+      background-image: url("@/assets/images/architecture/architecture-element-qzjz-1.png");
       background-size: cover;
       background-position: center center;
       background-repeat: no-repeat;
@@ -554,7 +554,7 @@ const closeProcession = () => {
     .four-screen-bg-2{
       width: 1066px;
       height: 1306px;
-      background-image: url("@/assets/images/art/architecture-element-qzjz-2.png");
+      background-image: url("@/assets/images/architecture/architecture-element-qzjz-2.png");
       background-size: cover;
       background-position: center center;
       background-repeat: no-repeat;
@@ -565,7 +565,7 @@ const closeProcession = () => {
     .four-screen-bg-3{
       width: 1920px;
       height: 860px;
-      background-image: url("@/assets/images/art/architecture-element-wall.png");
+      background-image: url("@/assets/images/architecture/architecture-element-wall.png");
       background-size: cover;
       background-position: center center;
       background-repeat: no-repeat;
@@ -587,7 +587,7 @@ const closeProcession = () => {
     .third-screen-bg-1{
       width: 455px;
       height: 507px;
-      background-image: url("@/assets/images/art/architecture-element-bg-1.png");
+      background-image: url("@/assets/images/architecture/architecture-element-bg-1.png");
       background-size: cover;
       background-position: center center;
       background-repeat: no-repeat;
@@ -597,7 +597,7 @@ const closeProcession = () => {
     .third-screen-bg-2{
       width: 455px;
       height: 538px;
-      background-image: url("@/assets/images/art/architecture-element-bg-2.png");
+      background-image: url("@/assets/images/architecture/architecture-element-bg-2.png");
       background-size: cover;
       background-position: center center;
       background-repeat: no-repeat;
@@ -608,7 +608,7 @@ const closeProcession = () => {
     .third-screen-bg-3{
       width: 581px;
       height: 579px;
-      background-image: url("@/assets/images/art/architecture-element-mg-1.png");
+      background-image: url("@/assets/images/architecture/architecture-element-mg-1.png");
       background-size: cover;
       background-position: center center;
       background-repeat: no-repeat;
@@ -619,7 +619,7 @@ const closeProcession = () => {
     .third-screen-bg-4{
       width: 610px;
       height: 658px;
-      background-image: url("@/assets/images/art/architecture-element-mg-2.png");
+      background-image: url("@/assets/images/architecture/architecture-element-mg-2.png");
       background-size: cover;
       background-position: center center;
       background-repeat: no-repeat;
@@ -631,7 +631,7 @@ const closeProcession = () => {
     .third-screen-bg-text{
       width: 1371px;
       height: 297px;
-      background-image: url("@/assets/images/art/architecture-characters-2.png");
+      background-image: url("@/assets/images/architecture/architecture-characters-2.png");
       background-size: cover;
       background-position: center center;
       background-repeat: no-repeat;
@@ -650,7 +650,7 @@ const closeProcession = () => {
     .third-screen-bg-5{
       width: 641px;
       height: 1105px;
-      background-image: url("@/assets/images/art/architecture-element-fg-1.png");
+      background-image: url("@/assets/images/architecture/architecture-element-fg-1.png");
       background-size: cover;
       background-position: center center;
       background-repeat: no-repeat;
@@ -660,7 +660,7 @@ const closeProcession = () => {
     .third-screen-bg-6{
       width: 569px;
       height: 980px;
-      background-image: url("@/assets/images/art/architecture-element-fg-2.png");
+      background-image: url("@/assets/images/architecture/architecture-element-fg-2.png");
       background-size: cover;
       background-position: center center;
       background-repeat: no-repeat;

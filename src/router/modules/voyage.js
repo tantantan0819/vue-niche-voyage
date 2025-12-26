@@ -111,6 +111,24 @@ export default [
                     icon: 'cog',
                 },
             },
+            {
+                path: 'horizontal',
+                name: 'horizontal',
+                component: () => import('@/views/history/horizontal/index.vue'),
+                meta: {
+                    title: 'horizontal',
+                    icon: 'cog',
+                },
+            },
+            {
+                path: 'vertical',
+                name: 'vertical',
+                component: () => import('@/views/history/vertical/index.vue'),
+                meta: {
+                    title: 'vertical',
+                    icon: 'cog',
+                },
+            },
         ],
     },
 ];

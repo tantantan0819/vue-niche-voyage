@@ -266,7 +266,7 @@ onUnmounted(() => {
   .tubo-bg{
     width: 20930px;
     height: 1080px;
-    background-image: url("@/assets/images/tubo/tb-bg-tangdynasty.png");
+    background-image: url("@/assets/images/tubo/tb-bg-tangdynasty.jpg");
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;

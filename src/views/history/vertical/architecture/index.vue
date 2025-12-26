@@ -1,13 +1,13 @@
 <template>
   <div class="architecture">
-<!--    <div class="first-screen screen">-->
-<!--      <p-->
-<!--      >走过云影掠动的群峰，翻罢岁月雕琢的时光。</p>-->
-<!--      <p-->
-<!--      >现在</p>-->
-<!--      <p-->
-<!--      >请暂时从宏阔的自然与历史中抽身，</p>-->
-<!--    </div>-->
+    <div class="first-screen screen">
+      <p
+      >走过云影掠动的群峰，翻罢岁月雕琢的时光。</p>
+      <p
+      >现在</p>
+      <p
+      >请暂时从宏阔的自然与历史中抽身，</p>
+    </div>
     <div class="second-screen screen">
       <div class="cloud-1"
            data-parallax="true"
@@ -373,7 +373,7 @@ const closeProcession = () => {
   background-size: cover;
   background-repeat: no-repeat;
   min-height: 11380px;
-  background-position: center -1080px;
+  //background-position: center -1080px;
   overflow-x: hidden;
   .first-screen{
     padding-top: 500px;
