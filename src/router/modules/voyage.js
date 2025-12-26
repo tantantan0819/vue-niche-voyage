@@ -13,6 +13,15 @@ export default [
         },
         children: [
             {
+                path: 'test',
+                name: 'test',
+                component: () => import('@/views/test/index.vue'),
+                meta: {
+                    title: 'test',
+                    icon: 'test',
+                },
+            },
+            {
                 path: 'hero',
                 name: 'hero',
                 component: () => import('@/views/history/hero/index.vue'),
