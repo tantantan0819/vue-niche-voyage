@@ -68,6 +68,13 @@ const initHorizontalScroll = async () => {
       ease: 'none' // 线性动画，与滚动完全同步
     }),
     invalidateOnRefresh: true,
+    // 当 pin 结束后，刷新所有 ScrollTrigger，确保 vertical 的视差效果能正确计算位置
+    onLeave: () => {
+      ScrollTrigger.refresh()
+    },
+    onLeaveBack: () => {
+      ScrollTrigger.refresh()
+    }
   })
   
   // 刷新 ScrollTrigger 以确保计算正确

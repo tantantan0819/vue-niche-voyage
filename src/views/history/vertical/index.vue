@@ -260,10 +260,17 @@ const initDescriptionOpacityAnimation = () => {
 };
 
 onMounted(async () => {
+  // 等待所有内容加载完成，包括 horizontal 的 ScrollTrigger 初始化
+  await nextTick();
+  await new Promise(resolve => setTimeout(resolve, 200));
+  
   // 初始化视差效果
   await initBatchParallax();
   // 初始化描述文本渐显动画
-  initDescriptionOpacityAnimation()
+  initDescriptionOpacityAnimation();
+  
+  // 刷新 ScrollTrigger 以确保位置计算正确
+  ScrollTrigger.refresh();
 });
 
 onUnmounted(() => {
