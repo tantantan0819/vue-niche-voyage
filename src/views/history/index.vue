@@ -1,132 +1,100 @@
 <template>
-  <div class="history-container" ref="rootContainer">
-<!--    <div-->
-<!--        class="vertical-wrapper"-->
-<!--        :class="{ 'visible': true }"-->
-<!--        ref="verticalWrapper"-->
-<!--    >-->
-<!--      <hero ref="verticalComponent"/>-->
-<!--    </div>-->
-    <!--  横向布局  -->
-    <div 
-      class="horizontal-wrapper" 
-      :class="{ 'fixed': !isHorizontalComplete }"
-      ref="horizontalWrapper"
-    >
-      <horizontal ref="horizontalComponent" @scroll-complete="onHorizontalScrollComplete"/>
-    </div>
-    <!--  竖向布局  -->
-    <div 
-      class="vertical-wrapper" 
-      :class="{ 'visible': isHorizontalComplete }"
-      ref="verticalWrapper"
-    >
-      <vertical ref="verticalComponent"/>
-    </div>
+  <div class="history">
+    <hero></hero>
+    <horizontal></horizontal>
+    <vertical></vertical>
   </div>
 </template>
 <script setup>
-import { ref, onMounted, onUnmounted } from 'vue'
+import { ref, onMounted, onUnmounted, nextTick } from 'vue'
+import { gsap } from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import hero from './hero/index.vue'
 import horizontal from './horizontal/index.vue'
 import vertical from './vertical/index.vue'
 
-const rootContainer = ref(null)
-const horizontalWrapper = ref(null)
-const verticalWrapper = ref(null)
-const horizontalComponent = ref(null)
-const verticalComponent = ref(null)
+// 注册 ScrollTrigger 插件
+gsap.registerPlugin(ScrollTrigger)
 
-// 横向滚动是否完成
-const isHorizontalComplete = ref(false)
+let horizontalScrollTrigger = null
+let resizeHandler = null
 
-// 横向滚动完成后的回调
-const onHorizontalScrollComplete = () => {
-  isHorizontalComplete.value = true
-  // 允许页面滚动
-  document.body.style.overflow = ''
-  // 确保页面滚动位置在顶部，避免出现跳跃
-  window.scrollTo({ top: 0, behavior: 'instant' })
-}
-
-// 阻止页面滚动（在横向滚动完成前）
-const preventPageScroll = (e) => {
-  if (!isHorizontalComplete.value) {
-    e.preventDefault()
-    e.stopPropagation()
-    return false
+/**
+ * 初始化 horizontal 的横向滚动效果
+ * 当 horizontal 的顶部到达浏览器顶部时，开始横向移动
+ */
+const initHorizontalScroll = async () => {
+  await nextTick()
+  
+  // 等待内容完全加载，包括图片等资源
+  await new Promise(resolve => setTimeout(resolve, 100))
+  
+  const horizontalContainer = document.querySelector('.horizontal-scroll-container')
+  const contentElement = document.querySelector('.horizontal-scroll-container .content')
+  
+  if (!horizontalContainer || !contentElement) return
+  
+  // 如果已经创建过，先清理
+  if (horizontalScrollTrigger) {
+    horizontalScrollTrigger.kill()
   }
+  
+  // 动态计算内容的实际宽度
+  // 使用 scrollWidth 获取内容的完整宽度（包括溢出部分）
+  const contentWidth = horizontalContainer.scrollWidth
+  // 获取容器的可视宽度
+  const containerWidth = horizontalContainer.clientWidth
+  // 计算需要移动的距离（总宽度减去可视宽度）
+  const moveDistance = -(contentWidth - containerWidth)
+  
+  // 如果内容宽度小于等于容器宽度，不需要横向滚动
+  if (moveDistance >= 0) {
+    return
+  }
+  
+  // 使用计算出的移动距离作为滚动距离
+  const scrollDistance = Math.abs(moveDistance)
+  
+  // 当 horizontal-scroll-container 的顶部到达浏览器顶部时，开始横向移动
+  horizontalScrollTrigger = ScrollTrigger.create({
+    trigger: '.horizontal-scroll-container',
+    start: 'top top', // 当元素顶部到达视口顶部时开始
+    end: `+=${scrollDistance}`, // 滚动距离等于内容宽度
+    scrub: true, // 与滚动同步，平滑跟随
+    pin: true, // 在横向滚动期间固定容器
+    anticipatePin: 1,
+    animation: gsap.to('.content', {
+      x: moveDistance, // 横向向左移动计算出的距离
+      ease: 'none' // 线性动画，与滚动完全同步
+    }),
+    invalidateOnRefresh: true,
+  })
+  
+  // 刷新 ScrollTrigger 以确保计算正确
+  ScrollTrigger.refresh()
 }
 
 onMounted(() => {
-  // 初始时阻止页面滚动
-  document.body.style.overflow = 'hidden'
-  // 监听页面滚动事件，在横向滚动完成前阻止
-  window.addEventListener('wheel', preventPageScroll, { passive: false })
-  window.addEventListener('touchmove', preventPageScroll, { passive: false })
-  // 阻止键盘滚动
-  window.addEventListener('keydown', (e) => {
-    if (!isHorizontalComplete.value && (e.key === 'ArrowDown' || e.key === 'ArrowUp' || e.key === 'PageDown' || e.key === 'PageUp' || e.key === ' ')) {
-      e.preventDefault()
+  initHorizontalScroll()
+  
+  // 监听窗口大小改变，重新计算
+  resizeHandler = () => {
+    if (horizontalScrollTrigger) {
+      horizontalScrollTrigger.kill()
+      initHorizontalScroll()
     }
-  })
+  }
+  
+  window.addEventListener('resize', resizeHandler)
 })
 
 onUnmounted(() => {
-  // 清理事件监听
-  window.removeEventListener('wheel', preventPageScroll)
-  window.removeEventListener('touchmove', preventPageScroll)
-  document.body.style.overflow = ''
+  if (horizontalScrollTrigger) {
+    horizontalScrollTrigger.kill()
+  }
+  if (resizeHandler) {
+    window.removeEventListener('resize', resizeHandler)
+  }
 })
+
 </script>
-
-<style scoped>
-.history-container {
-  position: relative;
-  width: 100%;
-  min-height: 100vh;
-}
-
-.horizontal-wrapper {
-  position: relative;
-  width: 100vw;
-  height: 100vh;
-  transition: position 0.3s ease;
-}
-
-/* 横向滚动完成前，固定横向容器在视口 */
-.horizontal-wrapper.fixed {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 10;
-}
-
-.vertical-wrapper {
-  position: relative;
-  width: 100%;
-  /* 初始时在横向滚动容器下方，无缝衔接 */
-  margin-top: 0;
-  /* 初始时隐藏，避免在横向滚动完成前显示 */
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.3s ease, margin-top 0.3s ease;
-}
-
-/* 横向滚动完成后，显示竖向内容并移除顶部间距 */
-.vertical-wrapper.visible {
-  opacity: 1;
-  pointer-events: auto;
-  margin-top: 0 !important;
-}
-
-/* 当横向容器固定时，为竖向内容添加顶部间距，避免被遮挡 */
-.history-container:has(.horizontal-wrapper.fixed) .vertical-wrapper:not(.visible) {
-  margin-top: 100vh;
-}
-
-/* 兼容不支持 :has() 的浏览器 */
-.horizontal-wrapper.fixed ~ .vertical-wrapper:not(.visible) {
-  margin-top: 100vh;
-}
-</style>

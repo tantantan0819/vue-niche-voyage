@@ -457,10 +457,10 @@ onMounted(async () => {
   lazyLoadImages();
   if (container.value) {
     // 绑定事件
-    container.value.addEventListener('wheel', handleWheel, { passive: false });
-    container.value.addEventListener('scroll', scheduleLazyLoad, { passive: true });
-    container.value.addEventListener('scroll', scheduleTraditionalParallax, { passive: true });
-    container.value.addEventListener('scroll', checkScrollComplete, { passive: true });
+    // container.value.addEventListener('wheel', handleWheel, { passive: false });
+    // container.value.addEventListener('scroll', scheduleLazyLoad, { passive: true });
+    // container.value.addEventListener('scroll', scheduleTraditionalParallax, { passive: true });
+    // container.value.addEventListener('scroll', checkScrollComplete, { passive: true });
 
     // 初始化动画
     initParallax(); // 视差元素
@@ -474,9 +474,9 @@ onMounted(async () => {
 onUnmounted(() => {
   // 清理事件监听
   if (container.value) {
-    container.value.removeEventListener('wheel', handleWheel);
-    container.value.removeEventListener('scroll', scheduleLazyLoad);
-    container.value.removeEventListener('scroll', checkScrollComplete);
+    // container.value.removeEventListener('wheel', handleWheel);
+    // container.value.removeEventListener('scroll', scheduleLazyLoad);
+    // container.value.removeEventListener('scroll', checkScrollComplete);
   }
 
   if (wheelRafId) cancelAnimationFrame(wheelRafId);
@@ -496,7 +496,7 @@ onUnmounted(() => {
 
 <style scoped>
 .horizontal-scroll-container {
-  width: 100vw;
+  width: 1920px;
   height: 100vh;
   overflow: hidden;
   white-space: nowrap;
