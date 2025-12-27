@@ -1388,6 +1388,27 @@ const viewDisplacement = async () => {
   });
 }
 
+// 初始化 fragment 透明度动画
+const initFragmentOpacityAnimation = async () => {
+  await nextTick();
+  const fragments = document.querySelectorAll('.six-screen .fragment');
+  fragments.forEach((fragment) => {
+    gsap.set(fragment, { opacity: 0 });
+    
+    gsap.to(fragment, {
+      opacity: 1,
+      ease: 'none',
+      scrollTrigger: {
+        trigger: fragment,
+        start: 'center bottom',
+        end: 'center center+=100',
+        scrub: true, // 与滚动同步
+        invalidateOnRefresh: true
+      }
+    });
+  });
+};
+
 onMounted(() => {
   initVideoScroll();
   // 视角位移
@@ -1399,7 +1420,9 @@ onMounted(() => {
   // 初始化 water-cloud-2 动画
   initWaterCloud2Animation();
   // 大雁动画
-  initGooseAnimation()
+  initGooseAnimation();
+  // fragment 透明度动画
+  initFragmentOpacityAnimation();
 });
 
 
