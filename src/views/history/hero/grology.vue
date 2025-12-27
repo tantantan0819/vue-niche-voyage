@@ -129,7 +129,7 @@
           </div>
         </div>
       </div>
-      <div>
+      <div class="horizontal-02">
         <div class="third-screen">
           <div class="cloud-img-1"></div>
           <div class="cloud-img-2"></div>
@@ -1408,7 +1408,35 @@ const initFragmentOpacityAnimation = async () => {
     });
   });
 };
+// horizontal-02 横向滚动
+let horizontal02ScrollTrigger = null;
+const initHorizontal02Scroll = async () => {
+  await nextTick();
 
+  const horizontal02 = document.querySelector('.horizontal-02');
+
+  if (!horizontal02) return;
+
+  // 如果已经创建过，先清理
+  if (horizontal02ScrollTrigger) {
+    horizontal02ScrollTrigger.kill();
+  }
+
+  // 当 horizontal-02 的顶部到达浏览器顶部时，再往下滑 1920px，horizontal-02 就横向移动 1920px
+  horizontal02ScrollTrigger = ScrollTrigger.create({
+    trigger: '.horizontal-02',
+    start: 'top top', // 当元素顶部到达视口顶部时开始
+    end: '+=1920', // 滚动 1920px（横向移动 1920px）
+    scrub: true, // 与滚动同步，平滑跟随
+    pin: true, // 在横向滚动期间固定容器
+    anticipatePin: 1,
+    animation: gsap.to('.horizontal-02', {
+      x: -1920, // 横向移动 1920px（从第一个屏幕移动到第二个屏幕）
+      ease: 'none' // 线性动画，与滚动完全同步
+    }),
+    invalidateOnRefresh: true,
+  });
+}
 onMounted(() => {
   initVideoScroll();
   // 视角位移
@@ -1421,6 +1449,8 @@ onMounted(() => {
   initWaterCloud2Animation();
   // 大雁动画
   initGooseAnimation();
+  // 初始化 horizontal-02 横向滚动
+  initHorizontal02Scroll();
   // fragment 透明度动画
   initFragmentOpacityAnimation();
 });
@@ -1447,6 +1477,9 @@ onUnmounted(() => {
   }
   if (gooseInfoScrollTrigger) {
     gooseInfoScrollTrigger.kill();
+  }
+  if (horizontal02ScrollTrigger) {
+    horizontal02ScrollTrigger.kill();
   }
   ScrollTrigger.getAll().forEach(trigger => {
     if (trigger.vars?.trigger === originContainer.value) {
@@ -2137,10 +2170,11 @@ onUnmounted(() => {
 }
 .secret{
   width: 1920px;
-  height: 10800px;
+  height: 9540px;
   background-image: url("@/assets/images/secret/resource-to-history-bg.jpg");
   background-size: cover;
   background-position: center -1080px;
+  overflow: hidden;
   .screen{
     width: 1920px;
     height: 1080px;
@@ -2396,5 +2430,20 @@ onUnmounted(() => {
   }
 }
 
-
+.horizontal-02{
+  width: 3840px;
+  height: 2160px;
+  position: relative;
+  .third-screen{
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  .four-screen{
+    position: absolute;
+    top: 0;
+    left: 1920px;
+    z-index: 3; /* 确保 four-screen 及其子元素在 third-screen 上方 */
+  }
+}
 </style>
