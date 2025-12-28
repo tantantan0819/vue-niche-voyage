@@ -2,26 +2,23 @@
   <div class="architecture">
     <div class="first-screen screen">
       <div class="text-wrapper"
-           data-parallax="true"
-           data-parallax-axis="y"
-           data-parallax-from="300"
-           data-parallax-to="-300"
-           data-parallax-speed="1.1"
-           data-parallax-center-lock="true">
-        <p
-        >走过云影掠动的群峰，翻罢岁月雕琢的时光。</p>
-        <p
-        >现在</p>
-        <p
-        >请暂时从宏阔的自然与历史中抽身，</p>
+        data-parallax="true"
+        data-parallax-axis="y"
+        data-parallax-from="300"
+        data-parallax-to="-300"
+        data-parallax-speed="1.1"
+        data-parallax-center-lock="true">
+          <p>走过云影掠动的群峰，翻罢岁月雕琢的时光。</p>
+          <p>现在</p>
+          <p>请暂时从宏阔的自然与历史中抽身，</p>
       </div>
     </div>
     <div class="second-screen screen">
       <div class="cloud-1"
            data-parallax="true"
            data-parallax-axis="y"
-           data-parallax-from="100"
-           data-parallax-to="-100"
+           data-parallax-from="300"
+           data-parallax-to="-300"
            data-parallax-speed="1.1"
            data-parallax-center-lock="true"
       ></div>
@@ -342,10 +339,11 @@
   </div>
 </template>
 <script setup>
-import { ref, onMounted, onBeforeUnmount } from 'vue'
+import { ref, onMounted, onBeforeUnmount, nextTick } from 'vue'
 import { gsap } from 'gsap';
 import { pxToVw, pxToVh } from '@/utils/viewportUtils';
 import AnnotationDot from "@/components/AnnotationDot.vue";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 </script>
 <style>

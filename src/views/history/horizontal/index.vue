@@ -213,7 +213,10 @@ const checkScrollComplete = () => {
   }
 };
 
-
+onMounted(()=>{
+  // 初始化所有描述文本渐显动画
+  initDescriptionOpacityAnimation();
+})
 
 /**
  * 初始化所有描述文本渐显动画

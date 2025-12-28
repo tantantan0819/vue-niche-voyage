@@ -24,15 +24,40 @@ gsap.registerPlugin(ScrollTrigger);
 
 // ===================== DOM 引用 =====================
 const container = ref(null);
+/**
+ * 初始化描述文本渐显动画
+ */
+const initDescriptionOpacityAnimation = () => {
+  document.querySelectorAll('.description').forEach((desc) => {
+    gsap.fromTo(
+        desc,
+        { opacity: 0 },
+        {
+          opacity: 1,
+          duration: 1,
+          scrollTrigger: {
+            trigger: desc,
+            start: 'bottom-=300px center+=100',
+            end: 'top top+=100px',
+            scrub: true,
+          },
+        }
+    );
+  });
+};
 
 onMounted(async () => {
   // 等待所有内容加载完成，包括 horizontal 的 ScrollTrigger 初始化
   await nextTick();
   await new Promise(resolve => setTimeout(resolve, 200));
+
+  // 初始化描述文本渐显动画
+  initDescriptionOpacityAnimation()
   
   // 批量视差功能已移至父组件 history/index.vue
   // 刷新 ScrollTrigger 以确保位置计算正确
   ScrollTrigger.refresh();
+
 });
 
 onUnmounted(() => {

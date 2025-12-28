@@ -239,9 +239,6 @@ onMounted(()=> {
           gsap.set('.black-screen', {opacity: 0})
           console.log('black-screen-wrapper left viewport (back)')
         },
-        onUpdate: (self) => {
-          console.log(self.progress)
-        }
       })
       // 刷新 ScrollTrigger 确保位置计算正确
       ScrollTrigger.refresh()

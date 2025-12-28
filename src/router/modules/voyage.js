@@ -67,6 +67,15 @@ export default [
                 },
             },
             {
+                path: 'unopen',
+                name: 'unopen',
+                component: () => import('@/views/answer/unopen.vue'),
+                meta: {
+                    title: 'unopen',
+                    icon: 'cog',
+                },
+            },
+            {
                 path: 'art',
                 name: 'art',
                 component: () => import('@/views/art/index.vue'),

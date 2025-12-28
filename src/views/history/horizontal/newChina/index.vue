@@ -227,6 +227,8 @@
 import { ref, onMounted, onUnmounted } from 'vue'
 import { gsap } from 'gsap';
 import { pxToVw, pxToVh } from '@/utils/viewportUtils';
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+
 import DotPopover from '@/components/dotPopover.vue';
 import { useAnimateNumber } from '@/utils/animateNumber';
 
