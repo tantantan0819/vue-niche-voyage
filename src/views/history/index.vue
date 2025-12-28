@@ -6,9 +6,10 @@
   </div>
 </template>
 <script setup>
-import { ref, onMounted, onUnmounted, nextTick } from 'vue'
+import { onMounted, onUnmounted, nextTick } from 'vue'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { pxToVw, pxToVh } from '@/utils/viewportUtils'
 import hero from './hero/index.vue'
 import horizontal from './horizontal/index.vue'
 import vertical from './vertical/index.vue'
@@ -16,8 +17,22 @@ import vertical from './vertical/index.vue'
 // 注册 ScrollTrigger 插件
 gsap.registerPlugin(ScrollTrigger)
 
+// GSAP 全局配置（优化性能和精度）
+gsap.config({
+  autoSleep: false, // 禁用自动休眠
+  precision: 0.001  // 提高动画精度
+})
+ScrollTrigger.config({
+  ignoreMobileResize: true, // 忽略移动端resize抖动
+  force3D: true, // 强制硬件加速
+  limitCallbacks: true // 限制重复回调
+})
+
 let horizontalScrollTrigger = null
 let resizeHandler = null
+
+// 用于标记 horizontal 是否处于 pin 状态
+let isHorizontalPinned = false
 
 /**
  * 初始化 horizontal 的横向滚动效果
@@ -37,14 +52,12 @@ const initHorizontalScroll = async () => {
   // 如果已经创建过，先清理
   if (horizontalScrollTrigger) {
     horizontalScrollTrigger.kill()
+    horizontalScrollTrigger = null
   }
   
   // 动态计算内容的实际宽度
-  // 使用 scrollWidth 获取内容的完整宽度（包括溢出部分）
   const contentWidth = horizontalContainer.scrollWidth
-  // 获取容器的可视宽度
   const containerWidth = horizontalContainer.clientWidth
-  // 计算需要移动的距离（总宽度减去可视宽度）
   const moveDistance = -(contentWidth - containerWidth)
   
   // 如果内容宽度小于等于容器宽度，不需要横向滚动
@@ -58,22 +71,63 @@ const initHorizontalScroll = async () => {
   // 当 horizontal-scroll-container 的顶部到达浏览器顶部时，开始横向移动
   horizontalScrollTrigger = ScrollTrigger.create({
     trigger: '.horizontal-scroll-container',
-    start: 'top top', // 当元素顶部到达视口顶部时开始
+    start: 'top top', // 严格：当元素顶部到达视口顶部时开始
     end: `+=${scrollDistance}`, // 滚动距离等于内容宽度
     scrub: true, // 与滚动同步，平滑跟随
     pin: true, // 在横向滚动期间固定容器
-    anticipatePin: 1,
-    animation: gsap.to('.content', {
-      x: moveDistance, // 横向向左移动计算出的距离
-      ease: 'none' // 线性动画，与滚动完全同步
-    }),
+    anticipatePin: 0, // 设置为 0，确保精确在顶部时才开始 pin
     invalidateOnRefresh: true,
-    // 当 pin 结束后，刷新所有 ScrollTrigger，确保 vertical 的视差效果能正确计算位置
+    onEnter: () => {
+      // 进入 pin 状态 - 此时元素顶部已经到达视口顶部
+      isHorizontalPinned = true
+      // 通知 horizontal 组件进入 pin 状态
+      horizontalContainer.setAttribute('data-pinned', 'true')
+      // 确保初始位置在左边（scrollLeft = 0）
+      horizontalContainer.scrollLeft = 0
+    },
+    onUpdate: (self) => {
+      // 将页面滚动进度转换为横向滚动位置
+      // progress 从 0 到 1，对应 scrollLeft 从 0 到 maxScroll
+      const maxScroll = contentWidth - containerWidth
+      const targetScrollLeft = self.progress * maxScroll
+      
+      // 确保 scrollLeft 在有效范围内
+      horizontalContainer.scrollLeft = Math.max(0, Math.min(targetScrollLeft, maxScroll))
+    },
     onLeave: () => {
+      // 离开 pin 状态（向下滚动完成横向滚动）
+      isHorizontalPinned = false
+      horizontalContainer.removeAttribute('data-pinned')
+      // 关键：离开时刷新 ScrollTrigger，确保后续回滚时视差效果正常
       ScrollTrigger.refresh()
+      // 重新初始化 horizontal 的批量视差，确保视差 ScrollTrigger 重新创建
+      requestAnimationFrame(() => {
+        initBatchParallax(true, true) // 只刷新 horizontal 的视差
+      })
+    },
+    onEnterBack: () => {
+      // 向上滚动回到 pin 状态 - 此时元素顶部再次到达视口顶部
+      isHorizontalPinned = true
+      horizontalContainer.setAttribute('data-pinned', 'true')
+      // 关键：回滚时刷新 ScrollTrigger，确保视差效果重新生效
+      ScrollTrigger.refresh()
+      // 重新初始化 horizontal 的批量视差，确保视差 ScrollTrigger 重新创建
+      requestAnimationFrame(() => {
+        initBatchParallax(true, true) // 只刷新 horizontal 的视差
+      })
     },
     onLeaveBack: () => {
+      // 向上滚动离开 pin 状态（回到 hero）
+      // 此时 progress 为 0，scrollLeft 应该已经是 0，允许继续向上滚动
+      isHorizontalPinned = false
+      horizontalContainer.removeAttribute('data-pinned')
+      // 确保 scrollLeft 重置为 0
+      horizontalContainer.scrollLeft = 0
       ScrollTrigger.refresh()
+      // 重新初始化 horizontal 的批量视差，确保视差 ScrollTrigger 重新创建
+      requestAnimationFrame(() => {
+        initBatchParallax(true, true) // 只刷新 horizontal 的视差
+      })
     }
   })
   
@@ -81,8 +135,235 @@ const initHorizontalScroll = async () => {
   ScrollTrigger.refresh()
 }
 
-onMounted(() => {
-  initHorizontalScroll()
+/**
+ * 批量视差功能：基于ScrollTrigger和fromTo的高级视差控制
+ * 支持通过data属性配置视差参数，并自动转换像素值为视口单位
+ * 自动识别横向和竖向滚动容器
+ * @param {boolean} forceRefresh - 是否强制刷新（重新创建所有 ScrollTrigger）
+ * @param {boolean} horizontalOnly - 是否只处理 horizontal 容器内的元素
+ */
+const initBatchParallax = async (forceRefresh = false, horizontalOnly = false) => {
+  await nextTick() // 等待DOM完全渲染
+
+  // 获取所有带data-parallax属性的元素
+  let parallaxElements = document.querySelectorAll('[data-parallax]')
+  
+  // 获取横向滚动容器（如果存在）
+  const horizontalContainer = document.querySelector('.horizontal-scroll-container')
+
+  // 如果只处理 horizontal 容器内的元素，进行过滤
+  if (horizontalOnly && horizontalContainer) {
+    parallaxElements = Array.from(parallaxElements).filter(el => 
+      horizontalContainer.contains(el)
+    )
+  }
+
+  parallaxElements.forEach(el => {
+    // 检查元素是否在横向滚动容器内
+    const isInHorizontalContainer = horizontalContainer && horizontalContainer.contains(el)
+    
+    // 解析视差配置
+    const config = {
+      // 视差方向：x 或 y
+      axis: el.dataset.parallaxAxis || (isInHorizontalContainer ? 'x' : 'y'),
+      // 起始位置（元素进入视口时的位置）
+      fromValue: parseFloat(el.dataset.parallaxFrom) || 0,
+      // 结束位置（元素离开视口时的位置）
+      toValue: parseFloat(el.dataset.parallaxTo) || 100,
+      // 视差速度（影响动画进度）
+      speed: parseFloat(el.dataset.parallaxSpeed) || 1,
+      // 触发点：元素进入视口的位置
+      triggerStart: el.dataset.parallaxTriggerStart || (isInHorizontalContainer ? "left right" : "top bottom"),
+      // 结束点：元素离开视口的位置
+      triggerEnd: el.dataset.parallaxTriggerEnd || (isInHorizontalContainer ? "right left" : "bottom top"),
+      // 是否在视口中心时保持预期位置
+      centerLock: el.dataset.parallaxCenterLock !== "false",
+      // 动画缓动函数
+      ease: el.dataset.parallaxEase || "power1.out"
+    }
+
+    // 根据视差轴选择合适的单位转换函数
+    const convertUnit = config.axis === 'x' ? pxToVw : pxToVh
+
+    // 计算中心锁定的位置（如果启用）
+    let fromProps, toProps
+    if (config.centerLock) {
+      // 中心锁定模式：元素在视口中心时保持原位置，进入和离开时产生视差
+      const totalDistance = Math.abs(config.toValue - config.fromValue)
+      const convertToViewportUnit = config.axis === 'x' ? pxToVw : pxToVh
+      const halfDistance = convertToViewportUnit(totalDistance / 2)
+
+      // 根据起始和结束位置的关系确定方向
+      if (config.fromValue < config.toValue) {
+        // 从左到右/从上到下移动
+        const negativeHalf = halfDistance.startsWith('-') 
+          ? halfDistance.substring(1) 
+          : `-${halfDistance}`
+        fromProps = { [config.axis]: negativeHalf }
+        toProps = { [config.axis]: halfDistance }
+      } else {
+        // 从右到左/从下到上移动
+        const negativeHalf = halfDistance.startsWith('-') 
+          ? halfDistance.substring(1) 
+          : `-${halfDistance}`
+        fromProps = { [config.axis]: halfDistance }
+        toProps = { [config.axis]: negativeHalf }
+      }
+    } else {
+      // 普通模式：直接从fromValue动画到toValue，并转换为视口单位
+      const convertToViewportUnit = config.axis === 'x' ? pxToVw : pxToVh
+      fromProps = { [config.axis]: convertToViewportUnit(config.fromValue) }
+      toProps = { [config.axis]: convertToViewportUnit(config.toValue) }
+    }
+
+    // 解决CSS动画与GSAP视差冲突的核心方案
+    // 创建一个包装元素来分离CSS动画和GSAP视差效果
+    let parallaxWrapper
+
+    // 检查元素是否已经有包装器
+    if (!el.dataset.parallaxWrapper) {
+      // 获取元素的计算样式
+      const computedStyle = window.getComputedStyle(el)
+
+      // 创建包装器元素
+      parallaxWrapper = document.createElement('div')
+      parallaxWrapper.className = 'parallax-animation-wrapper'
+
+      // 设置包装器的样式，使其与原元素完全一致
+      parallaxWrapper.style.position = computedStyle.position
+      parallaxWrapper.style.top = computedStyle.top
+      parallaxWrapper.style.left = computedStyle.left
+      parallaxWrapper.style.right = computedStyle.right
+      parallaxWrapper.style.bottom = computedStyle.bottom
+      parallaxWrapper.style.width = computedStyle.width
+      parallaxWrapper.style.height = computedStyle.height
+      parallaxWrapper.style.margin = computedStyle.margin
+      parallaxWrapper.style.padding = computedStyle.padding
+      parallaxWrapper.style.display = computedStyle.display
+      parallaxWrapper.style.float = computedStyle.float
+      parallaxWrapper.style.zIndex = computedStyle.zIndex
+      parallaxWrapper.style.transformOrigin = computedStyle.transformOrigin
+      parallaxWrapper.style.boxSizing = 'border-box'
+      parallaxWrapper.style.transformStyle = 'preserve-3d'
+      parallaxWrapper.style.transform = 'none'
+
+      // 如果是 flex 容器，复制 flex 相关属性
+      if (computedStyle.display === 'flex' || computedStyle.display === 'inline-flex') {
+        parallaxWrapper.style.flexDirection = computedStyle.flexDirection
+        parallaxWrapper.style.alignItems = computedStyle.alignItems
+        parallaxWrapper.style.justifyContent = computedStyle.justifyContent
+        parallaxWrapper.style.flexWrap = computedStyle.flexWrap
+        parallaxWrapper.style.alignContent = computedStyle.alignContent
+        parallaxWrapper.style.gap = computedStyle.gap
+      }
+
+      // 将元素移动到包装器内
+      el.parentNode.insertBefore(parallaxWrapper, el)
+      parallaxWrapper.appendChild(el)
+
+      // 标记元素已经有包装器
+      el.dataset.parallaxWrapper = 'true'
+
+      // 重置元素的定位属性，使其在包装器内正常显示
+      el.style.position = computedStyle.position === 'static' ? 'relative' : computedStyle.position
+      el.style.top = 'auto'
+      el.style.left = 'auto'
+      el.style.right = 'auto'
+      el.style.bottom = 'auto'
+      el.style.margin = '0'
+
+      // 如果原元素是 flex 容器，需要保持其 flex 属性
+      if (computedStyle.display === 'flex' || computedStyle.display === 'inline-flex') {
+        el.style.display = computedStyle.display
+        el.style.flexDirection = computedStyle.flexDirection
+        el.style.alignItems = computedStyle.alignItems
+        el.style.justifyContent = computedStyle.justifyContent
+        el.style.flexWrap = computedStyle.flexWrap
+        el.style.alignContent = computedStyle.alignContent
+        el.style.gap = computedStyle.gap
+        el.style.width = '100%'
+        el.style.height = '100%'
+        el.style.minWidth = '0'
+        el.style.minHeight = '0'
+        el.style.boxSizing = 'border-box'
+      } else {
+        // 确保元素在包装器内保持原有的宽度和高度
+        if (computedStyle.width !== 'auto' && computedStyle.width !== '0px') {
+          el.style.width = computedStyle.width
+        } else {
+          el.style.width = '100%'
+        }
+        if (computedStyle.height !== 'auto' && computedStyle.height !== '0px') {
+          el.style.height = computedStyle.height
+        } else {
+          el.style.height = '100%'
+        }
+      }
+    } else {
+      // 如果已经有包装器，找到它（应该是父元素）
+      parallaxWrapper = el.parentNode
+    }
+
+    // 检查是否已经存在 ScrollTrigger，如果存在则先清理
+    // 这样可以避免重复创建，并在回滚时重新创建失效的 ScrollTrigger
+    const existingTriggers = ScrollTrigger.getAll().filter(trigger => {
+      // 检查 trigger 是否关联到当前的 parallaxWrapper
+      return trigger.trigger === parallaxWrapper || 
+             (trigger.vars && trigger.vars.trigger === parallaxWrapper)
+    })
+    
+    // 如果强制刷新，清理并重新创建
+    if (forceRefresh) {
+      existingTriggers.forEach(trigger => trigger.kill())
+    } else if (existingTriggers.length > 0) {
+      // 如果已经存在 ScrollTrigger，跳过创建（避免重复）
+      return
+    } else {
+      // 如果不存在但之前可能创建过，也清理一下（防止残留）
+      existingTriggers.forEach(trigger => trigger.kill())
+    }
+
+    // 构建 ScrollTrigger 配置
+    const scrollTriggerConfig = {
+      trigger: parallaxWrapper,
+      start: config.triggerStart,
+      end: config.triggerEnd,
+      scrub: config.speed,
+      invalidateOnRefresh: true
+    }
+
+    // 如果是横向滚动，需要指定 scroller 和 horizontal
+    if (isInHorizontalContainer && horizontalContainer) {
+      scrollTriggerConfig.scroller = horizontalContainer
+      scrollTriggerConfig.horizontal = true
+    }
+
+    // 应用视差效果
+    gsap.fromTo(parallaxWrapper,
+      {
+        ...fromProps,
+        immediateRender: false
+      },
+      {
+        ...toProps,
+        ease: config.ease,
+        immediateRender: false,
+        scrollTrigger: scrollTriggerConfig
+      }
+    )
+  })
+
+  // 关键：在所有ScrollTrigger创建完成后刷新，确保位置计算正确
+  ScrollTrigger.refresh()
+}
+
+onMounted(async () => {
+  await initHorizontalScroll()
+  
+  // 等待所有子组件挂载完成后再初始化批量视差
+  await nextTick()
+  await new Promise(resolve => setTimeout(resolve, 200))
+  initBatchParallax()
   
   // 监听窗口大小改变，重新计算
   resizeHandler = () => {
@@ -90,6 +371,8 @@ onMounted(() => {
       horizontalScrollTrigger.kill()
       initHorizontalScroll()
     }
+    // 重新初始化批量视差
+    initBatchParallax()
   }
   
   window.addEventListener('resize', resizeHandler)
@@ -102,6 +385,9 @@ onUnmounted(() => {
   if (resizeHandler) {
     window.removeEventListener('resize', resizeHandler)
   }
+  
+  // 清理所有 ScrollTrigger 实例（包括批量视差创建的）
+  ScrollTrigger.getAll().forEach(trigger => trigger.kill())
 })
 
 </script>

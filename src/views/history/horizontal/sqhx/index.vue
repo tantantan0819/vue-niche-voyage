@@ -1,20 +1,22 @@
 <template>
     <div class="sqhx-container">
-        <!-- 第一幕 -->
-        <div 
-            class="screen first-screen"
-            data-parallax="true"
-            data-parallax-axis="x"
-            data-parallax-from="400"
-            data-parallax-to="-400"
-            data-parallax-speed="1.3"
-            data-parallax-center-lock="true">
+      <div class="black-screen-wrapper">
+        <div class="black-screen">
+          <!-- 第一幕 -->
+          <div
+              class="screen first-screen"
+              data-parallax="true"
+              data-parallax-axis="x"
+              data-parallax-from="400"
+              data-parallax-to="-400"
+              data-parallax-speed="1.3"
+              data-parallax-center-lock="true">
             <div class="first-screen-title">
-                <span ref="numberRef">{{ displayNumber }}</span>
-                <span>万年前</span>
+              <span ref="numberRef">{{ displayNumber }}</span>
+              <span>万年前</span>
             </div>
             <div class="first-screen-cloud-img-1"></div>
-            <div 
+            <div
                 class="first-screen-cloud-img-2"
                 data-parallax="true"
                 data-parallax-axis="x"
@@ -22,17 +24,17 @@
                 data-parallax-to="-900"
                 data-parallax-speed="1.3"
                 data-parallax-center-lock="true"></div>
-        </div>
-        <!-- 第二幕 -->
-        <div 
-            class="second-screen"
-            data-parallax="true"
-            data-parallax-axis="x"
-            data-parallax-from="400"
-            data-parallax-to="-400"
-            data-parallax-speed="1.3"
-            data-parallax-center-lock="true">
-            <div 
+          </div>
+          <!-- 第二幕 -->
+          <div
+              class="second-screen"
+              data-parallax="true"
+              data-parallax-axis="x"
+              data-parallax-from="400"
+              data-parallax-to="-400"
+              data-parallax-speed="1.3"
+              data-parallax-center-lock="true">
+            <div
                 class="second-screen-title"
                 data-parallax="true"
                 data-parallax-axis="x"
@@ -40,7 +42,7 @@
                 data-parallax-to="-200"
                 data-parallax-speed="1.3"
                 data-parallax-center-lock="true">史前回响</div>
-            <div 
+            <div
                 class="chip-img-1"
                 data-parallax="true"
                 data-parallax-axis="x"
@@ -51,7 +53,9 @@
             <div class="chip-img-2"></div>
             <div class="chip-img-3"></div>
             <div class="second-screen-picture"></div>
+          </div>
         </div>
+      </div>
         <!-- 第三幕 -->
         <div 
             class="screen third-screen"
@@ -184,8 +188,13 @@
 </template>
 <script setup>
 import DotPopover from '@/components/dotPopover.vue';
-import { ref, onUnmounted } from 'vue'
+import { ref, onMounted, onUnmounted, nextTick } from 'vue'
 import { useAnimateNumber } from '@/utils/animateNumber';
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { pxToVw, pxToVh, pxToVwPx, pxToVhPx  } from '@/utils/viewportUtils';
+
+
 
 const numberRef = ref(null)
 const { displayValue: displayNumber, cleanup: cleanupNumberAnimation } = useAnimateNumber({
@@ -198,6 +207,46 @@ const { displayValue: displayNumber, cleanup: cleanupNumberAnimation } = useAnim
         { value: 80 }, // 第一阶段：0 → 80（默认占总时长 1/2，即 1.5 秒）
         { value: 20 }, // 第二阶段：80 → 20（默认占总时长 1/2，即 1.5 秒）
       ],
+})
+
+onMounted(()=> {
+  gsap.set('.black-screen-wrapper', {background: '#000'})
+  gsap.set('.black-screen', {opacity: 0})
+  
+  // 等待 DOM 完全渲染和父容器的 ScrollTrigger 初始化完成
+  nextTick(() => {
+    // 延迟创建，确保父容器的 ScrollTrigger 已经初始化
+    requestAnimationFrame(() => {
+      const triggerEl = document.querySelector('.black-screen-wrapper')
+      if (!triggerEl) return
+      
+      ScrollTrigger.create({
+        trigger: triggerEl,
+        start: 'top top', // 当容器顶部到达视口顶部时开始
+        end: () => `+=${pxToVhPx(300)}`, // 滚动距离（响应式，基于视口高度）
+        scrub: true, // 与滚动同步，支持双向动画
+        scroller: window, // 明确指定使用窗口滚动
+        invalidateOnRefresh: true, // 刷新时重新计算位置
+        anticipatePin: 0, // 设置为 0，确保精确在顶部时才开始
+        animation: gsap.timeline().to('.black-screen-wrapper', {background: 'transparent'}).to('.black-screen',{opacity: 1}),
+        onEnter: () => {
+          // 确保元素真正进入视口时才触发
+          console.log('black-screen-wrapper entered viewport')
+        },
+        onLeaveBack: () => {
+          // 回滚离开时，确保恢复到初始状态
+          gsap.set('.black-screen-wrapper', {background: '#000'})
+          gsap.set('.black-screen', {opacity: 0})
+          console.log('black-screen-wrapper left viewport (back)')
+        },
+        onUpdate: (self) => {
+          console.log(self.progress)
+        }
+      })
+      // 刷新 ScrollTrigger 确保位置计算正确
+      ScrollTrigger.refresh()
+    })
+  })
 })
 
 onUnmounted(() => {

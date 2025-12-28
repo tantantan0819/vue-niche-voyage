@@ -43,7 +43,7 @@
 <!--      </div>-->
 <!--    </div>-->
     <div class="grology-water" style="margin-top: 500px">
-      <div class="water-cloud-1"></div>
+<!--      <div class="water-cloud-1"></div>-->
 <!--      <div class="water-bg-video">-->
 <!--        <video-->
 <!--            ref="climateVideo1"-->
@@ -80,17 +80,43 @@
         <div class="explore-button">深入探索</div>
       </div>
       <div class="biology">
-        <div class="biology-detail-1">
+        <div class="biology-detail-1"
+             data-parallax="true"
+             data-parallax-axis="y"
+             data-parallax-from="150"
+             data-parallax-to="-150"
+             data-parallax-speed="1.1"
+             data-parallax-center-lock="true"
+        >
           <p>青藏高原是世界屋脊，</p>
           <p>也是独特的生物多样性宝库。</p>
         </div>
-        <div class="biology-detail-2">
+        <div class="biology-detail-2"
+             data-parallax="true"
+             data-parallax-axis="y"
+             data-parallax-from="150"
+             data-parallax-to="-150"
+             data-parallax-speed="1.1"
+             data-parallax-center-lock="true">
           <p>草原、湖泊、高山和密林为动植物提供了</p>
           <p>多样的栖息环境。</p>
         </div>
-        <div class="biology-title"></div>
+        <div
+            class="biology-title"
+            data-parallax="true"
+            data-parallax-axis="y"
+            data-parallax-from="250"
+            data-parallax-to="-250"
+            data-parallax-speed="1.1"
+            data-parallax-center-lock="true"
+        ></div>
         <div class="cloud-1"></div>
-        <div class="cloud-2"></div>
+        <div class="cloud-2"
+             data-parallax-axis="y"
+             data-parallax-from="350"
+             data-parallax-to="-350"
+             data-parallax-speed="1.1"
+             data-parallax-center-lock="true"></div>
         <div class="bird"></div>
       </div>
     </div>
@@ -120,8 +146,19 @@
         <div class="panthera">
           <div class="panthera-info" @click="showPantheraDescription">
             <div class="panthera-img"></div>
-            <div class="panthera-name panthera-chinese">雪豹</div>
-            <div class="panthera-name panthera-english">Panthera uncia</div>
+            <div class="panthera-name panthera-chinese"  data-parallax="true"
+                 data-parallax-axis="y"
+                 data-parallax-from="100"
+                 data-parallax-to="0"
+                 data-parallax-speed="1.1"
+                 data-parallax-center-lock="true">雪豹</div>
+            <div class="panthera-name panthera-english"
+                 data-parallax="true"
+                 data-parallax-axis="y"
+                 data-parallax-from="100"
+                 data-parallax-to="0"
+                 data-parallax-speed="1.1"
+                 data-parallax-center-lock="true">Panthera uncia</div>
           </div>
           <div class="panthera-description" ref="pantheraDescription" @click="closePantheraDescription">
             <div class="panthera-description-img"></div>
@@ -130,9 +167,9 @@
         </div>
       </div>
       <div class="horizontal-02">
+        <div class="cloud-img-2-extended"></div>
         <div class="third-screen">
           <div class="cloud-img-1"></div>
-          <div class="cloud-img-2"></div>
           <div class="chiru">
             <div class="chiru-info" @click="showChiruDescription">
               <div class="chiru-img"></div>
@@ -152,8 +189,20 @@
             <div class="panda-info" @click="showPandaDescription">
               <div class="panda-img"></div>
               <div class="panda-grass"></div>
-              <div class="panda-name panda-chinese">大熊猫</div>
-              <div class="panda-name panda-english">Ailuropoda melanoleuca</div>
+              <div class="panda-name panda-chinese"
+                   data-parallax="true"
+                   data-parallax-axis="y"
+                   data-parallax-from="100"
+                   data-parallax-to="0"
+                   data-parallax-speed="1.1"
+                   data-parallax-center-lock="true">大熊猫</div>
+              <div class="panda-name panda-english"
+                   data-parallax="true"
+                   data-parallax-axis="y"
+                   data-parallax-from="100"
+                   data-parallax-to="0"
+                   data-parallax-speed="1.1"
+                   data-parallax-center-lock="true">Ailuropoda melanoleuca</div>
             </div>
             <div class="panda-description" ref="pandaDescription" @click="closePandaDescription">
               <div class="panda-description-img"></div>
@@ -177,27 +226,63 @@
           <div class="dove-img-1"></div>
           <div class="dove-img-2"></div>
         </div>
-        <div class="text-1">
+        <div class="text-1"
+             data-parallax="true"
+             data-parallax-axis="y"
+             data-parallax-from="100"
+             data-parallax-to="-100"
+             data-parallax-speed="1.1"
+             data-parallax-center-lock="true">
           <p>这里的生态系统脆弱而独特。</p>
           <p>保护高原上的精灵，必要且紧迫。</p>
         </div>
-        <div class="text-2">
+        <div class="text-2"
+             data-parallax="true"
+             data-parallax-axis="y"
+             data-parallax-from="100"
+             data-parallax-to="-100"
+             data-parallax-speed="1.1"
+             data-parallax-center-lock="true">
           <p>青藏高原不仅是<span>万千生灵</span>的生生家园</p>
           <p>也储藏着巨量的宝藏。</p>
         </div>
       </div>
       <div class="second-screen screen">
-          <div class="secret-title">
+          <div class="secret-title"
+               data-parallax="true"
+               data-parallax-axis="y"
+               data-parallax-from="100"
+               data-parallax-to="-100"
+               data-parallax-speed="1.1"
+               data-parallax-center-lock="true">
             <p>雪域</p>
             <p>秘藏</p>
           </div>
-          <div class="secret-description">
+          <div class="secret-description"
+               data-parallax="true"
+               data-parallax-axis="y"
+               data-parallax-from="100"
+               data-parallax-to="-100"
+               data-parallax-speed="1.1"
+               data-parallax-center-lock="true">
             <p>高原资源多样而独具优势，是我国重要的清洁能源与战略资源库。</p>
           </div>
-         <div class="secret-btn">深入探索</div>
+         <div class="secret-btn"
+              data-parallax="true"
+              data-parallax-axis="y"
+              data-parallax-from="100"
+              data-parallax-to="-100"
+              data-parallax-speed="1.1"
+              data-parallax-center-lock="true">深入探索</div>
       </div>
       <div class="third-screen screen">
-        <div class="text-wrapper">
+        <div class="text-wrapper"
+             data-parallax="true"
+             data-parallax-axis="y"
+             data-parallax-from="100"
+             data-parallax-to="-100"
+             data-parallax-speed="1.1"
+             data-parallax-center-lock="true">
           <p>自20万年前，<span>人类足迹</span>初现于青藏高原，</p>
 <!--          <p>关于生态保护与资源开发之间平衡的探索便已开启。</p>-->
           <p>独特的气候条件和生态环境的特殊性，没有阻挡人类文明的生根与延续。</p>
@@ -206,7 +291,13 @@
         </div>
       </div>
       <div class="four-screen screen">
-        <div class="text-wrapper">
+        <div class="text-wrapper"
+             data-parallax="true"
+             data-parallax-axis="y"
+             data-parallax-from="100"
+             data-parallax-to="-100"
+             data-parallax-speed="1.1"
+             data-parallax-center-lock="true">
           <p>出发，</p>
           <p>前往青藏高原东缘</p>
         </div>
@@ -237,13 +328,14 @@
 import { onMounted, onUnmounted, ref, nextTick, computed } from "vue";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { pxToVw, pxToVh } from '@/utils/viewportUtils';
+import { pxToVw, pxToVh, pxToVwPx, pxToVhPx  } from '@/utils/viewportUtils';
 import geologyVideo1 from '@/assets/images/geology/geology-video-1.mp4'
 import geologyVideo2 from '@/assets/images/geology/geology-video-2.mp4'
 import geologyVideo3 from '@/assets/images/geology/geology-video-3.mp4'
 
 
 gsap.registerPlugin(ScrollTrigger);
+
 
 const welcomeVideoSrc = new URL(
     "@/assets/images/geology/start-page-1.mp4",
@@ -1105,12 +1197,12 @@ const initWaterCloud1Animation = async () => {
   }
 
   waterCloud1ScrollTrigger = gsap.to('.water-cloud-1', {
-    y: -900,
+    y: pxToVh(-900),
     ease: 'none', // 线性动画，与滚动完全同步
     scrollTrigger: {
       trigger: '.water-cloud-1',
       start: 'top bottom', // 当元素顶部到达视口底部时开始
-      end: 'top top-=500', // 当元素顶部到达视口顶部时结束
+      end: `top top-=${pxToVhPx(500)}`, // 当元素顶部到达视口顶部时结束
       scrub: true, // 与滚动同步，平滑跟随
       invalidateOnRefresh: true
     }
@@ -1129,12 +1221,12 @@ const initWaterCloud2Animation = async () => {
   }
 
   waterCloud2ScrollTrigger = gsap.to('.water-cloud-2', {
-    y: -600,
+    y: pxToVh(-600),
     ease: 'none', // 线性动画，与滚动完全同步
     scrollTrigger: {
       trigger: '.water-cloud-2',
       start: 'top bottom', // 当元素顶部到达视口底部时开始
-      end: 'top top-=500', // 当元素顶部到达视口顶部时结束
+      end: `top top-=${pxToVhPx(500)}`, // 当元素顶部到达视口顶部时结束
       scrub: true, // 与滚动同步，平滑跟随
       invalidateOnRefresh: true
     }
@@ -1154,7 +1246,7 @@ const initGooseAnimation = async () => {
 
   // 竖向视差动画：当 first-screen 从底部到顶部时，goose-info 向上移动
   const verticalAnimation = gsap.to('.goose-info', {
-    y: -800,
+    y: pxToVh(-800),
     ease: 'none', // 线性动画，与滚动完全同步
     scrollTrigger: {
       trigger: '.lives .first-screen',
@@ -1168,12 +1260,12 @@ const initGooseAnimation = async () => {
   // 横向视差动画：当 first-screen 横向移动时，goose-info 移动得更快
   // first-screen 移动 -960px，goose-info 移动 -1200px（更快）
   const horizontalAnimation = gsap.to('.goose-info', {
-    x: -1200, // 比 first-screen 的 -960px 移动得更快
+    x: pxToVw(-1200), // 比 first-screen 的 -960px 移动得更快
     ease: 'none', // 线性动画，与滚动完全同步
     scrollTrigger: {
       trigger: '.lives .first-screen',
       start: 'top top', // 当 first-screen 顶部到达视口顶部时开始
-      end: '+=960', // 滚动 960px（与 first-screen 的横向移动距离一致）
+      end: `+=${pxToVwPx(960)}`, // 滚动 960px（与 first-screen 的横向移动距离一致）
       scrub: true, // 与滚动同步，平滑跟随
       invalidateOnRefresh: true
     }
@@ -1210,7 +1302,7 @@ const showDescription = (elementRef, isShownRef, onClose) => {
   // 设置初始状态：向下偏移并透明
   gsap.set(elementRef.value, { 
     opacity: 0, 
-    y: 30 
+    y: pxToVh(30)
   });
   
   // 显示详情介绍，带有上浮动画效果
@@ -1235,7 +1327,7 @@ const closeDescription = (elementRef, isShownRef, onClose) => {
   // 隐藏详情介绍，带有下沉动画效果
   gsap.to(elementRef.value, {
     opacity: 0,
-    y: 30,
+    y: pxToVh(30),
     duration: 0.3,
     ease: 'power2.in',
     onComplete: () => {
@@ -1376,12 +1468,12 @@ const viewDisplacement = async () => {
   viewDisplacementTrigger = ScrollTrigger.create({
     trigger: '.lives .first-screen',
     start: 'top top', // 当元素顶部到达视口顶部时开始
-    end: '+=960', // 滚动 960px
+    end: `+=${pxToVwPx(960)}`, // 滚动 960px
     scrub: true, // 与滚动同步，平滑跟随
     pin: true, // 在横向滚动期间固定容器
     anticipatePin: 1,
     animation: gsap.to('.lives .first-screen', {
-      x: -960, // 横向移动 960px
+      x: pxToVw(-960), // 横向移动 960px
       ease: 'none' // 线性动画，与滚动完全同步
     }),
     invalidateOnRefresh: true,
@@ -1401,7 +1493,7 @@ const initFragmentOpacityAnimation = async () => {
       scrollTrigger: {
         trigger: fragment,
         start: 'center bottom',
-        end: 'center center+=100',
+        end: `center center+=${pxToVhPx(100)}`,
         scrub: true, // 与滚动同步
         invalidateOnRefresh: true
       }
@@ -1426,12 +1518,12 @@ const initHorizontal02Scroll = async () => {
   horizontal02ScrollTrigger = ScrollTrigger.create({
     trigger: '.horizontal-02',
     start: 'top top', // 当元素顶部到达视口顶部时开始
-    end: '+=1920', // 滚动 1920px（横向移动 1920px）
+    end: `+=${pxToVwPx(1920)}`, // 滚动 1920px（横向移动 1920px）
     scrub: true, // 与滚动同步，平滑跟随
     pin: true, // 在横向滚动期间固定容器
     anticipatePin: 1,
     animation: gsap.to('.horizontal-02', {
-      x: -1920, // 横向移动 1920px（从第一个屏幕移动到第二个屏幕）
+      x: pxToVw(-1920), // 横向移动 1920px（从第一个屏幕移动到第二个屏幕）
       ease: 'none' // 线性动画，与滚动完全同步
     }),
     invalidateOnRefresh: true,
@@ -1752,6 +1844,7 @@ onUnmounted(() => {
     position: absolute;
     left: 254px;
     color: #286f86;
+    width: 500px;
   }
   .biology-detail-2{
     font-size: 32px;
@@ -1814,6 +1907,7 @@ onUnmounted(() => {
     background-image: url("@/assets/images/lives/lives-bg.png");
     background-size: cover;
     position: relative;
+    top: -1px;
     .first-screen-bg-1{
       width: 2880px;
       height: 2160px;
@@ -2015,15 +2109,6 @@ onUnmounted(() => {
       top: -500px;
       left: -500px;
     }
-    .cloud-img-2{
-      width: 901px;
-      height: 514px;
-      background-image: url("@/assets/images/lives/lives-transition-cloud-4.png");
-      background-size: cover;
-      position: absolute;
-      top: -200px;
-      right: -500px;
-    }
     .chiru{
       position: absolute;
       bottom: 150px;
@@ -2060,8 +2145,8 @@ onUnmounted(() => {
         border-radius: 30px;
         background-color: rgba(207,213,165,0.6);
         position: absolute;
-        top: 60px;
-        left: 570px;
+        top: 50px;
+        left: 380px;
         .chiru-description-img{
           width: 530px;
           height: 340px;
@@ -2434,6 +2519,16 @@ onUnmounted(() => {
   width: 3840px;
   height: 2160px;
   position: relative;
+  .cloud-img-2-extended{
+    width: 901px; /* 增加宽度，从 901px 增加到 1501px，让它更明显地延伸到第四屏 */
+    height: 514px;
+    background-image: url("@/assets/images/lives/lives-transition-cloud-4.png");
+    background-size: cover;
+    position: absolute;
+    top: -200px;
+    left: 1420px; /* 从 third-screen 的右侧（1920px - 500px = 1420px）开始，延伸到 four-screen */
+    z-index: 4; /* 确保显示在 four-screen 上方，能够延伸到第四屏 */
+  }
   .third-screen{
     position: absolute;
     top: 0;

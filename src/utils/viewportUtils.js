@@ -18,3 +18,22 @@ export const pxToVw = (px) => {
 export const pxToVh = (px) => {
     return ((px / 1080) * 100)+'vh';
 };
+
+
+/**
+ * 辅助函数：将设计图 px 值转换为当前视口宽度的实际像素值
+ * @param {number} px - 设计图上的 px 值
+ * @returns {number} 对应的实际像素值
+ */
+export const pxToVwPx = (px) => {
+    return (px / 1920) * window.innerWidth;
+};
+
+/**
+ * 辅助函数：将设计图 px 值转换为当前视口高度的实际像素值
+ * @param {number} px - 设计图上的 px 值
+ * @returns {number} 对应的实际像素值
+ */
+export const pxToVhPx = (px) => {
+    return (px / 1080) * window.innerHeight;
+};
