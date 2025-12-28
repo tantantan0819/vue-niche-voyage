@@ -229,15 +229,10 @@ onMounted(()=> {
         invalidateOnRefresh: true, // 刷新时重新计算位置
         anticipatePin: 0, // 设置为 0，确保精确在顶部时才开始
         animation: gsap.timeline().to('.black-screen-wrapper', {background: 'transparent'}).to('.black-screen',{opacity: 1}),
-        onEnter: () => {
-          // 确保元素真正进入视口时才触发
-          console.log('black-screen-wrapper entered viewport')
-        },
         onLeaveBack: () => {
           // 回滚离开时，确保恢复到初始状态
           gsap.set('.black-screen-wrapper', {background: '#000'})
           gsap.set('.black-screen', {opacity: 0})
-          console.log('black-screen-wrapper left viewport (back)')
         },
       })
       // 刷新 ScrollTrigger 确保位置计算正确

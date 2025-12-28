@@ -1,18 +1,24 @@
 <template>
   <div class="history">
-    <menu-button></menu-button>
+    <!-- 加载进度条 -->
+    <splash-loader :progress="loadingProgress" :show="showSplashLoader"></splash-loader>
+    <!-- 侧边导航栏 -->
+    <side-menu></side-menu>
+    <!-- 头部：加载进度条只显示头部资源，避免用户等待时间过长 -->
     <hero></hero>
     <horizontal></horizontal>
   </div>
 </template>
 <script setup>
-import { onMounted, onUnmounted, nextTick } from 'vue'
+import { onMounted, onUnmounted, nextTick, ref } from 'vue'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { pxToVw, pxToVh } from '@/utils/viewportUtils'
+import { preloadHeroResources } from '@/utils/preloadHeroResources'
 import hero from './hero/index.vue'
 import horizontal from './horizontal/index.vue'
-import MenuButton from '@/components/MenuButton.vue'
+import SideMenu from '@/components/SiderMenu.vue'
+import SplashLoader from '@/components/SplashLoader.vue'
 
 // 注册 ScrollTrigger 插件
 gsap.registerPlugin(ScrollTrigger)
@@ -39,6 +45,28 @@ let verticalSectionScrollTop = 0
 
 // 标记是否正在等待 vertical-section 滚动到顶部
 let isWaitingForVerticalScrollToTop = false
+
+// 加载进度相关
+const loadingProgress = ref(0)
+const showSplashLoader = ref(true)
+
+/**
+ * 禁止页面滚动
+ */
+const disableScroll = () => {
+  document.body.style.overflow = 'hidden'
+  document.body.style.position = 'fixed'
+  document.body.style.width = '100%'
+}
+
+/**
+ * 恢复页面滚动
+ */
+const enableScroll = () => {
+  document.body.style.overflow = ''
+  document.body.style.position = ''
+  document.body.style.width = ''
+}
 
 /**
  * 初始化 horizontal 的横向滚动效果
@@ -480,6 +508,29 @@ const initBatchParallax = async (forceRefresh = false, horizontalOnly = false) =
 }
 
 onMounted(async () => {
+  // 禁止页面滚动
+  disableScroll()
+  
+  // 等待 hero 组件挂载完成
+  await nextTick()
+  await new Promise(resolve => setTimeout(resolve, 100))
+  
+  // 加载 hero 组件的资源
+  try {
+    await preloadHeroResources((progress) => {
+      loadingProgress.value = progress
+    })
+  } catch (error) {
+    console.error('加载 hero 资源时出错:', error)
+  }
+  
+  // 加载完成后，延迟一点时间再隐藏加载动画，让用户看到 100%
+  await new Promise(resolve => setTimeout(resolve, 300))
+  showSplashLoader.value = false
+  
+  // 恢复页面滚动
+  enableScroll()
+  
   await initHorizontalScroll()
   
   // 等待所有子组件挂载完成后再初始化批量视差
@@ -526,6 +577,9 @@ onMounted(async () => {
 })
 
 onUnmounted(() => {
+  // 恢复页面滚动
+  enableScroll()
+  
   if (horizontalScrollTrigger) {
     horizontalScrollTrigger.kill()
   }
