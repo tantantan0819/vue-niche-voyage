@@ -2,11 +2,32 @@
   <div class="xiangxiong">
     <div class="xiangxiong-bg"></div>
     <div class="first-screen">
-      <p class="first-screen-title">约公元前<span ref="bcNumberRef">{{bcNumber}}</span>世纪-公元<span>{{adNumber}}</span>世纪</p>
-      <div class="first-screen-stone"></div>
+      <p 
+          class="first-screen-title"
+          data-parallax="true"
+          data-parallax-axis="x"
+          data-parallax-from="800"
+          data-parallax-to="-800"
+          data-parallax-speed="1.3"
+          data-parallax-center-lock="true">约公元前<span ref="bcNumberRef">{{bcNumber}}</span>世纪-公元<span>{{adNumber}}</span>世纪</p>
+      <div 
+          class="first-screen-stone"
+          data-parallax="true"
+          data-parallax-axis="x"
+          data-parallax-from="500"
+          data-parallax-to="-500"
+          data-parallax-speed="1.3"
+          data-parallax-center-lock="true"></div>
     </div>
     <div class="second-screen">
-      <p class="title">象雄文明</p>
+      <p 
+        class="title"
+        data-parallax="true"
+        data-parallax-axis="x"
+        data-parallax-from="300"
+        data-parallax-to="-300"
+        data-parallax-speed="1.3"
+        data-parallax-center-lock="true">象雄文明</p>
       <div class="palace"></div>
       <div class="stone"></div>
     </div>
@@ -14,15 +35,38 @@
       <div class="palace"></div>
       <!-- 视差元素：wind -->
       <div class="wind" data-speed="1.2"></div>
-      <p class="description-0 description">象雄文明是吐蕃兴起前青藏高原的核心文明，约公元前4世纪至公元7世纪存续。其宗教与文字都深刻影响了此后高原社会的各个方面。</p>
-      <p class="description-1 description">据相关典籍所载，象雄分为里象雄、中象雄和外象雄三部分。虽至今没有确切的地域范围，但中象雄大致位于今西藏西部阿里地区冈底斯山脉附近，以象泉河流域札达盆地为中心，国都“穹窿银城”也位于中象雄境内。</p>
+      <p 
+          class="description-0 description"
+          data-parallax="true"
+          data-parallax-axis="x"
+          data-parallax-from="300"
+          data-parallax-to="-300"
+          data-parallax-speed="1.3"
+          data-parallax-center-lock="true">象雄文明是吐蕃兴起前青藏高原的核心文明，约公元前4世纪至公元7世纪存续。其宗教与文字都深刻影响了此后高原社会的各个方面。</p>
+      <p 
+          class="description-1 description"
+          data-parallax="true"
+          data-parallax-axis="x"
+          data-parallax-from="300"
+          data-parallax-to="-300"
+          data-parallax-speed="1.3"
+          data-parallax-center-lock="true">据相关典籍所载，象雄分为里象雄、中象雄和外象雄三部分。虽至今没有确切的地域范围，但中象雄大致位于今西藏西部阿里地区冈底斯山脉附近，以象泉河流域札达盆地为中心，国都“穹窿银城”也位于中象雄境内。</p>
 
-      <p class="description-2 description xiangxiongPinText">“象雄”一词，可引申译为“受穹鸟护佑的人们居住的地方”，古代汉文文献中则被记载为“羊同”。</p>
-      <p class="description-3 xiangxiongPinTextNew">唐代史学家杜佑所著《通典·边防卷六》中就载有：“大羊同东接吐蕃，西接小羊同，北直于阗，东西千余里，胜兵八九万人。”</p>
+      <div
+          class="description-container"
+          data-parallax="true"
+          data-parallax-axis="x"
+          data-parallax-from="300"
+          data-parallax-to="-300"
+          data-parallax-speed="1.3"
+          data-parallax-center-lock="true">
+          <p class="description-2 description xiangxiongPinText">“象雄”一词，可引申译为“受穹鸟护佑的人们居住的地方”，古代汉文文献中则被记载为“羊同”。</p>
+          <p class="description-3 xiangxiongPinTextNew">唐代史学家杜佑所著《通典·边防卷六》中就载有：“大羊同东接吐蕃，西接小羊同，北直于阗，东西千余里，胜兵八九万人。”</p>
+      </div>
     </div>
     <div class="four-screen screen">
       <p
-          class="description"
+          class="description description-new"
           data-parallax="true"
           data-parallax-axis="x"
           data-parallax-from="150"
@@ -34,8 +78,8 @@
           class="cloud-1"
           data-parallax="true"
           data-parallax-axis="x"
-          data-parallax-from="250"
-          data-parallax-to="-250"
+          data-parallax-from="900"
+          data-parallax-to="-900"
           data-parallax-speed="1.2"
           data-parallax-center-lock="true"
       ></div>
@@ -43,8 +87,8 @@
           class="cloud-2"
           data-parallax="true"
           data-parallax-axis="x"
-          data-parallax-from="300"
-          data-parallax-to="-300"
+          data-parallax-from="900"
+          data-parallax-to="-900"
           data-parallax-speed="1.2"
           data-parallax-center-lock="true"
       ></div>
@@ -52,8 +96,8 @@
           class="mountain-1"
           data-parallax="true"
           data-parallax-axis="x"
-          data-parallax-from="600"
-          data-parallax-to="-600"
+          data-parallax-from="-100"
+          data-parallax-to="100"
           data-parallax-speed="1.2"
           data-parallax-center-lock="true"
       ></div>
@@ -70,10 +114,33 @@
     <div class="five-screen screen">
       <div class="brocade">
         <div class="brocade-wrapper">
-          <div class="brocade-img-1"></div>
-          <div class="brocade-img-2"></div>
+          <div 
+              class="brocade-img-1"
+              data-parallax="true"
+              data-parallax-axis="x"
+              data-parallax-from="200"
+              data-parallax-to="-200"
+              data-parallax-speed="1.2"
+              data-parallax-center-lock="true"
+            ></div>
+          <div 
+              class="brocade-img-2"
+              data-parallax="true"
+              data-parallax-axis="x"
+              data-parallax-from="300"
+              data-parallax-to="-300"
+              data-parallax-speed="1.2"
+              data-parallax-center-lock="true"></div>
         </div>
-        <div class="description description-wrapper">
+        <div 
+            class="description description-wrapper description-new"
+            data-parallax="true"
+            data-parallax-axis="x"
+            data-parallax-from="200"
+            data-parallax-to="-200"
+            data-parallax-speed="1.2"
+            data-parallax-center-lock="true"
+            >
           <p class="brocade-title">王侯”汉字织锦</p>
           <p class="brocade-first">出土于阿里地区象泉河流域的著名苯教寺院故如甲木寺。 根据科学测定，其年代可追溯到东汉时期。</p>
           <p class="brocade-second">该织物为平纹织锦，有波浪、祥云、对鸟、神树、朱雀、白虎、青龙、玄武等纹饰。空白处可见“王侯”及其镜像的反字。此类织锦被学界认为是中原官方制作赐予地方藩王的物品，可能经新疆一带输入到西藏地区，也是青藏高原上发现的最早的丝绸。</p>
@@ -88,7 +155,7 @@
           <p>黄金面具</p>
           <p>故如甲木墓地出土的黄金面具，被用来遮盖死者面部。</p>
         </div>
-        <div class="description description-2">
+        <div class="description description-2 description-new">
           <p>黄金面具在中亚和我国新疆等地的墓葬并不少见。“其酋豪死，抉去其脑，实以珠玉，剖其五脏，易以黄金，假造金鼻银齿，以人为殉”则是《通典》对这一习俗的记载。</p>
         </div>
         <div
@@ -113,7 +180,7 @@
       <div class="popularization">
         <div >
           <div
-              class="description"
+              class="description description-new"
               data-parallax="true"
               data-parallax-axis="x"
               data-parallax-from="200"
@@ -189,63 +256,63 @@ const initXiangxiongNumberAnimation = () => {
   });
 
   // 宫殿动画
-  const palaceAnim = gsap.quickTo('.second-screen .palace', 'y', {
-    duration: 0.4,
-    ease: 'power1.out'
-  });
-  const titleAnim = gsap.quickTo('.second-screen .title', 'opacity', {
-    duration: 0.3,
-    ease: 'power1.out',
-    delay: 1
-  });
-  ScrollTrigger.create({
-    trigger: '.second-screen .stone',
-    scroller: '.horizontal-scroll-container',
-    horizontal: true,
-    start: 'left left',
-    end: '+=200',
-    scrub: true,
-    onUpdate: (self) => {
-      palaceAnim(-1200 * self.progress);
-      titleAnim(self.progress > 0 ? 1 : 0);
-    },
-  });
+  // const palaceAnim = gsap.quickTo('.second-screen .palace', 'y', {
+  //   duration: 0.4,
+  //   ease: 'power1.out'
+  // });
+  // const titleAnim = gsap.quickTo('.second-screen .title', 'opacity', {
+  //   duration: 0.3,
+  //   ease: 'power1.out',
+  //   delay: 1
+  // });
+  // ScrollTrigger.create({
+  //   trigger: '.second-screen .stone',
+  //   scroller: '.horizontal-scroll-container',
+  //   horizontal: true,
+  //   start: 'left left',
+  //   end: '+=200',
+  //   scrub: true,
+  //   onUpdate: (self) => {
+  //     palaceAnim(-1200 * self.progress);
+  //     titleAnim(self.progress > 0 ? 1 : 0);
+  //   },
+  // });
 
   // stone pin 动画
-  ScrollTrigger.create({
-    trigger: '.second-screen .stone',
-    scroller: '.horizontal-scroll-container',
-    horizontal: true,
-    start: 'center-=300px left',
-    end: '+=350',
-    pin: true,
-    pinSpacing: false,
-    pinType: "transform",
-    anticipatePin: 1,
-    invalidateOnRefresh: true,
-    scrub: 4,
-  });
+  // ScrollTrigger.create({
+  //   trigger: '.second-screen .stone',
+  //   scroller: '.horizontal-scroll-container',
+  //   horizontal: true,
+  //   start: 'center-=300px left',
+  //   end: '+=350',
+  //   pin: true,
+  //   pinSpacing: false,
+  //   pinType: "transform",
+  //   anticipatePin: 1,
+  //   invalidateOnRefresh: true,
+  //   scrub: 4,
+  // });
 
   // 象雄描述文本切换动画
-  const descriptionTl = gsap.timeline({
-    scrollTrigger: {
-      trigger: '.xiangxiong .third-screen',
-      scroller: '.horizontal-scroll-container',
-      horizontal: true,
-      start: 'right-=200 center',
-      end: '+=600',
-      pin: true,
-      pinSpacing: false,
-      pinType: "transform",
-      anticipatePin: 1,
-      invalidateOnRefresh: true,
-      scrub: 4,
-    }
-  });
-  descriptionTl.to('.xiangxiongPinText', { opacity: 1, duration: 0.5 }, 0)
-      .to('.xiangxiongPinText', { opacity: 1, duration: 1 }, '+=0')
-      .to('.xiangxiongPinText', { opacity: 0, duration: 0.3 }, '+=0')
-      .to('.xiangxiongPinTextNew', { opacity: 1, duration: 0.3 }, '-=0.2');
+  // const descriptionTl = gsap.timeline({
+  //   scrollTrigger: {
+  //     trigger: '.xiangxiong .third-screen',
+  //     scroller: '.horizontal-scroll-container',
+  //     horizontal: true,
+  //     start: 'right-=200 center',
+  //     end: '+=600',
+  //     pin: true,
+  //     pinSpacing: false,
+  //     pinType: "transform",
+  //     anticipatePin: 1,
+  //     invalidateOnRefresh: true,
+  //     scrub: 4,
+  //   }
+  // });
+  // descriptionTl.to('.xiangxiongPinText', { opacity: 1, duration: 0.5 }, 0)
+  //     .to('.xiangxiongPinText', { opacity: 1, duration: 1 }, '+=0')
+  //     .to('.xiangxiongPinText', { opacity: 0, duration: 0.3 }, '+=0')
+  //     .to('.xiangxiongPinTextNew', { opacity: 1, duration: 0.3 }, '-=0.2');
 
   // 象雄背景同步pin效果
   ScrollTrigger.create({
@@ -292,10 +359,10 @@ const initXiangxiongNumberAnimation = () => {
     invalidateOnRefresh: true,
     scrub: 4,
   });
-  brocadeTl.to('.brocade-first', { opacity: 1, duration: 0.5 }, 0)
-      .to('.brocade-first', { opacity: 1, duration: 1 }, '+=0')
-      .to('.brocade-first', { opacity: 0, duration: 0.3 }, '+=0')
-      .to('.brocade-second', { opacity: 1, duration: 0.3 }, '-=0.2');
+  // brocadeTl.to('.brocade-first', { opacity: 1, duration: 0.5 }, 0)
+  //     .to('.brocade-first', { opacity: 1, duration: 1 }, '+=0')
+  //     .to('.brocade-first', { opacity: 0, duration: 0.3 }, '+=0')
+  //     .to('.brocade-second', { opacity: 1, duration: 0.3 }, '-=0.2');
 
   // 黄金面具位移动画
   gsap.to('.xiangxiong .mask-img-1', {
@@ -360,7 +427,7 @@ onMounted(async ()=>{
   .xiangxiong-bg{
     width: 19676px;
     height: 1080px;
-    background-image: url("@/assets/images/xiangxiong/xx-background.jpg");
+    background-image: url("@/assets/images/xiangxiong/xx-bg.jpg");
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
@@ -401,11 +468,11 @@ onMounted(async ()=>{
       flex-direction: column;
       writing-mode: vertical-rl;
       text-orientation: upright;
-      margin-top: 80px;
+      margin-top: 30px;
       position: relative;
       z-index: 2;
-      left: -260px;
-      opacity: 0;
+      left: 150px;
+      /* opacity: 0; */
     }
     .palace{
       width: 2861px;
@@ -415,8 +482,8 @@ onMounted(async ()=>{
       background-position: center center;
       background-repeat: no-repeat;
       position: absolute;
-      top: 1260px;
-      left: -1000px;
+      top: 140px;
+      left: -1300px;
     }
     .stone{
       width: 4071px;
@@ -427,8 +494,8 @@ onMounted(async ()=>{
       background-repeat: no-repeat;
       z-index: 2;
       position: relative;
-      left: -1500px;
-      top: 190px;
+      left: -1800px;
+      top: 290px;
     }
   }
   .third-screen{
@@ -447,7 +514,7 @@ onMounted(async ()=>{
       mix-blend-mode: multiply;
       position: relative;
       top: 510px;
-      left: 1100px;
+      left: 1200px;
       z-index: 4;
     }
     .wind{
@@ -466,17 +533,26 @@ onMounted(async ()=>{
     .description-0{
       width: 680px;
       position: absolute;
-      top: 70px;
-      left: 0px;
+      top: 200px;
+      left: -300px;
     }
     .description-1{
       width: 850px;
       position: absolute;
       top: 400px;
       left: 500px;
-      opacity: 0;
+      /* opacity: 0; */
+    }
+    .description-container{
+      width: 920px;
+      position: absolute;
+       top: 380px;
+      left: 3000px;
     }
     .description-2{
+      margin-bottom:20px;
+    }
+    /* .description-2{
       width: 920px;
       white-space: normal;
       word-wrap: break-word;
@@ -494,7 +570,7 @@ onMounted(async ()=>{
       top: 480px;
       left: 2400px;
       opacity: 0;
-    }
+    } */
     .xiangxiongPinTextNew{
       font-size: 33px;
       color: #534833;
@@ -522,6 +598,7 @@ onMounted(async ()=>{
       background-repeat: no-repeat;
       position: relative;
       bottom: -640px;
+      left: -400px;
       z-index: 3;
       animation: cloudFloat 8s infinite alternate ease-in-out;
     }
@@ -534,7 +611,7 @@ onMounted(async ()=>{
       background-repeat: no-repeat;
       position: relative;
       top: -940px;
-      left: 800px;
+      left: 1400px;
       z-index: 3;
       animation: cloudFloat 8s infinite alternate ease-in-out;
       animation-delay: 3s;
@@ -547,8 +624,8 @@ onMounted(async ()=>{
       background-position: center center;
       background-repeat: no-repeat;
       position: absolute;
-      top: 520px;
-      left: 260px;
+      top: 420px;
+      left: -260px;
       z-index: 2;
     }
     .mountain-2{
@@ -602,18 +679,19 @@ onMounted(async ()=>{
         width: 650px;
         font-size: 25px;
         position: relative;
-        top: 450px;
+        top: 300px;
         left: 950px;
+        opacity: 0;
       }
       .brocade-first{
-        position: absolute;
-        opacity: 0;
-        top: 50px;
+        /* position: absolute; */
+        /* opacity: 0; */
+        /* top: 50px; */
       }
       .brocade-second{
-        position: absolute;
-        opacity: 0;
-        top: 50px;
+        /* position: absolute; */
+        /* opacity: 0; */
+        /* top: 50px; */
       }
     }
     .mask{
@@ -658,6 +736,7 @@ onMounted(async ()=>{
         top: 440px;
         left: 260px;
         position: absolute;
+        opacity: 0;
       }
       .mountain-1{
         width: 1926px;
@@ -692,6 +771,7 @@ onMounted(async ()=>{
         line-height: 54px;
         position: absolute;
         top: 480px;
+        opacity: 0;
       }
       .popularization-parallax{
         position: absolute;
