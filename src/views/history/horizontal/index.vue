@@ -15,6 +15,8 @@
       <jindai></jindai>
       <!-- 新中国 -->
       <new-china/>
+      <!-- 竖向内容（建筑、美术、戏剧、民俗） -->
+      <vertical/>
     </div>
   </div>
 </template>
@@ -30,6 +32,7 @@ import jindai from './jindai/index.vue'
 import NewChina from './newChina/index.vue'
 import chamagudao from './chamagudao/index.vue'
 import sqhx from './sqhx/index.vue'
+import vertical from '../vertical/index.vue'
 
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { preloadImages } from "@/utils/preloadImages";

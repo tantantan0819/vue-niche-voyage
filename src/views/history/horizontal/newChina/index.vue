@@ -207,21 +207,21 @@
                 如今，青藏高原盛开民族团结进步之花。各民族像石榴籽一样紧紧抱在一起，携手共进、同舟共济，沿着中国特色社会主义道路，共同迈向推进强国建设，民族复兴伟业的美好明天!
             </div>
         </div>
-        <!-- 第十屏 -->
-         <div class="snap-panel panel-10">
-            <div class="background-cloud-img"></div>
-            <div class="text-container"
-                data-parallax="true"
-                data-parallax-axis="x"
-                data-parallax-from="200"
-                data-parallax-to="-200"
-                data-parallax-speed="1.3"
-                data-parallax-center-lock="true">
-                <p>走过云影掠动的群峰，翻罢岁月雕琢的时光。</p>
-                <p>现在</p>
-                <p>请暂时从宏阔的自然与历史中抽身，</p>
-            </div>
-         </div>
+<!--        &lt;!&ndash; 第十屏 &ndash;&gt;-->
+<!--         <div class="snap-panel panel-10">-->
+<!--            <div class="background-cloud-img"></div>-->
+<!--            <div class="text-container"-->
+<!--                data-parallax="true"-->
+<!--                data-parallax-axis="x"-->
+<!--                data-parallax-from="200"-->
+<!--                data-parallax-to="-200"-->
+<!--                data-parallax-speed="1.3"-->
+<!--                data-parallax-center-lock="true">-->
+<!--                <p>走过云影掠动的群峰，翻罢岁月雕琢的时光。</p>-->
+<!--                <p>现在</p>-->
+<!--                <p>请暂时从宏阔的自然与历史中抽身，</p>-->
+<!--            </div>-->
+<!--         </div>-->
     </div>
 </template>
 <script setup>
@@ -316,7 +316,7 @@ onUnmounted(() => {
     .new-china-container{
         margin-left: -1px;
         display: flex;
-        width: 18251px;
+        width: 16331px;
         height: 1080px;
         overflow-y: hidden;
         overflow-x: auto; /* 关键：允许水平滚动 */

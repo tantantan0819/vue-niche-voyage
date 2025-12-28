@@ -41,3 +41,18 @@ onUnmounted(() => {
   ScrollTrigger.getAll().forEach(trigger => trigger.kill());
 });
 </script>
+
+<style scoped>
+.vertical-section {
+  width: 1920px;
+  height: 100vh;
+  flex-shrink: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  position: relative;
+  will-change: scroll-position;
+  transform: translateZ(0); /* 启用硬件加速 */
+  backface-visibility: hidden; /* 减少闪烁 */
+  -webkit-overflow-scrolling: touch; /* iOS 平滑滚动 */
+}
+</style>

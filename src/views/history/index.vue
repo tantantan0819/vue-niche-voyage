@@ -2,7 +2,6 @@
   <div class="history">
     <hero></hero>
     <horizontal></horizontal>
-    <vertical></vertical>
   </div>
 </template>
 <script setup>
@@ -12,7 +11,6 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { pxToVw, pxToVh } from '@/utils/viewportUtils'
 import hero from './hero/index.vue'
 import horizontal from './horizontal/index.vue'
-import vertical from './vertical/index.vue'
 
 // 注册 ScrollTrigger 插件
 gsap.registerPlugin(ScrollTrigger)
@@ -33,6 +31,12 @@ let resizeHandler = null
 
 // 用于标记 horizontal 是否处于 pin 状态
 let isHorizontalPinned = false
+
+// 保存 vertical-section 的滚动位置
+let verticalSectionScrollTop = 0
+
+// 标记是否正在等待 vertical-section 滚动到顶部
+let isWaitingForVerticalScrollToTop = false
 
 /**
  * 初始化 horizontal 的横向滚动效果
@@ -84,6 +88,16 @@ const initHorizontalScroll = async () => {
       horizontalContainer.setAttribute('data-pinned', 'true')
       // 确保初始位置在左边（scrollLeft = 0）
       horizontalContainer.scrollLeft = 0
+      
+      // 使用 requestAnimationFrame 延迟状态更新，避免闪烁
+      requestAnimationFrame(() => {
+        // 禁用 vertical-section 的竖向滚动
+        const verticalSection = document.querySelector('.vertical-section')
+        if (verticalSection) {
+          verticalSection.style.overflowY = 'hidden'
+          verticalSection.style.pointerEvents = 'none'
+        }
+      })
     },
     onUpdate: (self) => {
       // 将页面滚动进度转换为横向滚动位置
@@ -93,40 +107,134 @@ const initHorizontalScroll = async () => {
       
       // 确保 scrollLeft 在有效范围内
       horizontalContainer.scrollLeft = Math.max(0, Math.min(targetScrollLeft, maxScroll))
+      
+      // 检查是否到达横向滚动的最右边
+      const verticalSection = document.querySelector('.vertical-section')
+      if (verticalSection) {
+        const currentScrollLeft = horizontalContainer.scrollLeft
+        const isAtRightEnd = currentScrollLeft >= maxScroll - 1 // 允许1px的误差
+        
+        // 只在状态真正改变时才更新样式，避免频繁切换导致闪烁
+        const currentOverflow = verticalSection.style.overflowY || 'auto'
+        if (isAtRightEnd && currentOverflow !== 'auto') {
+          verticalSection.style.overflowY = 'auto'
+          verticalSection.style.pointerEvents = 'auto'
+        } else if (!isAtRightEnd && currentOverflow !== 'hidden') {
+          verticalSection.style.overflowY = 'hidden'
+          verticalSection.style.pointerEvents = 'none'
+        }
+      }
     },
     onLeave: () => {
       // 离开 pin 状态（向下滚动完成横向滚动）
       isHorizontalPinned = false
       horizontalContainer.removeAttribute('data-pinned')
-      // 关键：离开时刷新 ScrollTrigger，确保后续回滚时视差效果正常
-      ScrollTrigger.refresh()
-      // 重新初始化 horizontal 的批量视差，确保视差 ScrollTrigger 重新创建
+      
+      // 使用 requestAnimationFrame 延迟状态更新，避免闪烁
       requestAnimationFrame(() => {
-        initBatchParallax(true, true) // 只刷新 horizontal 的视差
+        // 确保 vertical-section 可以竖向滚动（横向滚动已完成）
+        const verticalSection = document.querySelector('.vertical-section')
+        if (verticalSection) {
+          verticalSection.style.overflowY = 'auto'
+          verticalSection.style.pointerEvents = 'auto'
+          // 恢复之前保存的滚动位置
+          if (verticalSectionScrollTop > 0) {
+            verticalSection.scrollTop = verticalSectionScrollTop
+          }
+        }
       })
     },
     onEnterBack: () => {
       // 向上滚动回到 pin 状态 - 此时元素顶部再次到达视口顶部
+      const verticalSection = document.querySelector('.vertical-section')
+      
+      // 检查 vertical-section 是否还有滚动位置
+      // 如果 scrollTop > 0，说明 vertical-section 的顶部还没有到达浏览器顶部
+      // 需要先让 vertical-section 滚动到顶部，然后再进入横向滚动
+      if (verticalSection && verticalSection.scrollTop > 0) {
+        // 标记正在等待 vertical-section 滚动到顶部
+        isWaitingForVerticalScrollToTop = true
+        
+        // 立即让 vertical-section 滚动到顶部（不使用 smooth，避免延迟）
+        verticalSection.scrollTop = 0
+        
+        // 使用 requestAnimationFrame 确保滚动完成后再继续
+        requestAnimationFrame(() => {
+          // 再次确保滚动到顶部
+          if (verticalSection.scrollTop > 0) {
+            verticalSection.scrollTop = 0
+          }
+          
+          // 标记等待完成
+          isWaitingForVerticalScrollToTop = false
+          
+          // 现在可以进入横向滚动状态
+          isHorizontalPinned = true
+          horizontalContainer.setAttribute('data-pinned', 'true')
+          
+          // 更新 vertical-section 的状态
+          requestAnimationFrame(() => {
+            const maxScroll = horizontalContainer.scrollWidth - horizontalContainer.clientWidth
+            const currentScrollLeft = horizontalContainer.scrollLeft
+            const isAtRightEnd = currentScrollLeft >= maxScroll - 1
+            
+            if (isAtRightEnd) {
+              verticalSection.style.overflowY = 'auto'
+              verticalSection.style.pointerEvents = 'auto'
+            } else {
+              verticalSection.style.overflowY = 'hidden'
+              verticalSection.style.pointerEvents = 'none'
+            }
+          })
+        })
+        
+        return // 提前返回，不执行后续的横向滚动逻辑
+      }
+      
+      // 如果 vertical-section 已经在顶部，正常进入横向滚动状态
+      isWaitingForVerticalScrollToTop = false
       isHorizontalPinned = true
       horizontalContainer.setAttribute('data-pinned', 'true')
-      // 关键：回滚时刷新 ScrollTrigger，确保视差效果重新生效
-      ScrollTrigger.refresh()
-      // 重新初始化 horizontal 的批量视差，确保视差 ScrollTrigger 重新创建
+      
+      // 使用 requestAnimationFrame 延迟状态更新，避免闪烁
       requestAnimationFrame(() => {
-        initBatchParallax(true, true) // 只刷新 horizontal 的视差
+        // 检查当前横向滚动位置，决定是否允许 vertical-section 滚动
+        if (verticalSection) {
+          const maxScroll = horizontalContainer.scrollWidth - horizontalContainer.clientWidth
+          const currentScrollLeft = horizontalContainer.scrollLeft
+          const isAtRightEnd = currentScrollLeft >= maxScroll - 1
+          
+          if (isAtRightEnd) {
+            verticalSection.style.overflowY = 'auto'
+            verticalSection.style.pointerEvents = 'auto'
+          } else {
+            verticalSection.style.overflowY = 'hidden'
+            verticalSection.style.pointerEvents = 'none'
+          }
+        }
       })
     },
     onLeaveBack: () => {
+      // 如果正在等待 vertical-section 滚动到顶部，阻止离开 pin 状态
+      if (isWaitingForVerticalScrollToTop) {
+        return
+      }
+      
       // 向上滚动离开 pin 状态（回到 hero）
       // 此时 progress 为 0，scrollLeft 应该已经是 0，允许继续向上滚动
       isHorizontalPinned = false
       horizontalContainer.removeAttribute('data-pinned')
       // 确保 scrollLeft 重置为 0
       horizontalContainer.scrollLeft = 0
-      ScrollTrigger.refresh()
-      // 重新初始化 horizontal 的批量视差，确保视差 ScrollTrigger 重新创建
+      
+      // 使用 requestAnimationFrame 延迟状态更新，避免闪烁
       requestAnimationFrame(() => {
-        initBatchParallax(true, true) // 只刷新 horizontal 的视差
+        // 禁用 vertical-section 的竖向滚动（回到横向滚动状态）
+        const verticalSection = document.querySelector('.vertical-section')
+        if (verticalSection) {
+          verticalSection.style.overflowY = 'hidden'
+          verticalSection.style.pointerEvents = 'none'
+        }
       })
     }
   })
@@ -158,14 +266,20 @@ const initBatchParallax = async (forceRefresh = false, horizontalOnly = false) =
     )
   }
 
+  // 获取 vertical-section 容器（如果存在）
+  const verticalSection = document.querySelector('.vertical-section')
+
   parallaxElements.forEach(el => {
     // 检查元素是否在横向滚动容器内
     const isInHorizontalContainer = horizontalContainer && horizontalContainer.contains(el)
+    // 检查元素是否在 vertical-section 内（vertical-section 在 horizontal 容器内，但使用竖向滚动）
+    const isInVerticalSection = verticalSection && verticalSection.contains(el)
     
     // 解析视差配置
     const config = {
       // 视差方向：x 或 y
-      axis: el.dataset.parallaxAxis || (isInHorizontalContainer ? 'x' : 'y'),
+      // 如果在 vertical-section 内，使用 y 轴（竖向滚动）
+      axis: el.dataset.parallaxAxis || (isInVerticalSection ? 'y' : (isInHorizontalContainer ? 'x' : 'y')),
       // 起始位置（元素进入视口时的位置）
       fromValue: parseFloat(el.dataset.parallaxFrom) || 0,
       // 结束位置（元素离开视口时的位置）
@@ -173,9 +287,10 @@ const initBatchParallax = async (forceRefresh = false, horizontalOnly = false) =
       // 视差速度（影响动画进度）
       speed: parseFloat(el.dataset.parallaxSpeed) || 1,
       // 触发点：元素进入视口的位置
-      triggerStart: el.dataset.parallaxTriggerStart || (isInHorizontalContainer ? "left right" : "top bottom"),
+      // 如果在 vertical-section 内，使用竖向滚动的触发点
+      triggerStart: el.dataset.parallaxTriggerStart || (isInVerticalSection ? "top bottom" : (isInHorizontalContainer ? "left right" : "top bottom")),
       // 结束点：元素离开视口的位置
-      triggerEnd: el.dataset.parallaxTriggerEnd || (isInHorizontalContainer ? "right left" : "bottom top"),
+      triggerEnd: el.dataset.parallaxTriggerEnd || (isInVerticalSection ? "bottom top" : (isInHorizontalContainer ? "right left" : "bottom top")),
       // 是否在视口中心时保持预期位置
       centerLock: el.dataset.parallaxCenterLock !== "false",
       // 动画缓动函数
@@ -332,8 +447,13 @@ const initBatchParallax = async (forceRefresh = false, horizontalOnly = false) =
       invalidateOnRefresh: true
     }
 
-    // 如果是横向滚动，需要指定 scroller 和 horizontal
-    if (isInHorizontalContainer && horizontalContainer) {
+    // 如果在 vertical-section 内，使用 vertical-section 作为滚动容器（竖向滚动）
+    if (isInVerticalSection && verticalSection) {
+      scrollTriggerConfig.scroller = verticalSection
+      scrollTriggerConfig.horizontal = false
+    }
+    // 如果是横向滚动（在 horizontal 容器内但不在 vertical-section 内），需要指定 scroller 和 horizontal
+    else if (isInHorizontalContainer && horizontalContainer) {
       scrollTriggerConfig.scroller = horizontalContainer
       scrollTriggerConfig.horizontal = true
     }
@@ -363,6 +483,31 @@ onMounted(async () => {
   // 等待所有子组件挂载完成后再初始化批量视差
   await nextTick()
   await new Promise(resolve => setTimeout(resolve, 200))
+  
+  // 初始化 vertical-section 的滚动状态（初始状态下禁用滚动）
+  const verticalSection = document.querySelector('.vertical-section')
+  if (verticalSection) {
+    const horizontalContainer = document.querySelector('.horizontal-scroll-container')
+    if (horizontalContainer) {
+      const maxScroll = horizontalContainer.scrollWidth - horizontalContainer.clientWidth
+      const currentScrollLeft = horizontalContainer.scrollLeft
+      const isAtRightEnd = currentScrollLeft >= maxScroll - 1
+      
+      if (isAtRightEnd) {
+        verticalSection.style.overflowY = 'auto'
+        verticalSection.style.pointerEvents = 'auto'
+      } else {
+        verticalSection.style.overflowY = 'hidden'
+        verticalSection.style.pointerEvents = 'none'
+      }
+      
+      // 监听 vertical-section 的滚动事件，实时保存滚动位置
+      verticalSection.addEventListener('scroll', () => {
+        verticalSectionScrollTop = verticalSection.scrollTop
+      }, { passive: true })
+    }
+  }
+  
   initBatchParallax()
   
   // 监听窗口大小改变，重新计算

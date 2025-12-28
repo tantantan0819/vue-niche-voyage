@@ -1,12 +1,20 @@
 <template>
   <div class="architecture">
     <div class="first-screen screen">
-      <p
-      >走过云影掠动的群峰，翻罢岁月雕琢的时光。</p>
-      <p
-      >现在</p>
-      <p
-      >请暂时从宏阔的自然与历史中抽身，</p>
+      <div class="text-wrapper"
+           data-parallax="true"
+           data-parallax-axis="y"
+           data-parallax-from="300"
+           data-parallax-to="-300"
+           data-parallax-speed="1.1"
+           data-parallax-center-lock="true">
+        <p
+        >走过云影掠动的群峰，翻罢岁月雕琢的时光。</p>
+        <p
+        >现在</p>
+        <p
+        >请暂时从宏阔的自然与历史中抽身，</p>
+      </div>
     </div>
     <div class="second-screen screen">
       <div class="cloud-1"
@@ -339,32 +347,6 @@ import { gsap } from 'gsap';
 import { pxToVw, pxToVh } from '@/utils/viewportUtils';
 import AnnotationDot from "@/components/AnnotationDot.vue";
 
-/**
- * 打开步辇图弹窗
- */
-const openProcession = () => {
-  gsap.to('.eleven-screen .popularization-wrapper', {
-    x: pxToVw(+50),
-    scale: 1,
-    opacity: 1,
-    duration: 0.5
-  });
-  const tl = gsap.timeline();
-  tl.to('.eleven-screen .lamp-item-core', { scale: 0.6, duration: 0.1 })
-      .to('.eleven-screen .lamp-item-core', { scale: 1, duration: 0.1 });
-};
-
-/**
- * 关闭步辇图弹窗
- */
-const closeProcession = () => {
-  gsap.to('.eleven-screen .popularization-wrapper', {
-    x: pxToVw(-50),
-    scale: 0.5,
-    opacity: 0,
-    duration: 0.5
-  });
-};
 </script>
 <style>
 .architecture{
