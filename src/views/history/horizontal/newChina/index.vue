@@ -247,6 +247,7 @@ const initGsapAnimation = () => {
             trigger: '.panel-04 .text-container-1', // 触发元素
             scroller: '.horizontal-scroll-container',
             horizontal: true,
+            scrub: true,
             start: 'left right',
             end: 'left left',
         }
@@ -259,6 +260,7 @@ const initGsapAnimation = () => {
             trigger: '.panel-04 .text-container-1', // 触发元素
             scroller: '.horizontal-scroll-container',
             horizontal: true,
+            scrub: true,
             start: 'left right',
             end: 'left left',
         }
@@ -270,6 +272,7 @@ const initGsapAnimation = () => {
             trigger: '.panel-05 .text-container', // 触发元素
             scroller: '.horizontal-scroll-container',
             horizontal: true,
+            scrub: true,
             start: 'left center',
             end: 'left left',
         }
@@ -281,6 +284,7 @@ const initGsapAnimation = () => {
             trigger: '.panel-06 .text-container', // 触发元素
             scroller: '.horizontal-scroll-container',
             horizontal: true,
+            scrub: true,
             start: 'left center',
             end: 'left left',
         }
