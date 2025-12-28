@@ -1,6 +1,6 @@
 <template>
   <div class="grology">
-<!--    <div class="grology-origin" ref="originContainer">-->
+    <div class="grology-origin" ref="originContainer">
 <!--      <video-->
 <!--          ref="welcomeVideo"-->
 <!--          class="welcome-video"-->
@@ -41,9 +41,9 @@
 <!--          ></div>-->
 <!--        </div>-->
 <!--      </div>-->
-<!--    </div>-->
+    </div>
     <div class="grology-water" style="margin-top: 500px">
-<!--      <div class="water-cloud-1"></div>-->
+      <div class="water-cloud-1"></div>
 <!--      <div class="water-bg-video">-->
 <!--        <video-->
 <!--            ref="climateVideo1"-->
@@ -61,7 +61,7 @@
 <!--            <p>准备好了吗？</p>-->
 <!--            <p>我们先深入高原内部，感受阳光、雨雪和温度！</p>-->
 <!--          </div>-->
-<!--          <div class="climate-btn">深入探索</div>-->
+<!--          <div class="climate-btn explore-btn" @click="linkTo('/voyage/climate')">深入探索</div>-->
 <!--        </div>-->
 <!--      </div>-->
       <div class="water-cloud-2-wrapper">
@@ -77,7 +77,7 @@
           <p>众多冰川提供源源融水，让湖泊映照星空和雪山，</p>
           <p>河流自此奔涌而下，流向远方的土地……</p>
         </div>
-        <div class="explore-button">深入探索</div>
+        <div class="explore-button explore-btn"  @click="linkTo('/voyage/landscape')">深入探索</div>
       </div>
       <div class="biology">
         <div class="biology-detail-1"
@@ -129,6 +129,7 @@
         <div class="goose">
           <div class="goose-info" @click="showGooseDescription">
             <div class="goose-img"></div>
+            <div class="goose-tip"></div>
             <div class="goose-chinese goose-name">斑头雁</div>
             <div class="goose-english goose-name">Anser indicus</div>
           </div>
@@ -267,13 +268,13 @@
                data-parallax-center-lock="true">
             <p>高原资源多样而独具优势，是我国重要的清洁能源与战略资源库。</p>
           </div>
-         <div class="secret-btn"
+         <div class="secret-btn explore-btn"
               data-parallax="true"
               data-parallax-axis="y"
               data-parallax-from="100"
               data-parallax-to="-100"
               data-parallax-speed="1.1"
-              data-parallax-center-lock="true">深入探索</div>
+              data-parallax-center-lock="true" @click="linkTo('/voyage/resource')">深入探索</div>
       </div>
       <div class="third-screen screen">
         <div class="text-wrapper"
@@ -328,14 +329,19 @@
 import { onMounted, onUnmounted, ref, nextTick, computed } from "vue";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useRouter } from 'vue-router'
 import { pxToVw, pxToVh, pxToVwPx, pxToVhPx  } from '@/utils/viewportUtils';
 import geologyVideo1 from '@/assets/images/geology/geology-video-1.mp4'
 import geologyVideo2 from '@/assets/images/geology/geology-video-2.mp4'
 import geologyVideo3 from '@/assets/images/geology/geology-video-3.mp4'
 
+const router = useRouter()
 
 gsap.registerPlugin(ScrollTrigger);
 
+const linkTo = path =>{
+  router.push(path)
+}
 
 const welcomeVideoSrc = new URL(
     "@/assets/images/geology/start-page-1.mp4",
@@ -1634,8 +1640,23 @@ onUnmounted(() => {
   cursor: pointer;
 }
 
-.video-sound.active {
-  background-color: red;
+.explore-btn{
+  width: 260px;
+  height: 80px;
+  font-size: 36px;
+  color: #fff;
+  justify-content: center;
+  align-items: center;
+  border-radius: 30px;
+  margin-top: 70px;
+  text-align: center;
+  line-height: 80px;
+  cursor: pointer;
+  transition: all ease-in-out 0.3s;
+  background-color: rgba(80,163,223,0.5);
+  &:hover{
+    background-color: #4291c4;
+  }
 }
 
 .video-indicator {
@@ -1773,23 +1794,7 @@ onUnmounted(() => {
         text-align: center;
       }
       .climate-btn{
-        width: 270px;
-        height: 80px;
-        background-color: rgba(66,145,196,0.5);
-        font-size: 40px;
-        color: #fff;
-        justify-content: center;
-        align-items: center;
-        border-radius: 30px;
-        margin-top: 70px;
-        text-align: center;
-        line-height: 80px;
         margin-left: 150px;
-        cursor: pointer;
-        transition: all ease-in-out 0.3s;
-        &:hover{
-          background-color: rgba(66,145,196,0.7);
-        }
       }
     }
   }
@@ -1819,17 +1824,17 @@ onUnmounted(() => {
 
   }
   .explore-button{
-    width: 270px;
-    height: 80px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: #fff;
-    font-size: 40px;
-    border-radius: 30px;
-    background-color: rgba(159,184,198, 0.5);
-    margin-top: 150px;
+    //width: 270px;
+    //height: 80px;
+    //display: flex;
+    //justify-content: center;
+    //align-items: center;
+    //color: #fff;
+    //font-size: 40px;
+    //border-radius: 30px;
+    //background-color: rgba(159,184,198, 0.5);
     cursor: pointer;
+    margin-top: 150px;
   }
 }
 .biology{
@@ -1957,6 +1962,15 @@ onUnmounted(() => {
         height: 397px;
         background-image: url("@/assets/images/lives/lives-bty.png");
         background-size: cover;
+      }
+      .goose-tip{
+        width: 350px;
+        height: 33px;
+        background-image: url("@/assets/images/lives/lives-prompt.png");
+        background-size: cover;
+        position: absolute;
+        left: -356px;
+        top: 300px;
       }
       .goose-name{
         font-size: 36px;

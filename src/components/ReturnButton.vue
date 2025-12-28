@@ -18,24 +18,24 @@ const returnHome = () => {
 <style scoped>
 .return-btn{
   position: fixed;
-  top: 30px;
-  left: 30px;
+  top: 40px;
+  left: 40px;
   z-index: 999;
-  width: 130px;
-  height: 78px;
+  width: 112px;
+  height: 56px;
   transition: all ease-in-out 0.2s;
   display: flex;
   justify-content: center;
   align-items: center;
   user-select: none;
-  border-radius: 46px;
-  border: 1px dotted  transparent;
+  border-radius: 28px;
+  //border: 1px dotted  transparent;
 
   .return-btn-core{
     width: 112px;
     height: 56px;
     border: 1px solid #fff;
-    border-radius: 30px;
+    border-radius: 28px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -65,6 +65,7 @@ const returnHome = () => {
   &:hover{
     border-color: rgba(255,255,255,0.35);
     .return-btn-core{
+      //transform: scale(1.1);
       background-color: rgba(255,255,255,0.35);
     }
   }

@@ -1,5 +1,6 @@
 <template>
   <div class="history">
+    <menu-button></menu-button>
     <hero></hero>
     <horizontal></horizontal>
   </div>
@@ -11,6 +12,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { pxToVw, pxToVh } from '@/utils/viewportUtils'
 import hero from './hero/index.vue'
 import horizontal from './horizontal/index.vue'
+import MenuButton from '@/components/MenuButton.vue'
 
 // 注册 ScrollTrigger 插件
 gsap.registerPlugin(ScrollTrigger)
