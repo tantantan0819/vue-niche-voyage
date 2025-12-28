@@ -430,7 +430,7 @@ import AnnotationDot from "@/components/AnnotationDot.vue";
       background-repeat: no-repeat;
       position: absolute;
       top: -600px;
-      left: -1320px;
+      left: -1020px;
     }
     p{
       font-size: 25px;

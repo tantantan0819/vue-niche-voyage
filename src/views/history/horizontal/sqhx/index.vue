@@ -25,8 +25,10 @@
                 data-parallax-speed="1.3"
                 data-parallax-center-lock="true"></div>
           </div>
+        </div>
+      </div>
           <!-- 第二幕 -->
-          <div
+        <div
               class="second-screen"
               data-parallax="true"
               data-parallax-axis="x"
@@ -46,16 +48,14 @@
                 class="chip-img-1"
                 data-parallax="true"
                 data-parallax-axis="x"
-                data-parallax-from="-150"
-                data-parallax-to="150"
+                data-parallax-from="-50"
+                data-parallax-to="50"
                 data-parallax-speed="1.3"
                 data-parallax-center-lock="true"></div>
             <div class="chip-img-2"></div>
             <div class="chip-img-3"></div>
             <div class="second-screen-picture"></div>
           </div>
-        </div>
-      </div>
         <!-- 第三幕 -->
         <div 
             class="screen third-screen"
@@ -319,7 +319,7 @@ onUnmounted(() => {
         .second-screen-title{
             position: absolute;
             top: 0;
-            left: -250px;
+            left: -150px;
             font-family: 'EarlySummerSerif-Bold';
             font-size: 90px;
             color: #534833;
@@ -327,7 +327,7 @@ onUnmounted(() => {
         }
         .chip-img-1{
             position: absolute;
-            left: -600px;
+            left: -400px;
             bottom: 0;
             width: 462px;
             height: 361px;
@@ -399,6 +399,7 @@ onUnmounted(() => {
         .forth-screen-text-content{
             width: 850px;
             margin-left: 100px;
+            margin-top: 50px
         }
         .forth-screen-cloud-img{
             position: absolute;
@@ -441,7 +442,7 @@ onUnmounted(() => {
             position: absolute;
             top: 50%;
             left: 50%;
-            transform: translate(-50%, -50%);
+            transform: translate(-50%, -40%);
             width: 1000px;
         }
     }
@@ -457,6 +458,7 @@ onUnmounted(() => {
         .sixth-screen-text-content{
             width: 850px;
             margin-left: 100px;
+            margin-top: 100px
         }
     }
     .seventh-screen{

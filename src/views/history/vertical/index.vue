@@ -49,7 +49,8 @@ onUnmounted(() => {
   flex-shrink: 0;
   overflow-y: auto;
   overflow-x: hidden;
-  position: relative;
+  position: absolute;
+  right: -960px;
   will-change: scroll-position;
   transform: translateZ(0); /* 启用硬件加速 */
   backface-visibility: hidden; /* 减少闪烁 */
