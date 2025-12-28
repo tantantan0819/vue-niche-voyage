@@ -1,6 +1,5 @@
 <template>
     <div class="new-china-container">
-        <!-- <div class="snap-panel"></div> -->
         <!-- 第一屏 -->
         <div class="snap-panel panel-01"></div>
         <!-- 第二屏 -->
@@ -316,7 +315,8 @@ onUnmounted(() => {
     .new-china-container{
         margin-left: -1px;
         display: flex;
-        width: 16331px;
+        width: 16331px; 
+        /* width: 18251px;  */
         height: 1080px;
         overflow-y: hidden;
         overflow-x: auto; /* 关键：允许水平滚动 */
@@ -326,9 +326,6 @@ onUnmounted(() => {
         position: relative;
         width: 100vw;
         height: 100vh;
-    }
-    .panel-01{
-        
     }
     .panel-02{
         .background-cloud-img{
@@ -587,6 +584,8 @@ onUnmounted(() => {
         justify-content: center;
         align-items: center;
         .text-container{
+            position:absolute;
+            left: -400px;
             width: 900px;
         }
     }

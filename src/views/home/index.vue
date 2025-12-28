@@ -33,6 +33,10 @@ const pages = ref([
     name: '竖向',
     url: '/voyage/vertical'
   },
+   {
+    name: '历史',
+    url: '/voyage/history'
+  },
   {
     name: '史前回响',
     url: '/voyage/sqhx'
