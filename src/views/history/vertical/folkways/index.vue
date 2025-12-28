@@ -558,6 +558,7 @@ const initGsapAnimation = () => {
         duration: 2,
         scrollTrigger: {
             trigger: '.second-screen-text-content', // 触发元素
+            scroller: '.vertical-section',
             start: 'bottom center+=400',
             end: 'top top',
         }
@@ -568,6 +569,7 @@ const initGsapAnimation = () => {
         duration: 2,
         scrollTrigger: {
             trigger: '.third-screen-text-content', // 触发元素
+            scroller: '.vertical-section',
             start: 'bottom center+=400',
             end: 'top top',
         }
@@ -578,6 +580,7 @@ const initGsapAnimation = () => {
         duration: 2,
         scrollTrigger: {
             trigger: '.forth-screen-text-content', // 触发元素
+            scroller: '.vertical-section',
             start: 'bottom center+=400',
             end: 'top top',
         }
@@ -588,6 +591,7 @@ const initGsapAnimation = () => {
         duration: 2,
         scrollTrigger: {
             trigger: '.fifth-screen-text-content', // 触发元素
+            scroller: '.vertical-section',
             start: 'bottom center+=400',
             end: 'top top',
         }
@@ -598,6 +602,7 @@ const initGsapAnimation = () => {
         duration: 2,
         scrollTrigger: {
             trigger: '.sixth-screen-text-content', // 触发元素
+            scroller: '.vertical-section',
             start: 'bottom center+=400',
             end: 'top top',
         }
@@ -608,6 +613,7 @@ const initGsapAnimation = () => {
         duration: 2,
         scrollTrigger: {
             trigger: '.seventh-screen-text-content', // 触发元素
+            scroller: '.vertical-section',
             start: 'bottom center+=400',
             end: 'top top',
         }
