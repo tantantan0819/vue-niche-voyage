@@ -392,6 +392,26 @@ const initXiangxiongNumberAnimation = () => {
     }
   });
 };
+const initDescriptionOpacityAnimation = () => {
+  document.querySelectorAll('.description').forEach((desc) => {
+    gsap.fromTo(
+        desc,
+        { opacity: 0 },
+        {
+          opacity: 1,
+          duration: 1,
+          scrollTrigger: {
+            trigger: desc,
+            scroller: '.horizontal-scroll-container',
+            horizontal: true,
+            start: 'left-=300px center',
+            end: 'right right-=400px',
+            scrub: true,
+          },
+        }
+    );
+  });
+};
 onMounted(async ()=>{
   // 等待DOM完全渲染
   await nextTick();
