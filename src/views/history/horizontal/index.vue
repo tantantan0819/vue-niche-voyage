@@ -228,7 +228,7 @@ const initDescriptionOpacityAnimation = () => {
         { opacity: 0 },
         {
           opacity: 1,
-          duration: 1,
+          duration: 2,
           scrollTrigger: {
             trigger: desc,
             scroller: '.horizontal-scroll-container',

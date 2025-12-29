@@ -1,5 +1,5 @@
 <template>
-  <div class="chamagudao">
+  <div class="chamagudao" ref="chamagudaoRef">
     <div class="first-screen screen">
       <div
           class="road"
@@ -288,6 +288,35 @@ import { gsap } from 'gsap';
 import { pxToVw, pxToVh } from '@/utils/viewportUtils';
 import AnnotationDot from "@/components/AnnotationDot.vue";
 import { useAnimateNumber } from '@/utils/animateNumber';
+
+/**
+ * 初始化所有描述文本渐显动画
+ */
+const chamagudaoRef = ref(null)
+const initDescriptionOpacityAnimation = () => {
+  chamagudaoRef.value.querySelectorAll('.description').forEach((desc) => {
+    gsap.fromTo(
+        desc,
+        { opacity: 0 },
+        {
+          opacity: 1,
+          duration: 1,
+          scrollTrigger: {
+            trigger: desc,
+            scroller: '.horizontal-scroll-container',
+            horizontal: true,
+            start: 'left-=300px center',
+            end: 'right right-=400px',
+            scrub: true,
+          },
+        }
+    );
+  });
+};
+
+onMounted(() =>{
+  initDescriptionOpacityAnimation()
+})
 
 
 /**
