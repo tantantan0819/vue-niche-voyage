@@ -1,44 +1,47 @@
 <template>
   <div class="grology">
-<!--    <div class="grology-origin" ref="originContainer">-->
-<!--      <div class="welcome-video-wrapper">-->
-<!--        <video-->
-<!--            ref="welcomeVideo"-->
-<!--            class="welcome-video"-->
-<!--            :src="welcomeVideoSrc"-->
-<!--            preload="auto"-->
-<!--            muted-->
-<!--            playsinline-->
-<!--            @ended="onWelcomeVideoEnded"-->
-<!--        ></video>-->
-<!--        <div class="welcome-video-roller" ref="welcomeVideoRoller"></div>-->
-<!--      </div>-->
-<!--      <div class="origin-video-wrapper" ref="originVideoWrapper">-->
-<!--        <video-->
-<!--            ref="originVideo"-->
-<!--            class="origin-video"-->
-<!--            :src="originInfos[originCurrentIndex].videoUrl"-->
-<!--            preload="auto"-->
-<!--            playsinline-->
-<!--            @ended="onOriginVideoEnded"-->
-<!--        ></video>-->
-<!--        <div class="video-accessories" ref="videoAccessories">-->
-<!--          <div class="video-description" ref="videoDescription">-->
-<!--            <p class="video-title">{{ originInfos[originCurrentIndex].title }}</p>-->
-<!--            <p :style="{width: originInfos[originCurrentIndex].width}">{{ originInfos[originCurrentIndex].description[0] }}</p>-->
-<!--          </div>-->
-<!--          <div class="video-sound"></div>-->
-<!--          <div class="video-indicator">-->
-<!--            <div-->
-<!--                class="video-dot"-->
-<!--                v-for="(item, index) in originInfos.length"-->
-<!--                :key="index"-->
-<!--                :class="{ active: originCurrentIndex === index }"-->
-<!--            ></div>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--      </div>-->
-<!--    </div>-->
+    <div class="grology-origin" ref="originContainer">
+      <div class="welcome-video-wrapper">
+        <video
+            ref="welcomeVideo"
+            class="welcome-video"
+            :src="welcomeVideoSrc"
+            preload="auto"
+            muted
+            playsinline
+            @ended="onWelcomeVideoEnded"
+        ></video>
+        <div class="welcome-video-roller" ref="welcomeVideoRoller"></div>
+      </div>
+      <div class="origin-video-wrapper" ref="originVideoWrapper">
+        <video
+            ref="originVideo"
+            class="origin-video"
+            :src="originInfos[originCurrentIndex].videoUrl"
+            preload="auto"
+            playsinline
+            :muted="isMuted"
+            @ended="onOriginVideoEnded"
+        ></video>
+        <div class="video-sound" @click="toggleSound">
+          <div :class="isMuted ? 'video-sound-icon-off' : 'video-sound-icon-open'"></div>
+        </div>
+        <div class="video-accessories" ref="videoAccessories">
+          <div class="video-description" ref="videoDescription">
+            <p class="video-title">{{ originInfos[originCurrentIndex].title }}</p>
+            <p :style="{width: originInfos[originCurrentIndex].width}">{{ originInfos[originCurrentIndex].description[0] }}</p>
+          </div>
+          <div class="video-indicator">
+            <div
+                class="video-dot"
+                v-for="(item, index) in originInfos.length"
+                :key="index"
+                :class="{ active: originCurrentIndex === index }"
+            ></div>
+          </div>
+        </div>
+      </div>
+    </div>
     <div class="grology-water" style="margin-top: 500px">
       <div class="water-cloud-1"></div>
       <div class="water-bg-video">
@@ -399,6 +402,9 @@ const chiruDescriptionShown = ref(false); // chiru-description 是否已显示
 const pandaDescription = ref(null); // panda-description 的 ref
 const pandaDescriptionShown = ref(false); // panda-description 是否已显示
 
+// 声音控制
+const isMuted = ref(false); // 是否静音，默认为 false（声音开启）
+
 // 通用的详情介绍弹出/关闭管理器
 let currentDescriptionHandler = null; // 当前打开的详情介绍的事件处理器
 
@@ -432,7 +438,12 @@ const originInfos = ref([
   },
 ])
 
-// 动效相关函数已移除：currentDescription, switchVideo, toggleSound, onOriginVideoLoaded, onOriginVideoEnded
+// 动效相关函数已移除：currentDescription, switchVideo, onOriginVideoLoaded, onOriginVideoEnded
+
+// 切换声音
+const toggleSound = () => {
+  isMuted.value = !isMuted.value;
+};
 
 // 监听第一个视频的时间更新
 const onClimateVideo1TimeUpdate = () => {
@@ -2192,7 +2203,7 @@ onUnmounted(() => {
 .video-sound {
   width: 50px;
   height: 50px;
-  background-image: url("@/assets/images/geology/geology-sound-botton.png");
+  background-image: url("@/assets/images/menu/button_audio_bg_intial_4x.png");
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
@@ -2200,8 +2211,34 @@ onUnmounted(() => {
   bottom: 70px;
   left: 70px;
   cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  transition: all ease-in-out 0.2s;
+  z-index: 99;
+  &:hover{
+    background-image: url("@/assets/images/menu/button_audio_bg_hover_4x.png");
+  }
+  .video-sound-icon-open{
+    width: 28px;
+    height: 22px;
+    background-image: url("@/assets/images/menu/button_audio_on_4x.png");
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    cursor: pointer;
+  }
+  .video-sound-icon-off{
+    width: 28px;
+    height: 22px;
+    background-image: url("@/assets/images/menu/button_audio_off_4x.png");
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    cursor: pointer;
+  }
 }
-
 .explore-btn{
   width: 260px;
   height: 80px;
@@ -2267,7 +2304,7 @@ onUnmounted(() => {
   left: 70px;
   color: #fff;
   padding: 24px 16px;
-  background-color: rgba(97,97,07,0.15);
+  background-color: rgba(97,97,97,0.3);
   border-radius: 20px;
   height: auto;
   .video-description{

@@ -574,6 +574,7 @@ const collapseMenu = async (index) => {
         .second-title{
           display: none;
           opacity: 0;
+          cursor: pointer;
         }
       }
     }
