@@ -168,6 +168,35 @@
   import AnnotationDot from '@/components/AnnotationDot.vue';
   import { useAnimateNumber } from '@/utils/animateNumber';
 
+  /**
+ * 初始化所有描述文本渐显动画
+ */
+const container = ref(null)
+const initDescriptionOpacityAnimation = () => {
+  container.value.querySelectorAll('.description').forEach((desc) => {
+    gsap.fromTo(
+        desc,
+        { opacity: 0 },
+        {
+          opacity: 1,
+          duration: 1,
+          scrollTrigger: {
+            trigger: desc,
+            scroller: '.horizontal-scroll-container',
+            horizontal: true,
+            start: 'left-=300px center',
+            end: 'right right-=400px',
+            scrub: true,
+          },
+        }
+    );
+  });
+};
+
+onMounted(() => {
+  initDescriptionOpacityAnimation()
+})
+
   // 数字动画 refs
   const number1247Ref = ref(null)
 
