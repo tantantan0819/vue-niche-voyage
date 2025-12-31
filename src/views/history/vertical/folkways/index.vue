@@ -652,6 +652,8 @@ const toAnswerPage = () =>{
       background-color: #fff;
     }
     .folkways-container {
+        position: relative;
+        top: -800px;
         width: 100vw;
         height: 1500vh;
         overflow-x: hidden;

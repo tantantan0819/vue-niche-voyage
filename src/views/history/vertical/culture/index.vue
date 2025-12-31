@@ -503,7 +503,7 @@
       </div>
     </div>
     <div class="seventeen-screen screen">
-      <div class="img-bg"></div>
+      <!-- <div class="img-bg"></div> -->
     </div>
   </div>
 </template>

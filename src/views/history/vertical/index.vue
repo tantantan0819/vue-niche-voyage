@@ -2,10 +2,14 @@
   <div class="vertical-section" ref="container">
     <!-- 建筑篇 -->
     <architecture/>
-    <!-- 美术篇 -->
-    <culture/>
-    <!-- 戏剧篇 -->
-    <literaryDrama/>
+    <div class="culture-drama-container">
+      <!-- 美术篇 -->
+      <culture/>
+      <!-- 过渡图片(top属性可以精确计算一下) -->
+      <div class="img-bg"></div>
+       <!-- 戏剧篇 -->
+      <literaryDrama/>
+    </div>
     <!-- 民俗篇 -->
     <folkways/>
   </div>
@@ -81,5 +85,20 @@ onUnmounted(() => {
   backface-visibility: hidden; /* 减少闪烁 */
   -webkit-overflow-scrolling: touch; /* iOS 平滑滚动 */
   white-space: normal;
+}
+.culture-drama-container{
+  position: relative;
+   .img-bg{
+      width: 1920px;
+      height: 1372px;
+      background-image: url("@/assets/images/culture/art-element-3-5.png");
+      background-size: cover;
+      background-position: center center;
+      background-repeat: no-repeat;
+      position: absolute;
+      top: 17860px;
+      left: 0px;
+      z-index: 999;
+    }
 }
 </style>

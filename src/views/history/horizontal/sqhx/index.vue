@@ -317,6 +317,7 @@ onUnmounted(() => {
             font-size: 90px;
             color: #534833;
             writing-mode: vertical-lr;
+            height: 500px;
         }
         .chip-img-1{
             position: absolute;

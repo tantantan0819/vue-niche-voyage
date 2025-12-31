@@ -323,7 +323,7 @@ onUnmounted(() => {
         margin-left: -1px;
         display: flex;
         width: 16331px; 
-        /* width: 18251px;  */
+        width: 18251px; 
         height: 1080px;
         overflow-y: hidden;
         overflow-x: auto; /* 关键：允许水平滚动 */
