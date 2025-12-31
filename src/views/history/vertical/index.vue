@@ -79,7 +79,7 @@ onUnmounted(() => {
   overflow-y: auto;
   overflow-x: hidden;
   position: absolute;
-  right: -960px;
+  right: 0;
   will-change: scroll-position;
   transform: translateZ(0); /* 启用硬件加速 */
   backface-visibility: hidden; /* 减少闪烁 */

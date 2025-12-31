@@ -862,9 +862,9 @@ const toAnswerPage = () =>{
             .picture-img{
                 width: 360px;
             }
-             .illustration-title-font{
+            .illustration-title-font{
                 position: absolute;
-                top: 400px;
+                top: 430px;
 
             }
             .dot-popover{

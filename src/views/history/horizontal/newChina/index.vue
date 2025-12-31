@@ -1,18 +1,25 @@
 <template>
     <div class="new-china-container">
         <!-- 第一屏 -->
-        <div class="snap-panel panel-01" ></div>
+        <div class="snap-panel panel-01" >
+            <div class="background-cloud-img" data-parallax="true"
+            data-parallax-axis="x"
+            data-parallax-from="600"
+            data-parallax-to="-300"
+            data-parallax-speed="1.3"
+            data-parallax-center-lock="true"></div>
+        </div>
         <!-- 第二屏 -->
         <div 
             class="snap-panel panel-02"
             id="page-new-chapter"
             data-parallax="true"
             data-parallax-axis="x"
-            data-parallax-from="800"
-            data-parallax-to="-800"
+            data-parallax-from="600"
+            data-parallax-to="-600"
             data-parallax-speed="1.3"
             data-parallax-center-lock="true">
-            <div class="background-cloud-img"></div>
+            <!-- <div class="background-cloud-img"></div> -->
             <div class="national-flag-img" ></div>
             <div class="sticker-container">
                 <div class="sticker-img"></div>
@@ -207,29 +214,11 @@
                 如今，青藏高原盛开民族团结进步之花。各民族像石榴籽一样紧紧抱在一起，携手共进、同舟共济，沿着中国特色社会主义道路，共同迈向推进强国建设，民族复兴伟业的美好明天!
             </div>
         </div>
-<!--        &lt;!&ndash; 第十屏 &ndash;&gt;-->
-<!--         <div class="snap-panel panel-10">-->
-<!--            <div class="background-cloud-img"></div>-->
-<!--            <div class="text-container"-->
-<!--                data-parallax="true"-->
-<!--                data-parallax-axis="x"-->
-<!--                data-parallax-from="200"-->
-<!--                data-parallax-to="-200"-->
-<!--                data-parallax-speed="1.3"-->
-<!--                data-parallax-center-lock="true">-->
-<!--                <p>走过云影掠动的群峰，翻罢岁月雕琢的时光。</p>-->
-<!--                <p>现在</p>-->
-<!--                <p>请暂时从宏阔的自然与历史中抽身，</p>-->
-<!--            </div>-->
-<!--         </div>-->
     </div>
 </template>
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue'
 import { gsap } from 'gsap';
-import { pxToVw, pxToVh } from '@/utils/viewportUtils';
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
-
 import DotPopover from '@/components/dotPopover.vue';
 import { useAnimateNumber } from '@/utils/animateNumber';
 
@@ -334,26 +323,38 @@ onUnmounted(() => {
         width: 100vw;
         height: 100vh;
     }
+    .panel-01{
+      .background-cloud-img{
+            position: absolute;
+            top: 0px;
+            right: -2700px;
+            width: 3153px;
+            height: 1080px;
+            background: url('@/assets/images/newChina/1949-element-1.png') no-repeat center center / cover;
+        }}
     .panel-02{
-        .background-cloud-img{
+        transform: translateZ(0);
+        will-change: transform;
+        /* .background-cloud-img{
             position: absolute;
             top: 0px;
             left: -900px;
             width: 3153px;
             height: 1080px;
             background: url('@/assets/images/newChina/1949-element-1.png') no-repeat center center / cover;
-        }
+        } */
         .national-flag-img{
             position: absolute;
             top: 0;
+            left: 300px;
             width: 1448px;
             height: 100vh;
             background: url('@/assets/images/newChina/1949-element-2.png') no-repeat center center / cover;
         }
         .sticker-container{
             position: absolute;
-            top: 50px;
-            right: 60px;
+            top: 30px;
+            right: -240px;
             .sticker-img{
                 position: absolute;
                 right: 100px;
@@ -372,7 +373,7 @@ onUnmounted(() => {
                 width: 500px;
                 font-size: 219px;
                 line-height: 229px;
-                margin-left: 100px;
+                margin-left: 150px;
                 color: #b11a22;
                 font-family: 'EarlySummerSerif-Bold' !important;
             }
@@ -380,6 +381,8 @@ onUnmounted(() => {
         
     }
     .panel-03{
+        transform: translateZ(0);
+        will-change: transform;
         .text-title{
             position: absolute;
             top: 50px;

@@ -939,7 +939,7 @@ onMounted(() => {
   .portrait-container{
     position: absolute;
     right: 100px;
-    bottom: 400px;
+    bottom: 200px;
     .portrait-img{
       width: 900px;
     }
