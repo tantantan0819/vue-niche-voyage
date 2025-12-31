@@ -205,6 +205,7 @@
   background-repeat: no-repeat;
   position: relative;
   display: flex;
+  margin-left: -3px;
   .first-screen{
   //background: red;
     .cloud-1{

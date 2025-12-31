@@ -27,6 +27,9 @@ html, body {
   -moz-osx-font-smoothing: grayscale;
   color: #333;
   background-color: #f5f5f5;
+  /* 优化滚动性能 */
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: auto; /* 由 GSAP 控制滚动，不使用 CSS smooth */
 }
 
 #app {
