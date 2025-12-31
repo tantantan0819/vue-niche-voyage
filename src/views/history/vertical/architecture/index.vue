@@ -1,5 +1,5 @@
 <template>
-  <div class="architecture">
+  <div class="architecture" id="page-architecture-section">
     <div class="first-screen screen">
       <div class="text-wrapper"
         data-parallax="true"

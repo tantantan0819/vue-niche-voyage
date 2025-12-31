@@ -13,15 +13,6 @@ export default [
         },
         children: [
             {
-                path: 'test',
-                name: 'test',
-                component: () => import('@/views/test/index.vue'),
-                meta: {
-                    title: 'test',
-                    icon: 'test',
-                },
-            },
-            {
                 path: 'hero',
                 name: 'hero',
                 component: () => import('@/views/history/hero/index.vue'),
@@ -72,15 +63,6 @@ export default [
                 component: () => import('@/views/answer/unopen.vue'),
                 meta: {
                     title: 'unopen',
-                    icon: 'cog',
-                },
-            },
-            {
-                path: 'art',
-                name: 'art',
-                component: () => import('@/views/art/index.vue'),
-                meta: {
-                    title: 'answer',
                     icon: 'cog',
                 },
             },

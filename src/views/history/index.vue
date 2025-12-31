@@ -1,7 +1,7 @@
 <template>
   <div class="history">
     <!-- 加载进度条 -->
-    <splash-loader :progress="loadingProgress" :show="showSplashLoader"></splash-loader>
+<!--    <splash-loader :progress="loadingProgress" :show="showSplashLoader"></splash-loader>-->
     <!-- 侧边导航栏 -->
     <side-menu></side-menu>
     <!-- 头部：加载进度条只显示头部资源，避免用户等待时间过长 -->
@@ -13,12 +13,16 @@
 import { onMounted, onUnmounted, nextTick, ref } from 'vue'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { ScrollToPlugin } from 'gsap/ScrollToPlugin'
 import { pxToVw, pxToVh } from '@/utils/viewportUtils'
 import { preloadHeroResources } from '@/utils/preloadHeroResources'
 import hero from './hero/index.vue'
 import horizontal from './horizontal/index.vue'
 import SideMenu from '@/components/SiderMenu.vue'
 import SplashLoader from '@/components/SplashLoader.vue'
+
+// 注册 ScrollToPlugin
+gsap.registerPlugin(ScrollToPlugin)
 
 // 注册 ScrollTrigger 插件
 gsap.registerPlugin(ScrollTrigger)
@@ -49,6 +53,91 @@ let isWaitingForVerticalScrollToTop = false
 // 加载进度相关
 const loadingProgress = ref(0)
 const showSplashLoader = ref(true)
+
+/**
+ * 临时解除 horizontal 的 pin 状态，用于 scrollIntoView 跳转
+ * @returns {Function} 返回恢复 pin 状态的函数
+ */
+const temporarilyUnpinHorizontal = () => {
+  const horizontalContainer = document.querySelector('.horizontal-scroll-container')
+  if (!horizontalContainer || !horizontalScrollTrigger) {
+    return () => {} // 返回空函数
+  }
+  
+  const wasPinned = horizontalContainer.hasAttribute('data-pinned')
+  if (!wasPinned) {
+    return () => {} // 如果本来就没有 pin，返回空函数
+  }
+  
+  // 临时禁用 ScrollTrigger 的 pin
+  horizontalScrollTrigger.disable()
+  
+  // 返回恢复函数
+  return () => {
+    // 重新启用 ScrollTrigger
+    horizontalScrollTrigger.enable()
+    // 刷新 ScrollTrigger 以确保状态正确
+    ScrollTrigger.refresh()
+  }
+}
+
+/**
+ * 获取 horizontal ScrollTrigger 实例
+ * @returns {Object|null} ScrollTrigger 实例
+ */
+const getHorizontalScrollTrigger = () => {
+  return horizontalScrollTrigger
+}
+
+/**
+ * 滚动到指定的横向位置（通过更新页面滚动位置来触发）
+ * @param {number} targetScrollLeft - 目标横向滚动位置
+ */
+const scrollToHorizontalPosition = async (targetScrollLeft) => {
+  if (!horizontalScrollTrigger) return
+  
+  const horizontalContainer = document.querySelector('.horizontal-scroll-container')
+  if (!horizontalContainer) return
+  
+  const maxScroll = horizontalContainer.scrollWidth - horizontalContainer.clientWidth
+  const normalizedScrollLeft = Math.max(0, Math.min(targetScrollLeft, maxScroll))
+  
+  // 计算对应的页面滚动进度（0 到 1）
+  const progress = maxScroll > 0 ? normalizedScrollLeft / maxScroll : 0
+  
+  // 获取 ScrollTrigger 的滚动距离
+  const scrollDistance = horizontalScrollTrigger.end - horizontalScrollTrigger.start
+  const targetPageScroll = horizontalScrollTrigger.start + (progress * scrollDistance)
+  
+  // 计算当前页面滚动位置
+  const currentScroll = window.pageYOffset || document.documentElement.scrollTop
+  const scrollDiff = Math.abs(targetPageScroll - currentScroll)
+  
+  // 根据滚动距离动态计算动画时长（最大2秒，最小0.3秒）
+  const duration = Math.min(Math.max(scrollDiff / 500, 0.3), 2)
+  
+  // 使用 GSAP 动画来滚动，更流畅
+  return new Promise((resolve) => {
+    gsap.to(window, {
+      scrollTo: {
+        y: targetPageScroll,
+        autoKill: false
+      },
+      duration: duration,
+      ease: 'power2.inOut',
+      onComplete: resolve
+    })
+  })
+}
+
+// 将函数暴露到全局，供 SiderMenu 使用
+if (typeof window !== 'undefined') {
+  window.__historyScrollControl = {
+    temporarilyUnpinHorizontal,
+    getHorizontalScrollTrigger,
+    scrollToHorizontalPosition
+  }
+}
 
 /**
  * 禁止页面滚动

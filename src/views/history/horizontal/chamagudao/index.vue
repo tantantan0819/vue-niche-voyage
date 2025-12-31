@@ -12,7 +12,7 @@
       ></div>
       <div class="tea"></div>
     </div>
-    <div class="second-screen screen">
+    <div class="second-screen screen" id="page-yidaowanli">
       <div class="light-bg"></div>
       <div
           class="title"

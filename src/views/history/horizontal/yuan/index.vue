@@ -1,7 +1,8 @@
 <template>
     <div class="yuan" ref="container">
       <div class="first-screen">
-        <div 
+        <div
+            id="page-unification"
           class="cloud-1"
           data-parallax="true"
           data-parallax-axis="x"
@@ -10,7 +11,7 @@
           data-parallax-speed="2"
           data-parallax-center-lock="true"
         ></div>
-        <div 
+        <div
           class="cloud-2"
           data-parallax="true"
           data-parallax-axis="x"
@@ -19,7 +20,7 @@
           data-parallax-speed="2"
           data-parallax-center-lock="true"
         ></div>
-        <div 
+        <div
           class="title"
           data-parallax="true"
           data-parallax-axis="x"

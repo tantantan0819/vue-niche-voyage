@@ -2,7 +2,7 @@
   <div class="xiangxiong">
     <div class="xiangxiong-bg"></div>
     <div class="first-screen">
-      <p 
+      <p
           class="first-screen-title"
           data-parallax="true"
           data-parallax-axis="x"
@@ -10,7 +10,8 @@
           data-parallax-to="-800"
           data-parallax-speed="1.3"
           data-parallax-center-lock="true">约公元前<span ref="bcNumberRef">{{bcNumber}}</span>世纪-公元<span>{{adNumber}}</span>世纪</p>
-      <div 
+      <div
+          id="page-xiangxiong-civilization"
           class="first-screen-stone"
           data-parallax="true"
           data-parallax-axis="x"

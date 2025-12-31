@@ -9,6 +9,7 @@
            data-parallax-to="-300"
            data-parallax-speed="1.1"
            data-parallax-center-lock="true"
+           id="page-drama-section"
     >
       <div class="second-screen-left">
         <div class="mountain-img-1" ></div>

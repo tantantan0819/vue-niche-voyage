@@ -2,6 +2,7 @@
   <div class="jindai" ref="jindaiRef">
     <div class="first-screen screen">
       <div
+          id="page-jindai"
           class="cloud-1"
           data-parallax="true"
           data-parallax-axis="x"

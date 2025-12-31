@@ -1,10 +1,11 @@
 <template>
     <div class="new-china-container">
         <!-- 第一屏 -->
-        <div class="snap-panel panel-01"></div>
+        <div class="snap-panel panel-01" ></div>
         <!-- 第二屏 -->
         <div 
             class="snap-panel panel-02"
+            id="page-new-chapter"
             data-parallax="true"
             data-parallax-axis="x"
             data-parallax-from="800"

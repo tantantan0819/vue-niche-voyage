@@ -1,5 +1,5 @@
 <template>
-  <div class="culture">
+  <div class="culture" id="page-art-section">
     <div class="first-screen screen">
       <div class="text-wrapper">
         <div class="text-1"

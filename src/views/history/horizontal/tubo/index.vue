@@ -6,12 +6,13 @@
         <div class="mask-red-cloud"></div>
         <div class="red-cloud-1"></div>
         <div class="red-cloud-2"></div>
-        <div class="red-cloud-3"></div>
+
+        <div class="red-cloud-3"  id="page-tubo-dynasty"></div>
       </div>
       <!-- <div class="moon" data-speed="1.2"></div>
       <div class="first-img-1"></div>
       <div class="first-img-2"></div> -->
-      <p 
+      <p
         class="description tubo-ad"
         data-parallax="true"
         data-parallax-axis="x"
