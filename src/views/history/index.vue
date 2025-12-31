@@ -3,9 +3,9 @@
     <!-- 加载进度条 -->
     <splash-loader :progress="loadingProgress" :show="showSplashLoader"></splash-loader>
     <!-- 侧边导航栏 -->
-    <side-menu></side-menu>
+    <side-menu :show="showSideMenu"></side-menu>
     <!-- 头部：加载进度条只显示头部资源，避免用户等待时间过长 -->
-    <hero></hero>
+    <hero @third-video-ended="handleThirdVideoEnded"></hero>
     <horizontal></horizontal>
   </div>
 </template>
@@ -53,6 +53,14 @@ let isWaitingForVerticalScrollToTop = false
 // 加载进度相关
 const loadingProgress = ref(0)
 const showSplashLoader = ref(true)
+
+// 侧边菜单显示控制
+const showSideMenu = ref(false)
+
+// 处理第三个视频播放完毕事件
+const handleThirdVideoEnded = () => {
+  showSideMenu.value = true
+}
 
 /**
  * 临时解除 horizontal 的 pin 状态，用于 scrollIntoView 跳转

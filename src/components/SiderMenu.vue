@@ -1,5 +1,5 @@
 <template>
-  <div :class="['menu',{'menuActive': isExpandMenu}]">
+  <div :class="['menu',{'menuActive': isExpandMenu}]" v-show="show">
     <div class="menu-icon" @click="expandMenu"></div>
     <div :class="['menu-wrapper',{'menu-wrapper-active': isExpandMenu}]">
       <div 
@@ -38,6 +38,14 @@ import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 
 // 注册 ScrollToPlugin
 gsap.registerPlugin(ScrollToPlugin);
+
+// 定义 props
+const props = defineProps({
+  show: {
+    type: Boolean,
+    default: true
+  }
+})
 
 const isExpandMenu = ref(false)
 

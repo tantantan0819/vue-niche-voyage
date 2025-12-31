@@ -337,6 +337,9 @@ import geologyVideo3 from '@/assets/images/geology/geology-video-3.mp4'
 
 const router = useRouter()
 
+// 定义 emits
+const emit = defineEmits(['thirdVideoEnded'])
+
 gsap.registerPlugin(ScrollTrigger);
 
 const linkTo = path =>{
@@ -393,6 +396,7 @@ let gooseInfoScrollTrigger = null; // 大雁 的 ScrollTrigger 实例
 let climateVideo1Completed = false; // 第一个视频是否播放完成
 let scrollDisabled = false; // 是否禁用滚动
 let scrollDisabledHandler = null; // 滚动禁用事件处理器
+let lightScrollLockHandler = null; // 轻量级滚动锁定处理器（不修改body样式）
 const gooseDescription = ref(null); // goose-description 的 ref
 const gooseDescriptionShown = ref(false); // goose-description 是否已显示
 const pantheraDescription = ref(null); // panthera-description 的 ref
@@ -564,6 +568,66 @@ const disableScrollLock = () => {
   }
 };
 
+// 启用轻量级滚动锁定（不修改body样式，只阻止滚动事件，用于ScrollTrigger pin区域）
+// scrollTriggerInstance: ScrollTrigger 实例，用于获取锁定位置
+const enableLightScrollLock = (scrollTriggerInstance = null) => {
+  if (lightScrollLockHandler) return;
+  
+  // 创建滚动事件处理器
+  lightScrollLockHandler = (e) => {
+    // 阻止所有滚动行为
+    e.preventDefault();
+    e.stopPropagation();
+    
+    // 如果有 ScrollTrigger 实例，使用它的 start 位置；否则使用当前滚动位置
+    let targetScrollY;
+    if (scrollTriggerInstance && scrollTriggerInstance.start) {
+      targetScrollY = scrollTriggerInstance.start;
+    } else {
+      targetScrollY = window.scrollY || window.pageYOffset;
+    }
+    
+    // 保持滚动位置不变
+    window.scrollTo(0, targetScrollY);
+    
+    return false;
+  };
+  
+  // 保存 ScrollTrigger 实例到处理器
+  lightScrollLockHandler._scrollTrigger = scrollTriggerInstance;
+  
+  // 监听滚动事件（使用 passive: false，以便阻止默认行为）
+  window.addEventListener('wheel', lightScrollLockHandler, { passive: false });
+  window.addEventListener('touchmove', lightScrollLockHandler, { passive: false });
+  window.addEventListener('scroll', lightScrollLockHandler, { passive: false });
+  
+  // 阻止键盘滚动
+  const keyHandler = (e) => {
+    if (['ArrowUp', 'ArrowDown', 'PageUp', 'PageDown', 'Home', 'End', ' '].includes(e.key)) {
+      e.preventDefault();
+      return false;
+    }
+  };
+  window.addEventListener('keydown', keyHandler);
+  lightScrollLockHandler._keyHandler = keyHandler;
+};
+
+// 禁用轻量级滚动锁定
+const disableLightScrollLock = () => {
+  if (!lightScrollLockHandler) return;
+  
+  // 移除事件监听
+  window.removeEventListener('wheel', lightScrollLockHandler);
+  window.removeEventListener('touchmove', lightScrollLockHandler);
+  window.removeEventListener('scroll', lightScrollLockHandler);
+  
+  if (lightScrollLockHandler._keyHandler) {
+    window.removeEventListener('keydown', lightScrollLockHandler._keyHandler);
+  }
+  
+  lightScrollLockHandler = null;
+};
+
 // 初始化 water-bg-video 的滚动固定
 const initWaterVideoScroll = async () => {
   await nextTick();
@@ -641,47 +705,47 @@ const initWaterVideoScroll = async () => {
         });
       }
     },
-    onEnter: () => {
-      // 当进入固定区域时，禁用滚动
-      enableScrollLock();
+    onEnter: (self) => {
+      // 当进入固定区域时，启用轻量级滚动锁定并开始播放视频
+      enableLightScrollLock(self);
+      if (climateVideo1.value && !climateVideo1Completed) {
+        // 确保从开头开始播放
+        if (climateVideo1.value.currentTime > 0) {
+          climateVideo1.value.currentTime = 0;
+        }
+        climateVideo1.value.play().catch(err => {
+          console.warn('Climate video 1 play failed:', err);
+        });
+      }
     },
     onUpdate: (self) => {
-      // 如果视频未播放完成，完全禁止滚动
+      // 如果视频未播放完成，保持滚动锁定
       if (!climateVideo1Completed && climateVideo1.value && climateVideo1Duration > 0) {
         // 如果视频暂停了，尝试播放
-        if (self.progress > 0 && climateVideo1.value.paused) {
-          // 确保从正确的位置开始播放（如果 currentTime 已经到达或超过 duration，重置到开头）
-          if (climateVideo1.value.currentTime >= climateVideo1Duration - 0.1) {
-            climateVideo1.value.currentTime = 0;
-          }
+        if (climateVideo1.value.paused && self.progress > 0) {
           climateVideo1.value.play().catch(err => {
             console.warn('Climate video 1 play failed:', err);
           });
         }
-        // 如果用户尝试滚动，立即阻止并恢复到固定位置
-        if (self.progress > 0) {
-          requestAnimationFrame(() => {
-            window.scrollTo({
-              top: self.start,
-              behavior: 'auto'
-            });
-          });
+        // 更新滚动锁定处理器的 ScrollTrigger 实例引用
+        if (lightScrollLockHandler) {
+          lightScrollLockHandler._scrollTrigger = self;
         }
       } else if (climateVideo1Completed) {
         // 视频播放完成后，允许滚动
-        disableScrollLock();
+        disableLightScrollLock();
       }
     },
     onLeave: () => {
-      // 离开固定区域时，暂停视频并恢复滚动
-      disableScrollLock();
+      // 离开固定区域时，禁用滚动锁定并暂停视频
+      disableLightScrollLock();
       if (climateVideo1.value) {
         climateVideo1.value.pause();
       }
     },
-    onEnterBack: () => {
-      // 向上滚动回到固定区域时，恢复播放并禁用滚动
-      enableScrollLock();
+    onEnterBack: (self) => {
+      // 向上滚动回到固定区域时，启用滚动锁定并恢复播放
+      enableLightScrollLock(self);
       if (climateVideo1.value && !climateVideo1Completed) {
         // 如果视频已经播放完成或接近完成，重置到开头
         if (climateVideo1.value.currentTime >= climateVideo1Duration - 0.1) {
@@ -1091,35 +1155,34 @@ const onOriginVideoEnded = () => {
   
   // 根据当前视频索引处理不同的逻辑
   if (originCurrentIndex.value === 0) {
-    // 如果是第一个视频，添加滚动监听来显示 video-accessories
+    // 如果是第一个视频，自动显示 video-accessories 和 video-description
     // 保持滚动锁定，直到显示 video-accessories
-    initShowVideoAccessoriesScroll();
+    // 确保处理标志已重置，允许显示 video-accessories
+    isProcessingScroll.value = false;
+    showVideoAccessories();
   } else if (originCurrentIndex.value === 1) {
-    // 如果是第二个视频，停留在最后一帧，确保 video-description 隐藏
+    // 如果是第二个视频，停留在最后一帧，自动显示 video-description
     secondVideoCompleted.value = true;
     
-    // 确保 video-description 隐藏
-    if (videoDescription.value) {
-      videoDescription.value.style.display = 'none';
-      gsap.set(videoDescription.value, { opacity: 0 });
-    }
-    
-    // 保持滚动锁定，防止后面的内容显示，并添加显示 video-description 的滚动监听
-    // 注意：不解除滚动锁定，直到第三个 video-description 展示完成后才解除
-    initShowVideoDescriptionAfterSecondVideoScroll();
+    // 确保处理标志已重置，允许显示 video-description
+    isProcessingScroll.value = false;
+    // 自动显示 video-description
+    setTimeout(() => {
+      showVideoDescriptionAfterSecondVideo();
+    }, 300);
   } else if (originCurrentIndex.value === 2) {
-    // 如果是第三个视频，停留在最后一帧，确保 video-description 隐藏
+    // 如果是第三个视频，停留在最后一帧，自动显示 video-description
     thirdVideoCompleted.value = true;
     
-    // 确保 video-description 隐藏
-    if (videoDescription.value) {
-      videoDescription.value.style.display = 'none';
-      gsap.set(videoDescription.value, { opacity: 0 });
-    }
+    // 确保处理标志已重置，允许显示 video-description
+    isProcessingScroll.value = false;
+    // 自动显示 video-description
+    setTimeout(() => {
+      showVideoDescriptionAfterThirdVideo();
+    }, 300);
     
-    // 保持滚动锁定，防止后面的内容显示，并添加显示 video-description 的滚动监听
-    // 注意：不解除滚动锁定，直到第三个 video-description 展示完成后才解除
-    initShowVideoDescriptionAfterThirdVideoScroll();
+    // 发出事件，通知父组件第三个视频播放完毕
+    emit('thirdVideoEnded');
   } else {
     // 其他视频播放完成后，解除滚动禁用
     disableScrollLock();
@@ -1188,18 +1251,24 @@ const showVideoAccessories = () => {
       duration: 0.5,
       ease: 'power2.out',
       onComplete: () => {
-        // 动画完成后添加下一个步骤的监听
+        // 动画完成后自动显示第一个 description
         // 注意：保持滚动锁定，直到所有 originInfos 步骤完成
+        // 重置处理标志，允许显示第一个 description
         isProcessingScroll.value = false;
-        // 添加显示第一个 description 的滚动监听
-        initShowFirstDescriptionScroll();
+        // 延迟一小段时间后自动显示第一个 description
+        setTimeout(() => {
+          showFirstDescription();
+        }, 300);
       }
     });
   } else {
-    // 如果没有 video-accessories 元素，直接完成
+    // 如果没有 video-accessories 元素，直接显示第一个 description
     // 注意：保持滚动锁定，直到所有 originInfos 步骤完成
+    // 重置处理标志，允许显示第一个 description
     isProcessingScroll.value = false;
-    initShowFirstDescriptionScroll();
+    setTimeout(() => {
+      showFirstDescription();
+    }, 300);
   }
 };
 
@@ -1916,8 +1985,8 @@ const climateVideoEnded = () => {
     }
   }
   
-  // 恢复滚动
-  disableScrollLock();
+  // 恢复滚动（禁用轻量级滚动锁定）
+  disableLightScrollLock();
   // 显示 climate-wrapper
   gsap.to('.climate-wrapper', { 
     opacity: 1, 
@@ -2045,6 +2114,8 @@ onMounted(() => {
 onUnmounted(() => {
   // 恢复滚动锁定
   disableScrollLock();
+  // 禁用轻量级滚动锁定
+  disableLightScrollLock();
   
   // 清理 welcomeVideo 滚动事件监听
   if (welcomeVideoScrollHandler) {
@@ -2216,7 +2287,8 @@ onUnmounted(() => {
   align-items: center;
   border-radius: 50%;
   transition: all ease-in-out 0.2s;
-  z-index: 99;
+  z-index: 1000;
+  pointer-events: auto;
   &:hover{
     background-image: url("@/assets/images/menu/button_audio_bg_hover_4x.png");
   }
