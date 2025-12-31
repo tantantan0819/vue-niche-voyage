@@ -13,15 +13,6 @@ export default [
         },
         children: [
             {
-                path: 'hero',
-                name: 'hero',
-                component: () => import('@/views/history/hero/index.vue'),
-                meta: {
-                    title: '开屏',
-                    icon: 'cog',
-                },
-            },
-            {
                 path: 'resource',
                 name: 'resource',
                 component: () => import('@/views/resource/index.vue'),

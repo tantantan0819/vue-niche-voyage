@@ -5,7 +5,7 @@ const modules = import.meta.glob('./**/*.js', { eager: true });
 export const constantRoutes = [
   {
     path: '/',
-    redirect: '/home',
+    redirect: '/voyage/history',
   },
   {
     path: '/home',

@@ -1,7 +1,7 @@
 <template>
   <div class="history">
     <!-- 加载进度条 -->
-<!--    <splash-loader :progress="loadingProgress" :show="showSplashLoader"></splash-loader>-->
+    <splash-loader :progress="loadingProgress" :show="showSplashLoader"></splash-loader>
     <!-- 侧边导航栏 -->
     <side-menu></side-menu>
     <!-- 头部：加载进度条只显示头部资源，避免用户等待时间过长 -->

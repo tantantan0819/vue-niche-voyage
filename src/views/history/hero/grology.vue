@@ -1,60 +1,60 @@
 <template>
   <div class="grology">
-<!--    <div class="grology-origin" ref="originContainer">-->
-<!--      <div class="welcome-video-wrapper">-->
-<!--        <video-->
-<!--            ref="welcomeVideo"-->
-<!--            class="welcome-video"-->
-<!--            :src="welcomeVideoSrc"-->
-<!--            preload="auto"-->
-<!--            muted-->
-<!--            playsinline-->
-<!--            @ended="onWelcomeVideoEnded"-->
-<!--        ></video>-->
-<!--        <div class="welcome-video-roller" ref="welcomeVideoRoller"></div>-->
-<!--      </div>-->
-<!--      <div class="origin-video-wrapper" ref="originVideoWrapper">-->
-<!--        <video-->
-<!--            ref="originVideo"-->
-<!--            class="origin-video"-->
-<!--            :src="originInfos[originCurrentIndex].videoUrl"-->
-<!--            preload="auto"-->
-<!--            playsinline-->
-<!--            :muted="isMuted"-->
-<!--            @ended="onOriginVideoEnded"-->
-<!--        ></video>-->
-<!--        <div class="video-sound" @click="toggleSound">-->
-<!--          <div :class="isMuted ? 'video-sound-icon-off' : 'video-sound-icon-open'"></div>-->
-<!--        </div>-->
-<!--        <div class="video-accessories" ref="videoAccessories">-->
-<!--          <div class="video-description" ref="videoDescription">-->
-<!--            <p class="video-title">{{ originInfos[originCurrentIndex].title }}</p>-->
-<!--            <p :style="{width: originInfos[originCurrentIndex].width}">{{ originInfos[originCurrentIndex].description[0] }}</p>-->
-<!--          </div>-->
-<!--          <div class="video-indicator">-->
-<!--            <div-->
-<!--                class="video-dot"-->
-<!--                v-for="(item, index) in originInfos.length"-->
-<!--                :key="index"-->
-<!--                :class="{ active: originCurrentIndex === index }"-->
-<!--            ></div>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--      </div>-->
-<!--    </div>-->
+    <div class="grology-origin" ref="originContainer">
+      <div class="welcome-video-wrapper">
+        <video
+            ref="welcomeVideo"
+            class="welcome-video"
+            :src="welcomeVideoSrc"
+            preload="auto"
+            muted
+            playsinline
+            @ended="onWelcomeVideoEnded"
+        ></video>
+        <div class="welcome-video-roller" ref="welcomeVideoRoller"></div>
+      </div>
+      <div class="origin-video-wrapper" ref="originVideoWrapper">
+        <video
+            ref="originVideo"
+            class="origin-video"
+            :src="originInfos[originCurrentIndex].videoUrl"
+            preload="auto"
+            playsinline
+            :muted="isMuted"
+            @ended="onOriginVideoEnded"
+        ></video>
+        <div class="video-sound" @click="toggleSound">
+          <div :class="isMuted ? 'video-sound-icon-off' : 'video-sound-icon-open'"></div>
+        </div>
+        <div class="video-accessories" ref="videoAccessories">
+          <div class="video-description" ref="videoDescription">
+            <p class="video-title">{{ originInfos[originCurrentIndex].title }}</p>
+            <p :style="{width: originInfos[originCurrentIndex].width}">{{ originInfos[originCurrentIndex].description[0] }}</p>
+          </div>
+          <div class="video-indicator">
+            <div
+                class="video-dot"
+                v-for="(item, index) in originInfos.length"
+                :key="index"
+                :class="{ active: originCurrentIndex === index }"
+            ></div>
+          </div>
+        </div>
+      </div>
+    </div>
     <div class="grology-water" style="margin-top: 500px">
       <div class="water-cloud-1"></div>
       <div class="water-bg-video">
-<!--        <video-->
-<!--            ref="climateVideo1"-->
-<!--            src="@/assets/images/geology/geology-to-water-climate-video.mp4"-->
-<!--            preload="auto"-->
-<!--            muted-->
-<!--            playsinline-->
-<!--            @ended="climateVideoEnded"-->
-<!--            @timeupdate="onClimateVideo1TimeUpdate"-->
-<!--            @loadeddata="onClimateVideo1LoadedData"-->
-<!--        ></video>-->
+        <video
+            ref="climateVideo1"
+            src="@/assets/images/geology/geology-to-water-climate-video.mp4"
+            preload="auto"
+            muted
+            playsinline
+            @ended="climateVideoEnded"
+            @timeupdate="onClimateVideo1TimeUpdate"
+            @loadeddata="onClimateVideo1LoadedData"
+        ></video>
         <div class="climate-wrapper">
           <div class="climate-title" id="page-mountains-to-rainforests">从雪山到雨林</div>
           <div class="climate-description">
