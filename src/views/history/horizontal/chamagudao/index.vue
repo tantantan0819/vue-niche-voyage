@@ -626,7 +626,7 @@ onUnmounted(() => {
     .popularization-description{
       position: absolute;
       bottom: 40px;
-      left: 1090px;
+      left: 1130px;
       .popularization-wrapper{
         position: relative;
         top: -60px;
@@ -641,6 +641,7 @@ onUnmounted(() => {
       position: absolute;
       bottom: 220px;
       left: 130px;
+      white-space: nowrap;
     }
     .house{
       width: 1404px;

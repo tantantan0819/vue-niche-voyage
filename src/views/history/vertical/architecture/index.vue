@@ -699,6 +699,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
       font-size: 33px;
       line-height: 54px;
       color: #534833;
+      white-space: nowrap;
     }
   }
   .six-screen{
@@ -894,6 +895,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
       position: absolute;
       top: 324px;
       left: 272px;
+      white-space: nowrap;
     }
     p{
       font-size: 160px;
@@ -902,6 +904,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
       position: absolute;
       bottom: 344px;
       left: 730px;
+      white-space: nowrap;
     }
     .third-screen-bg-5{
       width: 641px;

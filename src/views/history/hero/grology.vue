@@ -573,9 +573,34 @@ const disableScrollLock = () => {
 const enableLightScrollLock = (scrollTriggerInstance = null) => {
   if (lightScrollLockHandler) return;
   
+  // 跟踪触摸起始位置，用于区分点击和滚动
+  let touchStartY = null;
+  let touchStartX = null;
+  const CLICK_THRESHOLD = 10; // 移动距离小于10px认为是点击
+  
+  // 触摸开始事件处理器
+  const touchStartHandler = (e) => {
+    if (e.touches && e.touches.length === 1) {
+      touchStartY = e.touches[0].clientY;
+      touchStartX = e.touches[0].clientX;
+    }
+  };
+  
   // 创建滚动事件处理器
   lightScrollLockHandler = (e) => {
-    // 阻止所有滚动行为
+    // 对于 touchmove 事件，检查是否是真正的滚动（移动距离大于阈值）
+    if (e.type === 'touchmove' && touchStartY !== null && touchStartX !== null) {
+      if (e.touches && e.touches.length === 1) {
+        const deltaY = Math.abs(e.touches[0].clientY - touchStartY);
+        const deltaX = Math.abs(e.touches[0].clientX - touchStartX);
+        // 如果移动距离很小，可能是点击，不阻止
+        if (deltaY < CLICK_THRESHOLD && deltaX < CLICK_THRESHOLD) {
+          return;
+        }
+      }
+    }
+    
+    // 阻止滚动行为
     e.preventDefault();
     e.stopPropagation();
     
@@ -593,8 +618,20 @@ const enableLightScrollLock = (scrollTriggerInstance = null) => {
     return false;
   };
   
+  // 触摸结束事件处理器
+  const touchEndHandler = () => {
+    touchStartY = null;
+    touchStartX = null;
+  };
+  
   // 保存 ScrollTrigger 实例到处理器
   lightScrollLockHandler._scrollTrigger = scrollTriggerInstance;
+  lightScrollLockHandler._touchStartHandler = touchStartHandler;
+  lightScrollLockHandler._touchEndHandler = touchEndHandler;
+  
+  // 监听触摸开始和结束事件
+  window.addEventListener('touchstart', touchStartHandler, { passive: true });
+  window.addEventListener('touchend', touchEndHandler, { passive: true });
   
   // 监听滚动事件（使用 passive: false，以便阻止默认行为）
   window.addEventListener('wheel', lightScrollLockHandler, { passive: false });
@@ -621,6 +658,12 @@ const disableLightScrollLock = () => {
   window.removeEventListener('touchmove', lightScrollLockHandler);
   window.removeEventListener('scroll', lightScrollLockHandler);
   
+  if (lightScrollLockHandler._touchStartHandler) {
+    window.removeEventListener('touchstart', lightScrollLockHandler._touchStartHandler);
+  }
+  if (lightScrollLockHandler._touchEndHandler) {
+    window.removeEventListener('touchend', lightScrollLockHandler._touchEndHandler);
+  }
   if (lightScrollLockHandler._keyHandler) {
     window.removeEventListener('keydown', lightScrollLockHandler._keyHandler);
   }
@@ -866,30 +909,70 @@ const showDescription = (elementRef, isShownRef, onClose) => {
   
   isShownRef.value = true;
   
-  // 禁用滚动
-  enableScrollLock();
+  // 使用轻量级滚动锁定，不移动 body（只阻止滚动事件）
+  enableLightScrollLock();
   
-  // 启用 pointer-events，允许点击详情介绍
+  // 确保元素可见并重置状态
   if (elementRef.value) {
+    // 确保元素可见
+    elementRef.value.style.display = 'block';
     elementRef.value.style.pointerEvents = 'auto';
+    elementRef.value.style.visibility = 'visible';
+    
+    // 将详情介绍改为 fixed 定位，确保即使 body 移动也能显示在视口中
+    const computedStyle = window.getComputedStyle(elementRef.value);
+    if (computedStyle.position !== 'fixed') {
+      // 保存原始定位
+      elementRef.value._originalPosition = computedStyle.position;
+      elementRef.value._originalTop = computedStyle.top;
+      elementRef.value._originalLeft = computedStyle.left;
+      elementRef.value._originalRight = computedStyle.right;
+      
+      // 获取元素相对于视口的位置
+      const rect = elementRef.value.getBoundingClientRect();
+      elementRef.value.style.position = 'fixed';
+      elementRef.value.style.top = `${rect.top}px`;
+      // 保持原有的 left 或 right 定位
+      if (computedStyle.left !== 'auto' && computedStyle.left !== '') {
+        elementRef.value.style.left = `${rect.left}px`;
+        elementRef.value.style.right = 'auto';
+      } else if (computedStyle.right !== 'auto' && computedStyle.right !== '') {
+        elementRef.value.style.right = `${window.innerWidth - rect.right}px`;
+        elementRef.value.style.left = 'auto';
+      }
+    }
+    
+    // 清除之前的变换，确保从干净的状态开始
+    gsap.set(elementRef.value, { 
+      clearProps: 'transform',
+      opacity: 0,
+      scale: 1,
+      x: 0,
+      y: 0
+    });
   }
   
-  // 设置初始状态：向下偏移并透明
-  gsap.set(elementRef.value, { 
-    opacity: 0, 
-    y: pxToVh(30)
-  });
-  
-  // 显示详情介绍，带有上浮动画效果
-  gsap.to(elementRef.value, {
-    opacity: 1,
-    y: 0,
-    duration: 0.4,
-    ease: 'power2.out',
-    onComplete: () => {
-      // 添加关闭事件监听器
-      setupDescriptionCloseHandler(elementRef, isShownRef, onClose);
-    }
+  // 等待一帧确保 DOM 更新
+  requestAnimationFrame(() => {
+    if (!elementRef.value) return;
+    
+    // 设置初始状态：向下偏移并透明
+    gsap.set(elementRef.value, { 
+      opacity: 0, 
+      y: pxToVh(30)
+    });
+    
+    // 显示详情介绍，带有上浮动画效果
+    gsap.to(elementRef.value, {
+      opacity: 1,
+      y: 0,
+      duration: 0.4,
+      ease: 'power2.out',
+      onComplete: () => {
+        // 添加关闭事件监听器
+        setupDescriptionCloseHandler(elementRef, isShownRef, onClose);
+      }
+    });
   });
 };
 
@@ -909,10 +992,34 @@ const closeDescription = (elementRef, isShownRef, onClose) => {
       // 禁用 pointer-events
       if (elementRef.value) {
         elementRef.value.style.pointerEvents = 'none';
+        
+        // 恢复原始的定位方式
+        if (elementRef.value._originalPosition !== undefined) {
+          elementRef.value.style.position = elementRef.value._originalPosition || '';
+          if (elementRef.value._originalTop !== undefined) {
+            elementRef.value.style.top = elementRef.value._originalTop || '';
+          }
+          if (elementRef.value._originalLeft !== undefined) {
+            elementRef.value.style.left = elementRef.value._originalLeft || '';
+          }
+          if (elementRef.value._originalRight !== undefined) {
+            elementRef.value.style.right = elementRef.value._originalRight || '';
+          }
+          // 清除保存的原始值
+          delete elementRef.value._originalPosition;
+          delete elementRef.value._originalTop;
+          delete elementRef.value._originalLeft;
+          delete elementRef.value._originalRight;
+        }
+        
+        // 完全重置变换，确保下次打开时从正确位置开始
+        gsap.set(elementRef.value, { 
+          clearProps: 'transform'
+        });
       }
       
-      // 恢复滚动
-      disableScrollLock();
+      // 恢复滚动（使用轻量级滚动锁定）
+      disableLightScrollLock();
       
       // 清理事件监听器
       if (currentDescriptionHandler) {
@@ -2189,15 +2296,15 @@ onUnmounted(() => {
     showVideoDescriptionAfterThirdVideoHandler = null;
   }
   
-  if (scrollTrigger) {
-    scrollTrigger.kill();
-  }
   // originScrollTrigger 相关清理已移除（动效已移除）
   if (viewDisplacementTrigger) {
     viewDisplacementTrigger.kill();
   }
   if (waterVideoScrollTrigger) {
     waterVideoScrollTrigger.kill();
+  }
+  if (waterCloud1ScrollTrigger) {
+    waterCloud1ScrollTrigger.kill();
   }
   if (waterCloud2ScrollTrigger) {
     waterCloud2ScrollTrigger.kill();
@@ -2531,7 +2638,7 @@ onUnmounted(() => {
     left: 1064px;
     top: 626px;
     color: #2d5f98;
-
+    white-space: nowrap;
   }
   .biology-title{
     width: 1383px;
@@ -2629,6 +2736,7 @@ onUnmounted(() => {
       .goose-info{
         position: relative;
         top: 800px;
+        cursor: pointer;
       }
       .goose-img{
         width: 814px;
@@ -2729,6 +2837,9 @@ onUnmounted(() => {
       position: absolute;
       left: 680px;
       bottom: 240px;
+      .panthera-info{
+        cursor: pointer;
+      }
       .panthera-img{
         width: 657px;
         height: 451px;
@@ -2879,11 +2990,16 @@ onUnmounted(() => {
       position: absolute;
       bottom: 75px;
       left: 90px;
+      .panda-info{
+        cursor: pointer;
+        position: relative; /* 确保能够接收点击事件 */
+      }
       .panda-img{
         width: 985px;
         height: 550px;
         background-image: url("@/assets/images/lives/lives-xm.png");
         background-size: cover;
+        cursor: pointer;
       }
       .panda-grass{
         width: 1264px;
@@ -2893,11 +3009,13 @@ onUnmounted(() => {
         position: absolute;
         bottom: 0;
         left: -50px;
+        pointer-events: none; /* 不阻止点击事件，让点击冒泡到父元素 */
       }
       .panda-name{
         white-space: nowrap;
         font-size: 36px;
         color: #ffffff;
+        cursor: pointer;
       }
       .panda-chinese{
         position: absolute;
@@ -3015,6 +3133,7 @@ onUnmounted(() => {
       top: 752px;
       left: 50%;
       transform: translateX(-50%);
+      white-space: nowrap;
     }
     .text-2{
       text-align: center;
@@ -3025,6 +3144,7 @@ onUnmounted(() => {
       top: 1050px;
       left: 50%;
       transform: translateX(-50%);
+      white-space: nowrap;
       span{
         font-size: 90px;
       }
@@ -3068,10 +3188,14 @@ onUnmounted(() => {
       font-size: 190px;
       line-height: 200px;
       margin-top: 240px;
+      display: flex;
+      flex-direction: column;
+      white-space: nowrap;
     }
     .secret-description{
       font-size: 26px;
       color: #fff;
+      white-space: nowrap;
     }
     .secret-btn{
       width: 268px;
@@ -3098,6 +3222,7 @@ onUnmounted(() => {
       line-height: 60px;
       color: #e9ead9;
       text-align: center;
+      white-space: nowrap;
       span{
         font-size: 90px;
       }
@@ -3116,6 +3241,7 @@ onUnmounted(() => {
       line-height: 120px;
       color: #e9ead9;
       text-align: center;
+      white-space: nowrap;
     }
   }
   .five-screen{

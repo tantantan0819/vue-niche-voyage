@@ -128,14 +128,7 @@
     </div>
     <div class="four-screen">
       <div class="description description-1">
-        <div 
-          class="description-wrapper"
-          data-parallax="true"
-          data-parallax-axis="x"
-          data-parallax-from="300"
-          data-parallax-to="-300"
-          data-parallax-speed="1.3"
-          data-parallax-center-lock="true">
+        <div class="description-wrapper">
           <p>《步辇图》</p>
           <p>唐朝著名画家、政治家</p>
           <p>阎立本所绘，</p>
@@ -314,21 +307,21 @@ const initTuboNumberAnimation = () => {
 
 
   // 吐蕃地图文本切换动画
-  const tuboMapTimeLine = gsap.timeline({
-    scrollTrigger: {
-      trigger: '.tubo .second-screen-wrapper .second-screen',
-      scroller: '.horizontal-scroll-container',
-      horizontal: true,
-      start: 'left left',
-      end: `+=2000`,
-      pin: true,
-      pinSpacing: false,
-      pinType: "transform",
-      anticipatePin: 1,
-      invalidateOnRefresh: true,
-      scrub: 4,
-    }
-  });
+  // const tuboMapTimeLine = gsap.timeline({
+  //   scrollTrigger: {
+  //     trigger: '.tubo .second-screen-wrapper .second-screen',
+  //     scroller: '.horizontal-scroll-container',
+  //     horizontal: true,
+  //     start: 'left left',
+  //     end: `+=2000`,
+  //     pin: true,
+  //     pinSpacing: false,
+  //     pinType: "transform",
+  //     anticipatePin: 1,
+  //     invalidateOnRefresh: true,
+  //     scrub: 4,
+  //   }
+  // });
   // pin住背景
   ScrollTrigger.create({
     trigger: '.tubo .second-screen-wrapper .second-screen',
@@ -343,46 +336,46 @@ const initTuboNumberAnimation = () => {
     invalidateOnRefresh: true,
     scrub: 4,
   });
-  tuboMapTimeLine.to('.tubo .second-screen .description-1', { opacity: 1, duration: 0.2 }, 0)
-      .to('.tubo .second-screen .description-1', { opacity: 0, duration: 0.3 }, '+=0')
-      .to('.tubo .second-screen .map-bg2', { opacity: 1, duration: 0.1 }, '+=0')
-      .to('.tubo .second-screen .description-2', { opacity: 1, duration: 0.3 }, '-=0.1')
-      .to('.tubo .second-screen .map', { opacity: 1, duration: 0.3 }, '-=0.2')
-
-  // 碑帖动画
-  const steleTimeLine = gsap.timeline({
-    scrollTrigger: {
-      trigger: '.tubo .six-screen',
-      scroller: '.horizontal-scroll-container',
-      horizontal: true,
-      start: 'center+=130 center',
-      end: '+=2000',
-      pin: true,
-      pinSpacing: false,
-      pinType: "transform",
-      anticipatePin: 1,
-      invalidateOnRefresh: true,
-      scrub: 4,
-    }
-  })
-  // pin住背景
-  ScrollTrigger.create({
-    trigger: '.tubo .six-screen',
-    scroller: '.horizontal-scroll-container',
-    horizontal: true,
-    start: 'center+=130 center',
-    end: '+=2000',
-    pin: '.tubo-bg',
-    pinSpacing: false,
-    pinType: "transform",
-    anticipatePin: 1,
-    invalidateOnRefresh: true,
-    scrub: 4,
-  });
-  steleTimeLine.to('.tubo .six-screen .stele-description-tl', { opacity: 0, duration: 0.1 }, '+=0.1')
-      .to('.tubo .six-screen .stele-img-1', { opacity: 1, duration: 0.1 }, '+=0')
-      .to('.tubo .six-screen .stele-img-1', { x: pxToVw(-800), duration: 0.1 }, '-=0.05')
-      .to('.tubo .six-screen .stele-description-fixed', { opacity: 1, duration: 0.1 },'-=0.05')
+  // tuboMapTimeLine.to('.tubo .second-screen .description-1', { opacity: 1, duration: 0.2 }, 0)
+  //     .to('.tubo .second-screen .description-1', { opacity: 0, duration: 0.3 }, '+=0')
+  //     .to('.tubo .second-screen .map-bg2', { opacity: 1, duration: 0.1 }, '+=0')
+  //     .to('.tubo .second-screen .description-2', { opacity: 1, duration: 0.3 }, '-=0.1')
+  //     .to('.tubo .second-screen .map', { opacity: 1, duration: 0.3 }, '-=0.2')
+  //
+  // // 碑帖动画
+  // const steleTimeLine = gsap.timeline({
+  //   scrollTrigger: {
+  //     trigger: '.tubo .six-screen',
+  //     scroller: '.horizontal-scroll-container',
+  //     horizontal: true,
+  //     start: 'center+=130 center',
+  //     end: '+=2000',
+  //     pin: true,
+  //     pinSpacing: false,
+  //     pinType: "transform",
+  //     anticipatePin: 1,
+  //     invalidateOnRefresh: true,
+  //     scrub: 4,
+  //   }
+  // })
+  // // pin住背景
+  // ScrollTrigger.create({
+  //   trigger: '.tubo .six-screen',
+  //   scroller: '.horizontal-scroll-container',
+  //   horizontal: true,
+  //   start: 'center+=130 center',
+  //   end: '+=2000',
+  //   pin: '.tubo-bg',
+  //   pinSpacing: false,
+  //   pinType: "transform",
+  //   anticipatePin: 1,
+  //   invalidateOnRefresh: true,
+  //   scrub: 4,
+  // });
+  // steleTimeLine.to('.tubo .six-screen .stele-description-tl', { opacity: 0, duration: 0.1 }, '+=0.1')
+  //     .to('.tubo .six-screen .stele-img-1', { opacity: 1, duration: 0.1 }, '+=0')
+  //     .to('.tubo .six-screen .stele-img-1', { x: pxToVw(-800), duration: 0.1 }, '-=0.05')
+  //     .to('.tubo .six-screen .stele-description-fixed', { opacity: 1, duration: 0.1 },'-=0.05')
 };
 onMounted(async ()=>{
   // 等待DOM完全渲染
@@ -760,7 +753,7 @@ onUnmounted(() => {
     .procession-description{
       position: relative;
       top: 150px;
-      right: -650px;
+      right: -800px;
     }
     .popularization-wrapper{
       position: absolute;

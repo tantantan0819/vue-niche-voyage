@@ -300,6 +300,7 @@
       p{
         display: flex;
         justify-content: flex-end;
+        white-space: nowrap;
       }
     }
   }

@@ -366,7 +366,7 @@ onUnmounted(() => {
             top: 50%;
             left: 50%;
             transform: translate(-60%, -50%);
-            width: 1100px;
+            width: 1140px;
         }
         .third-screen-pattern-img{
             position: absolute;

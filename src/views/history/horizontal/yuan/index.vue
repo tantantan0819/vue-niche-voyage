@@ -407,7 +407,7 @@ onMounted(() => {
       .popularization-description{
         position: absolute;
         bottom: 210px;
-        left: 860px;
+        left: 930px;
         .popularization-wrapper{
           position: relative;
           top: -60px;

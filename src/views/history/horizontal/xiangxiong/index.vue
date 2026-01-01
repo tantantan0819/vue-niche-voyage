@@ -565,7 +565,7 @@ onMounted(async ()=>{
       /* opacity: 0; */
     }
     .description-container{
-      width: 920px;
+      width: 930px;
       position: absolute;
        top: 380px;
       left: 3000px;

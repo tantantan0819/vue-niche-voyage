@@ -898,6 +898,7 @@ import AnnotationDot from "@/components/AnnotationDot.vue";
     }
   }
   .eleven-screen{
+    padding-bottom: 500px;
     .img-bg{
       width: 1920px;
       height: 758px;
