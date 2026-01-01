@@ -32,7 +32,7 @@ const hideSplashLoader = () =>{
 <style scoped>
 .SplashLoader {
   width: 1920px;
-  height: 1080px;
+  height: 100vh;
   position: fixed;
   top: 0;
   left: 0;

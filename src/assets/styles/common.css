@@ -1,5 +1,26 @@
 @import './base.css';
 
+/* 隐藏滚动条但保持滚动功能 */
+html, body {
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE 和 Edge */
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
+}
+
+/* 隐藏所有元素的滚动条 */
+* {
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE 和 Edge */
+}
+
+*::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
+}
+
 p{
     font-family: 'Alibaba-PuHuiTi-Regular', 'Alibaba-PuHuiTi-Light', sans-serif;
 }

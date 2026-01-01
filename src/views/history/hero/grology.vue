@@ -22,6 +22,7 @@
             playsinline
             :muted="isMuted"
             @ended="onOriginVideoEnded"
+            @timeupdate="onOriginVideoTimeUpdate"
         ></video>
         <div class="video-sound" @click="toggleSound">
           <div :class="isMuted ? 'video-sound-icon-off' : 'video-sound-icon-open'"></div>
@@ -44,7 +45,7 @@
     </div>
     <div class="grology-water" style="margin-top: 500px">
       <div class="water-cloud-1"></div>
-      <div class="water-bg-video">
+      <div class="water-bg-video" id="page-mountains-to-rainforests">
         <video
             ref="climateVideo1"
             src="@/assets/images/geology/geology-to-water-climate-video.mp4"
@@ -56,7 +57,7 @@
             @loadeddata="onClimateVideo1LoadedData"
         ></video>
         <div class="climate-wrapper">
-          <div class="climate-title" id="page-mountains-to-rainforests">从雪山到雨林</div>
+          <div class="climate-title">从雪山到雨林</div>
           <div class="climate-description">
             <p>准备好了吗？</p>
             <p>我们先深入高原内部，感受阳光、雨雪和温度！</p>
@@ -329,6 +330,7 @@
 import { onMounted, onUnmounted, ref, nextTick } from "vue";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 import { useRouter } from 'vue-router'
 import { pxToVw, pxToVh, pxToVwPx, pxToVhPx  } from '@/utils/viewportUtils';
 import geologyVideo1 from '@/assets/images/geology/geology-video-1.mp4'
@@ -340,7 +342,7 @@ const router = useRouter()
 // 定义 emits
 const emit = defineEmits(['thirdVideoEnded'])
 
-gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
 const linkTo = path =>{
   router.push(path)
@@ -376,6 +378,8 @@ const thirdVideoStarted = ref(false); // 第三个视频是否已开始播放
 const thirdVideoCompleted = ref(false); // 第三个视频是否已播放完成
 const videoDescriptionShownAfterThirdVideo = ref(false); // 第三个视频播放完成后 video-description 是否已显示
 const isProcessingScroll = ref(false); // 是否正在处理滚动事件，防止快速连续触发
+const canSkipToEnd = ref(false); // 视频是否已播放1秒，允许跳过到结尾
+const isSwitchedFromMenu = ref(false); // 是否通过菜单跳转播放视频
 let welcomeVideoScrollHandler = null; // welcomeVideo 滚动事件处理器
 let switchToOriginVideoHandler = null; // 切换到 originVideo 的滚动事件处理器
 let showVideoAccessoriesHandler = null; // 显示 video-accessories 的滚动事件处理器
@@ -385,6 +389,7 @@ let playSecondVideoHandler = null; // 播放第二个视频的滚动事件处理
 let showVideoDescriptionAfterSecondVideoHandler = null; // 第二个视频播放完成后显示 video-description 的滚动事件处理器
 let hideVideoDescriptionAndPlayThirdVideoHandler = null; // 隐藏 video-description 并播放第三个视频的滚动事件处理器
 let showVideoDescriptionAfterThirdVideoHandler = null; // 第三个视频播放完成后显示 video-description 的滚动事件处理器
+let skipToVideoEndHandler = null; // 跳过到视频结尾的滚动事件处理器
 
 // climate video 相关的 refs 和状态
 const climateVideo1 = ref(null);
@@ -394,6 +399,8 @@ let waterCloud2ScrollTrigger = null; // water-cloud-2 的 ScrollTrigger 实例
 let waterVideoScrollTrigger = null; // water-bg-video 的 ScrollTrigger 实例
 let gooseInfoScrollTrigger = null; // 大雁 的 ScrollTrigger 实例
 let climateVideo1Completed = false; // 第一个视频是否播放完成
+let canSkipClimateVideoToEnd = false; // 气候视频是否已播放1秒，允许跳过到结尾
+let skipToClimateVideoEndHandler = null; // 跳过到气候视频结尾的滚动事件处理器
 let scrollDisabled = false; // 是否禁用滚动
 let scrollDisabledHandler = null; // 滚动禁用事件处理器
 let lightScrollLockHandler = null; // 轻量级滚动锁定处理器（不修改body样式）
@@ -456,6 +463,13 @@ const onClimateVideo1TimeUpdate = () => {
   // 获取视频时长（如果还没有获取）
   if (!climateVideo1Duration && climateVideo1.value.duration) {
     climateVideo1Duration = climateVideo1.value.duration;
+  }
+  
+  // 如果视频已播放1秒，允许跳过
+  if (climateVideo1.value.currentTime >= 1 && !canSkipClimateVideoToEnd) {
+    canSkipClimateVideoToEnd = true;
+    // 初始化跳过到气候视频结尾的滚动监听
+    initSkipToClimateVideoEndScroll();
   }
 };
 
@@ -710,6 +724,16 @@ const initWaterVideoScroll = async () => {
   
   // 重置状态
   climateVideo1Completed = false;
+  canSkipClimateVideoToEnd = false;
+  
+  // 移除之前的跳过滚动事件监听
+  if (skipToClimateVideoEndHandler) {
+    window.removeEventListener('wheel', skipToClimateVideoEndHandler, { passive: false });
+    window.removeEventListener('touchmove', skipToClimateVideoEndHandler, { passive: false });
+    window.removeEventListener('scroll', skipToClimateVideoEndHandler, { passive: false });
+    skipToClimateVideoEndHandler = null;
+  }
+  
   if (climateVideo1.value) {
     // 确保视频重置到开头并暂停
     climateVideo1.value.currentTime = 0;
@@ -793,6 +817,15 @@ const initWaterVideoScroll = async () => {
         // 如果视频已经播放完成或接近完成，重置到开头
         if (climateVideo1.value.currentTime >= climateVideo1Duration - 0.1) {
           climateVideo1.value.currentTime = 0;
+          // 重置跳过状态
+          canSkipClimateVideoToEnd = false;
+          // 移除之前的跳过滚动事件监听
+          if (skipToClimateVideoEndHandler) {
+            window.removeEventListener('wheel', skipToClimateVideoEndHandler, { passive: false });
+            window.removeEventListener('touchmove', skipToClimateVideoEndHandler, { passive: false });
+            window.removeEventListener('scroll', skipToClimateVideoEndHandler, { passive: false });
+            skipToClimateVideoEndHandler = null;
+          }
         }
         climateVideo1.value.play().catch(err => {
           console.warn('Climate video 1 play failed:', err);
@@ -1206,6 +1239,10 @@ const switchToOriginVideo = () => {
     // 设置当前索引为 0
     originCurrentIndex.value = 0;
     
+    // 重置跳过状态
+    canSkipToEnd.value = false;
+    originVideoCompleted.value = false;
+    
     // 等待 Vue 更新 DOM 后加载和播放视频
     nextTick(() => {
       if (originVideo.value) {
@@ -1247,9 +1284,36 @@ const switchToOriginVideo = () => {
   }
 };
 
-// originVideo 播放完成
-const onOriginVideoEnded = () => {
+// originVideo 时间更新监听
+const onOriginVideoTimeUpdate = () => {
+  if (!originVideo.value) return;
+  
+  // 如果视频已播放1秒，允许跳过
+  if (originVideo.value.currentTime >= 1 && !canSkipToEnd.value) {
+    canSkipToEnd.value = true;
+    // 初始化跳过到视频结尾的滚动监听
+    initSkipToVideoEndScroll();
+  }
+};
+
+// 跳过到视频结尾并显示 videoDescription
+const skipToVideoEnd = () => {
+  // 如果视频未播放1秒或正在处理，不允许跳过
+  if (!canSkipToEnd.value || isProcessingScroll.value) return;
+  
+  // 如果视频已经完成，不再处理
+  if (originVideoCompleted.value) return;
+  
+  isProcessingScroll.value = true;
   originVideoCompleted.value = true;
+  
+  // 移除跳过滚动事件监听
+  if (skipToVideoEndHandler) {
+    window.removeEventListener('wheel', skipToVideoEndHandler, { passive: false });
+    window.removeEventListener('touchmove', skipToVideoEndHandler, { passive: false });
+    window.removeEventListener('scroll', skipToVideoEndHandler, { passive: false });
+    skipToVideoEndHandler = null;
+  }
   
   // 让视频停留在最后一帧
   if (originVideo.value) {
@@ -1266,7 +1330,122 @@ const onOriginVideoEnded = () => {
     // 保持滚动锁定，直到显示 video-accessories
     // 确保处理标志已重置，允许显示 video-accessories
     isProcessingScroll.value = false;
-    showVideoAccessories();
+    
+    // 如果 videoAccessories 已经显示（比如通过菜单切换），直接显示第一个 description
+    if (videoAccessoriesShown.value) {
+      // 重置第一个 description 的显示状态，确保可以重新显示
+      firstDescriptionShown.value = false;
+      setTimeout(() => {
+        showFirstDescription();
+      }, 300);
+    } else {
+      // 如果 videoAccessories 还没有显示，正常流程显示
+      showVideoAccessories();
+    }
+  } else if (originCurrentIndex.value === 1) {
+    // 如果是第二个视频，停留在最后一帧，显示 video-description
+    secondVideoCompleted.value = true;
+    
+    // 确保处理标志已重置，允许显示 video-description
+    isProcessingScroll.value = false;
+    // 显示 video-description
+    setTimeout(() => {
+      showVideoDescriptionAfterSecondVideo();
+    }, 300);
+  } else if (originCurrentIndex.value === 2) {
+    // 如果是第三个视频，停留在最后一帧，显示 video-description
+    thirdVideoCompleted.value = true;
+    
+    // 确保处理标志已重置，允许显示 video-description
+    isProcessingScroll.value = false;
+    // 显示 video-description
+    setTimeout(() => {
+      showVideoDescriptionAfterThirdVideo();
+    }, 300);
+    
+    // 注意：不再在这里发出事件，改为在气候视频播放完毕时发出
+  } else {
+    // 其他视频播放完成后，解除滚动禁用
+    disableScrollLock();
+  }
+};
+
+// 初始化跳过到视频结尾的滚动监听
+const initSkipToVideoEndScroll = () => {
+  // 如果已经完成或正在处理，不再初始化
+  if (originVideoCompleted.value || isProcessingScroll.value) return;
+  
+  // 如果已经存在处理器，先移除
+  if (skipToVideoEndHandler) {
+    window.removeEventListener('wheel', skipToVideoEndHandler, { passive: false });
+    window.removeEventListener('touchmove', skipToVideoEndHandler, { passive: false });
+    window.removeEventListener('scroll', skipToVideoEndHandler, { passive: false });
+    skipToVideoEndHandler = null;
+  }
+  
+  // 创建滚动事件处理器
+  skipToVideoEndHandler = (e) => {
+    // 如果已经完成或正在处理，不再处理
+    if (originVideoCompleted.value || isProcessingScroll.value) return;
+    
+    // 如果视频未播放1秒，不允许跳过
+    if (!canSkipToEnd.value) return;
+    
+    // 阻止默认滚动行为
+    e.preventDefault();
+    e.stopPropagation();
+    
+    // 跳过到视频结尾
+    skipToVideoEnd();
+    
+    return false;
+  };
+  
+  // 监听滚动事件（使用 passive: false，以便阻止默认行为）
+  window.addEventListener('wheel', skipToVideoEndHandler, { passive: false });
+  window.addEventListener('touchmove', skipToVideoEndHandler, { passive: false });
+  window.addEventListener('scroll', skipToVideoEndHandler, { passive: false });
+};
+
+// originVideo 播放完成
+const onOriginVideoEnded = () => {
+  originVideoCompleted.value = true;
+  
+  // 移除跳过滚动事件监听
+  if (skipToVideoEndHandler) {
+    window.removeEventListener('wheel', skipToVideoEndHandler, { passive: false });
+    window.removeEventListener('touchmove', skipToVideoEndHandler, { passive: false });
+    window.removeEventListener('scroll', skipToVideoEndHandler, { passive: false });
+    skipToVideoEndHandler = null;
+  }
+  
+  // 让视频停留在最后一帧
+  if (originVideo.value) {
+    originVideo.value.pause();
+    // 确保停留在最后一帧
+    if (originVideo.value.duration) {
+      originVideo.value.currentTime = originVideo.value.duration;
+    }
+  }
+  
+  // 根据当前视频索引处理不同的逻辑
+  if (originCurrentIndex.value === 0) {
+    // 如果是第一个视频，自动显示 video-accessories 和 video-description
+    // 保持滚动锁定，直到显示 video-accessories
+    // 确保处理标志已重置，允许显示 video-accessories
+    isProcessingScroll.value = false;
+    
+    // 如果 videoAccessories 已经显示（比如通过菜单切换），直接显示第一个 description
+    if (videoAccessoriesShown.value) {
+      // 重置第一个 description 的显示状态，确保可以重新显示
+      firstDescriptionShown.value = false;
+      setTimeout(() => {
+        showFirstDescription();
+      }, 300);
+    } else {
+      // 如果 videoAccessories 还没有显示，正常流程显示
+      showVideoAccessories();
+    }
   } else if (originCurrentIndex.value === 1) {
     // 如果是第二个视频，停留在最后一帧，自动显示 video-description
     secondVideoCompleted.value = true;
@@ -1288,8 +1467,7 @@ const onOriginVideoEnded = () => {
       showVideoDescriptionAfterThirdVideo();
     }, 300);
     
-    // 发出事件，通知父组件第三个视频播放完毕
-    emit('thirdVideoEnded');
+    // 注意：不再在这里发出事件，改为在气候视频播放完毕时发出
   } else {
     // 其他视频播放完成后，解除滚动禁用
     disableScrollLock();
@@ -1446,12 +1624,16 @@ const showFirstDescription = () => {
       onComplete: () => {
         // 动画完成后才添加下一个步骤的监听
         isProcessingScroll.value = false;
+        
+        // 无论是通过菜单跳转还是正常流程，都需要用户滚动才显示第二个 description
         initShowSecondDescriptionScroll();
       }
     });
   } else {
     // 如果没有数据，直接完成
     isProcessingScroll.value = false;
+    
+    // 无论是通过菜单跳转还是正常流程，都需要用户滚动才显示第二个 description
     initShowSecondDescriptionScroll();
   }
 };
@@ -1518,7 +1700,14 @@ const showSecondDescription = () => {
             onComplete: () => {
               // 动画完成后才添加下一个步骤的监听
               isProcessingScroll.value = false;
-              initPlaySecondVideoScroll();
+              
+              // 如果是通过菜单跳转的，显示完第二个 description 后解除滚动锁定
+              if (isSwitchedFromMenu.value) {
+                disableScrollLock();
+                isSwitchedFromMenu.value = false; // 重置标志
+              } else {
+                initPlaySecondVideoScroll();
+              }
             }
           });
         }
@@ -1526,12 +1715,26 @@ const showSecondDescription = () => {
     } else {
       // 如果没有 description 元素，直接完成
       isProcessingScroll.value = false;
-      initPlaySecondVideoScroll();
+      
+      // 如果是通过菜单跳转的，显示完第二个 description 后解除滚动锁定
+      if (isSwitchedFromMenu.value) {
+        disableScrollLock();
+        isSwitchedFromMenu.value = false; // 重置标志
+      } else {
+        initPlaySecondVideoScroll();
+      }
     }
   } else {
     // 如果没有数据，直接完成
     isProcessingScroll.value = false;
-    initPlaySecondVideoScroll();
+    
+    // 如果是通过菜单跳转的，显示完第二个 description 后解除滚动锁定
+    if (isSwitchedFromMenu.value) {
+      disableScrollLock();
+      isSwitchedFromMenu.value = false; // 重置标志
+    } else {
+      initPlaySecondVideoScroll();
+    }
   }
 };
 
@@ -1606,8 +1809,17 @@ const switchToSecondVideo = () => {
     // 设置当前索引为 1
     originCurrentIndex.value = 1;
     
-    // 重置视频完成状态
+    // 重置视频完成状态和跳过状态
     originVideoCompleted.value = false;
+    canSkipToEnd.value = false;
+    
+    // 移除之前的跳过滚动事件监听
+    if (skipToVideoEndHandler) {
+      window.removeEventListener('wheel', skipToVideoEndHandler, { passive: false });
+      window.removeEventListener('touchmove', skipToVideoEndHandler, { passive: false });
+      window.removeEventListener('scroll', skipToVideoEndHandler, { passive: false });
+      skipToVideoEndHandler = null;
+    }
     
     // 等待 Vue 更新 DOM 后加载和播放视频
     nextTick(() => {
@@ -1718,7 +1930,14 @@ const showVideoDescriptionAfterSecondVideo = () => {
         requestAnimationFrame(() => {
           requestAnimationFrame(() => {
             isProcessingScroll.value = false;
-            initHideVideoDescriptionAndPlayThirdVideoScroll();
+            
+            // 如果是通过菜单跳转的，显示 description 后解除滚动锁定
+            if (isSwitchedFromMenu.value) {
+              disableScrollLock();
+              isSwitchedFromMenu.value = false; // 重置标志
+            } else {
+              initHideVideoDescriptionAndPlayThirdVideoScroll();
+            }
           });
         });
       }
@@ -1728,7 +1947,14 @@ const showVideoDescriptionAfterSecondVideo = () => {
     requestAnimationFrame(() => {
       requestAnimationFrame(() => {
         isProcessingScroll.value = false;
-        initHideVideoDescriptionAndPlayThirdVideoScroll();
+        
+        // 如果是通过菜单跳转的，显示 description 后解除滚动锁定
+        if (isSwitchedFromMenu.value) {
+          disableScrollLock();
+          isSwitchedFromMenu.value = false; // 重置标志
+        } else {
+          initHideVideoDescriptionAndPlayThirdVideoScroll();
+        }
       });
     });
   }
@@ -1805,8 +2031,17 @@ const switchToThirdVideo = () => {
     // 设置当前索引为 2
     originCurrentIndex.value = 2;
     
-    // 重置视频完成状态
+    // 重置视频完成状态和跳过状态
     originVideoCompleted.value = false;
+    canSkipToEnd.value = false;
+    
+    // 移除之前的跳过滚动事件监听
+    if (skipToVideoEndHandler) {
+      window.removeEventListener('wheel', skipToVideoEndHandler, { passive: false });
+      window.removeEventListener('touchmove', skipToVideoEndHandler, { passive: false });
+      window.removeEventListener('scroll', skipToVideoEndHandler, { passive: false });
+      skipToVideoEndHandler = null;
+    }
     
     // 等待 Vue 更新 DOM 后加载和播放视频
     nextTick(() => {
@@ -1841,6 +2076,146 @@ const switchToThirdVideo = () => {
     });
   } else {
     isProcessingScroll.value = false;
+  }
+};
+
+// 根据标题切换到对应的视频并播放（供外部调用）
+const switchToOriginVideoByTitle = async (title) => {
+  // 标记这是通过菜单跳转的
+  isSwitchedFromMenu.value = true;
+  
+  // 根据标题找到对应的索引
+  const targetIndex = originInfos.value.findIndex(info => info.title === title);
+  if (targetIndex === -1) {
+    console.warn(`未找到标题为 "${title}" 的视频`);
+    return;
+  }
+  
+  // 确保 welcomeVideo 已隐藏，显示 originVideo
+  if (!welcomeVideoHidden.value) {
+    welcomeVideoHidden.value = true;
+    
+    // 隐藏 welcomeVideo
+    if (welcomeVideo.value && welcomeVideo.value.parentElement) {
+      gsap.to(welcomeVideo.value.parentElement, {
+        opacity: 0,
+        duration: 0.3,
+        onComplete: () => {
+          if (welcomeVideo.value && welcomeVideo.value.parentElement) {
+            welcomeVideo.value.parentElement.style.display = 'none';
+          }
+        }
+      });
+    }
+    
+    // 显示 origin-video-wrapper
+    if (originVideoWrapper.value) {
+      originVideoWrapper.value.style.display = 'block';
+      gsap.fromTo(originVideoWrapper.value, 
+        { opacity: 0 },
+        { 
+          opacity: 1,
+          duration: 0.3
+        }
+      );
+    }
+  }
+  
+  // 滚动到视频位置
+  if (originContainer.value) {
+    const containerRect = originContainer.value.getBoundingClientRect();
+    const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+    const targetScroll = currentScroll + containerRect.top;
+    
+    await new Promise((resolve) => {
+      gsap.to(window, {
+        scrollTo: {
+          y: targetScroll,
+          autoKill: false
+        },
+        duration: 0.8,
+        ease: 'power2.inOut',
+        onComplete: resolve
+      });
+    });
+  }
+  
+  // 切换到目标视频
+  if (originVideo.value && originInfos.value.length > targetIndex) {
+    // 设置当前索引
+    originCurrentIndex.value = targetIndex;
+    
+    // 重置视频完成状态和跳过状态
+    originVideoCompleted.value = false;
+    canSkipToEnd.value = false;
+    
+    // 根据不同的视频索引重置相应的状态标志
+    if (targetIndex === 0) {
+      // 第一个视频：重置第一个视频相关状态
+      firstDescriptionShown.value = false;
+      secondDescriptionShown.value = false;
+    } else if (targetIndex === 1) {
+      // 第二个视频：重置第二个视频相关状态
+      secondVideoStarted.value = false;
+      secondVideoCompleted.value = false;
+      videoDescriptionShownAfterSecondVideo.value = false;
+    } else if (targetIndex === 2) {
+      // 第三个视频：重置第三个视频相关状态
+      thirdVideoStarted.value = false;
+      thirdVideoCompleted.value = false;
+      videoDescriptionShownAfterThirdVideo.value = false;
+    }
+    
+    // 确保 videoAccessories 已显示（如果还没有显示）
+    if (!videoAccessoriesShown.value && videoAccessories.value) {
+      videoAccessories.value.style.pointerEvents = 'auto';
+      videoAccessories.value.style.opacity = '1';
+      videoAccessoriesShown.value = true;
+    }
+    
+    // 确保 videoDescription 在播放开始时是隐藏的
+    if (videoDescription.value) {
+      videoDescription.value.style.display = 'block';
+      gsap.set(videoDescription.value, { opacity: 0 });
+    }
+    
+    // 移除之前的跳过滚动事件监听
+    if (skipToVideoEndHandler) {
+      window.removeEventListener('wheel', skipToVideoEndHandler, { passive: false });
+      window.removeEventListener('touchmove', skipToVideoEndHandler, { passive: false });
+      window.removeEventListener('scroll', skipToVideoEndHandler, { passive: false });
+      skipToVideoEndHandler = null;
+    }
+    
+    // 等待 Vue 更新 DOM 后加载和播放视频
+    await nextTick();
+    
+    if (originVideo.value) {
+      // 确保视频源已更新，然后加载
+      originVideo.value.load();
+      
+      // 等待视频元数据加载完成后再播放
+      const playVideo = () => {
+        if (originVideo.value) {
+          originVideo.value.play().catch(err => {
+            console.warn(`Origin video (${title}) play failed:`, err);
+          });
+          
+          // 禁用滚动
+          enableScrollLock();
+          // 重置处理标志，允许视频播放
+          isProcessingScroll.value = false;
+        }
+      };
+      
+      // 如果视频已经加载了元数据，直接播放
+      if (originVideo.value.readyState >= 2) {
+        playVideo();
+      } else {
+        // 否则等待元数据加载完成
+        originVideo.value.addEventListener('loadedmetadata', playVideo, { once: true });
+      }
+    }
   }
 };
 
@@ -1967,11 +2342,21 @@ const showVideoDescriptionAfterThirdVideo = () => {
         
         // 解除滚动锁定，允许用户正常滚动页面
         disableScrollLock();
+        
+        // 如果是通过菜单跳转的，重置标志
+        if (isSwitchedFromMenu.value) {
+          isSwitchedFromMenu.value = false;
+        }
       }
     });
   } else {
     // 如果没有 video-description 元素，直接重置标志并解除固定
     isProcessingScroll.value = false;
+    
+    // 如果是通过菜单跳转的，重置标志
+    if (isSwitchedFromMenu.value) {
+      isSwitchedFromMenu.value = false;
+    }
     
     // 解除 origin-video-wrapper 的固定
     if (originVideoWrapper.value) {
@@ -2079,9 +2464,23 @@ const initWelcomeVideoScroll = () => {
   window.addEventListener('scroll', welcomeVideoScrollHandler, { passive: false });
 };
 
-// 第一个视频播放完成
-const climateVideoEnded = () => {
+// 跳过到气候视频结尾
+const skipToClimateVideoEnd = () => {
+  // 如果视频未播放1秒或正在处理，不允许跳过
+  if (!canSkipClimateVideoToEnd) return;
+  
+  // 如果视频已经完成，不再处理
+  if (climateVideo1Completed) return;
+  
   climateVideo1Completed = true;
+  
+  // 移除跳过滚动事件监听
+  if (skipToClimateVideoEndHandler) {
+    window.removeEventListener('wheel', skipToClimateVideoEndHandler, { passive: false });
+    window.removeEventListener('touchmove', skipToClimateVideoEndHandler, { passive: false });
+    window.removeEventListener('scroll', skipToClimateVideoEndHandler, { passive: false });
+    skipToClimateVideoEndHandler = null;
+  }
   
   // 让视频停留在最后一帧
   if (climateVideo1.value) {
@@ -2111,9 +2510,96 @@ const climateVideoEnded = () => {
           waterVideoScrollTrigger = null;
         });
       }
+      
+      // 发出事件，通知父组件气候视频播放完毕（用于显示侧边栏菜单）
+      emit('thirdVideoEnded');
     }
   });
-}
+};
+
+// 初始化跳过到气候视频结尾的滚动监听
+const initSkipToClimateVideoEndScroll = () => {
+  // 如果已经完成，不再初始化
+  if (climateVideo1Completed) return;
+  
+  // 如果已经存在处理器，先移除
+  if (skipToClimateVideoEndHandler) {
+    window.removeEventListener('wheel', skipToClimateVideoEndHandler, { passive: false });
+    window.removeEventListener('touchmove', skipToClimateVideoEndHandler, { passive: false });
+    window.removeEventListener('scroll', skipToClimateVideoEndHandler, { passive: false });
+    skipToClimateVideoEndHandler = null;
+  }
+  
+  // 创建滚动事件处理器
+  skipToClimateVideoEndHandler = (e) => {
+    // 如果已经完成，不再处理
+    if (climateVideo1Completed) return;
+    
+    // 如果视频未播放1秒，不允许跳过
+    if (!canSkipClimateVideoToEnd) return;
+    
+    // 阻止默认滚动行为
+    e.preventDefault();
+    e.stopPropagation();
+    
+    // 跳过到视频结尾
+    skipToClimateVideoEnd();
+    
+    return false;
+  };
+  
+  // 监听滚动事件（使用 passive: false，以便阻止默认行为）
+  window.addEventListener('wheel', skipToClimateVideoEndHandler, { passive: false });
+  window.addEventListener('touchmove', skipToClimateVideoEndHandler, { passive: false });
+  window.addEventListener('scroll', skipToClimateVideoEndHandler, { passive: false });
+};
+
+// 第一个视频播放完成
+const climateVideoEnded = () => {
+  climateVideo1Completed = true;
+  
+  // 移除跳过滚动事件监听
+  if (skipToClimateVideoEndHandler) {
+    window.removeEventListener('wheel', skipToClimateVideoEndHandler, { passive: false });
+    window.removeEventListener('touchmove', skipToClimateVideoEndHandler, { passive: false });
+    window.removeEventListener('scroll', skipToClimateVideoEndHandler, { passive: false });
+    skipToClimateVideoEndHandler = null;
+  }
+  
+  // 让视频停留在最后一帧
+  if (climateVideo1.value) {
+    climateVideo1.value.pause();
+    // 确保停留在最后一帧
+    if (climateVideo1.value.duration) {
+      climateVideo1.value.currentTime = climateVideo1.value.duration;
+    }
+  }
+  
+  // 恢复滚动（禁用轻量级滚动锁定）
+  disableLightScrollLock();
+  // 显示 climate-wrapper
+  gsap.to('.climate-wrapper', { 
+    opacity: 1, 
+    duration: 0.5,
+    onComplete: () => {
+      // climate-wrapper 显示完毕后，解除固定状态
+      if (waterVideoScrollTrigger) {
+        // 先禁用 ScrollTrigger，避免页面跳动
+        waterVideoScrollTrigger.disable();
+        // 等待一帧后刷新 ScrollTrigger，确保页面位置正确
+        requestAnimationFrame(() => {
+          ScrollTrigger.refresh();
+          // 然后销毁 ScrollTrigger
+          waterVideoScrollTrigger.kill();
+          waterVideoScrollTrigger = null;
+        });
+      }
+      
+      // 发出事件，通知父组件气候视频播放完毕（用于显示侧边栏菜单）
+      emit('thirdVideoEnded');
+    }
+  });
+};
 
 // 生物部分视角位移
 let viewDisplacementTrigger = null;
@@ -2215,10 +2701,22 @@ onMounted(() => {
   initHorizontal02Scroll();
   // fragment 透明度动画
   initFragmentOpacityAnimation();
+  
+  // 将切换视频的方法暴露到全局，供 SiderMenu 使用
+  if (typeof window !== 'undefined') {
+    window.__grologyVideoControl = {
+      switchToOriginVideoByTitle
+    };
+  }
 });
 
 
 onUnmounted(() => {
+  // 清理全局暴露的方法
+  if (typeof window !== 'undefined' && window.__grologyVideoControl) {
+    delete window.__grologyVideoControl;
+  }
+  
   // 恢复滚动锁定
   disableScrollLock();
   // 禁用轻量级滚动锁定
@@ -2296,6 +2794,22 @@ onUnmounted(() => {
     showVideoDescriptionAfterThirdVideoHandler = null;
   }
   
+  // 清理跳过到视频结尾的滚动事件监听
+  if (skipToVideoEndHandler) {
+    window.removeEventListener('wheel', skipToVideoEndHandler);
+    window.removeEventListener('touchmove', skipToVideoEndHandler);
+    window.removeEventListener('scroll', skipToVideoEndHandler);
+    skipToVideoEndHandler = null;
+  }
+  
+  // 清理跳过到气候视频结尾的滚动事件监听
+  if (skipToClimateVideoEndHandler) {
+    window.removeEventListener('wheel', skipToClimateVideoEndHandler);
+    window.removeEventListener('touchmove', skipToClimateVideoEndHandler);
+    window.removeEventListener('scroll', skipToClimateVideoEndHandler);
+    skipToClimateVideoEndHandler = null;
+  }
+  
   // originScrollTrigger 相关清理已移除（动效已移除）
   if (viewDisplacementTrigger) {
     viewDisplacementTrigger.kill();
@@ -2322,7 +2836,10 @@ onUnmounted(() => {
 <style scoped>
 .grology {
   width: 1920px;
+  min-width: 100vw;
+  min-height: 100vh;
   overflow-x: hidden;
+  position: relative;
 }
 
 .grology-welcome {
@@ -2332,7 +2849,9 @@ onUnmounted(() => {
 .grology-origin {
   position: relative;
   width: 1920px;
+  min-width: 100vw;
   height: 1080px;
+  min-height: 100vh;
   opacity: 1;
   pointer-events: auto;
   z-index: 10;
@@ -2342,8 +2861,10 @@ onUnmounted(() => {
   position: fixed;
   top: 0;
   left: 0;
-  width: 1920px;
-  height: 1080px;
+  width: 100vw;
+  height: 100vh;
+  min-width: 1920px;
+  min-height: 1080px;
   z-index: 100;
 }
 
@@ -2351,8 +2872,11 @@ onUnmounted(() => {
   position: absolute;
   top: 0;
   left: 0;
-  width: 1920px;
-  height: 1080px;
+  width: 100%;
+  height: 100%;
+  min-width: 1920px;
+  min-height: 1080px;
+  object-fit: cover;
   display: block;
   /* 不使用 CSS transition，完全由 GSAP 控制 */
   z-index: 1;
@@ -2362,8 +2886,10 @@ onUnmounted(() => {
   position: fixed;
   top: 0;
   left: 0;
-  width: 1920px;
-  height: 1080px;
+  width: 100vw;
+  height: 100vh;
+  min-width: 1920px;
+  min-height: 1080px;
   display: none; /* 初始状态隐藏 */
   z-index: 99;
 }
@@ -2372,8 +2898,11 @@ onUnmounted(() => {
   position: absolute;
   top: 0;
   left: 0;
-  width: 1920px;
-  height: 1080px;
+  width: 100%;
+  height: 100%;
+  min-width: 1920px;
+  min-height: 1080px;
+  object-fit: cover;
   /* 不使用 CSS transition，完全由 GSAP 控制 */
   z-index: 2;
 }
@@ -2468,8 +2997,10 @@ onUnmounted(() => {
   background-color: #fff;
 }
 .video-accessories{
-  width: 1920px;
-  height: 1080px;
+  width: 100%;
+  height: 100%;
+  min-width: 1920px;
+  min-height: 1080px;
   position: absolute;
   top: 0;
   left: 0;
@@ -2500,7 +3031,9 @@ onUnmounted(() => {
 .grology-water{
   position: relative;
   width: 1920px;
+  min-width: 100vw;
   height: 8096px;
+  min-height: 100vh;
   background-image: url("@/assets/images/geology/geology-to-water-bg.jpg");
   background-size: 1920px 9276px;
   background-repeat: no-repeat;
@@ -2535,18 +3068,24 @@ onUnmounted(() => {
   }
   .water-bg-video{
     position: relative;
-    width: 1920px;
-    height: 1080px;
+    width: 100vw;
+    min-width: 1920px;
+    height: 100vh;
+    min-height: 1080px;
     margin-top: -200px;
     will-change: transform;
     transform: translateZ(0);
+    overflow: hidden;
 
     video{
-      width: 1920px;
-      height: 1080px;
       position: absolute;
       top: 0;
       left: 0;
+      width: 100%;
+      height: 100%;
+      min-width: 1920px;
+      min-height: 1080px;
+      object-fit: cover;
       transition: opacity 0.3s ease;
       will-change: transform;
       transform: translateZ(0);

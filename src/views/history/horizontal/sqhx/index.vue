@@ -224,7 +224,7 @@ onMounted(()=> {
       ScrollTrigger.create({
         trigger: triggerEl,
         start: 'top top', // 当容器顶部到达视口顶部时开始
-        end: () => `+=${pxToVhPx(300)}`, // 滚动距离（响应式，基于视口高度）
+        end: () => `+=${pxToVhPx(100)}`, // 滚动距离（响应式，基于视口高度）
         scrub: true, // 与滚动同步，支持双向动画
         scroller: window, // 明确指定使用窗口滚动
         invalidateOnRefresh: true, // 刷新时重新计算位置
@@ -277,6 +277,9 @@ onUnmounted(() => {
         overflow-x: auto; /* 关键：允许水平滚动 */
         background: url('@/assets/images/sqhx/sqhx-bg.jpg') no-repeat center center / cover;
 
+    }
+    .black-screen{
+      width: 100vw;
     }
     .first-screen{
         .first-screen-title{

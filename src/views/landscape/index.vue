@@ -131,7 +131,7 @@ const landscapeInfos = ref([
     description: '青藏高原是地球上除南北极地区之外拥有冰川最多的地方，中国冰川的80％分布在青藏高原，由喀喇昆仑山、昆仑山、祁连山、喜马拉雅山、念青唐古拉山及横断山等山系构成。这个地区不仅冰雪储量巨大，而且是我国及东亚地区大江河发源的基础及径流的重要补给源，被誉为“亚洲水塔”。',
     shiningPoints: [
       {
-        name: '喀拉昆仑山现代冰川',
+        name: '喀喇昆仑山现代冰川',
         videoIn: glacierIn3,
         videoOut: glacierOut3,
         img: glacierImg3,
@@ -908,25 +908,26 @@ const changeVideo = async (videoSrc) => {
       margin-right: 0;
     }
     .glacier{
+      width: 42px;
+      height: 32px;
+      background-image: url("@/assets/images/landscape/buttons/bottom-icons-glacier.png");
+      background-size: cover;
+      background-position: center center;
+      background-repeat: no-repeat;
+
+    }
+    .lake{
       width: 44px;
-      height: 30px;
+      height: 34px;
       background-image: url("@/assets/images/landscape/buttons/bottom-icons-lake.png");
       background-size: cover;
       background-position: center center;
       background-repeat: no-repeat;
     }
-    .lake{
+    .river{
       width: 30px;
       height: 27px;
       background-image: url("@/assets/images/landscape/buttons/bottom-icons-river.png");
-      background-size: cover;
-      background-position: center center;
-      background-repeat: no-repeat;
-    }
-    .river{
-      width: 42px;
-      height: 32px;
-      background-image: url("@/assets/images/landscape/buttons/bottom-icons-glacier.png");
       background-size: cover;
       background-position: center center;
       background-repeat: no-repeat;

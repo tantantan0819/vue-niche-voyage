@@ -693,7 +693,7 @@ import AnnotationDot from "@/components/AnnotationDot.vue";
     }
     .text-wrapper :deep(.popularization-description) {
       position: absolute;
-      bottom: -256px;
+      bottom: -276px;
       right: -320px;
       width: 500px;
     }

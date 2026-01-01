@@ -113,9 +113,9 @@
         <div class="description yuan-descript-1">
           1264年，忽必烈设“总制院”，让时任国师的萨迦班智达之侄八思巴担任该机构负责人。1288年，元廷又取用“吐蕃朝唐之际，皇帝在宣政殿接见”的历史典故，更名为“宣政院”，并扩大机构规模，设立三个宣慰使司都帅府，专门负责统辖全国佛教事宜和管理藏区军政事务。
         </div>
-        <annotation-dot>
-          <p class="popularization-content">《藏族史要》 四川民族出版社 1982</p>
-        </annotation-dot>
+<!--        <annotation-dot>-->
+<!--          <p class="popularization-content">《藏族史要》 四川民族出版社 1982</p>-->
+<!--        </annotation-dot>-->
         <div
           class="person"
           data-parallax="true"

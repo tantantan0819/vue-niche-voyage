@@ -1,7 +1,9 @@
 <template>
   <div class="literary-drama">
     <!-- 第一屏 -->
-    <div class="screen first-screen"></div>
+    <div class="screen first-screen">
+      <div class="drama-section" id="page-drama-section"></div>
+    </div>
     <!-- 第二屏 -->
     <div class="screen second-screen" data-parallax="true"
            data-parallax-axis="y"
@@ -9,9 +11,8 @@
            data-parallax-to="-300"
            data-parallax-speed="1.1"
            data-parallax-center-lock="true"
-           id="page-drama-section"
     >
-      <div class="second-screen-left">
+      <div class="second-screen-left" >
         <div class="mountain-img-1" ></div>
         <div class="mountain-img-2"></div>
         <div 
@@ -26,7 +27,7 @@
       </div>
       <!-- 中间标题部分 -->
       <div class="second-screen-center">
-        <div class="drama-crane-left-img"></div>
+        <div class="drama-crane-left-img" ></div>
         <div 
           class="drama-character-title"
           data-parallax="true"
@@ -523,6 +524,16 @@ onMounted(() => {
     position: relative;
     width: 100vw;
     height: 100vh;
+  }
+}
+.first-screen{
+  .drama-section{
+    width: 30px;
+    height: 30px;
+    //background-color: red;
+    position: absolute;
+    bottom: 30px;
+    left: 30px;
   }
 }
 .second-screen {

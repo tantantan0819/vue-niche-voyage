@@ -18,7 +18,7 @@
           class="second-level"
           :ref="el => setSecondLevelRef(el, index)">
           <div
-            @click="scrollToPage(option.id)"
+            @click="handleMenuClick(menu.title, option)"
             class="second-title" 
             v-for="(option,optionsIndex) in menu.options" 
             :key="`level${index}-${optionsIndex}`"
@@ -172,8 +172,8 @@ const menuInfos = ref([
     title: '源起万万年',
     options: [
       { title: '特提斯洋的终曲' },
-      { title: '崛起的高原' },
       { title: '永恒的进行时' },
+      { title: '崛起的高原' },
     ]
   },
   {
@@ -546,6 +546,23 @@ const collapseMenu = async (index) => {
         gsap.set(secondLevel, { clearProps: 'height' })
       })
     }
+  }
+}
+
+// 处理菜单点击事件
+const handleMenuClick = async (menuTitle, option) => {
+  // 如果是"源起万万年"菜单的子项，切换到对应的视频
+  if (menuTitle === '源起万万年') {
+    const videoControl = typeof window !== 'undefined' && window.__grologyVideoControl;
+    if (videoControl && videoControl.switchToOriginVideoByTitle) {
+      await videoControl.switchToOriginVideoByTitle(option.title);
+      return;
+    }
+  }
+  
+  // 其他菜单项使用原来的跳转逻辑
+  if (option.id) {
+    await scrollToPage(option.id);
   }
 }
 
