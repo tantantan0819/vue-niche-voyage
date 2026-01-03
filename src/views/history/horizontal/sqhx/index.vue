@@ -314,7 +314,7 @@ onUnmounted(() => {
         height: 100vh;
         .second-screen-title{
             position: absolute;
-            top: 0;
+            top: 84px;
             left: -150px;
             font-family: 'EarlySummerSerif-Bold';
             font-size: 90px;

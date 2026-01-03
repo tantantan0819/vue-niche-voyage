@@ -314,11 +314,13 @@ onUnmounted(() => {
   position: relative;
   will-change: scroll-position; /* 新增：优化滚动性能 */
   contain: strict; /* 新增：严格限制布局影响 */
+  background-color: #c7ba967d;
 }
 
 .content {
   display: inline-flex;
-  height: 100%;
+  height: 1080px;
+  overflow: hidden;
   position: relative;
   will-change: transform; /* 新增 */
 }

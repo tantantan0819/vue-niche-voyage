@@ -439,6 +439,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
     .architecture-text{
       position: relative;
       z-index: 2;
+      white-space: nowrap;
       .architecture-text-1{
         width: 369px;
         height: 94px;
@@ -479,8 +480,8 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
       }
       .popularization-description{
         position: absolute;
-        bottom: -210px;
-        left: 980px;
+        bottom: -220px;
+        left: 960px;
         .popularization-wrapper{
           position: relative;
           top: -160px;
@@ -649,7 +650,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
     .popularization-description{
       position: absolute;
       top: 456px;
-      left: 940px;
+      left: 920px;
       width: 600px;
       .popularization-wrapper{
         .popularization-content{

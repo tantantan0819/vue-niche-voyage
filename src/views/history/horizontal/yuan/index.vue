@@ -227,7 +227,8 @@ onMounted(() => {
   
   .yuan {
     width: 18530px;
-    height: 100%;
+    //height: 100%;
+    height: 1080px;
     margin-left: -1px;
     background-image: url("@/assets/images/yuan/yuan-bg.jpg");
     background-size: cover;

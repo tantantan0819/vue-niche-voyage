@@ -649,7 +649,7 @@ const toAnswerPage = () =>{
         height: 100vh;
     }
     .folkways-wrapper{
-      background-color: #fff;
+      background-color: #e6e1cd;
     }
     .folkways-container {
         position: relative;
