@@ -15,8 +15,8 @@
           class="first-screen-stone"
           data-parallax="true"
           data-parallax-axis="x"
-          data-parallax-from="500"
-          data-parallax-to="-500"
+          data-parallax-from="600"
+          data-parallax-to="-300"
           data-parallax-speed="1.3"
           data-parallax-center-lock="true"></div>
     </div>
@@ -134,7 +134,7 @@
               data-parallax-center-lock="true"></div>
         </div>
         <div 
-            class="description description-wrapper description-new"
+            class="description description-wrapper brocade-description"
             data-parallax="true"
             data-parallax-axis="x"
             data-parallax-from="200"
@@ -142,9 +142,9 @@
             data-parallax-speed="1.2"
             data-parallax-center-lock="true"
             >
-          <p class="brocade-title">王侯”汉字织锦</p>
-          <p class="brocade-first">出土于阿里地区象泉河流域的著名苯教寺院故如甲木寺。 根据科学测定，其年代可追溯到东汉时期。</p>
-          <p class="brocade-second">该织物为平纹织锦，有波浪、祥云、对鸟、神树、朱雀、白虎、青龙、玄武等纹饰。空白处可见“王侯”及其镜像的反字。此类织锦被学界认为是中原官方制作赐予地方藩王的物品，可能经新疆一带输入到西藏地区，也是青藏高原上发现的最早的丝绸。</p>
+          <p class="brocade-title">“王侯”汉字织锦</p>
+          <p class="brocade-content brocade-first">出土于阿里地区象泉河流域的著名苯教寺院故如甲木寺。 根据科学测定，其年代可追溯到东汉时期。</p>
+          <p class="brocade-content brocade-second">该织物为平纹织锦，有波浪、祥云、对鸟、神树、朱雀、白虎、青龙、玄武等纹饰。空白处可见“王侯”及其镜像的反字。此类织锦被学界认为是中原官方制作赐予地方藩王的物品，可能经新疆一带输入到西藏地区，也是青藏高原上发现的最早的丝绸。</p>
         </div>
       </div>
       <div class="mask">
@@ -153,8 +153,8 @@
           <div class="mask-img-2"></div>
         </div>
         <div class="description description-wrapper description-1">
-          <p>黄金面具</p>
-          <p>故如甲木墓地出土的黄金面具，被用来遮盖死者面部。</p>
+          <p class="description-1-title">黄金面具</p>
+          <p class="description-1-content">故如甲木墓地出土的黄金面具，被用来遮盖死者面部。</p>
         </div>
         <div class="description description-2 description-new">
           <p>黄金面具在中亚和我国新疆等地的墓葬并不少见。“其酋豪死，抉去其脑，实以珠玉，剖其五脏，易以黄金，假造金鼻银齿，以人为殉”则是《通典》对这一习俗的记载。</p>
@@ -248,7 +248,7 @@ const initXiangxiongNumberAnimation = () => {
     onUpdate: (self) => {
       if (self.progress >= 1) {
         bcNumber.value = '4';
-        adNumber.value = '9';
+        adNumber.value = '7';
       } else if (self.isActive) {
         bcNumber.value = (Math.floor(Math.random() * 9) + 1).toString();
         adNumber.value = (Math.floor(Math.random() * 9) + 1).toString();
@@ -315,56 +315,71 @@ const initXiangxiongNumberAnimation = () => {
   //     .to('.xiangxiongPinText', { opacity: 0, duration: 0.3 }, '+=0')
   //     .to('.xiangxiongPinTextNew', { opacity: 1, duration: 0.3 }, '-=0.2');
 
+
   // 象雄背景同步pin效果
-  ScrollTrigger.create({
-    trigger: '.xiangxiong .third-screen',
-    scroller: '.horizontal-scroll-container',
-    horizontal: true,
-    start: 'right-=200 center',
-    end: '+=600',
-    pin: '.xiangxiong-bg',
-    pinSpacing: false,
-    pinType: "transform",
-    anticipatePin: 1,
-    invalidateOnRefresh: true,
-    scrub: 4,
-  });
+  // ScrollTrigger.create({
+  //   trigger: '.xiangxiong .third-screen',
+  //   scroller: '.horizontal-scroll-container',
+  //   horizontal: true,
+  //   start: 'right-=200 center',
+  //   end: '+=600',
+  //   pin: '.xiangxiong-bg',
+  //   pinSpacing: false,
+  //   pinType: "transform",
+  //   anticipatePin: 1,
+  //   invalidateOnRefresh: true,
+  //   scrub: 4,
+  // });
 
   // 织锦文本切换动画
-  const brocadeTl = gsap.timeline({
-    scrollTrigger: {
-      trigger: '.brocade',
-      scroller: '.horizontal-scroll-container',
-      horizontal: true,
-      start: 'left-=300 left',
-      end: '+=800',
-      pin: true,
-      pinSpacing: false,
-      pinType: "transform",
-      anticipatePin: 1,
-      invalidateOnRefresh: true,
-      scrub: 4,
-    }
-  });
+  // const brocadeTl = gsap.timeline({
+  //   scrollTrigger: {
+  //     trigger: '.brocade',
+  //     scroller: '.horizontal-scroll-container',
+  //     horizontal: true,
+  //     start: 'left-=300 left',
+  //     end: '+=800',
+  //     pin: true,
+  //     pinSpacing: false,
+  //     pinType: "transform",
+  //     anticipatePin: 1,
+  //     invalidateOnRefresh: true,
+  //     scrub: 4,
+  //   }
+  // });
   // 织锦背景同步pin效果
-  ScrollTrigger.create({
-    trigger: '.brocade',
-    scroller: '.horizontal-scroll-container',
-    horizontal: true,
-    start: 'left-=300 left',
-    end: '+=800',
-    pin: '.xiangxiong-bg',
-    pinSpacing: false,
-    pinType: "transform",
-    anticipatePin: 1,
-    invalidateOnRefresh: true,
-    scrub: 4,
-  });
+  // ScrollTrigger.create({
+  //   trigger: '.brocade',
+  //   scroller: '.horizontal-scroll-container',
+  //   horizontal: true,
+  //   start: 'left-=300 left',
+  //   end: '+=800',
+  //   pin: '.xiangxiong-bg',
+  //   pinSpacing: false,
+  //   pinType: "transform",
+  //   anticipatePin: 1,
+  //   invalidateOnRefresh: true,
+  //   scrub: 4,
+  // });
   // brocadeTl.to('.brocade-first', { opacity: 1, duration: 0.5 }, 0)
   //     .to('.brocade-first', { opacity: 1, duration: 1 }, '+=0')
   //     .to('.brocade-first', { opacity: 0, duration: 0.3 }, '+=0')
   //     .to('.brocade-second', { opacity: 1, duration: 0.3 }, '-=0.2');
-
+   gsap.to(
+        '.brocade-description',
+        {
+          opacity: 1,
+          duration: 2,
+          scrollTrigger: {
+            trigger: '.brocade-description',
+            scroller: '.horizontal-scroll-container',
+            horizontal: true,
+            start: 'left center+=600px',
+            end: 'right center+=500px',
+            scrub: true,
+          },
+        }
+    );
   // 黄金面具位移动画
   gsap.to('.xiangxiong .mask-img-1', {
     x: pxToVw(-400),
@@ -393,26 +408,6 @@ const initXiangxiongNumberAnimation = () => {
     }
   });
 };
-const initDescriptionOpacityAnimation = () => {
-  document.querySelectorAll('.description').forEach((desc) => {
-    gsap.fromTo(
-        desc,
-        { opacity: 0 },
-        {
-          opacity: 1,
-          duration: 1,
-          scrollTrigger: {
-            trigger: desc,
-            scroller: '.horizontal-scroll-container',
-            horizontal: true,
-            start: 'left-=300px center',
-            end: 'right right-=400px',
-            scrub: true,
-          },
-        }
-    );
-  });
-};
 onMounted(async ()=>{
   // 等待DOM完全渲染
   await nextTick();
@@ -430,7 +425,7 @@ onMounted(async ()=>{
 })
 
 </script>
-<style>
+<style scoped>
 .description{
   font-size: 33px;
   color: #534833;
@@ -438,6 +433,7 @@ onMounted(async ()=>{
   white-space: normal;
   word-wrap: break-word;
   word-break: break-all;
+  text-align: justify;
 }
 .xiangxiong{
   display: flex;
@@ -555,7 +551,7 @@ onMounted(async ()=>{
       left: -100px;
     }
     .description-0{
-      width: 680px;
+      width: 700px;
       position: absolute;
       top: 200px;
       left: -300px;
@@ -684,7 +680,7 @@ onMounted(async ()=>{
           background-repeat: no-repeat;
           position: absolute;
           bottom: 0;
-          left: 0;
+          left: 1000px;
           animation: light-breath 2s infinite 1s;
         }
         .brocade-img-2{
@@ -696,7 +692,7 @@ onMounted(async ()=>{
           background-repeat: no-repeat;
           position: absolute;
           bottom: 0;
-          left: -80px;
+          left: 920px;
         }
       }
       .description{
@@ -704,8 +700,19 @@ onMounted(async ()=>{
         font-size: 25px;
         position: relative;
         top: 300px;
-        left: 950px;
+        left: 1850px;
         opacity: 0;
+      }
+      .brocade-title{
+        font-family: 'Alibaba-PuHuiTi-Light';
+        font-weight: 300;
+        font-size: 33px;
+      }
+      .brocade-content{
+        font-family: 'Alibaba-PuHuiTi-Light';
+        font-weight: 300;
+        font-size: 25;
+        line-height: 50px;
       }
       .brocade-first{
         /* position: absolute; */
@@ -754,13 +761,27 @@ onMounted(async ()=>{
         bottom: 270px;
         left: -150px;
         width: 800px;
+        .description-1-title{
+          font-family: 'Alibaba-PuHuiTi-Light';
+          font-size: 33px;
+        }
+        .description-1-content{
+          font-family: 'Alibaba-PuHuiTi-Light';
+          font-size: 25px;
+          line-height: 50px;
+        }
       }
       .description-2{
-        width: 740px;
+        width: 540px;
         top: 440px;
         left: 260px;
         position: absolute;
         opacity: 0;
+        p{
+          font-family: 'Alibaba-PuHuiTi-Light';
+          font-size: 25px;
+          line-height: 50px;
+        }
       }
       .mountain-1{
         width: 1926px;

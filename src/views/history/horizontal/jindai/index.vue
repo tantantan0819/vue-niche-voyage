@@ -102,9 +102,9 @@
         <div class="detail-wrapper-solid"></div>
         <div class="title-1 third-title change-number" ref="number1888Ref">{{ displayNumber1888 }}</div>
         <div class="description-0 third-description">1888年和1903年，英军两次入侵西藏。</div>
-        <div class="description-1 third-description">1888年，英军入侵西藏边境，隆吐山成为藏军守护家园的前线。藏军在山谷间筑起石堡与土墙，使用火绳枪和石块阻击敌军，展现出顽强抵抗的精神。</div>
+        <div class="description-1 third-description">1888年，英军入侵西藏边境，隆吐山成为藏军守护家园的前线。藏军在山谷间筑起石堡与土墙，使用火绳枪和石块阻击敌军，<p>展现出顽强抵抗的精神。</p></div>
         <div class="title-2 third-title change-number" ref="number1903Ref">{{ displayNumber1903 }}</div>
-        <div class="description-2 third-description">藏军虽奋勇抗击，终因防御工事被炸毁以及晚清政府的消极态度，寡不敌众，损失惨重。最终，清政府与英国签订了《中英会议藏印条约》与《中英会议藏印续约》两个不平等条约。</div>
+        <div class="description-2 third-description">藏军虽奋勇抗击，终因防御工事被炸毁以及晚清政府的消极态度，寡不敌众，损失惨重。最终，清政府与英国签订了《中英会议藏<p>印条约》与《中英会议藏印续约》两个不平等条约。</p></div>
         <div class="description-3 third-description">西藏各阶层僧俗群众对丧权辱国的条约不予承认， 英帝国主义不甘心失败，又在1903年再度入侵西藏。</div>
       </div>
       <div
@@ -141,10 +141,11 @@
       </div>
       <div
           class="detail-title"
+          data-parallax="true"
           data-parallax-axis="x"
           data-parallax-from="350"
           data-parallax-to="-350"
-          data-parallax-speed="1.20"
+          data-parallax-speed="1.05"
           data-parallax-center-lock="true"
       >英军侵藏路线图</div>
     </div>
@@ -380,7 +381,7 @@
         left: 720px;
       }
       .description-1{
-        width: 900px;
+        width: 940px;
         position: absolute;
         bottom: 310px;
         left: 1000px;
@@ -390,6 +391,7 @@
         position: absolute;
         top: 380px;
         left: 2070px;
+        /* text-align: justify; */
       }
       .description-3{
         width: 800px;
@@ -427,7 +429,7 @@
     .detail-title{
       position: absolute;
       bottom: 130px;
-      right: 940px;
+      right: 1040px;
       font-size: 25px;
       line-height: 54px;
       color: #ffd8aa;

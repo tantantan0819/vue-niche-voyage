@@ -368,8 +368,8 @@ onUnmounted(() => {
             position: absolute;
             top: 50%;
             left: 50%;
-            transform: translate(-60%, -50%);
-            width: 1140px;
+            transform: translate(-60%, -40%);
+            width: 1150px;
         }
         .third-screen-pattern-img{
             position: absolute;
@@ -394,9 +394,10 @@ onUnmounted(() => {
             margin-left: 100px;
         }
         .forth-screen-text-content{
-            width: 850px;
+            width: 740px;
+            text-align: justify;
             margin-left: 100px;
-            margin-top: 50px
+            margin-top: 50px;
         }
         .forth-screen-cloud-img{
             position: absolute;
@@ -453,7 +454,8 @@ onUnmounted(() => {
             background: url('@/assets/images/sqhx/sqhx-element-stone-5.png') no-repeat center center / cover;
         }
         .sixth-screen-text-content{
-            width: 850px;
+            width: 830px;
+            text-align: justify;
             margin-left: 100px;
             margin-top: 100px
         }
@@ -499,7 +501,8 @@ onUnmounted(() => {
             top: 50%;
             right: 400px;
             transform: translateY(-50%);
-            width: 800px;
+            width: 900px;
+            text-align: justify;
         }
     }
 </style>

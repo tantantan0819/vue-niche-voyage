@@ -78,12 +78,14 @@ const closeProcession = () => {
         padding: 20px;
         background: url('../assets/images/literaryDrama/drama-popup-bib-1.png') no-repeat center center / cover;
         font-size: 20px;
-        font-family: 'Alibaba-PuHuiTi-Light';
         line-height: 40px;
         color: #403321;
         font-weight: 300;
         transform: scale(0.5);
         opacity: 0;
+        div{
+            font-family: 'Alibaba-PuHuiTi-Light';
+        }
         .popover-divider{
             height: 2px;
             margin: 10px 0;
