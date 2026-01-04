@@ -110,7 +110,7 @@
                     <img class="picture-right" src="../../../../assets/images/newChina/1949-image-4.jpg" alt="">
                     <div class="illustration-title-font">
                         <span>1954年12月15日，庆祝康藏公路（今川藏公路）、青藏公路通车典礼大会在拉萨举办</span>
-                        <DotPopover class="dot-popover" title="内容来自" content="《浸润与融通：西藏各民族交往、交流与交融的故事.当代卷》 四川民族出版社 2022"></DotPopover>
+                        <DotPopover class="dot-popover" title="图片来自" content="《浸润与融通：西藏各民族交往、交流与交融的故事.当代卷》 四川民族出版社 2022"></DotPopover>
                     </div>
                 </div>
             </div>
@@ -138,16 +138,32 @@
                 <div class="dove-img"></div>
                 <img class="picture-img" src="../../../../assets/images/newChina/1949-image-5.jpg" alt="">
                 <div class="panel-05-illustration illustration-title-font">
-                    <DotPopover class="dot-popover" title="内容来自" content="《感光雪域》 四川民族出版社 2010 "></DotPopover>
+                    <DotPopover class="dot-popover" title="图片来自" content="《感光雪域》 四川民族出版社 2010 "></DotPopover>
                     <span>藏北牧民在赛马会上纷纷拿出收录机在格萨尔演唱舞台边进行录音 1983年</span>
                 </div>
             </div>
-            <div class="text-container text-font">民主改革运动解放了社会生产力，确立了新型的社会主义制度和社会主义民族关系，完成了史称“一步跨千年”的从封建农奴制社会到社会主义社会的伟大跨越.</div>
+            <div 
+                class="text-container text-font"
+                data-parallax="true"
+                data-parallax-axis="x"
+                data-parallax-from="200"
+                data-parallax-to="-200"
+                data-parallax-speed="1.1"
+                data-parallax-center-lock="true"
+                >民主改革运动解放了社会生产力，确立了新型的社会主义制度和社会主义民族关系，完成了史称“一步跨千年”的从封建农奴制社会到社会主义社会的伟大跨越.</div>
+                
            
         </div>
         <!-- 第六屏 -->
         <div class="snap-panel panel-06">
-            <div class="text-container text-font">
+            <div 
+                class="text-container text-font"
+                data-parallax="true"
+                data-parallax-axis="x"
+                data-parallax-from="240"
+                data-parallax-to="-240"
+                data-parallax-speed="1.3"
+                data-parallax-center-lock="true">
                 <p>如果说民族区域自治制度为人民当家作主提供制度保障，那改革开放则为社会经济全面发展插上腾飞的翅膀。</p>
                 <p>拉林铁路让“复兴号”开进雪域高原，原生态的自然保护区和国家公园守护着高原净土，电力和光纤网络也架设起新时代的“天路”。清洁能源、绿色工业、高新数字、文化旅游等现代产业在高原随处可见，真正走出了一条“生态优先”的高质量发展之路。</p>
             </div>
@@ -264,8 +280,8 @@ const initGsapAnimation = () => {
             scroller: '.horizontal-scroll-container',
             horizontal: true,
             scrub: true,
-            start: 'left center',
-            end: 'left left',
+            start: 'left center+=200',
+            end: 'left center+=100',
         }
     });
     gsap.to('.panel-06 .text-container', {
@@ -397,7 +413,8 @@ onUnmounted(() => {
             top: 150px;
             left: 50%;
             transform: translateX(-50%);
-            width: 1050px;
+            width: 1020px;
+            text-align: justify;
         }
         .picture-container{
             position: absolute;
@@ -415,8 +432,8 @@ onUnmounted(() => {
         }
         .dove-img{
             position: absolute;
-            top: 260px;
-            right: 300px;
+            top: 250px;
+            right: 180px;
             width: 254px;
             height: 276px;
             background: url('@/assets/images/newChina/1949-element-11.png') no-repeat center center / cover;
@@ -479,6 +496,9 @@ onUnmounted(() => {
                 opacity: 0;
             }
         }
+        >>> .popover-container{
+            width: 580px;
+        }
     }
     .panel-05{
         .picture-container{
@@ -499,8 +519,8 @@ onUnmounted(() => {
         }
         .text-container{
             position: absolute;
-            top: 50%;
-            right: 200px;
+            top: 40%;
+            right: 300px;
             transform: translateY(-50%);
             width: 800px;
             opacity: 0;

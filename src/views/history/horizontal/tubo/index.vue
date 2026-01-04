@@ -133,15 +133,15 @@
           <p>唐朝著名画家、政治家</p>
           <p>阎立本所绘，</p>
           <p>现藏于故宫博物院。</p>
-          <p>画面描绘了唐蕃关系史上</p>
-          <p>的重要瞬间：</p>
+          <p class="description-special">画面描绘了唐蕃关系史</p>
+          <p>上的重要瞬间：</p>
           <p>贞观十四年，</p>
-          <p>普松赞干布派使者禄东赞到</p>
-          <p>长安通聘朝见唐太宗，</p>
+          <p>普松赞干布派使者禄东赞</p>
+          <p>到长安通聘朝见唐太宗，</p>
           <p>太宗端坐在步辇上，</p>
           <p>四周有宫女执扇、抬辇</p>
-          <p>簇拥而行，左边三人</p>
-          <p>从右向左依次为</p>
+          <p>簇拥而行，左边三人从</p>
+          <p>右向左依次为</p>
           <p>鸿胪寺官员、吐蕃使臣</p>
           <p>禄东赞、鸿胪寺译员。</p>
         </div>
@@ -389,7 +389,7 @@ onUnmounted(() => {
 })
 
 </script>
-<style>
+<style scoped>
 .tubo .first-screen .first-img-bg,
 .tubo {
   @extend .pin-trigger; /* 继承pin基础样式 */
@@ -506,7 +506,7 @@ onUnmounted(() => {
       background-position: center center;
       background-repeat: no-repeat;
       position: absolute;
-      bottom: 90px;
+      bottom: 0px;
       left: 1700px;
       z-index: 3;
       will-change: transform;
@@ -752,6 +752,14 @@ onUnmounted(() => {
       top: 130px;
       left: 820px;
       z-index: 5;
+      p{
+        font-family: 'Alibaba-PuHuiTi-Light';
+        font-size: 25px;
+        line-height: 50px;
+      }
+      .description-special{
+        margin-right: 40px;
+      }
     }
     .procession-description{
       position: relative;
@@ -911,14 +919,14 @@ onUnmounted(() => {
       ._flex_end{
         text-align: right;
       }
-      /* opacity: 0; */
     }
     .stele-description-tl{
       writing-mode: vertical-rl;
+      height: auto !important;
         p{
-        font-size: 30px;
-        margin-right: 30px;
-        font-family: 'EarlySummerSerif-Bold';
+          font-size: 30px;
+          line-height: 90px;
+          font-family: 'EarlySummerSerif-Bold';
       }
     }
     .stele-description-fixed{
@@ -926,10 +934,17 @@ onUnmounted(() => {
       top: 400px;
       left: 2200px;
       width: 800px;
-      font-family: 'Alibaba-PuHuiTi-Light' !important;
+      p{
+        font-family: 'Alibaba-PuHuiTi-Light';
+      }
     }
     .dotPopover{
       top: 20px;
+      left: 700px;
+    }
+    >>> .popover-container{
+      top: 0px;
+      right: 100px;
     }
   }
   .seven-screen{
@@ -942,10 +957,9 @@ onUnmounted(() => {
     .description{
       font-size: 33px;
       color: #f1ddb6;
-      line-height: 50px;
+      line-height: 54px;
       width: 850px;
       position: absolute;
-      font-weight: bold;
       top: 420px;
       left: -200px;
     }
