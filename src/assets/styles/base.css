@@ -13,6 +13,13 @@
     font-style: normal;
     font-display: swap;
 }
+@font-face {
+    font-family: 'Alibaba-PuHuiTi-R';
+    src: url('@/assets/fonts/Alibaba-PuHuiTi-R.woff2') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
 
 @font-face {
     font-family: 'Alibaba-PuHuiTi-Bold';

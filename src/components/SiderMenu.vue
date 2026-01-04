@@ -9,10 +9,10 @@
         :key="`level${index}`">
         <div 
           class="first-title-wrapper" 
-          @click="collapseMenu(index)"
+          @click="collapseMenu(index,menu)"
           :ref="el => setFirstTitleRef(el, index)">
           <div class="first-title">{{menu.title}}</div>
-          <div class="arrow"></div>
+          <div class="arrow" v-if="index !== 4"></div>
         </div>
         <div 
           class="second-level"
@@ -204,12 +204,16 @@ const menuInfos = ref([
       // { title: '高原瑰艺-美术篇'},
       // { title: '吟诵千古-文学与戏剧篇'},
       // { title: '极境风土 -民俗篇'},
-      { title: '雪域巍阁-建筑篇', id: 'page-architecture-section'},
-      { title: '高原瑰艺-美术篇', id: 'page-art-section' },
-      { title: '吟诵千古-文学与戏剧篇', id: 'page-drama-section' },
-      { title: '极境风土 -民俗篇', id: 'page-folkways-section' },
+      { title: '雪域巍阁', id: 'page-architecture-section'},
+      { title: '高原瑰艺', id: 'page-art-section' },
+      { title: '吟诵千古', id: 'page-drama-section' },
+      { title: '极境风土', id: 'page-folkways-section' },
     ]
   },
+  {
+    title: '极境智旅',
+    id: 'page-question'
+  }
 ])
 
 const currentIndex = ref(null)
@@ -244,7 +248,11 @@ const setSecondLevelRef = (el, index) => {
 }
 
 // 展开收起菜单
-const collapseMenu = async (index) => {
+const collapseMenu = async (index,menu) => {
+  if(index==4){
+    await scrollToPage(menu.id)
+    return false;
+  }
   // 如果点击的是当前激活的菜单，则收起
   if (index === currentIndex.value) {
     // 收起当前菜单
@@ -803,6 +811,7 @@ const scrollToPage = async (targetId) => {
           font-size: 30px;
           color: #fff;
           white-space: nowrap;
+          font-family: 'Alibaba-PuHuiTi-Bold';;
         }
         .arrow{
           width: 19px;
@@ -830,6 +839,8 @@ const scrollToPage = async (targetId) => {
           display: none;
           opacity: 0;
           cursor: pointer;
+          margin-right: 30px;
+          font-family: 'Alibaba-PuHuiTi-R';
         }
       }
     }

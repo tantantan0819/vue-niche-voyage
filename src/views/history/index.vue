@@ -14,7 +14,7 @@ import { onMounted, onUnmounted, nextTick, ref } from 'vue'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { ScrollToPlugin } from 'gsap/ScrollToPlugin'
-import { pxToVw, pxToVh } from '@/utils/viewportUtils'
+import { pxToVw, pxToVh, convertWidthPxToVw, convertHeightPxToVh, convertTransformOriginPxToVwVh } from '@/utils/viewportUtils'
 import { preloadHeroResources } from '@/utils/preloadHeroResources'
 import hero from './hero/index.vue'
 import horizontal from './horizontal/index.vue'
@@ -50,12 +50,15 @@ let verticalSectionScrollTop = 0
 // 标记是否正在等待 vertical-section 滚动到顶部
 let isWaitingForVerticalScrollToTop = false
 
+// 保存 resize 时的滚动状态，用于恢复
+let savedScrollState = null
+
 // 加载进度相关
 const loadingProgress = ref(0)
 const showSplashLoader = ref(true)
 
 // 侧边菜单显示控制
-const showSideMenu = ref(false)
+const showSideMenu = ref(true)
 
 // 处理第三个视频播放完毕事件
 const handleThirdVideoEnded = () => {
@@ -168,8 +171,9 @@ const enableScroll = () => {
 /**
  * 初始化 horizontal 的横向滚动效果
  * 当 horizontal 的顶部到达浏览器顶部时，开始横向移动
+ * @param {boolean} isResize - 是否为 resize 触发的重新初始化
  */
-const initHorizontalScroll = async () => {
+const initHorizontalScroll = async (isResize = false) => {
   await nextTick()
   
   // 等待内容完全加载，包括图片等资源
@@ -179,6 +183,36 @@ const initHorizontalScroll = async () => {
   const contentElement = document.querySelector('.horizontal-scroll-container .content')
   
   if (!horizontalContainer || !contentElement) return
+  
+  // 如果是 resize，保存当前的滚动状态
+  if (isResize && horizontalScrollTrigger) {
+    const currentScrollLeft = horizontalContainer.scrollLeft
+    const currentPageScroll = window.pageYOffset || document.documentElement.scrollTop
+    const wasPinned = horizontalContainer.hasAttribute('data-pinned')
+    
+    // 计算当前的滚动进度
+    // 优先使用 ScrollTrigger 的 progress（基于页面滚动位置），这样更准确
+    let currentProgress = 0
+    if (wasPinned && horizontalScrollTrigger) {
+      // 使用 ScrollTrigger 的 progress（0-1），这是最准确的方式
+      currentProgress = horizontalScrollTrigger.progress
+      
+      // 如果 ScrollTrigger 的 progress 不可用，则使用 scrollLeft 计算
+      if (isNaN(currentProgress) || currentProgress < 0 || currentProgress > 1) {
+        const maxScroll = horizontalContainer.scrollWidth - horizontalContainer.clientWidth
+        if (maxScroll > 0) {
+          currentProgress = currentScrollLeft / maxScroll
+        }
+      }
+    }
+    
+    savedScrollState = {
+      scrollLeft: currentScrollLeft,
+      pageScroll: currentPageScroll,
+      wasPinned: wasPinned,
+      progress: currentProgress
+    }
+  }
   
   // 如果已经创建过，先清理
   if (horizontalScrollTrigger) {
@@ -193,11 +227,18 @@ const initHorizontalScroll = async () => {
   
   // 如果内容宽度小于等于容器宽度，不需要横向滚动
   if (moveDistance >= 0) {
+    // 如果是在 resize 时且之前有保存的状态，尝试恢复
+    if (isResize && savedScrollState) {
+      savedScrollState = null
+    }
     return
   }
   
   // 使用计算出的移动距离作为滚动距离
   const scrollDistance = Math.abs(moveDistance)
+  
+  // 标记是否正在恢复滚动位置（用于避免 onEnter 回调重置）
+  let isRestoringScroll = false
   
   // 当 horizontal-scroll-container 的顶部到达浏览器顶部时，开始横向移动
   horizontalScrollTrigger = ScrollTrigger.create({
@@ -209,6 +250,13 @@ const initHorizontalScroll = async () => {
     anticipatePin: 0, // 设置为 0，确保精确在顶部时才开始 pin
     invalidateOnRefresh: true,
     onEnter: () => {
+      // 如果正在恢复滚动位置，不重置 scrollLeft
+      if (isRestoringScroll) {
+        isHorizontalPinned = true
+        horizontalContainer.setAttribute('data-pinned', 'true')
+        return
+      }
+      
       // 进入 pin 状态 - 此时元素顶部已经到达视口顶部
       isHorizontalPinned = true
       // 通知 horizontal 组件进入 pin 状态
@@ -227,6 +275,11 @@ const initHorizontalScroll = async () => {
       })
     },
     onUpdate: (self) => {
+      // 如果正在恢复滚动位置，跳过更新，避免覆盖恢复的位置
+      if (isRestoringScroll) {
+        return
+      }
+      
       // 将页面滚动进度转换为横向滚动位置
       // progress 从 0 到 1，对应 scrollLeft 从 0 到 maxScroll
       const maxScroll = contentWidth - containerWidth
@@ -368,6 +421,131 @@ const initHorizontalScroll = async () => {
   
   // 刷新 ScrollTrigger 以确保计算正确
   ScrollTrigger.refresh()
+  
+  // 如果是 resize 且之前有保存的状态，恢复滚动位置
+  if (isResize && savedScrollState) {
+    const { scrollLeft, wasPinned, progress } = savedScrollState
+    
+    // 等待 ScrollTrigger 完全初始化
+    await new Promise(resolve => {
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          resolve()
+        })
+      })
+    })
+    
+    // 如果之前在 pin 状态，需要恢复横向滚动位置
+    if (wasPinned && progress >= 0 && progress <= 1) {
+      const maxScroll = horizontalContainer.scrollWidth - horizontalContainer.clientWidth
+      
+      // 优先使用保存的 progress（比例），这样无论高度如何变化都能正确恢复
+      // 如果 progress 无效，则使用 scrollLeft 计算
+      let targetProgress = progress
+      if (isNaN(progress) || progress < 0 || progress > 1) {
+        // 如果 progress 无效，使用 scrollLeft 计算
+        targetProgress = maxScroll > 0 ? Math.min(scrollLeft, maxScroll) / maxScroll : 0
+      }
+      
+      // 基于新的 ScrollTrigger 范围计算目标页面滚动位置
+      const scrollDistance = horizontalScrollTrigger.end - horizontalScrollTrigger.start
+      const targetPageScroll = horizontalScrollTrigger.start + (targetProgress * scrollDistance)
+      
+      // 计算目标横向滚动位置
+      const targetScrollLeft = maxScroll > 0 ? targetProgress * maxScroll : 0
+      
+      // 获取当前页面滚动位置
+      const currentPageScroll = window.pageYOffset || document.documentElement.scrollTop
+      
+      // 检查当前是否在横向滚动区域内（允许一些误差）
+      // 如果不在，但之前在 pin 状态，也应该尝试恢复（可能是高度变化导致的）
+      const isInHorizontalRange = currentPageScroll >= horizontalScrollTrigger.start - 100 && 
+                                   currentPageScroll <= horizontalScrollTrigger.end + 100
+      
+      // 如果之前在 pin 状态，无论当前是否在范围内，都尝试恢复
+      // 标记正在恢复，避免 onEnter 和 onUpdate 回调干扰
+      isRestoringScroll = true
+      
+      // 临时隐藏容器，避免恢复过程中的闪烁
+      // 使用 opacity 和 visibility 来完全隐藏，避免用户看到恢复过程
+      const originalOpacity = horizontalContainer.style.opacity
+      const originalVisibility = horizontalContainer.style.visibility
+      horizontalContainer.style.opacity = '0'
+      horizontalContainer.style.visibility = 'hidden'
+      
+      // 调整页面滚动位置到目标位置
+      // 如果当前不在横向滚动区域内，需要先滚动到横向滚动区域
+      window.scrollTo(0, targetPageScroll)
+      
+      // 等待 ScrollTrigger 响应并更新
+      await new Promise(resolve => {
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            resolve()
+          })
+        })
+      })
+      
+      // 恢复横向滚动位置
+      // 先直接设置，确保位置正确
+      horizontalContainer.scrollLeft = targetScrollLeft
+      
+      // 等待 ScrollTrigger 响应（此时 onUpdate 会被跳过，因为 isRestoringScroll = true）
+      await new Promise(resolve => {
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            resolve()
+          })
+        })
+      })
+      
+      // 再次确保横向滚动位置正确（防止被其他回调覆盖）
+      const currentScrollLeft = horizontalContainer.scrollLeft
+      const expectedScrollLeft = targetScrollLeft
+      if (Math.abs(currentScrollLeft - expectedScrollLeft) > 1) {
+        horizontalContainer.scrollLeft = expectedScrollLeft
+      }
+      
+      // 更新 vertical-section 的状态
+      const verticalSection = document.querySelector('.vertical-section')
+      if (verticalSection) {
+        const finalScrollLeft = horizontalContainer.scrollLeft
+        const isAtRightEnd = finalScrollLeft >= maxScroll - 1
+        if (isAtRightEnd) {
+          verticalSection.style.overflowY = 'auto'
+          verticalSection.style.pointerEvents = 'auto'
+        } else {
+          verticalSection.style.overflowY = 'hidden'
+          verticalSection.style.pointerEvents = 'none'
+        }
+      }
+      
+      // 再次刷新 ScrollTrigger，确保状态同步
+      ScrollTrigger.refresh()
+      
+      // 清除恢复标记
+      isRestoringScroll = false
+      
+      // 恢复容器可见性，使用 requestAnimationFrame 确保在下一帧显示，避免闪烁
+      // 使用双重 requestAnimationFrame 确保浏览器完成所有布局和绘制
+      await new Promise(resolve => {
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            // 先恢复 visibility，再恢复 opacity，确保平滑显示
+            horizontalContainer.style.visibility = originalVisibility || 'visible'
+            // 使用 requestAnimationFrame 延迟恢复 opacity，确保 visibility 先生效
+            requestAnimationFrame(() => {
+              horizontalContainer.style.opacity = originalOpacity || '1'
+              resolve()
+            })
+          })
+        })
+      })
+    }
+    
+    // 清除保存的状态
+    savedScrollState = null
+  }
 }
 
 /**
@@ -379,7 +557,7 @@ const initHorizontalScroll = async () => {
  */
 const initBatchParallax = async (forceRefresh = false, horizontalOnly = false) => {
   await nextTick() // 等待DOM完全渲染
-
+  console.log('执行了')
   // 获取所有带data-parallax属性的元素
   let parallaxElements = document.querySelectorAll('[data-parallax]')
   
@@ -472,19 +650,21 @@ const initBatchParallax = async (forceRefresh = false, horizontalOnly = false) =
       parallaxWrapper.className = 'parallax-animation-wrapper'
 
       // 设置包装器的样式，使其与原元素完全一致
+      // 将所有尺寸和定位属性转换为 vw/vh，以便在窗口大小改变时自动适配
+      // 垂直方向（top, bottom, height）用 vh，水平方向（left, right, width）用 vw
       parallaxWrapper.style.position = computedStyle.position
-      parallaxWrapper.style.top = computedStyle.top
-      parallaxWrapper.style.left = computedStyle.left
-      parallaxWrapper.style.right = computedStyle.right
-      parallaxWrapper.style.bottom = computedStyle.bottom
-      parallaxWrapper.style.width = computedStyle.width
-      parallaxWrapper.style.height = computedStyle.height
+      parallaxWrapper.style.top = convertWidthPxToVw(computedStyle.top)
+      parallaxWrapper.style.left = convertWidthPxToVw(computedStyle.left)
+      parallaxWrapper.style.right = convertWidthPxToVw(computedStyle.right)
+      parallaxWrapper.style.bottom = convertWidthPxToVw(computedStyle.bottom)
+      parallaxWrapper.style.width = convertWidthPxToVw(computedStyle.width)
+      parallaxWrapper.style.height = convertWidthPxToVw(computedStyle.height)
       parallaxWrapper.style.margin = computedStyle.margin
       parallaxWrapper.style.padding = computedStyle.padding
       parallaxWrapper.style.display = computedStyle.display
       parallaxWrapper.style.float = computedStyle.float
       parallaxWrapper.style.zIndex = computedStyle.zIndex
-      parallaxWrapper.style.transformOrigin = computedStyle.transformOrigin
+      parallaxWrapper.style.transformOrigin = convertTransformOriginPxToVwVh(computedStyle.transformOrigin)
       parallaxWrapper.style.boxSizing = 'border-box'
       parallaxWrapper.style.transformStyle = 'preserve-3d'
       parallaxWrapper.style.transform = 'none'
@@ -513,6 +693,8 @@ const initBatchParallax = async (forceRefresh = false, horizontalOnly = false) =
       el.style.right = 'auto'
       el.style.bottom = 'auto'
       el.style.margin = '0'
+      // 保持元素的 transformOrigin，并转换为 vw/vh
+      el.style.transformOrigin = convertTransformOriginPxToVwVh(computedStyle.transformOrigin)
 
       // 如果原元素是 flex 容器，需要保持其 flex 属性
       if (computedStyle.display === 'flex' || computedStyle.display === 'inline-flex') {
@@ -530,13 +712,14 @@ const initBatchParallax = async (forceRefresh = false, horizontalOnly = false) =
         el.style.boxSizing = 'border-box'
       } else {
         // 确保元素在包装器内保持原有的宽度和高度
+        // 将像素值转换为 vw/vh，以便在窗口大小改变时自动适配
         if (computedStyle.width !== 'auto' && computedStyle.width !== '0px') {
-          el.style.width = computedStyle.width
+          el.style.width = convertWidthPxToVw(computedStyle.width)
         } else {
           el.style.width = '100%'
         }
         if (computedStyle.height !== 'auto' && computedStyle.height !== '0px') {
-          el.style.height = computedStyle.height
+          el.style.height = convertWidthPxToVw(computedStyle.height)
         } else {
           el.style.height = '100%'
         }
@@ -544,6 +727,65 @@ const initBatchParallax = async (forceRefresh = false, horizontalOnly = false) =
     } else {
       // 如果已经有包装器，找到它（应该是父元素）
       parallaxWrapper = el.parentNode
+      
+      // 在 resize 时，更新包装器和元素本身的样式以适配新的窗口大小
+      if (forceRefresh) {
+        // 获取包裹器当前的样式值（可能已经是 vw）
+        const wrapperComputedStyle = window.getComputedStyle(parallaxWrapper)
+        // 获取元素的计算样式（用于获取原始值）
+        const elComputedStyle = window.getComputedStyle(el)
+        
+        // 更新包装器的定位和尺寸属性
+        // 垂直方向（top, bottom, height）用 vh，水平方向（left, right, width）用 vw
+        const updateWrapperStyle = (prop, value, isVertical = false) => {
+          if (value && value !== 'auto' && value !== 'none') {
+            // 如果已经是 vw/vh，保持；如果是 px，转换
+            if (value.includes('vw') || value.includes('vh') || value.includes('%')) {
+              // 已经是相对单位，保持原值
+              parallaxWrapper.style[prop] = value
+            } else if (value.match(/^[\d.]+px$/)) {
+              // 是 px，根据方向转换为 vw 或 vh
+              parallaxWrapper.style[prop] = isVertical ? convertWidthPxToVw(value) : convertWidthPxToVw(value)
+            } else {
+              // 其他值（如 auto），保持
+              parallaxWrapper.style[prop] = value
+            }
+          }
+        }
+        
+        // 更新包装器的定位和尺寸属性
+        updateWrapperStyle('top', wrapperComputedStyle.top, true) // 垂直方向
+        updateWrapperStyle('left', wrapperComputedStyle.left, false) // 水平方向
+        updateWrapperStyle('right', wrapperComputedStyle.right, false) // 水平方向
+        updateWrapperStyle('bottom', wrapperComputedStyle.bottom, true) // 垂直方向
+        updateWrapperStyle('width', wrapperComputedStyle.width, false) // 水平方向
+        updateWrapperStyle('height', wrapperComputedStyle.height, true) // 垂直方向
+        
+        // 更新 transformOrigin
+        parallaxWrapper.style.transformOrigin = convertTransformOriginPxToVwVh(wrapperComputedStyle.transformOrigin)
+        
+        // 更新元素本身的样式
+        el.style.transformOrigin = convertTransformOriginPxToVwVh(elComputedStyle.transformOrigin)
+        
+        // 更新元素本身的宽度和高度
+        if (elComputedStyle.display === 'flex' || elComputedStyle.display === 'inline-flex') {
+          // flex 容器：设置为 100% 以填充包裹器
+          el.style.width = '100%'
+          el.style.height = '100%'
+        } else {
+          // 非 flex 容器：根据原始样式转换
+          if (elComputedStyle.width !== 'auto' && elComputedStyle.width !== '0px') {
+            el.style.width = convertWidthPxToVw(elComputedStyle.width)
+          } else {
+            el.style.width = '100%'
+          }
+          if (elComputedStyle.height !== 'auto' && elComputedStyle.height !== '0px') {
+            el.style.height = convertWidthPxToVw(elComputedStyle.height)
+          } else {
+            el.style.height = '100%'
+          }
+        }
+      }
     }
 
     // 检查是否已经存在 ScrollTrigger，如果存在则先清理
@@ -661,13 +903,23 @@ onMounted(async () => {
   initBatchParallax()
   
   // 监听窗口大小改变，重新计算
+  // 使用防抖来避免频繁触发
+  let resizeTimeout = null
   resizeHandler = () => {
-    if (horizontalScrollTrigger) {
-      horizontalScrollTrigger.kill()
-      initHorizontalScroll()
+    // 清除之前的定时器
+    if (resizeTimeout) {
+      clearTimeout(resizeTimeout)
     }
-    // 重新初始化批量视差
-    initBatchParallax()
+    
+    // 防抖：等待 150ms 后再执行，避免频繁触发
+    resizeTimeout = setTimeout(() => {
+      if (horizontalScrollTrigger) {
+        // 传递 isResize = true，让 initHorizontalScroll 知道这是 resize 触发的
+        initHorizontalScroll(true)
+      }
+      // 重新初始化批量视差
+      initBatchParallax(true, false)
+    }, 150)
   }
   
   window.addEventListener('resize', resizeHandler)

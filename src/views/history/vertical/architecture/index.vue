@@ -1,5 +1,5 @@
 <template>
-  <div class="architecture" id="page-architecture-section">
+  <div class="architecture">
     <div class="first-screen screen">
       <div class="text-wrapper"
         data-parallax="true"
@@ -50,7 +50,8 @@
         </div>
       </div>
     </div>
-    <div class="third-screen screen">
+    <div class="third-screen screen" >
+      <div class="page-point" id="page-architecture-section"></div>
       <div class="third-screen-bg-1"
            data-parallax="true"
            data-parallax-axis="y"
@@ -842,6 +843,9 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
     }
   }
   .third-screen{
+    .page-point{
+      top: -50px;
+    }
     .third-screen-bg-1{
       width: 455px;
       height: 507px;

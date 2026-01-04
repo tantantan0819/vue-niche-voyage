@@ -2,7 +2,7 @@
   <div class="literary-drama">
     <!-- 第一屏 -->
     <div class="screen first-screen">
-      <div class="drama-section" id="page-drama-section"></div>
+      <div class="drama-section" ></div>
     </div>
     <!-- 第二屏 -->
     <div class="screen second-screen" data-parallax="true"
@@ -12,6 +12,7 @@
            data-parallax-speed="1.1"
            data-parallax-center-lock="true"
     >
+      <div class="page-point" id="page-drama-section"></div>
       <div class="second-screen-left" >
         <div class="mountain-img-1" ></div>
         <div class="mountain-img-2"></div>
@@ -541,6 +542,9 @@ onMounted(() => {
   display: flex;
   justify-content: center;
   align-items: center;
+  .page-point{
+    top: -200px;
+  }
   .second-screen-center {
     position: absolute;
     display: flex;

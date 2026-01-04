@@ -1,8 +1,8 @@
 <template>
     <div class="yuan" ref="container">
       <div class="first-screen">
+        <div class="page-point" id="page-unification"></div>
         <div
-            id="page-unification"
           class="cloud-1"
           data-parallax="true"
           data-parallax-axis="x"
@@ -253,6 +253,10 @@ onMounted(() => {
       background-position: center center;
       background-repeat: no-repeat;
       position: relative;
+      .page-point{
+        width: 50px;
+        left: 1800px;
+      }
       .cloud-1 {
         width: 929px;
         height: 390px;

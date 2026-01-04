@@ -11,7 +11,8 @@
           data-parallax-to="-100"
           data-parallax-speed="1.1"
           data-parallax-center-lock="true">
-        <div class="left-pattern-container"  id="page-folkways-section">
+        <div class="page-point" id="page-folkways-section"></div>
+        <div class="left-pattern-container">
           <div class="left-pattern-img"></div>
           <div
               class="first-screen-cloud-container"
@@ -419,7 +420,7 @@
             data-parallax-center-lock="true"></div>
       </div>
       <!-- 第十幕 -->
-      <div class="screen tenth-screen">
+      <div class="screen tenth-screen" id="page-question">
         <div
             class="left-pattern-contain"
             data-parallax="true"
@@ -661,6 +662,9 @@ const toAnswerPage = () =>{
         background-size: 100vw 1500vh;
     }
     .first-screen{
+      .page-point{
+        top: -150px;
+      }
         .background-people-img{
             position: absolute;
             top: -360px;

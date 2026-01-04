@@ -68,7 +68,8 @@
       <div class="water-cloud-2-wrapper">
         <div class="water-cloud-2"></div>
       </div>
-      <div class="water-description" id="page-the-asian-water-tower">
+      <div class="water-description">
+        <div class="page-the-asian-water-tower" id="page-the-asian-water-tower"></div>
         <div class="title">亚洲水塔</div>
         <div class="water-detail water-detail-1">
           <p>这里，</p>
@@ -81,6 +82,7 @@
         <div class="explore-button explore-btn"  @click="linkTo('/voyage/landscape')">深入探索</div>
       </div>
       <div class="biology">
+        <div class="page-highland-spirit-trail page-point" id="page-highland-spirit-trail"></div>
         <div class="biology-detail-1"
              data-parallax="true"
              data-parallax-axis="y"
@@ -122,7 +124,7 @@
       </div>
     </div>
     <div class="lives">
-      <div class="first-screen" id="page-highland-spirit-trail">
+      <div class="first-screen" >
         <div class="first-screen-bg-1"></div>
         <div class="first-screen-bg-2"></div>
         <div class="mountain-img"></div>
@@ -3126,6 +3128,13 @@ onUnmounted(() => {
       color: #366294;
       font-size: 40px;
     }
+    .page-the-asian-water-tower{
+      width: 20px;
+      height: 20px;
+      //background-color: red;
+      position: relative;
+      top: 200px;
+    }
   }
   .water-detail-1{
     font-size: 26px;
@@ -3162,6 +3171,9 @@ onUnmounted(() => {
   position: absolute;
   left: 0;
   bottom: 0;
+  .page-highland-spirit-trail{
+    top: -100px;
+  }
   .biology-detail-1{
     font-size: 32px;
     line-height: 54px;

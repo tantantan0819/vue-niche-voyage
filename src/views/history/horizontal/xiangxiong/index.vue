@@ -2,6 +2,7 @@
   <div class="xiangxiong">
     <div class="xiangxiong-bg"></div>
     <div class="first-screen">
+      <div class="page-point" id="page-xiangxiong-civilization"></div>
       <p
           class="first-screen-title"
           data-parallax="true"
@@ -11,7 +12,6 @@
           data-parallax-speed="1.3"
           data-parallax-center-lock="true">约公元前<span ref="bcNumberRef">{{bcNumber}}</span>世纪-公元<span>{{adNumber}}</span>世纪</p>
       <div
-          id="page-xiangxiong-civilization"
           class="first-screen-stone"
           data-parallax="true"
           data-parallax-axis="x"
@@ -21,7 +21,7 @@
           data-parallax-center-lock="true"></div>
     </div>
     <div class="second-screen">
-      <p 
+      <p
         class="title"
         data-parallax="true"
         data-parallax-axis="x"
@@ -457,6 +457,9 @@ onMounted(async ()=>{
     left: 0;
   }
   .first-screen{
+    .page-point{
+      left: 2300px;
+    }
     .first-screen-title{
       font-family: 'EarlySummerSerif-Bold';
       font-size: 90px;
