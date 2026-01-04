@@ -3019,10 +3019,8 @@ onUnmounted(() => {
   background-color: rgba(97,97,97,0.3);
   border-radius: 20px;
   height: auto;
-  .video-description{
-    font-size: 22px;
-    line-height: 34px;
-  }
+  font-size: 22px;
+  line-height: 34px;
 }
 
 .video-title{

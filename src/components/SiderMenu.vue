@@ -811,7 +811,7 @@ const scrollToPage = async (targetId) => {
           font-size: 30px;
           color: #fff;
           white-space: nowrap;
-          font-family: 'Alibaba-PuHuiTi-Bold';;
+          font-family: 'EarlySummerSerif-Bold';
         }
         .arrow{
           width: 19px;
