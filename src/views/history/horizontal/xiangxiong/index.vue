@@ -535,7 +535,7 @@ onMounted(async ()=>{
       background-size: cover;
       background-position: center center;
       background-repeat: no-repeat;
-      mix-blend-mode: multiply;
+      //mix-blend-mode: multiply;
       position: relative;
       top: 510px;
       left: 1200px;
