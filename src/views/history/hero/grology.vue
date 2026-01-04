@@ -43,7 +43,7 @@
         </div>
       </div>
     </div>
-    <div class="grology-water" style="margin-top: 500px">
+    <div class="grology-water">
       <div class="water-cloud-1"></div>
       <div class="water-bg-video" id="page-mountains-to-rainforests">
         <video
@@ -3040,6 +3040,7 @@ onUnmounted(() => {
   background-size: 1920px 9276px;
   background-repeat: no-repeat;
   background-position: center -1080px;
+  margin-top: 700px;
 
   .water-cloud-1{
     width: 1920px;

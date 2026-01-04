@@ -58,7 +58,7 @@ const loadingProgress = ref(0)
 const showSplashLoader = ref(true)
 
 // 侧边菜单显示控制
-const showSideMenu = ref(true)
+const showSideMenu = ref(false)
 
 // 处理第三个视频播放完毕事件
 const handleThirdVideoEnded = () => {
