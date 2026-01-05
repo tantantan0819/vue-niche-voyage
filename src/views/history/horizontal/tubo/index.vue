@@ -127,7 +127,14 @@
       </div>
     </div>
     <div class="four-screen">
-      <div class="description description-1">
+      <div 
+        class="description description-1"
+         data-parallax="true"
+          data-parallax-axis="x"
+          data-parallax-from="400"
+          data-parallax-to="-400"
+          data-parallax-speed="1.3"
+          data-parallax-center-lock="true">
         <div class="description-wrapper">
           <p>《步辇图》</p>
           <p>唐朝著名画家、政治家</p>
@@ -145,7 +152,7 @@
           <p>鸿胪寺官员、吐蕃使臣</p>
           <p>禄东赞、鸿胪寺译员。</p>
         </div>
-        <annotation-dot>
+        <annotation-dot class="annotation-dot">
           <p class="popularization-content">《浸润与融通 : 西藏各民族交往、交流与交融的故事.古代卷》四川民族出版社 2022</p>
         </annotation-dot>
       </div>
@@ -397,7 +404,7 @@ onUnmounted(() => {
 .tubo{
   display: flex;
   position: relative;
-   width: 18856px;
+  width: 18856px;
   /* width: 21930px; */
   height: 1080px;
   .tubo-bg{
@@ -650,7 +657,6 @@ onUnmounted(() => {
       font-size: 33px;
       line-height: 54px;
       color: #f1ddb6;
-      word-break: break-all;
       white-space: normal;
       word-wrap: break-word;
     }
@@ -698,6 +704,8 @@ onUnmounted(() => {
       top: 460px;
       left: 1700px;
       width: 860px;
+      white-space: normal;
+      word-break: break-all;
     }
     .cloud-1{
       width: 1042px;
@@ -750,7 +758,7 @@ onUnmounted(() => {
       color: #f1ddb6;
       position: absolute;
       top: 130px;
-      left: 820px;
+      left: 1150px;
       z-index: 5;
       p{
         font-family: 'Alibaba-PuHuiTi-Light';
@@ -764,17 +772,20 @@ onUnmounted(() => {
     .procession-description{
       position: relative;
       top: 150px;
-      right: -800px;
+      right: -1100px;
     }
-    .popularization-wrapper{
+   ::v-deep .popularization-wrapper{
       position: absolute;
-      left: -500px;
+      left: -560px;
       top: 50px;
       .title{
         border-color: #967c58;
       }
       .popularization-content{
-        width: 400px;
+        width: 500px;
+        white-space: normal;
+        word-wrap: break-word;
+        word-break: break-all;
       }
     }
     .person-left{
@@ -785,7 +796,7 @@ onUnmounted(() => {
       background-position: center center;
       background-repeat: no-repeat;
       position: absolute;
-      bottom: -120px;
+      bottom: -150px;
       left: 500px;
     }
     .person-right{
@@ -796,7 +807,7 @@ onUnmounted(() => {
       background-position: center center;
       background-repeat: no-repeat;
       position: absolute;
-      bottom: 60px;
+      bottom: 30px;
       right: -1120px;
       z-index: 2;
     }
@@ -825,6 +836,9 @@ onUnmounted(() => {
       position: absolute;
       top: 420px;
       left: 1300px;
+      white-space: normal;
+      word-wrap: break-word;
+      word-break: break-all;
     }
   }
   .six-screen{
@@ -962,6 +976,9 @@ onUnmounted(() => {
       position: absolute;
       top: 420px;
       left: -200px;
+      white-space: normal;
+      word-wrap: break-word;
+      word-break: break-all;
     }
     .cloud-1{
       width: 630px;

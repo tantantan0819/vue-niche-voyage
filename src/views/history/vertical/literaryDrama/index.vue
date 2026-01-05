@@ -128,7 +128,7 @@
         </div>
           <div class="portrait-detail">
             <p class="illustration-title-font">格萨尔王和三十员大将降伏恶魔</p>
-            <DotPopover class="dot-popover" title="内容来自" content="《情系高原——新藏画精品细赏》 四川民族出版社 2025"></DotPopover>
+            <DotPopover class="dot-popover" title="图片来自" content="《情系高原——新藏画精品细赏》 四川民族出版社 2025"></DotPopover>
           </div>
       </div>
       <div class="text-container">
@@ -312,7 +312,7 @@
             <img class="portrait-img" src="../../../../assets/images/literaryDrama/drama-image-3.jpg"></img>
           </div>
           <div class="portrait-detail">
-            <DotPopover class="dot-popover" title="内容来自" content="《情系高原——新藏画精品细赏》 四川民族出版社 2025"></DotPopover>
+            <DotPopover class="dot-popover" title="图片来自" content="《情系高原——新藏画精品细赏》 四川民族出版社 2025"></DotPopover>
             <span class="illustration-title-font">文成公主入藏图</span>
           </div>
       </div>
@@ -345,7 +345,7 @@
             <img class="portrait-img" src="../../../../assets/images/literaryDrama/drama-image-4.jpg"></img>
           </div>
           <p class="illustration-title-font tenth-screen-illustration">
-            长青春科尔寺僧人表演的康巴藏戏
+            长青春科尔寺僧人表演的藏戏
           </p>
       </div>
       <div class="text-container text-font">
@@ -800,20 +800,22 @@ onMounted(() => {
     align-items: start
   }
   .fifth-screen-content{
-    width: 900px;
+    width: 840px;
   }
   .fifth-screen-text{
     opacity: 0;
+    text-align: justify;
   }
   .text-container{
     display: flex;
   }
   .character-img{
     position: relative;
-    top: 50px;
+    top: 70px;
     left: 50px;
     width:640px;
     height:280px;
+    z-index: 999;
     background: url('@/assets/images/literaryDrama/drama-element-2-3.gif') no-repeat center center / cover;
   }
   .background-text-img{
@@ -825,7 +827,7 @@ onMounted(() => {
   }
   .dot-popover{
     top: 30px;
-    left: -360px;
+    left: -650px;
     z-index: 999;
   }
    >>> .popover-container{
@@ -871,7 +873,7 @@ onMounted(() => {
   position: relative;
   .tree-img{
     position: absolute;
-    left: 0;
+    left: 0px;
     top: 300px;
     width: 740px;
     height: 644px;
@@ -880,8 +882,9 @@ onMounted(() => {
   .text-container{
     position: absolute;
     top: -100px;
-    right: 200px;
-    width: 1000px;
+    right: 40px;
+    width: 1100px;
+    text-align: justify;
     .background-text-img{
       position: absolute;
       top: -100px;
@@ -897,8 +900,10 @@ onMounted(() => {
   .dot-popover{
     top: 20px;
     & >>> .popover-container{
-      top: 20px;
-      left: 60px;
+      top: 40px;
+      left: -20px;
+      width: 400px;
+      border-radius: 30px;
     }
   }
 }
@@ -923,16 +928,20 @@ onMounted(() => {
       font-size: 40px;
       line-height: 80px;
       color: #534833;
+      letter-spacing: 5px;
     }
   }
   .dot-popover{
     top: 10px;
     left: 20px;
+    letter-spacing: normal;
   }
    >>> .popover-container{
     top: 30px;
     left: 40px;
     writing-mode:horizontal-tb; 
+    width: 440px;
+    border-radius: 35px;
   }
 }
 .ninth-screen{
@@ -978,7 +987,7 @@ onMounted(() => {
 .tenth-screen{
   .cloud-img{
     position: absolute;
-    top: 100px;
+    top: 300px;
     left: 0;
     width: 655px;
     height: 352px;
@@ -986,7 +995,7 @@ onMounted(() => {
   }
   .portrait-container{
     position: absolute;
-    top: 380px;
+    top: 480px;
     left: 300px;
     .portrait-img{
       width: 500px;
@@ -999,9 +1008,10 @@ onMounted(() => {
   }
   .text-container{
     position: absolute;
-    top: 300px;
-    right: 200px;
-    width: 800px;
+    top: 400px;
+    right: 160px;
+    width: 860px;
+    text-align: justify;
     .tenth-screen-text{
       opacity: 0;
     }
@@ -1023,7 +1033,7 @@ onMounted(() => {
     position: absolute;
     top: 150px;
     left: 200px;
-    width: 700px;
+    width: 750px;
     opacity: 0;
   }
   .portrait-img{
