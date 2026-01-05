@@ -132,6 +132,15 @@ div{
     /*background: red;*/
     position: absolute;
 }
+.alibaba-light{
+    font-family: 'Alibaba-PuHuiTi-Light'!important;
+}
+.nowrap{
+    white-space: nowrap;
+    p{
+        white-space: nowrap;
+    }
+}
 @keyframes cloudFloat {
     0% { transform: translate(0, 0); }
     25% { transform: translate(50px, -10px) ; }

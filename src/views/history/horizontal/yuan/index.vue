@@ -31,7 +31,14 @@
         >公元<span class="change-number" ref="number1247Ref">{{ displayNumber1247 }}</span>年</div>
       </div>
       <div class="second-screen">
-        <div class="description title">盟启一统</div>
+        <div class="description title"
+             data-parallax="true"
+             data-parallax-axis="x"
+             data-parallax-from="200"
+             data-parallax-to="-200"
+             data-parallax-speed="1.5"
+             data-parallax-center-lock="true"
+        >盟启一统</div>
         <div class="description-wrapper">
           <div 
             class="cloud-1"
@@ -51,14 +58,22 @@
             data-parallax-speed="1.5"
             data-parallax-center-lock="true"
           ></div>
-          <div class="description yuan-descript-1">
-            <p>吐蕃王朝瓦解后，</p>
-            <p>高原经历了一个从赞普王系割据到佛教教派竞立的分治过程，</p>
-            <p>直到13世纪，北方强势崛起的蒙古将目光对准这里。</p>
-          </div>
-          <div class="description yuan-descript-1">
-            <p>公元1247年，一次重要的会谈在河西走廊上举行了。</p>
-            <p>蒙古阔端在凉州（今甘肃武威）与萨迦班智达举行会盟，史称“凉州会盟”。</p>
+          <div
+              data-parallax="true"
+              data-parallax-axis="x"
+              data-parallax-from="400"
+              data-parallax-to="-400"
+              data-parallax-speed="1.5"
+              data-parallax-center-lock="true">
+            <div class="description yuan-descript-1">
+              <p>吐蕃王朝瓦解后，</p>
+              <p>高原经历了一个从赞普王系割据到佛教教派竞立的分治过程，</p>
+              <p>直到13世纪，北方强势崛起的蒙古将目光对准这里。</p>
+            </div>
+            <div class="description yuan-descript-1">
+              <p>公元1247年，一次重要的会谈在河西走廊上举行了。</p>
+              <p>蒙古阔端在凉州（今甘肃武威）与萨迦班智达举行会盟，史称“凉州会盟”。</p>
+            </div>
           </div>
         </div>
       </div>
@@ -110,7 +125,13 @@
           ></div> 
       </div>
       <div class="five-screen">
-        <div class="description yuan-descript-1">
+        <div class="description yuan-descript-1"
+             data-parallax="true"
+             data-parallax-axis="x"
+             data-parallax-from="150"
+             data-parallax-to="-150"
+             data-parallax-speed="1.5"
+             data-parallax-center-lock="true">
           1264年，忽必烈设“总制院”，让时任国师的萨迦班智达之侄八思巴担任该机构负责人。1288年，元廷又取用“吐蕃朝唐之际，皇帝在宣政殿接见”的历史典故，更名为“宣政院”，并扩大机构规模，设立三个宣慰使司都帅府，专门负责统辖全国佛教事宜和管理藏区军政事务。
         </div>
 <!--        <annotation-dot>-->
@@ -136,14 +157,26 @@
           data-parallax-speed="3"
           data-parallax-center-lock="true"
         ></div>
-        <div class="seal yuan-descript-1">
+        <div class="seal yuan-descript-1"
+             data-parallax="true"
+             data-parallax-axis="x"
+             data-parallax-from="200"
+             data-parallax-to="-200"
+             data-parallax-speed="1.2"
+             data-parallax-center-lock="true">
           <div class="seal-img"></div>
           <p>统领释教大元国师印</p>
           <annotation-dot>
             <p class="popularization-content">《物里中华：一文一物话西藏》 四川民族出版社 2025</p>
           </annotation-dot>
         </div>
-        <div class="description yuan-descript-1">这枚印章被学者认为与八思巴有关，因印而制信，体现了中央治藏方式的制度化。</div>
+        <div class="description yuan-descript-1"
+             data-parallax="true"
+             data-parallax-axis="x"
+             data-parallax-from="300"
+             data-parallax-to="-300"
+             data-parallax-speed="1.2"
+             data-parallax-center-lock="true">这枚印章被学者认为与八思巴有关，因印而制信，体现了中央治藏方式的制度化。</div>
       </div>
       <div class="seven-screen screen">
         <div 
@@ -345,6 +378,7 @@ onMounted(() => {
         position: relative;
         width: 1000px;
         top: 430px;
+        text-align: justify;
       }
       .mountain{
         width: 1305px;
@@ -398,6 +432,7 @@ onMounted(() => {
         width: 870px;
         top: 420px;
         left: 300px;
+        text-align: justify;
       }
       .person{
         width: 800px;

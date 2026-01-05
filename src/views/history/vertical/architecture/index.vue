@@ -45,7 +45,10 @@
       >
         <p>继续前行，感受极境之上，</p>
         <div class="architecture-text">
-          <div class="architecture-text-1"></div>
+          <div class="architecture-text-1-wrapper">
+            <div class="architecture-text-1"></div>
+            <p>的</p>
+          </div>
           <p>温度与华彩。</p>
         </div>
       </div>
@@ -155,7 +158,7 @@
            data-parallax-to="-300"
            data-parallax-speed="1.2"
            data-parallax-center-lock="true">
-        <p>马尔康脚木足扎依碉楼</p>
+        <p class="alibaba-light">马尔康脚木足扎依碉楼</p>
         <div class="img-1"></div>
         <annotation-dot :openDirection="-50" :closeDirection="50">
           <p class="popularization-content">《嘉绒藏族古碉文明》四川民族出版社 2020</p>
@@ -180,7 +183,7 @@
            data-parallax-speed="1.1"
            data-parallax-center-lock="true">
         <div class="img-1"></div>
-        <p>汶川县龙溪乡阿尔寨碉楼</p>
+        <p class="alibaba-light">汶川县龙溪乡阿尔寨碉楼</p>
         <annotation-dot >
           <p class="popularization-content">《羌族建筑》 四川民族出版社 2021</p>
         </annotation-dot>
@@ -209,9 +212,10 @@
            data-parallax-speed="1.1"
            data-parallax-center-lock="true">
         <div class="img-1"></div>
-        <p>巴底吐司官寨结构图</p>
+        <p class="alibaba-light">巴底吐司官寨结构图</p>
         <annotation-dot >
-          <p class="popularization-content">《藏族美术集成·建筑艺术·民居建筑·川滇卷》（藏汉对照）四川民族出版社 2023</p>
+          <p class="popularization-content">《藏族美术集成·建筑艺术·民居建筑·川滇卷》（藏汉对照）</p>
+          <p class="popularization-content">四川民族出版社 2023</p>
         </annotation-dot>
       </div>
       <div class="seven-screen-detail"
@@ -235,7 +239,7 @@
            data-parallax-to="-300"
            data-parallax-speed="1.3"
            data-parallax-center-lock="true">比如，人们称巴塘民居为红藏房，乡城民居为白藏房，稻城民居为黑藏房，道孚民居为花藏房。其中，道孚民居装修精美，精雕细镂，描金绘彩，正因如此，道孚也被称为“藏民居艺术之都”。</div>
-      <div class="eight-screen-detail"
+      <div class="eight-screen-detail nowrap"
            data-parallax="true"
            data-parallax-axis="y"
            data-parallax-from="100"
@@ -246,21 +250,19 @@
         <p>那么宫堡式建筑则是建筑技艺与审美凝聚的最高表达，</p>
         <p>其中最恢宏的典范当属布达拉宫。</p>
       </div>
-      <div class="img-wrapper-1">
-        <div class="img-1"
-             data-parallax="true"
-             data-parallax-axis="y"
-             data-parallax-from="200"
-             data-parallax-to="-200"
-             data-parallax-speed="1.2"
-             data-parallax-center-lock="true"></div>
-        <p
-            data-parallax="true"
-            data-parallax-axis="y"
-            data-parallax-from="100"
-            data-parallax-to="-400"
-            data-parallax-speed="1.4"
-            data-parallax-center-lock="true">道孚民居原木风格的客厅</p>
+      <div class="img-wrapper-1"
+           data-parallax="true"
+           data-parallax-axis="y"
+           data-parallax-from="200"
+           data-parallax-to="-200"
+           data-parallax-speed="1.2"
+           data-parallax-center-lock="true"
+      >
+        <div class="img-1"></div>
+        <p class="alibaba-light">道孚民居原木风格的客厅</p>
+        <annotation-dot :openDirection="-50" :closeDirection="50">
+          <p class="popularization-content">《藏族美术集成·建筑艺术·民居建筑·川滇卷》（藏汉对照）<br>四川民族出版社 2023</p>
+        </annotation-dot>
       </div>
     </div>
     <div class="nine-screen screen">
@@ -273,7 +275,7 @@
            data-parallax-speed="1.2"
            data-parallax-center-lock="true">
         <div class="img-1"></div>
-        <p>布达拉宫近景</p>
+        <p class="alibaba-light">布达拉宫近景</p>
       </div>
       <div class="img-wrapper-2"
            data-parallax="true"
@@ -283,8 +285,8 @@
            data-parallax-speed="1.3"
            data-parallax-center-lock="true">
         <div class="img-2"></div>
-        <p>布达拉宫</p>
-        <p class="description">布达拉宫始建于公元7世纪，17世纪重建扩建后成为政治与宗教中心。它依山而筑，气势雄浑。红宫居中、白宫横展，十余层红墙与金色屋檐在高原阳光下熠熠生辉。1994年，布达拉宫被列入《世界遗产名录》，它不仅是文成公主入藏，汉藏交流等早期历史的见证，更成为中华民族文化互鉴融通的重要标志和全人类共同的文化财</p>
+        <p class="alibaba-light">布达拉宫</p>
+        <p class="description">布达拉宫始建于公元7世纪，17世纪重建扩建后成为政治与宗教中心。它依山而筑，气势雄浑。红宫居中、白宫横展，十余层红墙与金色屋檐在高原阳光下熠熠生辉。1994年，布达拉宫被列入《世界遗产名录》，它不仅是文成公主入藏，汉藏交流等早期历史的见证，更成为中华民族文化互鉴融通的重要标志和全人类共同的文化财富。</p>
         <annotation-dot :openDirection="-50" :closeDirection="50">
           <p class="popularization-content">《物里中华：一文一物话西藏》 四川民族出版社 2025</p>
         </annotation-dot>
@@ -315,9 +317,9 @@
            data-parallax-speed="1.2"
            data-parallax-center-lock="true">
         <div class="img-1"></div>
-        <p>桑耶寺乌孜大殿</p>
+        <p class="alibaba-light">桑耶寺乌孜大殿</p>
         <annotation-dot>
-          <p class="popularization-content">《物里中华：一文一物话西藏》 四川民族出版社 2025</p>
+          <p class="popularization-content">《物里中华：一文一物话西藏》<br> 四川民族出版社 2025</p>
         </annotation-dot>
       </div>
       <div class="eleven-screen-warpper-2"
@@ -327,13 +329,7 @@
            data-parallax-to="-200"
            data-parallax-speed="1.2"
            data-parallax-center-lock="true">
-        <p
-            data-parallax="true"
-            data-parallax-axis="y"
-            data-parallax-from="80"
-            data-parallax-to="-80"
-            data-parallax-speed="1.1"
-            data-parallax-center-lock="true">桑耶寺全景</p>
+        <p class="alibaba-light">桑耶寺全景</p>
         <div class="img-2"></div>
       </div>
     </div>
@@ -441,8 +437,18 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
       position: relative;
       z-index: 2;
       white-space: nowrap;
+      .architecture-text-1-wrapper{
+        display: flex;
+        align-items: flex-end;
+        font-family: 'EarlySummerSerif-Bold';
+        p{
+          font-size: 70px;
+          padding-left: 10px;
+          line-height: 70px;
+        }
+      }
       .architecture-text-1{
-        width: 369px;
+        width: 396px;
         height: 94px;
         background-image: url("@/assets/images/architecture/architecture-characters-1.png");
         background-size: cover;
@@ -454,6 +460,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
         font-size: 150px;
         color: #a89c45;
         padding-left: 110px;
+        font-family: 'EarlySummerSerif-Bold';
       }
     }
   }
@@ -483,6 +490,9 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
         position: absolute;
         bottom: -220px;
         left: 960px;
+        .popularization-content{
+          width: 300px;
+        }
         .popularization-wrapper{
           position: relative;
           top: -160px;
@@ -601,6 +611,21 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
     }
   }
   .eight-screen{
+    .popularization-description{
+      position: absolute;
+      bottom: -260px;
+      left: -30px;
+      width: 600px;
+      .popularization-wrapper{
+        .popularization-content{
+          width: 550px;
+          position: relative;
+        }
+        position: relative;
+        top: -150px;
+        left: -600px;
+      }
+    }
     .eight-screen-bg{
       width: 1920px;
       height: 1488px;
@@ -733,6 +758,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
       position: absolute;
       right: 190px;
       top: 530px;
+      white-space: nowrap;
     }
     .img-wrapper-1{
       position: absolute;
@@ -845,6 +871,9 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
   .third-screen{
     .page-point{
       top: -50px;
+    }
+    p{
+      font-family: 'EarlySummerSerif-Bold';
     }
     .third-screen-bg-1{
       width: 455px;

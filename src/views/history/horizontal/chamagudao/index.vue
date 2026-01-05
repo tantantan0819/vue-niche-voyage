@@ -128,9 +128,10 @@
           data-parallax-speed="1.2"
           data-parallax-center-lock="true"
       >
-        <p>人依赖茶叶解油腻，汉人则需藏区良马。</p>
+        <p>藏人依赖茶叶解油腻，汉人则需藏区良马。</p>
         <p>汉族茶商驮茶砖，羌族脚夫引路，与藏族牧民换马。</p>
         <p>市集上汉话、藏语、羌语交织，皮毛、茶叶、盐巴互通，</p>
+        <p>古道旁兴起多民族聚居的小镇，</p>
         <p>为区域间的经济文化交流提供了有效途径。</p>
       </div>
     </div>
@@ -221,7 +222,7 @@
           data-parallax-speed="1.5"
           data-parallax-center-lock="true"
       >
-        <p>明朝建立后，基本沿用了元朝的治藏制度。中央收缴藏区各部旧印，重新颁发给他们新的印信，通过“多封众建”以及设立朵甘行都指挥使司和乌思藏行都指挥使司的方式行使主</p>
+        <p>明朝建立后，基本沿用了元朝的治藏制度。中央收缴藏区各部旧印，重新颁发给他们新的印信，通过“多封众建”以及设立朵甘行都指挥使司和乌思藏行都指挥使司的方式行使主权。</p>
         <p>清朝建立后，雍正帝在拉萨设驻藏大臣管理藏区事务，这是清朝在藏区直接派遣常驻官员的开始；乾隆帝则颁《钦定藏内善后章程》，明确驻藏大臣职权和“金瓶掣签”制度，使中央对西藏地方施政发展到了最高阶段。</p>
       </div>
       <div
@@ -253,8 +254,8 @@
             data-parallax-center-lock="true"
         >
           <div class="bottle-detail">金瓶掣签”苯巴瓶</div>
-          <p>是维护西藏稳定，巩固国家统一的历史见证。</p>
           <p>用于甄选活佛转世灵童的金苯巴瓶，</p>
+          <p>是维护西藏稳定，巩固国家统一的历史见证。</p>
         </div>
       </div>
       <div
@@ -421,7 +422,7 @@ onUnmounted(() => {
       background-position: center center;
       background-repeat: no-repeat;
       position: absolute;
-      bottom: 100px;
+      bottom: 0;
       right: -800px;
       z-index: 2;
     }
@@ -481,9 +482,12 @@ onUnmounted(() => {
       writing-mode: vertical-rl;
       left: 660px;
       top: 440px;
+      p{
+        font-family: 'EarlySummerSerif-Bold' !important;
+      }
     }
     .tree{
-      width: 1878px;
+      width: 2030px;
       height: 1157px;
       background-image: url("@/assets/images/chamagudao/tree.gif");
       background-size: cover;
@@ -563,6 +567,7 @@ onUnmounted(() => {
       .title{
         font-size: 33px;
         margin-bottom: 10px;
+        font-family: 'Alibaba-PuHuiTi-Light';
       }
       p{
         font-size: 25px;
@@ -571,6 +576,7 @@ onUnmounted(() => {
         white-space: normal;
         word-wrap: break-word;
         word-break: break-all;
+        font-family: 'Alibaba-PuHuiTi-Light';
       }
     }
     .temple{
@@ -616,11 +622,13 @@ onUnmounted(() => {
         font-size: 33px;
         color: #2c2108;
         margin-bottom: 10px;
+        font-family: 'Alibaba-PuHuiTi-Light';
       }
       p{
         font-size: 25px;
         line-height: 50px;
         color: #2c2108;
+        font-family: 'Alibaba-PuHuiTi-Light';
       }
     }
     .popularization-description{
@@ -706,11 +714,13 @@ onUnmounted(() => {
           font-size: 33px;
           color: #2c2108;
           margin-bottom: 10px;
+          font-family: 'Alibaba-PuHuiTi-Light';
         }
         p{
           font-size: 25px;
           line-height: 50px;
           color: #2c2108;
+          font-family: 'Alibaba-PuHuiTi-Light';
         }
       }
     }

@@ -1,12 +1,12 @@
 <template>
   <div class="popularization-description procession-description">
-    <div class="lamp-item-wrap" @click="handleOpen">
+    <div class="lamp-item-wrap" @click="handleToggle">
       <div class="lamp-item-core" ref="lampCoreRef"></div>
       <div class="lamp-item"></div>
     </div>
     <div class="popularization-wrapper" ref="wrapperRef">
-      <div class="close" @click="handleClose">x</div>
-      <div class="title"><span>·</span>内容来自</div>
+<!--      <div class="close" @click="handleClose">x</div>-->
+      <div class="title"><span>·</span>图片来自</div>
       <slot></slot>
     </div>
   </div>
@@ -32,6 +32,7 @@ const props = defineProps({
 
 const lampCoreRef = ref(null);
 const wrapperRef = ref(null);
+const isOpen = ref(false);
 
 const handleOpen = () => {
   if (!wrapperRef.value || !lampCoreRef.value) return;
@@ -46,6 +47,8 @@ const handleOpen = () => {
   const tl = gsap.timeline();
   tl.to(lampCoreRef.value, { scale: 0.6, duration: 0.1 })
     .to(lampCoreRef.value, { scale: 1, duration: 0.1 });
+  
+  isOpen.value = true;
 };
 
 const handleClose = () => {
@@ -57,6 +60,16 @@ const handleClose = () => {
     opacity: 0,
     duration: 0.5
   });
+  
+  isOpen.value = false;
+};
+
+const handleToggle = () => {
+  if (isOpen.value) {
+    handleClose();
+  } else {
+    handleOpen();
+  }
 };
 </script>
 
@@ -64,6 +77,12 @@ const handleClose = () => {
 .popularization-description {
   position: relative;
   z-index: 99;
+  p{
+    font-family: 'Alibaba-PuHuiTi-Light'!important;
+  }
+}
+.title{
+  font-family: 'Alibaba-PuHuiTi-Light';
 }
 </style>
 
