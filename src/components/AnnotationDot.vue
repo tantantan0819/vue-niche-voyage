@@ -84,5 +84,8 @@ const handleToggle = () => {
 .title{
   font-family: 'Alibaba-PuHuiTi-Light';
 }
+.popularization-content{
+  font-family: 'Alibaba-PuHuiTi-Light'!important;
+}
 </style>
 

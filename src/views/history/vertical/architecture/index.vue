@@ -9,7 +9,7 @@
         data-parallax-speed="1.1"
         data-parallax-center-lock="true">
           <p>走过云影掠动的群峰，翻罢岁月雕琢的时光。</p>
-          <p>现在</p>
+          <p class="earlySummer-serif">现在</p>
           <p>请暂时从宏阔的自然与历史中抽身，</p>
       </div>
     </div>
@@ -557,6 +557,12 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
         top: -100px;
         margin-top: 0px!important;
         left: -600px;
+        height: 150px;
+        .popularization-content{
+          position: absolute;
+          top: 80px;
+          left: 20px;
+        }
       }
     }
     .img-wrapper-1{
@@ -682,7 +688,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
         .popularization-content{
           width: 550px;
           position: relative;
-          left: 100px;
+          //left: 100px;
         }
         position: relative;
         top: -100px;
@@ -737,7 +743,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
       width: 480px;
       .popularization-wrapper{
         position: relative;
-        top: -100px;
+        top: -140px;
         left: 0px;
       }
     }

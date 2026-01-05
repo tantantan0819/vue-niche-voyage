@@ -1,47 +1,47 @@
 <template>
   <div class="grology">
     <div class="grology-origin" ref="originContainer">
-      <div class="welcome-video-wrapper">
-        <video
-            ref="welcomeVideo"
-            class="welcome-video"
-            :src="welcomeVideoSrc"
-            preload="auto"
-            muted
-            playsinline
-            @ended="onWelcomeVideoEnded"
-        ></video>
-        <div class="welcome-video-roller" ref="welcomeVideoRoller"></div>
-      </div>
-      <div class="origin-video-wrapper" ref="originVideoWrapper">
-        <video
-            ref="originVideo"
-            class="origin-video"
-            :src="originInfos[originCurrentIndex].videoUrl"
-            preload="auto"
-            playsinline
-            :muted="isMuted"
-            @ended="onOriginVideoEnded"
-            @timeupdate="onOriginVideoTimeUpdate"
-        ></video>
-        <div class="video-sound" @click="toggleSound">
-          <div :class="isMuted ? 'video-sound-icon-off' : 'video-sound-icon-open'"></div>
-        </div>
-        <div class="video-accessories" ref="videoAccessories">
-          <div class="video-description" ref="videoDescription">
-            <p class="video-title">{{ originInfos[originCurrentIndex].title }}</p>
-            <p :style="{width: originInfos[originCurrentIndex].width}">{{ originInfos[originCurrentIndex].description[0] }}</p>
-          </div>
-          <div class="video-indicator">
-            <div
-                class="video-dot"
-                v-for="(item, index) in originInfos.length"
-                :key="index"
-                :class="{ active: originCurrentIndex === index }"
-            ></div>
-          </div>
-        </div>
-      </div>
+<!--      <div class="welcome-video-wrapper">-->
+<!--        <video-->
+<!--            ref="welcomeVideo"-->
+<!--            class="welcome-video"-->
+<!--            :src="welcomeVideoSrc"-->
+<!--            preload="auto"-->
+<!--            muted-->
+<!--            playsinline-->
+<!--            @ended="onWelcomeVideoEnded"-->
+<!--        ></video>-->
+<!--        <div class="welcome-video-roller" ref="welcomeVideoRoller"></div>-->
+<!--      </div>-->
+<!--      <div class="origin-video-wrapper" ref="originVideoWrapper">-->
+<!--        <video-->
+<!--            ref="originVideo"-->
+<!--            class="origin-video"-->
+<!--            :src="originInfos[originCurrentIndex].videoUrl"-->
+<!--            preload="auto"-->
+<!--            playsinline-->
+<!--            :muted="isMuted"-->
+<!--            @ended="onOriginVideoEnded"-->
+<!--            @timeupdate="onOriginVideoTimeUpdate"-->
+<!--        ></video>-->
+<!--        <div class="video-sound" @click="toggleSound">-->
+<!--          <div :class="isMuted ? 'video-sound-icon-off' : 'video-sound-icon-open'"></div>-->
+<!--        </div>-->
+<!--        <div class="video-accessories" ref="videoAccessories">-->
+<!--          <div class="video-description" ref="videoDescription">-->
+<!--            <p class="video-title">{{ originInfos[originCurrentIndex].title }}</p>-->
+<!--            <p :style="{width: originInfos[originCurrentIndex].width}">{{ originInfos[originCurrentIndex].description[0] }}</p>-->
+<!--          </div>-->
+<!--          <div class="video-indicator">-->
+<!--            <div-->
+<!--                class="video-dot"-->
+<!--                v-for="(item, index) in originInfos.length"-->
+<!--                :key="index"-->
+<!--                :class="{ active: originCurrentIndex === index }"-->
+<!--            ></div>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
     </div>
     <div class="grology-water">
       <div class="water-cloud-1"></div>
@@ -2964,7 +2964,7 @@ onUnmounted(() => {
   transition: all ease-in-out 0.3s;
   background-color: rgba(80,163,223,0.5);
   &:hover{
-    background-color: #4291c4;
+    background-color: #4291c4!important;
   }
 }
 
@@ -3125,7 +3125,9 @@ onUnmounted(() => {
     margin-top: 1080px;
     .title{
       color: #366294;
-      font-size: 40px;
+      font-size: 80px;
+      z-index: 99;
+      font-family: 'Alibaba-PuHuiTi-Light';
     }
     .page-the-asian-water-tower{
       width: 20px;
@@ -3177,9 +3179,9 @@ onUnmounted(() => {
     font-size: 32px;
     line-height: 54px;
     position: absolute;
-    left: 254px;
+    left: 268px;
     color: #286f86;
-    width: 500px;
+    width: 660px;
   }
   .biology-detail-2{
     font-size: 32px;
@@ -3310,6 +3312,7 @@ onUnmounted(() => {
       }
       .goose-english{
         margin-top: 20px;
+        font-style: italic;
       }
       .goose-description{
         padding: 30px;
@@ -3410,6 +3413,8 @@ onUnmounted(() => {
         position: absolute;
         top: 100px;
         left: 730px;
+        font-style: italic;
+
       }
 
       .panthera-description{
@@ -3482,6 +3487,8 @@ onUnmounted(() => {
         position: absolute;
         top: 520px;
         left: -220px;
+        font-style: italic;
+
       }
       .chiru-description{
         opacity: 0;
@@ -3577,6 +3584,8 @@ onUnmounted(() => {
         position: absolute;
         top: -84px;
         left: 640px;
+        font-style: italic;
+
       }
       .panda-description{
         opacity: 0;

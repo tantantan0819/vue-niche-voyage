@@ -682,6 +682,7 @@ const changeVideo = async (videoSrc) => {
     margin-top: 10px;
     line-height: 50px;
     font-family: 'Alibaba-PuHuiTi-Regular';
+    text-align: justify;
     span{
       font-weight: bold;
       margin-right: 10px;

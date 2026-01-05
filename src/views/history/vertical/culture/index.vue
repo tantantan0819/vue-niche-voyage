@@ -22,22 +22,22 @@
       <div class="img-mountain"
            data-parallax="true"
            data-parallax-axis="y"
-           data-parallax-from="100"
-           data-parallax-to="-100"
+           data-parallax-from="10"
+           data-parallax-to="-10"
            data-parallax-speed="1.2"
            data-parallax-center-lock="true"
       ></div>
       <div class="img-river-1"
            data-parallax="true"
            data-parallax-axis="y"
-           data-parallax-from="100"
-           data-parallax-to="-150"
+           data-parallax-from="50"
+           data-parallax-to="-50"
            data-parallax-speed="1.2"
            data-parallax-center-lock="true"></div>
       <div class="img-river-2"
            data-parallax="true"
            data-parallax-axis="y"
-           data-parallax-from="100"
+           data-parallax-from="50"
            data-parallax-to="-150"
            data-parallax-speed="1.2"
            data-parallax-center-lock="true"></div>
@@ -91,7 +91,7 @@
            data-parallax-from="300"
            data-parallax-to="-300"
            data-parallax-speed="1.2"
-           data-parallax-center-lock="true">藏族的唐卡与壁画，有着密切联系。绘制在墙上的是壁画，绘制在布面上的，则称为唐卡。如今的大昭寺、昌珠寺和布达拉宫还保存有吐蕃时代的壁画</div>
+           data-parallax-center-lock="true">藏族的唐卡与壁画，有着密切联系。绘制在墙上的是壁画，绘制在布面上的，则称为唐卡。如今的大昭寺、昌珠寺和布达拉宫还保存有吐蕃时代的壁画。</div>
     </div>
     <div class="four-screen screen">
       <div class="img-picture"
@@ -115,10 +115,10 @@
            data-parallax-to="-100"
            data-parallax-speed="1.2"
            data-parallax-center-lock="true">
-        <div class="title">吐蕃时期敦煌壁画</div>
-        <p>这幅壁画绘制于公元8-9世纪，画面描绘了卫士护送、侍从执香炉开道、侍女手持伞盖，敬献曼荼罗供品，以迎送吐蕃赞普的场景。侍女们丰腴的体态契合唐朝时期的审美。</p>
+        <div class="title alibaba-light">吐蕃时期敦煌壁画</div>
+        <p class="alibaba-light">这幅壁画绘制于公元8-9世纪，画面描绘了卫士护送、侍从执香炉开道、侍女手持伞盖，敬献曼荼罗供品，以迎送吐蕃赞普的场景。侍女们丰腴的体态契合唐朝时期的审美。</p>
         <annotation-dot>
-          <p class="popularization-content">藏族美术集成·绘画艺术·唐卡卷·1》（藏英对照） 四川民族出版社 2024</p>
+          <p class="popularization-content">《藏族美术集成·绘画艺术·唐卡卷·1》（藏英对照） 四川民族出版社 2024</p>
         </annotation-dot>
       </div>
     </div>
@@ -132,17 +132,24 @@
            data-parallax-center-lock="true">
         <div class="detail-text">绘制唐卡需遵循严格的流程，包括仪式准备、画布制作、草图构思、上色勾勒、金箔银饰装饰、缝制装裱等。整个创作周期通常需要数月乃至十余年，堪称佛教艺术的漫长修行。以下是一些主要画派及其特点：</div>
         <annotation-dot>
-          <p class="popularization-content">藏族美术集成·绘画艺术·唐卡卷·1》（藏英对照） 四川民族出版社 2024</p>
+          <p class="popularization-content">《藏族美术集成·绘画艺术·唐卡卷·1》<br>（藏英对照） 四川民族出版社 2024</p>
         </annotation-dot>
       </div>
       <div class="cloud-1"
            data-parallax="true"
            data-parallax-axis="y"
            data-parallax-from="50"
-           data-parallax-to="-50"
+           data-parallax-to="-400"
            data-parallax-speed="1.2"
            data-parallax-center-lock="true"></div>
       <div class="cloud-2"
+           data-parallax="true"
+           data-parallax-axis="y"
+           data-parallax-from="200"
+           data-parallax-to="-50"
+           data-parallax-speed="1.2"
+           data-parallax-center-lock="true"></div>
+      <div class="cloud-3"
            data-parallax="true"
            data-parallax-axis="y"
            data-parallax-from="200"
@@ -154,8 +161,8 @@
       <div class="img-picture"
            data-parallax="true"
            data-parallax-axis="y"
-           data-parallax-from="100"
-           data-parallax-to="-100"
+           data-parallax-from="200"
+           data-parallax-to="-200"
            data-parallax-speed="1.2"
            data-parallax-center-lock="true"></div>
       <div class="text-wrapper text-wrapper-1 detail-text"
@@ -177,8 +184,8 @@
            data-parallax-to="-100"
            data-parallax-speed="1.2"
            data-parallax-center-lock="true">
-        <div class="title">释迦牟尼佛</div>
-        <p>画中是释迦牟尼佛及两位随侍菩萨，周围饰以六位上师。画面顶部的六佛与七宝珠相得益彰。</p>
+        <div class="title alibaba-light">释迦牟尼佛</div>
+        <p class="alibaba-light">画中是释迦牟尼佛及两位随侍菩萨，周围饰以六位上师。画面顶部的六佛与七宝珠相得益彰。</p>
       </div>
     </div>
     <div class="seven-screen screen">
@@ -192,8 +199,8 @@
       <div class="img-picture"
            data-parallax="true"
            data-parallax-axis="y"
-           data-parallax-from="400"
-           data-parallax-to="-400"
+           data-parallax-from="100"
+           data-parallax-to="-100"
            data-parallax-speed="1.6"
            data-parallax-center-lock="true"></div>
       <div class="text-wrapper text-wrapper-1 detail-text"
@@ -211,20 +218,20 @@
       <div class="text-wrapper text-wrapper-2 detail-text-wrapper"
            data-parallax="true"
            data-parallax-axis="y"
-           data-parallax-from="150"
-           data-parallax-to="-150"
+           data-parallax-from="100"
+           data-parallax-to="-100"
            data-parallax-speed="1.1"
            data-parallax-center-lock="true">
-        <div class="title">释迦牟尼佛</div>
-        <p>画面中央的帕竹·多杰嘉波周围环绕着噶举派八个分支的上师、佛陀和菩萨。深蓝与朱红的背景图案既和谐又得体，人物形象亲切而生动。</p>
+        <div class="title alibaba-light">帕竹·多杰嘉波</div>
+        <p class="alibaba-light">画面中央的帕竹·多杰嘉波周围环绕着噶举派八个分支的上师、佛陀和菩萨。深蓝与朱红的背景图案既和谐又得体，人物形象亲切而生动。</p>
       </div>
     </div>
     <div class="eight-screen screen">
       <div class="img-picture"
            data-parallax="true"
            data-parallax-axis="y"
-           data-parallax-from="400"
-           data-parallax-to="-400"
+           data-parallax-from="100"
+           data-parallax-to="-100"
            data-parallax-speed="1.6"
            data-parallax-center-lock="true"></div>
       <div class="text-wrapper text-wrapper-1 detail-text"
@@ -235,7 +242,7 @@
            data-parallax-speed="1.1"
            data-parallax-center-lock="true">
         <div class="title">勉唐画派：</div>
-        <p>是15世纪以后西藏最具影响力的唐卡绘画流派，由勉拉·顿珠嘉措创立。勉唐画派作品线条工整流畅、造型严谨，色彩鲜亮丰富，背景常融入具有藏地特色的风景和花卉纹饰，并采用浅色施彩配以金线勾勒。17世纪后，黑唐、金唐、红唐等风格进一步展现了勉唐画派在线条表现上的独特魅力。直至今日，绝大多数流传的唐卡都可归于勉唐画派。</p>
+        <p class="text-justify">是15世纪以后西藏最具影响力的唐卡绘画流派，由勉拉·顿珠嘉措创立。勉唐画派作品线条工整流畅、造型严谨，色彩鲜亮丰富，背景常融入具有藏地特色的风景和花卉纹饰，并采用浅色施彩配以金线勾勒。17世纪后，黑唐、金唐、红唐等风格进一步展现了勉唐画派在线条表现上的独特魅力。直至今日，绝大多数流传的唐卡都可归于勉唐画派。</p>
       </div>
       <div class="text-wrapper text-wrapper-2 detail-text-wrapper"
            data-parallax="true"
@@ -244,8 +251,8 @@
            data-parallax-to="-100"
            data-parallax-speed="1.1"
            data-parallax-center-lock="true">
-        <div class="title">曲扎耶谢 噶举派红帽分支第四位上师</div>
-        <p>画面中央的他侧身而坐，周围描绘了红帽分支历代著名僧侣的生平事迹。画中使用的藏文长卷轴书写格式形成于15世纪，之后逐渐发展出用于书签和铭文的另一种书写形式，这种形式至今仍在使用。画中的僧侣形象自然，整体呈现出一种生活化的场景感。</p>
+        <div class="title alibaba-light">曲扎耶谢 噶举派红帽分支第四位上师</div>
+        <p class="alibaba-light text-justify">画面中央的他侧身而坐，周围描绘了红帽分支历代著名僧侣的生平事迹。画中使用的藏文长卷轴书写格式形成于15世纪，之后逐渐发展出用于书签和铭文的另一种书写形式，这种形式至今仍在使用。画中的僧侣形象自然，整体呈现出一种生活化的场景感。</p>
       </div>
     </div>
     <div class="nine-screen screen">
@@ -259,8 +266,8 @@
       <div class="img-picture"
            data-parallax="true"
            data-parallax-axis="y"
-           data-parallax-from="400"
-           data-parallax-to="-400"
+           data-parallax-from="100"
+           data-parallax-to="-100"
            data-parallax-speed="1.6"
            data-parallax-center-lock="true"></div>
       <div class="text-wrapper text-wrapper-1 detail-text"
@@ -271,7 +278,7 @@
            data-parallax-speed="1.1"
            data-parallax-center-lock="true">
         <div class="title">钦则画派：</div>
-        <p>形成于15世纪中叶，该画派擅长绘制怒相神像，面相威严，人物造型丰满稳健，动静结合、刚柔兼备；色彩沉稳饱满，对比强烈。而在风景表现上，又融合了中国画的绘画方式。</p>
+        <p class="text-justify">形成于15世纪中叶，该画派擅长绘制怒相神像，面相威严，人物造型丰满稳健，动静结合、刚柔兼备；色彩沉稳饱满，对比强烈。而在风景表现上，又融合了中国画的绘画方式。</p>
       </div>
       <div class="text-wrapper text-wrapper-2 detail-text-wrapper"
            data-parallax="true"
@@ -280,16 +287,16 @@
            data-parallax-to="-100"
            data-parallax-speed="1.1"
            data-parallax-center-lock="true">
-        <div class="title">广目天王</div>
-        <p>广目天王的身体通常为红色，也偶见金色。他右手抓着一条蛇，左手持红色缚索。周围环绕着新密宗的上师和各类女神。画面中央的红色背景宏伟壮观，气势雄伟，极具视觉震撼力。</p>
+        <div class="title alibaba-light">广目天王</div>
+        <p class="alibaba-light text-justify">广目天王的身体通常为红色，也偶见金色。他右手抓着一条蛇，左手持红色缚索。周围环绕着新密宗的上师和各类女神。画面中央的红色背景宏伟壮观，气势雄伟，极具视觉震撼力。</p>
       </div>
     </div>
     <div class="ten-screen screen">
       <div class="img-picture"
            data-parallax="true"
            data-parallax-axis="y"
-           data-parallax-from="400"
-           data-parallax-to="-400"
+           data-parallax-from="100"
+           data-parallax-to="-100"
            data-parallax-speed="1.6"
            data-parallax-center-lock="true"></div>
       <div class="text-wrapper text-wrapper-1 detail-text"
@@ -300,7 +307,7 @@
            data-parallax-speed="1.1"
            data-parallax-center-lock="true">
         <div class="title">噶玛嘎孜画派：</div>
-        <p>形成于16世纪，流行于西藏东部地区。噶玛嘎孜画派作品整体清雅淡丽，人物布局沿用印度比例和传统绘图方法，背景受中国山水画启发，用色偏重青绿，风景吸取明代工笔画山石瀑布、花鸟树木的表现手法，意境空灵悠远。</p>
+        <p class="text-justify">形成于16世纪，流行于西藏东部地区。噶玛嘎孜画派作品整体清雅淡丽，人物布局沿用印度比例和传统绘图方法，背景受中国山水画启发，用色偏重青绿，风景吸取明代工笔画山石瀑布、花鸟树木的表现手法，意境空灵悠远。</p>
       </div>
       <div class="text-wrapper text-wrapper-2 detail-text-wrapper"
            data-parallax="true"
@@ -309,8 +316,8 @@
            data-parallax-to="-100"
            data-parallax-speed="1.1"
            data-parallax-center-lock="true">
-        <div class="title">噶玛巴·曲英多吉</div>
-        <p>第十世噶玛巴·曲英多吉不仅是一位伟大的画家，还是新噶玛嘎孜画派的开创者。他端坐于画面中央，头上方是他的本尊，下方则为阎王及其亲近弟子。画面色彩鲜艳丰富，以云雾、悬崖、森林等自然景观为背景，充分展现了该画派的独特风格。</p>
+        <div class="title alibaba-light">噶玛巴·曲英多吉</div>
+        <p class="alibaba-light text-justify">第十世噶玛巴·曲英多吉不仅是一位伟大的画家，还是新噶玛嘎孜画派的开创者。他端坐于画面中央，头上方是他的本尊，下方则为阎王及其亲近弟子。画面色彩鲜艳丰富，以云雾、悬崖、森林等自然景观为背景，充分展现了该画派的独特风格。</p>
       </div>
     </div>
     <div class="eleven-screen screen">
@@ -358,7 +365,7 @@
            data-parallax-to="-20"
            data-parallax-speed="1.1"
            data-parallax-center-lock="true"></div>
-      <div class="detail-text"
+      <div class="detail-text text-justify"
            data-parallax="true"
            data-parallax-axis="y"
            data-parallax-from="100"
@@ -395,10 +402,10 @@
            data-parallax-to="-100"
            data-parallax-speed="1.1"
            data-parallax-center-lock="true">
-        <div class="title">寺院正面龙挂毯 ：</div>
-        <p>这是一块小尺寸的寺院用毯，应该属于寺院经堂中龙抱柱的类型。其中的龙纹符号织造规整，用色沉稳。</p>
+        <div class="title alibaba-light">寺院正面龙挂毯 ：</div>
+        <p class="alibaba-light">这是一块小尺寸的寺院用毯，应该属于寺院经堂中龙抱柱的类型。其中的龙纹符号织造规整，用色沉稳。</p>
         <annotation-dot>
-          <p class="popularization-content">藏族美术集成·工艺美术·织毯卷》（藏汉对照） 四川民族出版社 2018</p>
+          <p class="popularization-content">《藏族美术集成·工艺美术·织毯卷》（藏汉对照） 四川民族出版社 2018</p>
         </annotation-dot>
       </div>
     </div>
@@ -442,13 +449,18 @@
       </div>
     </div>
     <div class="fifteen-screen screen">
-      <div class="img-picture"
-           data-parallax="true"
-           data-parallax-axis="y"
-           data-parallax-from="400"
-           data-parallax-to="-400"
-           data-parallax-speed="1.1"
-           data-parallax-center-lock="true"></div>
+      <div  data-parallax="true"
+            data-parallax-axis="y"
+            data-parallax-from="400"
+            data-parallax-to="-400"
+            data-parallax-speed="1.1"
+            data-parallax-center-lock="true">
+        <div class="img-picture"></div>
+        <annotation-dot>
+          <p class="popularization-content">《藏族美术集成·工艺美术·织毯卷》（藏汉对照） 四川民族出版社 2018</p>
+        </annotation-dot>
+      </div>
+
       <div class="text-wrapper detail-text-wrapper"
            data-parallax="true"
            data-parallax-axis="y"
@@ -456,11 +468,8 @@
            data-parallax-to="-100"
            data-parallax-speed="1.1"
            data-parallax-center-lock="true">
-        <div class="title">羌绣挑花绣图案</div>
-        <p>羌绣包含挑花、绣花、纳花、盘花、刺绣等多种技艺，其中“挑花”最具特色。挑花作品多以粗布为底、棉线为材，色彩醒目的棉线与质朴厚实的布料相互映衬，形成强烈而又和谐的色彩对比。</p>
-        <annotation-dot>
-          <p class="popularization-content">《藏族美术集成·工艺美术·织毯卷》（藏汉对照） 四川民族出版社 2018</p>
-        </annotation-dot>
+        <div class="title alibaba-light">羌绣挑花绣图案</div>
+        <p class="alibaba-light">羌绣包含挑花、绣花、纳花、盘花、刺绣等多种技艺，其中“挑花”最具特色。挑花作品多以粗布为底、棉线为材，色彩醒目的棉线与质朴厚实的布料相互映衬，形成强烈而又和谐的色彩对比。</p>
       </div>
     </div>
     <div class="sixteen-screen screen">
@@ -748,6 +757,17 @@ import AnnotationDot from "@/components/AnnotationDot.vue";
       position: absolute;
       bottom: -260px;
       right: 0px;
+    }
+    .cloud-3{
+      width: 558px;
+      height: 195px;
+      background-image: url("@/assets/images/culture/art-element-1-9.png");
+      background-size: cover;
+      background-position: center center;
+      background-repeat: no-repeat;
+      position: absolute;
+      bottom: -260px;
+      right: 100px;
     }
   }
   .six-screen{
@@ -1046,17 +1066,23 @@ import AnnotationDot from "@/components/AnnotationDot.vue";
       position: absolute;
       top: 460px;
       left: 1008px;
+      p{
+        font-size: 25px;
+      }
+      .title{
+        font-size: 33px!important;
+      }
     }
     .popularization-description {
       position: absolute;
-      top: 200px;
-      left: 300px;
+      top: 130px;
+      left: 540px;
       width: 500px;
       .popularization-wrapper {
         position: absolute;
         top: -100px;
         margin-top: 0px!important;
-        left: -600px;
+        left: -900px!important;
       }
     }
 
@@ -1117,7 +1143,7 @@ import AnnotationDot from "@/components/AnnotationDot.vue";
     .popularization-description {
       position: absolute;
       top: 260px;
-      left: 260px;
+      left: -160px;
       width: 500px;
       .popularization-wrapper {
         position: absolute;
@@ -1142,6 +1168,7 @@ import AnnotationDot from "@/components/AnnotationDot.vue";
       position: absolute;
       top: 412px;
       left: 1046px;
+      text-align: justify;
     }
   }
   .sixteen-screen{
@@ -1198,6 +1225,7 @@ import AnnotationDot from "@/components/AnnotationDot.vue";
       position: absolute;
       bottom: 546px;
       left: 150px;
+      text-align: justify;
     }
   }
   .seventeen-screen{

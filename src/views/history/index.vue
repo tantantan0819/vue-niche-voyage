@@ -1,7 +1,7 @@
 <template>
   <div class="history">
     <!-- 加载进度条 -->
-    <splash-loader :progress="loadingProgress" :show="showSplashLoader"></splash-loader>
+<!--    <splash-loader :progress="loadingProgress" :show="showSplashLoader"></splash-loader>-->
     <!-- 侧边导航栏 -->
     <side-menu :show="showSideMenu"></side-menu>
     <!-- 头部：加载进度条只显示头部资源，避免用户等待时间过长 -->
@@ -58,7 +58,7 @@ const loadingProgress = ref(0)
 const showSplashLoader = ref(true)
 
 // 侧边菜单显示控制
-const showSideMenu = ref(false)
+const showSideMenu = ref(true)
 
 // 处理第三个视频播放完毕事件
 const handleThirdVideoEnded = () => {
