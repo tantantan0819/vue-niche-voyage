@@ -390,9 +390,6 @@ onUnmounted(() => {
             margin-bottom: 30px;
             background: url('@/assets/images/sqhx/sqhx-element-stone-1.png') no-repeat center center / cover;
         }
-        .illustration-title-font{
-            margin-left: 100px;
-        }
         .forth-screen-text-content{
             width: 740px;
             text-align: justify;

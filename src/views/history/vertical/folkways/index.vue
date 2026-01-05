@@ -96,7 +96,7 @@
             data-parallax-center-lock="true">
           <img class="picture-img" src="@/assets/images/folkways/folkways-image-1.png"></img>
           <div class="illustration-title-font">
-            <DotPopover class="dot-popover" title="内容来自" content="《中国藏餐》 四川民族出版社 2023"></DotPopover>
+            <DotPopover class="dot-popover" title="图片来自" content="《中国藏餐》 四川民族出版社 2023"></DotPopover>
             <span>牛排糌粑丸</span>
           </div>
         </div>
@@ -122,7 +122,7 @@
           <img class="picture-img" src="@/assets/images/folkways/folkways-image-2.png" alt="">
           <div class="illustration-title-font">
             <span>冬虫夏草：藏药珍贵药材，有补肺益肾，止血止痛，止咳化痰等功效。</span>
-            <DotPopover class="dot-popover" title="内容来自" content="《晶珠本草药录》 四川民族出版社 2017 "></DotPopover>
+            <DotPopover class="dot-popover" title="图片来自" content="《晶珠本草药录》 四川民族出版社 2017 "></DotPopover>
           </div>
         </div>
         <div class="text-container">
@@ -186,8 +186,8 @@
               data-parallax-to="-100"
               data-parallax-speed="1.1"
               data-parallax-center-lock="true">
-            <DotPopover class="dot-popover" title="内容来自" content="《晶珠本草药录》 四川民族出版社 2017 "></DotPopover>
             <span>菊科植物短葶飞蓬，是彝医药代表性品种灯盏细辛（改都诺起）的基材，有活血通络止痛，祛风散寒的功效。</span>
+            <DotPopover class="dot-popover" title="图片来自" content="《晶珠本草药录》 四川民族出版社 2017 "></DotPopover>
           </div>
         </div>
         <div
@@ -222,7 +222,7 @@
               data-parallax-speed="1.1"
               data-parallax-center-lock="true">
             <span>高山龙胆（日达姆郎帕）是羌医药代表性品种，具有泻火镇咳、利咽、止痒等功效。</span>
-            <DotPopover class="dot-popover" title="内容来自" content="《晶珠本草药录》 四川民族出版社 2017 "></DotPopover>
+            <DotPopover class="dot-popover" title="图片来自" content="《晶珠本草药录》 四川民族出版社 2017 "></DotPopover>
           </div>
         </div>
         <div class="text-container">
@@ -273,7 +273,7 @@
               data-parallax-from="100"
               data-parallax-to="-100"
               data-parallax-speed="1.1"
-              data-parallax-center-lock="true">而在青藏高原东缘，每年盛夏，人们点燃火把，载歌载舞，庆祝丰收与吉祥。这种以点燃火把为主要庆祝方式的节日就是火把节。火把节不仅是彝族、白族、纳西族等民族最重要的传统节日，也承载了祭祀祖先、祈求风调雨顺的文化意涵。熊熊火光映照高原的夜空，舞蹈和歌声在山谷间回响，人们将土地、火焰同生命的节奏紧密相连</div>
+              data-parallax-center-lock="true">而在青藏高原东缘，每年盛夏，人们点燃火把，载歌载舞，庆祝丰收与吉祥。这种以点燃火把为主要庆祝方式的节日就是火把节。火把节不仅是彝族、白族、纳西族等民族最重要的传统节日，也承载了祭祀祖先、祈求风调雨顺的文化意涵。熊熊火光映照高原的夜空，舞蹈和歌声在山谷间回响，人们将土地、火焰同生命的节奏紧密相连。</div>
         </div>
         <div
             class="picture-container"
@@ -294,7 +294,7 @@
           </div>
           <div class="illustration-title-font">
             <span>彝族火把节场景</span>
-            <DotPopover class="dot-popover" title="内容来自" content="《中国凉山彝族火把节》 四川民族出版社 2020"></DotPopover>
+            <DotPopover class="dot-popover" title="图片来自" content="《中国凉山彝族火把节》 四川民族出版社 2020"></DotPopover>
           </div>
 
         </div>
@@ -384,8 +384,8 @@
             <img src="@/assets/images/folkways/folkways-image-7.jpg" alt="" class="picture-img-2">
           </div>
           <div class="illustration-title-font">
-            <DotPopover class="dot-popover" title="内容来自" content="《中国彝族传统服饰图典籍》四川民族出版社 2019"></DotPopover>
             <span>此为彝族青年女性盛装。整套服饰由罩衣、长衫、百褶裙、三角包、针包组成，全套为土布（棉）质地。</span>
+            <DotPopover class="dot-popover" title="图片来自" content="《中国彝族传统服饰图典籍》四川民族出版社 2019"></DotPopover>
           </div>
         </div>
         <div class="right-pattern-container">
@@ -773,6 +773,8 @@ const toAnswerPage = () =>{
             >>> .popover-container{
                 top: -100px;
                 right: 100px;
+                width: 400px;
+                border-radius: 35px;
             }
         }
         .background-img{
@@ -804,15 +806,16 @@ const toAnswerPage = () =>{
             align-items: center;
             .picture-img{
                 height: 500px;
-                background: url('@/assets/images/folkways/folkways-element-3-2.png') no-repeat center center / cover;
             }
             .dot-popover{
                 top: 50px;
                 left: 30px;
             }
             >>> .popover-container{
-                top: -60px;
+                top: -10px;
                 left: 50px;
+                width: 400px;
+                border-radius: 35px;
             }
         }
         .text-container{
@@ -845,6 +848,7 @@ const toAnswerPage = () =>{
             top: 100px;
             left: 100px;
             width: 819px;
+            text-align: justify;
             .text-title-img{
                 width: 819px;
                 height: 102px;
@@ -869,15 +873,16 @@ const toAnswerPage = () =>{
             .illustration-title-font{
                 position: absolute;
                 top: 430px;
-
             }
             .dot-popover{
-                top: 200px;
-                right: 40px;
+                top: 30px;
+                left: -140px;
             }
             >>> .popover-container{
                 top: -40px;
                 right: 100px;
+                width: 400px;
+                border-radius: 35px;
             }
         }
         .background-img-1{
@@ -917,6 +922,10 @@ const toAnswerPage = () =>{
                 top: 50px;
                 left: 40px;
             }
+            >>> .popover-container{
+                width: 400px;
+                border-radius: 35px;
+            }
         }
         .text-container{
             position: absolute;
@@ -955,7 +964,7 @@ const toAnswerPage = () =>{
             top: 200px;
             left: 140px;
             width: 821px;
-           
+            text-align: justify;
             .text-header-img{
                 width: 821px;
                 height: 102px;
@@ -1081,8 +1090,8 @@ const toAnswerPage = () =>{
                 top: 500px;
             }
             .dot-popover{
-                top: 80px;
-                left: -40px;
+                top: 30px;
+                left: -680px;
             }
             >>> .popover-container{
                 top: -100px;
