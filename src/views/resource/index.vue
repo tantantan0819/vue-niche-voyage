@@ -9,7 +9,7 @@
         <div class="snap-panel video-panel">
     <div class="play-video">
       <div ref="panelOverlayBefore" class="panel-overlay-before">
-        <p class="panel-index-before">从光能等可再生能源，到盐湖锂矿</p>
+        <p class="panel-index-before">从光能等可再生能源，到盐湖锂矿，</p>
         <p class="panel-index-before">
           再到广布的冻土，让我们一览世界屋脊上的宝藏！
         </p>
@@ -34,8 +34,8 @@
         <div class="light-energy-warpper">
           <div class="light-energy-introduction">
             <div class="light-energy-title">
-              <p>光能</p>
-              <p>
+              <p class="earlySummer-serif">光能</p>
+              <p class="alibaba-light">
                 高原日照强烈、晴天多、空气稀薄。除东部、南部少数地区年日照时数较少外，多数地区可达2500–3400小时，比同纬度的东部地区几乎多了一半。
               </p>
             </div>
@@ -53,7 +53,7 @@
           </div>
           <div class="light-energy-radiation">
             <div class="light-energy-radiation-wrapper">
-              <p >
+              <p class="alibaba-light">
                 这里太阳辐射强度极强，并且季节分配比较均匀。因此，高原光伏发电潜力巨大，可大规模开发可再生能源。
               </p>
               <div class="light-energy-radiation-img-wrapper">
@@ -70,16 +70,18 @@
             <div class="dam"></div>
           </div>
           <div class="water-energy-introduction">
-            <p>水能</p>
-            <p>
+            <p class="earlySummer-serif">水能</p>
+            <p class="alibaba-light">
               青藏高原被誉为“亚洲水塔”，孕育了黄河、长江、雅鲁藏布江、澜沧江、怒江等大河。特别是高原东部和南部，地势起伏大、落差集中，使其具备得天独厚的水能条件。
             </p>
           </div>
-          <div class="water-energy-introduction-img1-wrapper">
-            <div class="water-energy-introduction-img1 scroller-img"></div>
+          <div class="water-energy-introduction-wrapper">
+            <div class="water-energy-introduction-img1-wrapper">
+              <div class="water-energy-introduction-img1 scroller-img"></div>
+            </div>
           </div>
           <div class="water-energy-introduction-1">
-            <p>
+            <p class="alibaba-light">
               当前，高原水电资源储量有巨大潜力，已成为国家清洁能源供给的重要支点，这对优化能源结构、保障电力稳定输送具有战略意义。
             </p>
           </div>
@@ -103,7 +105,7 @@
         <div class="salt-energy-wrapper">
           <div class="salt-energy-mine">
             <div class="salt-energy-introduction">
-              <p>高原上存在众多盐湖，尤其是在柴达木盆地。</p>
+              <p class="alibaba-light">高原上存在众多盐湖，尤其是在柴达木盆地。</p>
               <div class="salt-energy-introduction-img1-wrapper">
                 <div class="salt-energy-introduction-img1 scroller-img"></div>
               </div>
@@ -115,12 +117,14 @@
             </div>
           </div>
           <div class="salt-energy-introduction-1">
-            <p>
+            <p class="alibaba-light text-justify">
               这里的盐湖锂盐资源十分丰富，储量占我国锂资源总储量的80%以上，占世界盐湖锂总储量的1/3，是全球重要的新能源金属（锂）资源地，为锂电产业提供战略保障。
             </p>
           </div>
-          <div class="salt-energy-introduction-2-wrapper">
-            <div class="salt-energy-introduction-2 scroller-img"></div>
+          <div class="salt-energy-introduction-wrapper">
+            <div class="salt-energy-introduction-2-wrapper">
+              <div class="salt-energy-introduction-2 scroller-img"></div>
+            </div>
           </div>
         </div>
         </div>
@@ -132,34 +136,39 @@
           <div class="tjaele-enery-interduction-img2"></div>
           <div class="tjaele-enery-interduction-img3"></div>
           <div class="tjaele-interduction-title">
-            <p>冻土</p>
-            <p>
+            <p class="earlySummer-serif">冻土</p>
+            <p class="alibaba-light">
               冻土是指地表下长期温度持续在0℃以下，并含有一定量冰的土壤或岩石。青藏高原广泛分布高寒永久冻土和季节性冻土，是全球中低纬度最大的多年冻土分布区。
             </p>
           </div>
-          <div class="tjaele-interduction-explanation">
+          <div class="tjaele-interduction-explanation alibaba-light">
             冻土中储藏丰富的地下水与有机碳资源，同时对基础设施建设和生态系统稳定也具有重要影响。
           </div>
         </div>
         <!-- 铜矿 -->
         <div class="copper-mine-warpper">
           <div class="copper-mine-interduction-1">
-            <p>铜矿</p>
-            <p>
+            <p class="earlySummer-serif">铜矿</p>
+            <p class="alibaba-light" >
               高原之上，金属矿产丰富，主要有铜矿、铬铁矿、铅锌矿等，其中铜矿储量最大，占全国的三分之二以上。
             </p>
           </div>
           <div class="copper-mine-interduction-2">
-            <p>
+            <p class="alibaba-light">
               这些矿产资源主要分布在班公湖—怒江成矿带、冈底斯成矿带和三江成矿带。铜矿开发对高原经济发展和国家战略意义重大。
             </p>
           </div>
-          <div class="copper-mine-interduction-img-wrapper">
-            <div class="copper-mine-interduction-img scroller-img"></div>
+          <div class="copper-mine-interduction-wrapper-1">
+            <div class="copper-mine-interduction-img-wrapper">
+              <div class="copper-mine-interduction-img scroller-img"></div>
+            </div>
           </div>
-          <div class="copper-mine-interduction-img-1-wrapper">
-            <div class="copper-mine-interduction-img-1 scroller-img"></div>
+          <div class="copper-mine-interduction-wrapper-2">
+            <div class="copper-mine-interduction-img-1-wrapper">
+              <div class="copper-mine-interduction-img-1 scroller-img"></div>
+            </div>
           </div>
+
         </div>
         <!-- 地热 -->
         <div class="geothermy-enery-wrapper">
@@ -738,9 +747,9 @@ onUnmounted(() => {
           color: #ead9c9;
         }
         &:nth-child(2) {
-          font-size: 42px;
+          font-size: 36px;
           color: #ead9c9;
-          width: 1100px;
+          width: 900px;
         }
       }
     }
@@ -792,7 +801,7 @@ onUnmounted(() => {
       height: 300px;
       margin-left: 50px;
       p {
-        font-size: 40px;
+        font-size: 36px;
         color: #ead9c9;
         width: 910px;
       }
@@ -882,7 +891,7 @@ onUnmounted(() => {
       }
       &:nth-child(2) {
         color: #ead9c9;
-        font-size: 42px;
+        font-size: 36px;
         width: 970px;
         position: absolute;
         left: 50%;
@@ -892,6 +901,17 @@ onUnmounted(() => {
       }
     }
   }
+  .water-energy-introduction-wrapper{
+    position: relative;
+    &::after {
+      content: "黄河辫状水系";
+      font-size: 24px;
+      bottom: 120px;
+      position: absolute;
+      left: -200px;
+      color: #ead9c9;
+    }
+  }
   .water-energy-introduction-img1-wrapper{
     width: 1160px;
     height: 869px;
@@ -899,14 +919,6 @@ onUnmounted(() => {
     top: 50%;
     transform: translateY(-50%);
     overflow: hidden;
-    &::after {
-      content: "黄河辫状水系";
-      font-size: 24px;
-      bottom: 60px;
-      position: absolute;
-      left: -200px;
-      color: #ead9c9;
-    }
     .water-energy-introduction-img1 {
       width: 1360px;
       height: 869px;
@@ -926,8 +938,9 @@ onUnmounted(() => {
     margin-top: 260px;
     border-top:  1px dotted #838383;
     position: relative;
+    margin-left: -100px;
     p {
-      font-size: 42px;
+      font-size: 36px;
       width: 862px;
       color: #ead9c9;
       height: 100%;
@@ -953,6 +966,7 @@ onUnmounted(() => {
     }
     &::after {
       content: "盐湖锂矿";
+      font-family: 'EarlySummerSerif-Bold';
       font-size: 62px;
       bottom: 50px;
       position: absolute;
@@ -997,10 +1011,11 @@ onUnmounted(() => {
         }
       }
       p {
-        font-size: 42px;
+        font-size: 36px;
         color: #ead9c9;
         width: 460px;
-        text-align: center;
+        text-align: left;
+
       }
       img {
         width: 838px;
@@ -1013,7 +1028,7 @@ onUnmounted(() => {
         font-size: 24px;
         bottom: 0px;
         position: absolute;
-        right: -20px;
+        right: 100px;
         color: #ead9c9;
       }
     }
@@ -1025,11 +1040,22 @@ onUnmounted(() => {
     p {
       margin-left: 80px;
       width: 800px;
-      font-size: 42px;
+      font-size: 36px;
       color: #ead9c9;
       position: absolute;
       top: 50%;
       transform: translateY(-100%);
+    }
+  }
+  .salt-energy-introduction-wrapper{
+    position: relative;
+    &::after {
+      content: "察尔汗盐湖";
+      font-size: 24px;
+      bottom: 40px;
+      position: absolute;
+      right: 320px;
+      color: #ead9c9;
     }
   }
   .salt-energy-introduction-2-wrapper{
@@ -1040,14 +1066,6 @@ onUnmounted(() => {
     margin: 0 400px 0 220px;
     position: relative;
     overflow: hidden;
-    &::after {
-      content: "察尔汗盐湖";
-      font-size: 24px;
-      bottom: 40px;
-      position: absolute;
-      right: -170px;
-      color: #ead9c9;
-    }
   }
   .salt-energy-introduction-2 {
     width: 1883px;
@@ -1119,9 +1137,10 @@ onUnmounted(() => {
       &:nth-child(1) {
         font-size: 62px;
         color: #ead9c9;
+        margin-bottom: 20px;
       }
       &:nth-child(2) {
-        font-size: 42px;
+        font-size: 36px;
         color: #ead9c9;
       }
     }
@@ -1131,7 +1150,7 @@ onUnmounted(() => {
     width: 960px;
     top: 200px;
     right: 70px;
-    font-size: 42px;
+    font-size: 36px;
     color: #ead9c9;
   }
 }
@@ -1172,7 +1191,7 @@ onUnmounted(() => {
         left: 80px;
       }
       &:nth-child(2) {
-        font-size: 42px;
+        font-size: 36px;
         color: #ead9c9;
         position: absolute;
         padding-left: 80px;
@@ -1187,11 +1206,22 @@ onUnmounted(() => {
     position: relative;
     p {
       width: 792px;
-      font-size: 42px;
+      font-size: 36px;
       color: #ead9c9;
       position: absolute;
       bottom: 230px;
       left: -330px;
+    }
+  }
+  .copper-mine-interduction-wrapper-1{
+    position: relative;
+    &::after {
+      content: "玉龙铜矿";
+      font-size: 24px;
+      top: 20px;
+      position: absolute;
+      left: -170px;
+      color: #ead9c9;
     }
   }
   .copper-mine-interduction-img-wrapper{
@@ -1205,14 +1235,6 @@ onUnmounted(() => {
     margin-right: 100px;
     transform: translateY(-300px);
     overflow: hidden;
-    &::after {
-      content: "玉龙铜矿";
-      font-size: 24px;
-      bottom: 0px;
-      position: absolute;
-      left: -170px;
-      color: #ead9c9;
-    }
   }
   .copper-mine-interduction-img {
     width: 600px;
@@ -1225,14 +1247,8 @@ onUnmounted(() => {
     top: 0;
     left: 0;
   }
-  .copper-mine-interduction-img-1-wrapper{
-    max-width: 100vw;
-    max-height: 100vh;
-    width: 1730px;
-    height: 918px;
+  .copper-mine-interduction-wrapper-2{
     position: relative;
-    overflow: hidden;
-    z-index: 2;
     &::after {
       content: "驱龙铜矿";
       font-size: 24px;
@@ -1241,6 +1257,16 @@ onUnmounted(() => {
       left: -170px;
       color: #ead9c9;
     }
+  }
+  .copper-mine-interduction-img-1-wrapper{
+    max-width: 100vw;
+    max-height: 100vh;
+    width: 1730px;
+    height: 918px;
+    position: relative;
+    overflow: hidden;
+    z-index: 2;
+
     .copper-mine-interduction-img-1 {
       max-width: 100vw;
       max-height: 100vh;
@@ -1276,7 +1302,7 @@ onUnmounted(() => {
       left: 60px;
     }
     &:nth-child(3) {
-      font-size: 42px;
+      font-size: 36px;
       color: #ead9c9;
       position: absolute;
       left: 60px;
@@ -1374,7 +1400,7 @@ onUnmounted(() => {
     }
 
     .atsuta-interduction {
-      font-size: 42px;
+      font-size: 36px;
       color: #ead9c9;
       width: 900px;
       position: absolute;

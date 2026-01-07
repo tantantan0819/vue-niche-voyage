@@ -69,6 +69,7 @@
         <div class="water-cloud-2"></div>
       </div>
       <div class="water-description">
+        <div class="water-description-line"></div>
         <div class="page-the-asian-water-tower" id="page-the-asian-water-tower"></div>
         <div class="title">亚洲水塔</div>
         <div class="water-detail water-detail-1">
@@ -874,7 +875,7 @@ const initWaterCloud2Animation = async () => {
   }
 
   waterCloud2ScrollTrigger = gsap.to('.water-cloud-2', {
-    y: pxToVh(-600),
+    y: pxToVh(-1000),
     ease: 'none', // 线性动画，与滚动完全同步
     scrollTrigger: {
       trigger: '.water-cloud-2',
@@ -3052,8 +3053,8 @@ onUnmounted(() => {
   }
   .water-cloud-2-wrapper{
     width: 1920px;
-    height: 1146px;
-    background-color: #d9ddde;
+    height: 746px;
+    background-color: #e1e1e1;
     position: absolute;
     top: 1080px;
   }
@@ -3062,10 +3063,8 @@ onUnmounted(() => {
     height: 1146px;
     background-image: url("@/assets/images/geology/geology-to-water-element-2.png");
     background-size: cover;
-
-    //margin-top: -100px;
-    //position: relative;
     z-index: 99;
+    position: relative;
   }
   .water-bg-video{
     position: relative;
@@ -3122,7 +3121,20 @@ onUnmounted(() => {
     display: flex;
     align-items: center;
     flex-direction: column;
-    margin-top: 1080px;
+    padding-top: 1080px;
+    position: relative;
+    //background-image: url("@/assets/images/geology/geology-to-water-bg.jpg");
+
+    .water-description-line{
+      width: 1792px;
+      height: 314px;
+      background-image: url("@/assets/images/geology/geology-to-water-element-3.png");
+      background-size: cover;
+      background-position: center center;
+      background-repeat: no-repeat;
+      position: absolute;
+      top: 200px
+    }
     .title{
       color: #366294;
       font-size: 80px;
@@ -3849,7 +3861,10 @@ onUnmounted(() => {
         .fragment-img{
           width: 107px;
           height: 113px;
-          background-image: url("@/assets/images/secret/resource-to-history-element-4-1.png");
+          background-image: url("@/assets/images/secret/resource-to-history-element-4-1.png") ;
+          background-size: cover;
+          background-position: center center;
+          background-repeat: no-repeat;
         }
       }
       &:nth-child(2){
@@ -3860,6 +3875,9 @@ onUnmounted(() => {
           width: 247px;
           height: 178px;
           background-image: url("@/assets/images/secret/resource-to-history-element-4-3.png");
+          background-size: cover;
+          background-position: center center;
+          background-repeat: no-repeat;
         }
       }
       &:nth-child(3){
@@ -3870,6 +3888,9 @@ onUnmounted(() => {
           width: 230px;
           height: 171px;
           background-image: url("@/assets/images/secret/resource-to-history-element-4-5.png");
+          background-size: cover;
+          background-position: center center;
+          background-repeat: no-repeat;
         }
       }
       &:nth-child(4){
@@ -3881,6 +3902,9 @@ onUnmounted(() => {
           width: 243px;
           height: 244px;
           background-image: url("@/assets/images/secret/resource-to-history-element-4-7.png");
+          background-size: cover;
+          background-position: center center;
+          background-repeat: no-repeat;
         }
       }
     }

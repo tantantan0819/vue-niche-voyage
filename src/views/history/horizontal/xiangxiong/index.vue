@@ -491,7 +491,7 @@ onMounted(async ()=>{
       margin-top: 30px;
       position: relative;
       z-index: 2;
-      left: 150px;
+      left: -450px;
       /* opacity: 0; */
     }
     .palace{

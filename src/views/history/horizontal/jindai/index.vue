@@ -198,9 +198,9 @@
   height: 1080px;
 }
 .jindai{
-  width: 15136px;
+  width: 13502px;
   height: 1080px;
-  background-image: url("@/assets/images/jindai/jindai-bg.png");
+  background-image: url("@/assets/images/jindai/jindai-bg.jpg");
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;

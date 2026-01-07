@@ -169,7 +169,7 @@
             data-parallax-to="-100"
             data-parallax-speed="1.2"
             data-parallax-center-lock="true">
-            <span>在我国境内，《格萨尔》史诗广泛传布在西藏、内蒙古、新疆、青海、甘肃、四川、云南地区，被藏、蒙古、土、裕固、东乡、撒拉、纳西、门巴、珞巴、普米、白、独龙、傈僳13个民族传唱千年，已内化为各民族的传统文化，构建起了各民族共有共享的精神家园。</span>
+            <span class="text-justify">在我国境内，《格萨尔》史诗广泛传布在西藏、内蒙古、新疆、青海、甘肃、四川、云南地区，被藏、蒙古、土、裕固、东乡、撒拉、纳西、门巴、珞巴、普米、白、独龙、傈僳13个民族传唱千年，已内化为各民族的传统文化，构建起了各民族共有共享的精神家园。</span>
             <DotPopover class="dot-popover" title="阅读更多" content="《雪域雄狮:除暴安良格萨尔王》 四川民族出版社 2024"></DotPopover>
           </div>
           <div class="background-text-img"></div>
@@ -560,7 +560,7 @@ onMounted(() => {
   }
   .drama-character-subtitle{
     position: relative;
-    top: -130px;
+    top: -100px;
     width: 950px;
     height: 152px;
     background: url('@/assets/images/literaryDrama/drama-character-2.png') no-repeat center center / cover;
@@ -827,7 +827,8 @@ onMounted(() => {
   }
   .dot-popover{
     top: 30px;
-    left: -650px;
+    //left: -650px;
+    left: 30px;
     z-index: 999;
   }
    >>> .popover-container{

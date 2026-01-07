@@ -73,6 +73,7 @@ const hideSplashLoader = () =>{
   font-size: 33px;
   color: #2c7aa5;
   margin-top: 36px;
+  text-align: center;
 }
 .start-journey{
   span{

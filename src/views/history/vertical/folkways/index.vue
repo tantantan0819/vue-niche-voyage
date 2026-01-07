@@ -373,20 +373,22 @@
               data-parallax-center-lock="true"></div>
         </div>
         <div class="picture-container">
+          <div class="illustration-title-font">
+            <span>此为彝族青年女性盛装。整套服饰由罩衣、长衫、百褶裙、三角包、针包组成，全套为土布（棉）质地。</span>
+            <DotPopover class="dot-popover" title="图片来自" content="《中国彝族传统服饰图典籍》四川民族出版社 2019"></DotPopover>
+          </div>
           <div
               data-parallax="true"
               data-parallax-axis="y"
               data-parallax-from="200"
               data-parallax-to="-200"
               data-parallax-speed="1.2"
-              data-parallax-center-lock="true">
+              data-parallax-center-lock="true"
+          >
             <img src="@/assets/images/folkways/folkways-image-6.png" alt="" class="picture-img-1">
             <img src="@/assets/images/folkways/folkways-image-7.jpg" alt="" class="picture-img-2">
           </div>
-          <div class="illustration-title-font">
-            <span>此为彝族青年女性盛装。整套服饰由罩衣、长衫、百褶裙、三角包、针包组成，全套为土布（棉）质地。</span>
-            <DotPopover class="dot-popover" title="图片来自" content="《中国彝族传统服饰图典籍》四川民族出版社 2019"></DotPopover>
-          </div>
+
         </div>
         <div class="right-pattern-container">
           <div
