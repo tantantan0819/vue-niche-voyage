@@ -11,8 +11,19 @@ import { useRouter } from 'vue-router'
 
 const router = useRouter()
 
-const returnHome = () => {
-  router.push('/home')
+const props = defineProps({
+  type: {
+    type: String,
+    default: ''
+  }
+})
+
+const returnHome = async () => {
+  if(props.type === 'climate'){
+    router.push({path: '/voyage/history'})
+  }else{
+    router.push('/home')
+  }
 }
 </script>
 <style scoped>
@@ -29,7 +40,7 @@ const returnHome = () => {
   align-items: center;
   user-select: none;
   border-radius: 28px;
-  //border: 1px dotted  transparent;
+  /* border: 1px dotted transparent; */
 
   .return-btn-core{
     width: 112px;
@@ -65,7 +76,7 @@ const returnHome = () => {
   &:hover{
     border-color: rgba(255,255,255,0.35);
     .return-btn-core{
-      //transform: scale(1.1);
+      /* transform: scale(1.1); */
       background-color: rgba(255,255,255,0.35);
     }
   }

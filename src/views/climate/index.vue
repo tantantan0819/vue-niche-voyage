@@ -31,7 +31,7 @@
       <div class="img-bg"></div>
       <div class="img-bg-video">
         <video
-            src="@/assets/images/climate/climate-cdm-storm.webm"
+            src="@/assets/images/climate/climate-cdm-storm.mov"
             autoplay
             loop
             disablePictureInPicture
