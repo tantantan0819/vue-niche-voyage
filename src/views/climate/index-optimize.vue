@@ -1,5 +1,17 @@
 <template>
   <div class="climate">
+     <!-- 返回按钮 -->
+     <return-button type="climate" />
+     <!-- 滚动指示器（从第二屏开始显示，共5个点） -->
+     <div class="scroll-indicator" v-show="currentScreenIndex >= 1">
+       <div class="indicator-dots">
+         <div class="dot" :class="{ active: currentScreenIndex === 1 }"></div>
+         <div class="dot" :class="{ active: currentScreenIndex === 2 }"></div>
+         <div class="dot" :class="{ active: currentScreenIndex === 3 }"></div>
+         <div class="dot" :class="{ active: currentScreenIndex === 4 }"></div>
+         <div class="dot" :class="{ active: currentScreenIndex === 5 }"></div>
+       </div>
+     </div>
     <div class="first-content-wrapper">
       <div class="first-screen screen">
         <div class="mountain-1"></div>
@@ -127,7 +139,12 @@ import { ref, onMounted, onBeforeUnmount } from 'vue'
 import { gsap } from 'gsap';
 import { pxToVw, pxToVh } from '@/utils/viewportUtils';
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import ReturnButton from "@/components/ReturnButton.vue";
 gsap.registerPlugin(ScrollTrigger)
+
+// 当前屏幕索引，用于指示器
+const currentScreenIndex = ref(0)
+
 const calDistance = (distance) =>{
   return distance / 6480
 }
@@ -147,7 +164,9 @@ const firstAnimation = () =>{
       start: 'top top',
       end: '+=2400', // 增加到 2400，确保第二屏能完全显示
       scrub: 0.1,
-      onComplete: () => firstTl.scrollTrigger.kill()
+      onComplete: () => {
+        firstTl.scrollTrigger.kill()
+      }
     }
   })
   
@@ -214,7 +233,7 @@ const firstAnimation = () =>{
   firstTl.to('.second-screen', {
     opacity: 1,
     duration: 0.5,
-    ease: 'power2.out'
+    ease: 'power2.out',
   }, secondScreenPoint) // 在第一屏淡出完成后
 
 }
@@ -240,7 +259,48 @@ const contentAnimation = () => {
       start: 'top top',
       end: `+=${totalScrollDistance}`,
       scrub: 0.5,
-      onComplete: () => masterTl.scrollTrigger.kill()
+      onUpdate: () => {
+        // 检查每个屏幕的可见性，控制视频播放和指示器
+        let visibleScreenIndex = -1
+        let maxOpacity = 0
+        
+        // 检查第二到第六屏
+        screens.forEach((screenSelector, index) => {
+          const screen = document.querySelector(screenSelector)
+          if (!screen) return
+          
+          const opacity = gsap.getProperty(screen, 'opacity') || 0
+          
+          // 找出可见度最高的屏幕（opacity > 0.5）
+          if (opacity > 0.5 && opacity > maxOpacity) {
+            maxOpacity = opacity
+            visibleScreenIndex = index + 1 // 第二屏是索引1，第三屏是索引2，以此类推
+          }
+          
+          // 控制视频播放
+          const videos = screen.querySelectorAll('video')
+          if (videos.length > 0) {
+            videos.forEach(video => {
+              // 如果屏幕可见（opacity > 0.5）且视频暂停，则播放
+              if (opacity > 0.5 && video.paused) {
+                video.play().catch(err => console.log('Video play failed:', err))
+              }
+              // 如果屏幕不可见（opacity < 0.5）且视频正在播放，则暂停
+              else if (opacity < 0.5 && !video.paused) {
+                video.pause()
+              }
+            })
+          }
+        })
+        
+        // 更新指示器（回退时也会更新）
+        if (visibleScreenIndex >= 0) {
+          currentScreenIndex.value = visibleScreenIndex
+        }
+      },
+      onComplete: () => {
+        masterTl.scrollTrigger.kill()
+      }
     }
   })
   
@@ -278,18 +338,17 @@ const contentAnimation = () => {
     
     // 当前屏显示（第二屏在第一屏动画中已处理，跳过）
     if (currentScreen !== '.second-screen') {
-      // 在屏幕显示时播放视频
-      masterTl.call(() => {
-        const videos = document.querySelectorAll(`${currentScreen} video`)
-        videos.forEach(video => {
-          video.play().catch(err => console.log('Video play failed:', err))
-        })
-      }, null, screenShowPos)
-      
       masterTl.to(currentScreen, {
         opacity: 1,
         duration: screenShowDuration,
-        ease: 'power2.out'
+        ease: 'power2.out',
+        onStart: () => {
+          // 在屏幕显示时播放视频（onUpdate 也会处理，但这里确保立即播放）
+          const videos = document.querySelectorAll(`${currentScreen} video`)
+          videos.forEach(video => {
+            video.play().catch(err => console.log('Video play failed:', err))
+          })
+        }
       }, screenShowPos)
     }
     
@@ -319,15 +378,7 @@ const contentAnimation = () => {
     
     // 如果不是最后一屏，当前屏消失，下一屏显示
     if (!isLast && nextScreen) {
-      // 当前屏消失时暂停视频
-      masterTl.call(() => {
-        const videos = document.querySelectorAll(`${currentScreen} video`)
-        videos.forEach(video => {
-          video.pause()
-        })
-      }, null, fadeOutStartPos)
-      
-      // 当前屏快速消失
+      // 当前屏快速消失（视频暂停由 onUpdate 处理）
       masterTl.to(currentScreen, {
         opacity: 0,
         duration: fadeOutDuration,
@@ -336,18 +387,17 @@ const contentAnimation = () => {
       
       // 下一屏淡入（在当前屏完全消失后）
       const nextScreenShowPos = fadeOutEnd / totalScrollDistance
-      // 下一屏显示时播放视频
-      masterTl.call(() => {
-        const videos = document.querySelectorAll(`${nextScreen} video`)
-        videos.forEach(video => {
-          video.play().catch(err => console.log('Video play failed:', err))
-        })
-      }, null, nextScreenShowPos)
-      
       masterTl.to(nextScreen, {
         opacity: 1,
         duration: screenShowDuration,
-        ease: 'power2.out'
+        ease: 'power2.out',
+        onStart: () => {
+          // 在下一屏显示时播放视频（onUpdate 也会处理，但这里确保立即播放）
+          const videos = document.querySelectorAll(`${nextScreen} video`)
+          videos.forEach(video => {
+            video.play().catch(err => console.log('Video play failed:', err))
+          })
+        }
       }, nextScreenShowPos)
     }
   })
@@ -367,8 +417,8 @@ onMounted(()=>{
 </script>
 <style scoped>
 .content-warpper{
-  //padding-top: 1000px;
-  //margin-bottom: 1000px;
+  /* padding-top: 1000px; */
+  /* margin-bottom: 1000px; */
 }
 .img-bg-video {
   position: absolute;
@@ -388,6 +438,46 @@ onMounted(()=>{
 .climate {
   position: relative;
   height: 18000px; /* 为滚动提供足够空间：第一屏2400px + 5个屏幕各2000px = 12400px，使用14000px确保足够 */
+  
+  /* 滚动指示器（从第二屏开始显示） */
+  .scroll-indicator {
+    position: fixed;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 100;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    
+    .indicator-dots {
+      display: flex;
+      flex-direction: row;
+      gap: 16px;
+      align-items: center;
+      
+      .dot {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background-color: rgba(255, 255, 255, 0.3);
+        transition: all 0.3s ease;
+        cursor: pointer;
+        pointer-events: auto;
+        
+        &:hover {
+          background-color: rgba(255, 255, 255, 0.6);
+          transform: scale(1.2);
+        }
+        
+        &.active {
+          width: 16px;
+          height: 16px;
+          background-color: rgba(255, 255, 255, 0.9);
+          box-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
+        }
+      }
+    }
+  }
 }
 .screen{
   position: fixed;
@@ -421,7 +511,7 @@ onMounted(()=>{
     position: absolute;
     bottom: 0;
     left: 0;
-  //z: -600;
+    /* z: -600; */
   }
   .mountain-2{
     width: 1551px;
@@ -433,7 +523,7 @@ onMounted(()=>{
     position: absolute;
     bottom: 0;
     right: 0;
-  //z: -400;
+    /* z: -400; */
   }
   .mountain-3{
     width: 551px;
@@ -445,7 +535,7 @@ onMounted(()=>{
     position: absolute;
     bottom: 0;
     right: 0;
-  //z: -400;
+    /* z: -400; */
   }
   .mountain-4{
     width: 1805px;
@@ -670,10 +760,10 @@ onMounted(()=>{
 }
 .four-screen{
   z-index: 7;
-  //background-image: url("@/assets/images/climate/climate-zngd-bg-2.png");
-  //background-size: cover;
-  //background-position: center center;
-  //background-repeat: no-repeat;
+  /* background-image: url("@/assets/images/climate/climate-zngd-bg-2.png"); */
+  /* background-size: cover; */
+  /* background-position: center center; */
+  /* background-repeat: no-repeat; */
 
   .img-bg{
     video{
@@ -694,7 +784,7 @@ onMounted(()=>{
     position: absolute;
     top: 0;
     left: 0;
-    //z-index: 3;
+    /* z-index: 3; */
   }
   .img-map{
     width: 699px;
@@ -804,7 +894,7 @@ onMounted(()=>{
 }
 .six-screen{
   z-index: 5;
-//background-image: url("@/assets/images/climate/climate-zngd-bg-2.png");
+  /* background-image: url("@/assets/images/climate/climate-zngd-bg-2.png"); */
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;

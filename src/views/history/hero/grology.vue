@@ -56,7 +56,7 @@
             @timeupdate="onClimateVideo1TimeUpdate"
             @loadeddata="onClimateVideo1LoadedData"
         ></video>
-        <div class="climate-wrapper">
+        <div class="climate-wrapper" id="climateHome">
           <div class="climate-title">从雪山到雨林</div>
           <div class="climate-description">
             <p>准备好了吗？</p>
