@@ -60,7 +60,7 @@ export default [
             {
                 path: 'climate',
                 name: 'climate',
-                component: () => import('@/views/climate/index.vue'),
+                component: () => import('@/views/climate/index-optimize.vue'),
                 meta: {
                     title: 'climate',
                     icon: 'cog',
