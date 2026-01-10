@@ -1513,13 +1513,20 @@ const jumpToPreviousVideoFirstFrame = () => {
                   if (videoDescription.value) {
                     videoDescription.value.style.display = 'none';
                   }
+                  // 动画完成后再重置处理标志
+                  enableScrollLock();
+                  isProcessingScroll.value = false;
+                  // 重新初始化跳过监听
+                  initSkipToVideoEndScroll();
                 }
               });
+            } else {
+              // 如果没有 description，立即重置处理标志
+              enableScrollLock();
+              isProcessingScroll.value = false;
+              // 重新初始化跳过监听
+              initSkipToVideoEndScroll();
             }
-            enableScrollLock();
-            isProcessingScroll.value = false;
-            // 重新初始化跳过监听
-            initSkipToVideoEndScroll();
           }
         };
         
@@ -1561,13 +1568,20 @@ const jumpToPreviousVideoFirstFrame = () => {
                   if (videoDescription.value) {
                     videoDescription.value.style.display = 'none';
                   }
+                  // 动画完成后再重置处理标志
+                  enableScrollLock();
+                  isProcessingScroll.value = false;
+                  // 重新初始化跳过监听
+                  initSkipToVideoEndScroll();
                 }
               });
+            } else {
+              // 如果没有 description，立即重置处理标志
+              enableScrollLock();
+              isProcessingScroll.value = false;
+              // 重新初始化跳过监听
+              initSkipToVideoEndScroll();
             }
-            enableScrollLock();
-            isProcessingScroll.value = false;
-            // 重新初始化跳过监听
-            initSkipToVideoEndScroll();
           }
         };
         
@@ -1591,10 +1605,14 @@ const jumpToPreviousVideoFirstFrame = () => {
           if (videoDescription.value) {
             videoDescription.value.style.display = 'none';
           }
+          // 动画完成后再重置处理标志
+          isProcessingScroll.value = false;
         }
       });
+    } else {
+      // 如果没有 description，立即重置处理标志
+      isProcessingScroll.value = false;
     }
-    isProcessingScroll.value = false;
   }
 };
 
@@ -1662,6 +1680,14 @@ const initSkipToVideoEndScroll = () => {
       // 只要视频存在且正在播放或已完成，就允许回滚
       if (!originVideo.value) return;
       
+      // 首先检查：如果正在处理滚动，立即忽略此次滚动（最优先检查）
+      if (isProcessingScroll.value) {
+        console.log('[回滚] 正在处理滚动，忽略此次滚动');
+        e.preventDefault();
+        e.stopPropagation();
+        return false;
+      }
+      
       // 防抖：如果距离上次回滚时间太短，忽略此次滚动
       const now = Date.now();
       if (now - lastRollbackTime < ROLLBACK_DEBOUNCE_TIME) {
@@ -1671,19 +1697,11 @@ const initSkipToVideoEndScroll = () => {
         return false;
       }
       
-      // 如果正在处理滚动，忽略此次滚动
-      if (isProcessingScroll.value) {
-        console.log('[回滚] 正在处理滚动，忽略此次滚动');
-        e.preventDefault();
-        e.stopPropagation();
-        return false;
-      }
-      
       // 阻止默认滚动行为
       e.preventDefault();
       e.stopPropagation();
       
-      // 立即设置处理标志和更新时间戳，防止重复触发
+      // 立即设置处理标志和更新时间戳，防止重复触发（在检查之后立即设置）
       isProcessingScroll.value = true;
       lastRollbackTime = now;
       
@@ -1727,17 +1745,22 @@ const initSkipToVideoEndScroll = () => {
               if (videoDescription.value) {
                 videoDescription.value.style.display = 'none';
               }
+              // 动画完成后再重置处理标志
+              isProcessingScroll.value = false;
+              // 重新初始化跳过监听
+              initSkipToVideoEndScroll();
             }
           });
+        } else {
+          // 如果没有 description，立即重置处理标志
+          isProcessingScroll.value = false;
+          initSkipToVideoEndScroll();
         }
         // 重置所有描述状态
         firstDescriptionShown.value = false;
         secondDescriptionShown.value = false;
         videoDescriptionShownAfterSecondVideo.value = false;
         videoDescriptionShownAfterThirdVideo.value = false;
-        // 重新初始化跳过监听
-        isProcessingScroll.value = false; // 重置处理标志
-        initSkipToVideoEndScroll();
         return false;
       }
       
@@ -1766,17 +1789,23 @@ const initSkipToVideoEndScroll = () => {
               if (videoDescription.value) {
                 videoDescription.value.style.display = 'none';
               }
+              // 动画完成后再重置处理标志
+              isProcessingScroll.value = false;
+              // 重新初始化跳过监听
+              initSkipToVideoEndScroll();
             }
           });
+        } else {
+          // 如果没有 description，立即重置处理标志
+          isProcessingScroll.value = false;
+          // 重新初始化跳过监听
+          initSkipToVideoEndScroll();
         }
         // 重置所有描述状态
         firstDescriptionShown.value = false;
         secondDescriptionShown.value = false;
         videoDescriptionShownAfterSecondVideo.value = false;
         videoDescriptionShownAfterThirdVideo.value = false;
-        // 重新初始化跳过监听
-        isProcessingScroll.value = false; // 重置处理标志
-        initSkipToVideoEndScroll();
       } else {
         console.log('[回滚] 视频在首帧但是是第一个视频或未加载完成，不做操作');
         // 重置处理标志
