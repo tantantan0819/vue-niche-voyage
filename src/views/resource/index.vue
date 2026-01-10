@@ -174,13 +174,15 @@
         <div class="geothermy-enery-wrapper">
           <video
               class="geothermy-video"
-              src="@/assets/videos/resource-animation-alpha-smoke-1.webm"
               autoplay
               loop
               muted
-          ></video>
-          <p>地热</p>
-          <p>
+          >
+            <source src="@/assets/videos/resource-animation-alpha-smoke-1.webm" type="video/webm">
+            <source src="@/assets/videos/resource-animation-alpha-smoke-1.mov" type="video/mov">
+          </video>
+          <p class="earlySummer-serif">地热</p>
+          <p class="alibaba-light">
             地热是一种来自于地球内部的可再生能源。强烈的地壳构造活动让这里地热资源丰富，尤其是高温地热资源，主要集中在青藏高原南部。在雅鲁藏布江流域及羊八井——那曲裂谷等地分布着数十处90℃以上的沸泉、喷泉，200余处热泉、温泉。
           </p>
         </div>
@@ -197,11 +199,14 @@
         <div class="geothermy-enery-interduction">
           <video
               class="geothermy-enery-video"
-              src="@/assets/videos/resource-animation-alpha-smoke-2.webm"
               autoplay
               loop
               muted
-          ></video>
+          >
+            <source src="@/assets/videos/resource-animation-alpha-smoke-2.webm" type="video/webm">
+            <source src="@/assets/videos/resource-animation-alpha-smoke-2.mov" type="video/mov">
+            <source>
+          </video>
           <div class="geothermy-enery-line">
             <!-- 喷泉 -->
             <div class="fountain-wrapper">
@@ -240,7 +245,7 @@ const panelOverlayBefore = ref<HTMLDivElement | null>(null);
 const backgroundWrapperRef = ref<HTMLDivElement | null>(null);
 const backgroundContentRef = ref<HTMLDivElement | null>(null);
 const panelVideoSrc = new URL(
-  "@/assets/videos/resource-animation-baking.mp4",
+  "@/assets/images/resource/resource-animation-baking.mp4",
   import.meta.url
 ).href;
 
@@ -1287,6 +1292,7 @@ onUnmounted(() => {
   width: 1330px;
   height: 100vh;
   position: relative;
+
   .geothermy-video {
   //width: 100%;
     position: absolute;
@@ -1317,6 +1323,7 @@ onUnmounted(() => {
   position: relative;
   &::after {
     content: "青海艾肯泉";
+    font-family: 'Alibaba-PuHuiTi-Light';
     font-size: 24px;
     bottom: 40px;
     position: absolute;

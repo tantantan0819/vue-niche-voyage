@@ -1,47 +1,47 @@
 <template>
   <div class="grology">
     <div class="grology-origin" ref="originContainer">
-<!--      <div class="welcome-video-wrapper">-->
-<!--        <video-->
-<!--            ref="welcomeVideo"-->
-<!--            class="welcome-video"-->
-<!--            :src="welcomeVideoSrc"-->
-<!--            preload="auto"-->
-<!--            muted-->
-<!--            playsinline-->
-<!--            @ended="onWelcomeVideoEnded"-->
-<!--        ></video>-->
-<!--        <div class="welcome-video-roller" ref="welcomeVideoRoller"></div>-->
-<!--      </div>-->
-<!--      <div class="origin-video-wrapper" ref="originVideoWrapper">-->
-<!--        <video-->
-<!--            ref="originVideo"-->
-<!--            class="origin-video"-->
-<!--            :src="originInfos[originCurrentIndex].videoUrl"-->
-<!--            preload="auto"-->
-<!--            playsinline-->
-<!--            :muted="isMuted"-->
-<!--            @ended="onOriginVideoEnded"-->
-<!--            @timeupdate="onOriginVideoTimeUpdate"-->
-<!--        ></video>-->
-<!--        <div class="video-sound" @click="toggleSound">-->
-<!--          <div :class="isMuted ? 'video-sound-icon-off' : 'video-sound-icon-open'"></div>-->
-<!--        </div>-->
-<!--        <div class="video-accessories" ref="videoAccessories">-->
-<!--          <div class="video-description" ref="videoDescription">-->
-<!--            <p class="video-title">{{ originInfos[originCurrentIndex].title }}</p>-->
-<!--            <p :style="{width: originInfos[originCurrentIndex].width}">{{ originInfos[originCurrentIndex].description[0] }}</p>-->
-<!--          </div>-->
-<!--          <div class="video-indicator">-->
-<!--            <div-->
-<!--                class="video-dot"-->
-<!--                v-for="(item, index) in originInfos.length"-->
-<!--                :key="index"-->
-<!--                :class="{ active: originCurrentIndex === index }"-->
-<!--            ></div>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--      </div>-->
+      <div class="welcome-video-wrapper">
+        <video
+            ref="welcomeVideo"
+            class="welcome-video"
+            :src="welcomeVideoSrc"
+            preload="auto"
+            muted
+            playsinline
+            @ended="onWelcomeVideoEnded"
+        ></video>
+        <div class="welcome-video-roller" ref="welcomeVideoRoller"></div>
+      </div>
+      <div class="origin-video-wrapper" ref="originVideoWrapper">
+        <video
+            ref="originVideo"
+            class="origin-video"
+            :src="originInfos[originCurrentIndex].videoUrl"
+            preload="auto"
+            playsinline
+            :muted="isMuted"
+            @ended="onOriginVideoEnded"
+            @timeupdate="onOriginVideoTimeUpdate"
+        ></video>
+        <div class="video-sound" @click="toggleSound">
+          <div :class="isMuted ? 'video-sound-icon-off' : 'video-sound-icon-open'"></div>
+        </div>
+        <div class="video-accessories" ref="videoAccessories">
+          <div class="video-description" ref="videoDescription">
+            <p class="video-title">{{ originInfos[originCurrentIndex].title }}</p>
+            <p :style="{width: originInfos[originCurrentIndex].width}">{{ originInfos[originCurrentIndex].description[0] }}</p>
+          </div>
+          <div class="video-indicator">
+            <div
+                class="video-dot"
+                v-for="(item, index) in originInfos.length"
+                :key="index"
+                :class="{ active: originCurrentIndex === index }"
+            ></div>
+          </div>
+        </div>
+      </div>
     </div>
     <div class="grology-water">
       <div class="water-cloud-1"></div>
@@ -336,6 +336,8 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 import { useRouter } from 'vue-router'
 import { pxToVw, pxToVh, pxToVwPx, pxToVhPx  } from '@/utils/viewportUtils';
+import startPage1 from '@/assets/images/geology/start-page-1.mp4'
+import startPage2 from '@/assets/images/geology/start-page-2.mp4'
 import geologyVideo1 from '@/assets/images/geology/geology-video-1.mp4'
 import geologyVideo2 from '@/assets/images/geology/geology-video-2.mp4'
 import geologyVideo3 from '@/assets/images/geology/geology-video-3.mp4'
@@ -351,11 +353,7 @@ const linkTo = path =>{
   router.push(path)
 }
 
-const welcomeVideoSrc = new URL(
-    "@/assets/images/geology/start-page-1.mp4",
-    // "@/assets/videos/resource-animation-baking.mp4",
-    import.meta.url
-).href;
+const welcomeVideoSrc = ref(startPage1); // 初始为 startPage1
 
 const welcomeVideo = ref(null);
 const originContainer = ref(null);
@@ -369,6 +367,8 @@ const originCurrentIndex = ref(0); // 当前视频索引（保留用于显示）
 const welcomeVideoStarted = ref(false); // welcomeVideo 是否已开始播放
 const welcomeVideoCompleted = ref(false); // welcomeVideo 是否播放完成
 const welcomeVideoHidden = ref(false); // welcomeVideo 是否已隐藏
+const startPage1Completed = ref(false); // startPage1 是否播放完成
+const startPage2Started = ref(false); // startPage2 是否已开始播放
 const originVideoStarted = ref(false); // originVideo 是否已开始播放
 const originVideoCompleted = ref(false); // originVideo 是否播放完成
 const videoAccessoriesShown = ref(false); // video-accessories 是否已显示
@@ -381,10 +381,15 @@ const thirdVideoStarted = ref(false); // 第三个视频是否已开始播放
 const thirdVideoCompleted = ref(false); // 第三个视频是否已播放完成
 const videoDescriptionShownAfterThirdVideo = ref(false); // 第三个视频播放完成后 video-description 是否已显示
 const isProcessingScroll = ref(false); // 是否正在处理滚动事件，防止快速连续触发
+let lastRollbackTime = 0; // 上次回滚的时间戳，用于防抖
+const ROLLBACK_DEBOUNCE_TIME = 500; // 回滚防抖时间（毫秒）
+let lastForwardScrollTime = 0; // 上次正向滚动的时间戳，用于防抖
+const FORWARD_SCROLL_DEBOUNCE_TIME = 500; // 正向滚动防抖时间（毫秒）
 const canSkipToEnd = ref(false); // 视频是否已播放1秒，允许跳过到结尾
 const isSwitchedFromMenu = ref(false); // 是否通过菜单跳转播放视频
 let welcomeVideoScrollHandler = null; // welcomeVideo 滚动事件处理器
 let switchToOriginVideoHandler = null; // 切换到 originVideo 的滚动事件处理器
+let playStartPage2Handler = null; // 播放 startPage2 的滚动事件处理器
 let showVideoAccessoriesHandler = null; // 显示 video-accessories 的滚动事件处理器
 let showFirstDescriptionHandler = null; // 显示第一个 description 的滚动事件处理器
 let showSecondDescriptionHandler = null; // 显示第二个 description 的滚动事件处理器
@@ -393,6 +398,7 @@ let showVideoDescriptionAfterSecondVideoHandler = null; // 第二个视频播放
 let hideVideoDescriptionAndPlayThirdVideoHandler = null; // 隐藏 video-description 并播放第三个视频的滚动事件处理器
 let showVideoDescriptionAfterThirdVideoHandler = null; // 第三个视频播放完成后显示 video-description 的滚动事件处理器
 let skipToVideoEndHandler = null; // 跳过到视频结尾的滚动事件处理器
+let scrollBackToOriginVideoHandler = null; // 检测滚动回到 originVideo 区域的监听器
 
 // climate video 相关的 refs 和状态
 const climateVideo1 = ref(null);
@@ -434,21 +440,21 @@ const originInfos = ref([
     videoUrl: geologyVideo1,
     title: '特提斯洋的终曲',
     description: [
-        '距今约3.6亿年前的远古时期，地球上只存在两个超级大陆：北半球的劳亚大陆和南半球的冈瓦纳大陆，大陆之间则是波涛汹涌的古特提斯',
+        '距今约3.6亿年前的远古时期，地球上只存在两个超级大陆：北半球的劳亚大陆和南半球的冈瓦纳大陆，大陆之间则是波涛汹涌的古特提斯洋',
         '大约3亿年前，大陆开始解体。劳亚大陆分裂成了北美大陆和欧亚大陆，而冈瓦纳大陆的裂离则更加破碎。分裂出的大陆块有印度、南极、澳大利亚等，小陆块则有羌塘板块、拉萨板块等。辽阔的特提斯洋也被众多大陆块阻隔切割，迎来了落幕的序章……',
     ]
   },
   {
     width: pxToVw(640),
     videoUrl: geologyVideo2,
-    title: '永恒的进行时',
-    description: ['当特提斯洋的波涛退去，古海化为陆地，青藏大地的轮廓初现。但印度板块和欧亚板块的挤压还在持续，巨大的断裂带在高原上纵横交错，地壳不断厚缩与隆起。约2500万年前，印度板块插入欧亚板块下，造成了喜马拉雅山的快速隆升，约到1500万年前，喜马拉雅山脉到达了现今的高度。但直至今日，世界屋脊的活动也从未停止。无论是雪峰与谷地的隆升、喷出蒸汽的热泉，还是频繁的地震，都预示着关于青藏高原的故事，正在继续……'],
+    title: '崛起的高原',
+    description: ['当特提斯洋被切割的同时，从冈瓦纳大陆裂离的板块也逐次朝北移动。先是昆仑板块，然后是可可西里板块，接着是羌塘板块和拉萨板块。它们经过漫长的漂移，由南向北，碰撞挤压到新的欧亚大陆的南缘。最后裂离向北起航的是印度板块，它极速追赶前面的拉萨板块，最终在6500万年前左右，印度板块在北纬13度线附近与已经成为新欧亚板块南缘的拉萨板块发生猛烈碰撞。随着碰撞挤压的持续，摧枯拉朽，造成了超大面积的地表隆起，一个全新的高原开始崛起……'],
   },
   {
     width: pxToVw(694),
     videoUrl: geologyVideo3,
-    title: '崛起的高原',
-    description: ['当特提斯洋被切割的同时，从冈瓦纳大陆裂离的板块也逐次朝北移动。先是昆仑板块，然后是可可西里板块，接着是羌塘板块和拉萨板块。它们经过漫长的漂移，由南向北，碰撞挤压到新的欧亚大陆的南缘。最后裂离向北起航的是印度板块，它极速追赶前面的拉萨板块，最终在6500万年前左右，印度板块在北纬13度线附近与已经成为新欧亚板块南缘的拉萨板块发生猛烈碰撞。随着碰撞挤压的持续，摧枯拉朽，造成了超大面积的地表隆起，一个全新的高原开始崛起……'],
+    title: '永恒的进行时',
+    description: ['当特提斯洋的波涛退去，古海化为陆地，青藏大地的轮廓初现。但印度板块和欧亚板块的挤压还在持续，巨大的断裂带在高原上纵横交错，地壳不断厚缩与隆起。约2500万年前，印度板块插入欧亚板块下，造成了喜马拉雅山的快速隆升，约到1500万年前，喜马拉雅山脉到达了现今的高度。但直至今日，世界屋脊的活动也从未停止。无论是雪峰与谷地的隆升、喷出蒸汽的热泉，还是频繁的地震，都预示着关于青藏高原的故事，正在继续……']
   },
 ])
 
@@ -851,7 +857,7 @@ const initWaterCloud1Animation = async () => {
   }
 
   waterCloud1ScrollTrigger = gsap.to('.water-cloud-1', {
-    y: pxToVh(-900),
+    y: pxToVh(-1400),
     ease: 'none', // 线性动画，与滚动完全同步
     scrollTrigger: {
       trigger: '.water-cloud-1',
@@ -1176,30 +1182,53 @@ const handleWelcomeVideoScroll = () => {
 
 // welcomeVideo 播放完成
 const onWelcomeVideoEnded = () => {
-  welcomeVideoCompleted.value = true;
-  
-  // 让视频停留在最后一帧
-  if (welcomeVideo.value) {
-    welcomeVideo.value.pause();
-    // 确保停留在最后一帧
-    if (welcomeVideo.value.duration) {
-      welcomeVideo.value.currentTime = welcomeVideo.value.duration;
+  // 如果播放的是 startPage1
+  if (!startPage1Completed.value) {
+    startPage1Completed.value = true;
+    
+    // 让视频停留在最后一帧
+    if (welcomeVideo.value) {
+      welcomeVideo.value.pause();
+      // 确保停留在最后一帧
+      if (welcomeVideo.value.duration) {
+        welcomeVideo.value.currentTime = welcomeVideo.value.duration;
+      }
     }
+    
+    // 移除滚动事件监听
+    if (welcomeVideoScrollHandler) {
+      window.removeEventListener('wheel', welcomeVideoScrollHandler, { passive: false });
+      window.removeEventListener('touchmove', welcomeVideoScrollHandler, { passive: false });
+      window.removeEventListener('scroll', welcomeVideoScrollHandler, { passive: false });
+      welcomeVideoScrollHandler = null;
+    }
+    
+    // 添加播放 startPage2 的滚动监听
+    initPlayStartPage2Scroll();
+  } else {
+    // 如果播放的是 startPage2，播放完成后自动切换到 originVideo
+    welcomeVideoCompleted.value = true;
+    
+    // 让视频停留在最后一帧
+    if (welcomeVideo.value) {
+      welcomeVideo.value.pause();
+      // 确保停留在最后一帧
+      if (welcomeVideo.value.duration) {
+        welcomeVideo.value.currentTime = welcomeVideo.value.duration;
+      }
+    }
+    
+    // 移除滚动事件监听
+    if (playStartPage2Handler) {
+      window.removeEventListener('wheel', playStartPage2Handler, { passive: false });
+      window.removeEventListener('touchmove', playStartPage2Handler, { passive: false });
+      window.removeEventListener('scroll', playStartPage2Handler, { passive: false });
+      playStartPage2Handler = null;
+    }
+    
+    // 自动切换到 originVideo
+    switchToOriginVideo();
   }
-  
-  // 保持滚动锁定，直到 originVideo 播放完成
-  // 不解除滚动禁用，继续保持在顶部
-  
-  // 移除滚动事件监听
-  if (welcomeVideoScrollHandler) {
-    window.removeEventListener('wheel', welcomeVideoScrollHandler, { passive: false });
-    window.removeEventListener('touchmove', welcomeVideoScrollHandler, { passive: false });
-    window.removeEventListener('scroll', welcomeVideoScrollHandler, { passive: false });
-    welcomeVideoScrollHandler = null;
-  }
-  
-  // 添加切换到 originVideo 的滚动监听
-  initSwitchToOriginVideoScroll();
 };
 
 // 切换到 originVideo
@@ -1310,13 +1339,8 @@ const skipToVideoEnd = () => {
   isProcessingScroll.value = true;
   originVideoCompleted.value = true;
   
-  // 移除跳过滚动事件监听
-  if (skipToVideoEndHandler) {
-    window.removeEventListener('wheel', skipToVideoEndHandler, { passive: false });
-    window.removeEventListener('touchmove', skipToVideoEndHandler, { passive: false });
-    window.removeEventListener('scroll', skipToVideoEndHandler, { passive: false });
-    skipToVideoEndHandler = null;
-  }
+  // 视频跳到结尾后，仍然保留监听器以支持回滚到首帧
+  // 不需要移除 skipToVideoEndHandler
   
   // 让视频停留在最后一帧
   if (originVideo.value) {
@@ -1336,12 +1360,16 @@ const skipToVideoEnd = () => {
     
     // 如果 videoAccessories 已经显示（比如通过菜单切换），直接显示第一个 description
     if (videoAccessoriesShown.value) {
+      console.log('[skipToVideoEnd] videoAccessories 已显示，准备显示第一个 description');
       // 重置第一个 description 的显示状态，确保可以重新显示
       firstDescriptionShown.value = false;
+      // 确保 isProcessingScroll 已重置
+      isProcessingScroll.value = false;
       setTimeout(() => {
         showFirstDescription();
       }, 300);
     } else {
+      console.log('[skipToVideoEnd] videoAccessories 未显示，显示 videoAccessories');
       // 如果 videoAccessories 还没有显示，正常流程显示
       showVideoAccessories();
     }
@@ -1373,10 +1401,210 @@ const skipToVideoEnd = () => {
   }
 };
 
-// 初始化跳过到视频结尾的滚动监听
+// 检测滚动方向（返回 true 表示向下，false 表示向上）
+let lastTouchY = 0;
+let lastScrollY = 0;
+const getScrollDirection = (e) => {
+  if (e.type === 'wheel') {
+    return e.deltaY > 0;
+  } else if (e.type === 'touchmove') {
+    // 对于触摸事件，需要与之前的触摸位置比较
+    if (e.touches && e.touches[0]) {
+      const currentY = e.touches[0].clientY;
+      if (lastTouchY === 0) {
+        lastTouchY = currentY;
+        return true; // 默认向下
+      }
+      const isDown = currentY > lastTouchY;
+      lastTouchY = currentY;
+      return isDown;
+    }
+    return true;
+  } else if (e.type === 'touchstart') {
+    // 记录触摸开始位置
+    if (e.touches && e.touches[0]) {
+      lastTouchY = e.touches[0].clientY;
+    }
+    return true;
+  } else if (e.type === 'touchend' || e.type === 'touchcancel') {
+    // 清除触摸位置
+    lastTouchY = 0;
+    return true;
+  } else if (e.type === 'scroll') {
+    // 对于 scroll 事件，通过比较当前和上次的 scrollY 来判断方向
+    const currentScrollY = window.scrollY || window.pageYOffset || 0;
+    const isDown = currentScrollY > lastScrollY;
+    lastScrollY = currentScrollY;
+    return isDown;
+  }
+  // 默认返回 true（向下）
+  return true;
+};
+
+// 跳转到上一个视频的首帧
+const jumpToPreviousVideoFirstFrame = () => {
+  // 注意：这个函数在被调用时，isProcessingScroll.value 可能已经是 true
+  // 所以这里不检查 isProcessingScroll.value，而是直接执行跳转逻辑
+  
+  // 确保视频已暂停且在首帧
+  // 如果视频正在播放，绝对不允许跳转到上一个视频
+  if (originVideo.value && !originVideo.value.paused) {
+    console.log('[jumpToPreviousVideoFirstFrame] 视频正在播放，不允许跳转，先跳转到当前视频首帧');
+    // 如果视频正在播放，不应该跳转，先跳转到当前视频的首帧
+    originVideo.value.currentTime = 0;
+    originVideo.value.pause();
+    originVideoCompleted.value = false;
+    isProcessingScroll.value = false; // 重置处理标志
+    initSkipToVideoEndScroll();
+    return;
+  }
+  
+  // 如果视频不在首帧，也不允许跳转
+  const currentTime = originVideo.value ? (originVideo.value.currentTime || 0) : 0;
+  if (currentTime > 0.1) {
+    console.log('[jumpToPreviousVideoFirstFrame] 视频不在首帧，不允许跳转，先跳转到当前视频首帧');
+    // 如果视频不在首帧，不应该跳转，先跳转到当前视频的首帧
+    if (originVideo.value) {
+      originVideo.value.currentTime = 0;
+      originVideo.value.pause();
+      originVideoCompleted.value = false;
+      isProcessingScroll.value = false; // 重置处理标志
+      initSkipToVideoEndScroll();
+    }
+    return;
+  }
+  
+  // 确保 isProcessingScroll 已设置
+  if (!isProcessingScroll.value) {
+    isProcessingScroll.value = true;
+  }
+  
+  const currentIndex = originCurrentIndex.value;
+  console.log('[jumpToPreviousVideoFirstFrame] 被调用，当前索引:', currentIndex);
+  
+  // 根据当前视频索引，跳转到上一个视频
+  if (currentIndex === 2) {
+    console.log('[jumpToPreviousVideoFirstFrame] 从第三个视频跳转到第二个视频');
+    // 从第三个视频跳转到第二个视频的首帧
+    originCurrentIndex.value = 1;
+    originVideoCompleted.value = false;
+    canSkipToEnd.value = false;
+    thirdVideoStarted.value = false;
+    thirdVideoCompleted.value = false;
+    videoDescriptionShownAfterThirdVideo.value = false;
+    // 重置第二个视频的相关状态
+    secondVideoStarted.value = false;
+    secondVideoCompleted.value = false;
+    videoDescriptionShownAfterSecondVideo.value = false;
+    
+    nextTick(() => {
+      if (originVideo.value) {
+        originVideo.value.load();
+        const setupVideo = () => {
+          if (originVideo.value) {
+            originVideo.value.currentTime = 0;
+            originVideo.value.pause();
+            // 隐藏 description
+            if (videoDescription.value) {
+              gsap.to(videoDescription.value, {
+                opacity: 0,
+                duration: 0.3,
+                onComplete: () => {
+                  if (videoDescription.value) {
+                    videoDescription.value.style.display = 'none';
+                  }
+                }
+              });
+            }
+            enableScrollLock();
+            isProcessingScroll.value = false;
+            // 重新初始化跳过监听
+            initSkipToVideoEndScroll();
+          }
+        };
+        
+        if (originVideo.value.readyState >= 2) {
+          setupVideo();
+        } else {
+          originVideo.value.addEventListener('loadedmetadata', setupVideo, { once: true });
+        }
+      } else {
+        isProcessingScroll.value = false;
+      }
+    });
+  } else if (currentIndex === 1) {
+    console.log('[jumpToPreviousVideoFirstFrame] 从第二个视频跳转到第一个视频');
+    // 从第二个视频跳转到第一个视频的首帧
+    originCurrentIndex.value = 0;
+    originVideoCompleted.value = false;
+    canSkipToEnd.value = false;
+    secondVideoStarted.value = false;
+    secondVideoCompleted.value = false;
+    videoDescriptionShownAfterSecondVideo.value = false;
+    // 重置第一个视频的描述状态
+    firstDescriptionShown.value = false;
+    secondDescriptionShown.value = false;
+    
+    nextTick(() => {
+      if (originVideo.value) {
+        originVideo.value.load();
+        const setupVideo = () => {
+          if (originVideo.value) {
+            originVideo.value.currentTime = 0;
+            originVideo.value.pause();
+            // 隐藏 description（回滚时只隐藏，不立即显示，等视频播放完成后再显示）
+            if (videoDescription.value) {
+              gsap.to(videoDescription.value, {
+                opacity: 0,
+                duration: 0.3,
+                onComplete: () => {
+                  if (videoDescription.value) {
+                    videoDescription.value.style.display = 'none';
+                  }
+                }
+              });
+            }
+            enableScrollLock();
+            isProcessingScroll.value = false;
+            // 重新初始化跳过监听
+            initSkipToVideoEndScroll();
+          }
+        };
+        
+        if (originVideo.value.readyState >= 2) {
+          setupVideo();
+        } else {
+          originVideo.value.addEventListener('loadedmetadata', setupVideo, { once: true });
+        }
+      } else {
+        isProcessingScroll.value = false;
+      }
+    });
+  } else {
+    // 第一个视频，无法再往前跳转
+    // 隐藏 description
+    if (videoDescription.value) {
+      gsap.to(videoDescription.value, {
+        opacity: 0,
+        duration: 0.3,
+        onComplete: () => {
+          if (videoDescription.value) {
+            videoDescription.value.style.display = 'none';
+          }
+        }
+      });
+    }
+    isProcessingScroll.value = false;
+  }
+};
+
+// 初始化跳过到视频结尾的滚动监听（同时处理回滚）
 const initSkipToVideoEndScroll = () => {
-  // 如果已经完成或正在处理，不再初始化
-  if (originVideoCompleted.value || isProcessingScroll.value) return;
+  // 如果正在处理，不再初始化
+  if (isProcessingScroll.value) return;
+  
+  // 如果视频不存在，不再初始化
+  if (!originVideo.value) return;
   
   // 如果已经存在处理器，先移除
   if (skipToVideoEndHandler) {
@@ -1388,20 +1616,176 @@ const initSkipToVideoEndScroll = () => {
   
   // 创建滚动事件处理器
   skipToVideoEndHandler = (e) => {
-    // 如果已经完成或正在处理，不再处理
-    if (originVideoCompleted.value || isProcessingScroll.value) return;
+    // 如果正在处理，不再处理
+    if (isProcessingScroll.value) return;
     
-    // 如果视频未播放1秒，不允许跳过
-    if (!canSkipToEnd.value) return;
+    // 检测滚动方向
+    const isScrollingDown = getScrollDirection(e);
     
-    // 阻止默认滚动行为
-    e.preventDefault();
-    e.stopPropagation();
-    
-    // 跳过到视频结尾
-    skipToVideoEnd();
-    
-    return false;
+    if (isScrollingDown) {
+      // 向下滚动：处理播放逻辑
+      // 阻止默认滚动行为
+      e.preventDefault();
+      e.stopPropagation();
+      
+      if (originVideo.value) {
+        const currentTime = originVideo.value.currentTime || 0;
+        const isPaused = originVideo.value.paused;
+        
+        // 如果视频在首帧且暂停，自动播放
+        if (currentTime <= 0.1 && isPaused) {
+          // 如果视频已完成，重置完成状态，允许重新播放
+          if (originVideoCompleted.value) {
+            originVideoCompleted.value = false;
+          }
+          // 重置 canSkipToEnd，确保需要播放1秒后才能跳过
+          canSkipToEnd.value = false;
+          originVideo.value.play().catch(err => {
+            console.warn('Video play failed:', err);
+          });
+          return false;
+        }
+        
+        // 如果视频已经完成，不再处理
+        if (originVideoCompleted.value) return false;
+        
+        // 如果视频未播放1秒，不允许跳过
+        if (!canSkipToEnd.value) return false;
+        
+        // 跳过到视频结尾
+        skipToVideoEnd();
+      }
+      
+      return false;
+    } else {
+      // 向上滚动：回滚逻辑
+      // 只要视频存在且正在播放或已完成，就允许回滚
+      if (!originVideo.value) return;
+      
+      // 防抖：如果距离上次回滚时间太短，忽略此次滚动
+      const now = Date.now();
+      if (now - lastRollbackTime < ROLLBACK_DEBOUNCE_TIME) {
+        console.log('[回滚] 防抖：距离上次回滚时间太短，忽略此次滚动');
+        e.preventDefault();
+        e.stopPropagation();
+        return false;
+      }
+      
+      // 如果正在处理滚动，忽略此次滚动
+      if (isProcessingScroll.value) {
+        console.log('[回滚] 正在处理滚动，忽略此次滚动');
+        e.preventDefault();
+        e.stopPropagation();
+        return false;
+      }
+      
+      // 阻止默认滚动行为
+      e.preventDefault();
+      e.stopPropagation();
+      
+      // 立即设置处理标志和更新时间戳，防止重复触发
+      isProcessingScroll.value = true;
+      lastRollbackTime = now;
+      
+      // 检查视频是否在首帧
+      const currentTime = originVideo.value.currentTime || 0;
+      const isPaused = originVideo.value.paused;
+      const currentIndex = originCurrentIndex.value;
+      const duration = originVideo.value.duration || 0;
+      const readyState = originVideo.value.readyState || 0;
+      
+      // 判断是否在首帧（允许0.1秒的误差）
+      const isAtFirstFrame = currentTime <= 0.1;
+      
+      // 调试日志
+      console.log('[回滚] 状态检查:', {
+        currentIndex,
+        currentTime: currentTime.toFixed(3),
+        isPaused,
+        isAtFirstFrame,
+        readyState,
+        duration: duration.toFixed(2),
+        originVideoCompleted: originVideoCompleted.value,
+        videoEnded: originVideo.value.ended
+      });
+      
+      // 关键修复：如果视频正在播放（!isPaused），必须先暂停并跳转到当前视频的首帧
+      // 这是最优先的条件：只要视频在播放，就跳转到当前视频的首帧，绝不跳转到上一个视频
+      if (!isPaused) {
+        console.log('[回滚] 视频正在播放，跳转到当前视频首帧，当前索引:', currentIndex);
+        // 视频正在播放，跳转到当前视频的首帧并暂停
+        originVideo.value.currentTime = 0;
+        originVideo.value.pause();
+        // 重置完成状态，允许重新播放
+        originVideoCompleted.value = false;
+        // 隐藏 description
+        if (videoDescription.value) {
+          gsap.to(videoDescription.value, {
+            opacity: 0,
+            duration: 0.3,
+            onComplete: () => {
+              if (videoDescription.value) {
+                videoDescription.value.style.display = 'none';
+              }
+            }
+          });
+        }
+        // 重置所有描述状态
+        firstDescriptionShown.value = false;
+        secondDescriptionShown.value = false;
+        videoDescriptionShownAfterSecondVideo.value = false;
+        videoDescriptionShownAfterThirdVideo.value = false;
+        // 重新初始化跳过监听
+        isProcessingScroll.value = false; // 重置处理标志
+        initSkipToVideoEndScroll();
+        return false;
+      }
+      
+      // 视频已暂停，判断是否在首帧
+      // 只有在首帧且暂停，且不是第一个视频时，才跳转到上一个视频
+      // 额外检查：确保视频已经加载了元数据（readyState >= 2），避免在视频加载时误判
+      // 重要：还要检查视频是否真的在首帧（currentTime 必须 <= 0.1）
+      if (isAtFirstFrame && currentIndex > 0 && readyState >= 2 && currentTime <= 0.1) {
+        console.log('[回滚] 视频在首帧且暂停，跳转到上一个视频，当前索引:', currentIndex);
+        // 已经在首帧且暂停，且不是第一个视频，且视频已加载，跳转到上一个视频的首帧
+        // 注意：jumpToPreviousVideoFirstFrame 内部会设置 isProcessingScroll，这里不需要重置
+        jumpToPreviousVideoFirstFrame();
+      } else if (!isAtFirstFrame || currentTime > 0.1) {
+        console.log('[回滚] 视频不在首帧，跳转到当前视频首帧，当前索引:', currentIndex, 'currentTime:', currentTime.toFixed(3));
+        // 不在首帧，跳转到当前视频的首帧并暂停
+        originVideo.value.currentTime = 0;
+        originVideo.value.pause();
+        // 重置完成状态，允许重新播放
+        originVideoCompleted.value = false;
+        // 隐藏 description
+        if (videoDescription.value) {
+          gsap.to(videoDescription.value, {
+            opacity: 0,
+            duration: 0.3,
+            onComplete: () => {
+              if (videoDescription.value) {
+                videoDescription.value.style.display = 'none';
+              }
+            }
+          });
+        }
+        // 重置所有描述状态
+        firstDescriptionShown.value = false;
+        secondDescriptionShown.value = false;
+        videoDescriptionShownAfterSecondVideo.value = false;
+        videoDescriptionShownAfterThirdVideo.value = false;
+        // 重新初始化跳过监听
+        isProcessingScroll.value = false; // 重置处理标志
+        initSkipToVideoEndScroll();
+      } else {
+        console.log('[回滚] 视频在首帧但是是第一个视频或未加载完成，不做操作');
+        // 重置处理标志
+        isProcessingScroll.value = false;
+      }
+      // 如果已经在首帧且是第一个视频，或视频未加载完成，不做任何操作
+      
+      return false;
+    }
   };
   
   // 监听滚动事件（使用 passive: false，以便阻止默认行为）
@@ -1414,13 +1798,8 @@ const initSkipToVideoEndScroll = () => {
 const onOriginVideoEnded = () => {
   originVideoCompleted.value = true;
   
-  // 移除跳过滚动事件监听
-  if (skipToVideoEndHandler) {
-    window.removeEventListener('wheel', skipToVideoEndHandler, { passive: false });
-    window.removeEventListener('touchmove', skipToVideoEndHandler, { passive: false });
-    window.removeEventListener('scroll', skipToVideoEndHandler, { passive: false });
-    skipToVideoEndHandler = null;
-  }
+  // 视频完成后，仍然保留监听器以支持回滚到首帧
+  // 不需要移除 skipToVideoEndHandler
   
   // 让视频停留在最后一帧
   if (originVideo.value) {
@@ -1440,12 +1819,16 @@ const onOriginVideoEnded = () => {
     
     // 如果 videoAccessories 已经显示（比如通过菜单切换），直接显示第一个 description
     if (videoAccessoriesShown.value) {
+      console.log('[onOriginVideoEnded] videoAccessories 已显示，准备显示第一个 description');
       // 重置第一个 description 的显示状态，确保可以重新显示
       firstDescriptionShown.value = false;
+      // 确保 isProcessingScroll 已重置
+      isProcessingScroll.value = false;
       setTimeout(() => {
         showFirstDescription();
       }, 300);
     } else {
+      console.log('[onOriginVideoEnded] videoAccessories 未显示，显示 videoAccessories');
       // 如果 videoAccessories 还没有显示，正常流程显示
       showVideoAccessories();
     }
@@ -1477,6 +1860,86 @@ const onOriginVideoEnded = () => {
   }
 };
 
+// 初始化播放 startPage2 的滚动监听
+const initPlayStartPage2Scroll = () => {
+  // 如果已经播放过，不再初始化
+  if (startPage2Started.value) return;
+  
+  // 创建滚动事件处理器
+  playStartPage2Handler = (e) => {
+    // 如果已经播放过，不再处理
+    if (startPage2Started.value) return;
+    
+    // 检测滚动方向
+    const isScrollingDown = getScrollDirection(e);
+    
+    // 只处理向下滚动
+    if (!isScrollingDown) return;
+    
+    // 防抖：如果距离上次正向滚动时间太短，忽略此次滚动
+    const now = Date.now();
+    if (now - lastForwardScrollTime < FORWARD_SCROLL_DEBOUNCE_TIME) {
+      e.preventDefault();
+      e.stopPropagation();
+      return false;
+    }
+    
+    // 更新时间戳，防止重复触发
+    lastForwardScrollTime = now;
+    
+    // 阻止默认滚动行为
+    e.preventDefault();
+    e.stopPropagation();
+    
+    // 播放 startPage2
+    playStartPage2();
+    
+    return false;
+  };
+  
+  // 监听滚动事件（使用 passive: false，以便阻止默认行为）
+  window.addEventListener('wheel', playStartPage2Handler, { passive: false });
+  window.addEventListener('touchmove', playStartPage2Handler, { passive: false });
+  window.addEventListener('scroll', playStartPage2Handler, { passive: false });
+};
+
+// 播放 startPage2
+const playStartPage2 = () => {
+  // 如果已经播放过，不再处理
+  if (startPage2Started.value) return;
+  
+  startPage2Started.value = true;
+  
+  // 移除滚动事件监听
+  if (playStartPage2Handler) {
+    window.removeEventListener('wheel', playStartPage2Handler, { passive: false });
+    window.removeEventListener('touchmove', playStartPage2Handler, { passive: false });
+    window.removeEventListener('scroll', playStartPage2Handler, { passive: false });
+    playStartPage2Handler = null;
+  }
+  
+  // 切换到 startPage2
+  if (welcomeVideo.value) {
+    welcomeVideoSrc.value = startPage2;
+    welcomeVideo.value.load();
+    
+    // 等待视频加载完成后播放
+    const playVideo = () => {
+      if (welcomeVideo.value) {
+        welcomeVideo.value.play().catch(err => {
+          console.warn('StartPage2 play failed:', err);
+        });
+      }
+    };
+    
+    if (welcomeVideo.value.readyState >= 2) {
+      playVideo();
+    } else {
+      welcomeVideo.value.addEventListener('loadedmetadata', playVideo, { once: true });
+    }
+  }
+};
+
 // 初始化切换到 originVideo 的滚动监听
 const initSwitchToOriginVideoScroll = () => {
   // 如果已经切换过，不再初始化
@@ -1486,6 +1949,17 @@ const initSwitchToOriginVideoScroll = () => {
   switchToOriginVideoHandler = (e) => {
     // 如果已经切换过，不再处理
     if (welcomeVideoHidden.value) return;
+    
+    // 防抖：如果距离上次正向滚动时间太短，忽略此次滚动
+    const now = Date.now();
+    if (now - lastForwardScrollTime < FORWARD_SCROLL_DEBOUNCE_TIME) {
+      e.preventDefault();
+      e.stopPropagation();
+      return false;
+    }
+    
+    // 更新时间戳，防止重复触发
+    lastForwardScrollTime = now;
     
     // 阻止默认滚动行为
     e.preventDefault();
@@ -1570,6 +2044,17 @@ const initShowVideoAccessoriesScroll = () => {
     // 如果已经显示过或正在处理，不再处理
     if (videoAccessoriesShown.value || isProcessingScroll.value) return;
     
+    // 防抖：如果距离上次正向滚动时间太短，忽略此次滚动
+    const now = Date.now();
+    if (now - lastForwardScrollTime < FORWARD_SCROLL_DEBOUNCE_TIME) {
+      e.preventDefault();
+      e.stopPropagation();
+      return false;
+    }
+    
+    // 更新时间戳，防止重复触发
+    lastForwardScrollTime = now;
+    
     // 阻止默认滚动行为
     e.preventDefault();
     e.stopPropagation();
@@ -1588,8 +2073,13 @@ const initShowVideoAccessoriesScroll = () => {
 
 // 显示第一个 description
 const showFirstDescription = () => {
-  // 如果已经显示过或正在处理，不再处理
-  if (firstDescriptionShown.value || isProcessingScroll.value) return;
+  console.log('[showFirstDescription] 被调用，firstDescriptionShown:', firstDescriptionShown.value, 'isProcessingScroll:', isProcessingScroll.value);
+  
+  // 如果正在处理，不再处理（但允许重新显示，所以不检查 firstDescriptionShown）
+  if (isProcessingScroll.value) {
+    console.log('[showFirstDescription] 正在处理滚动，跳过显示');
+    return;
+  }
   
   isProcessingScroll.value = true;
   firstDescriptionShown.value = true;
@@ -1619,7 +2109,9 @@ const showFirstDescription = () => {
       titleElement.textContent = originInfos.value[0].title;
     }
     
-    // 显示 video-description，带有淡入动画
+    // 先设置 display: block，然后显示 video-description，带有淡入动画
+    videoDescription.value.style.display = 'block';
+    gsap.set(videoDescription.value, { opacity: 0 });
     gsap.to(videoDescription.value, {
       opacity: 1,
       duration: 0.5,
@@ -1650,6 +2142,17 @@ const initShowFirstDescriptionScroll = () => {
   showFirstDescriptionHandler = (e) => {
     // 如果已经显示过或正在处理，不再处理
     if (firstDescriptionShown.value || isProcessingScroll.value) return;
+    
+    // 防抖：如果距离上次正向滚动时间太短，忽略此次滚动
+    const now = Date.now();
+    if (now - lastForwardScrollTime < FORWARD_SCROLL_DEBOUNCE_TIME) {
+      e.preventDefault();
+      e.stopPropagation();
+      return false;
+    }
+    
+    // 更新时间戳，防止重复触发
+    lastForwardScrollTime = now;
     
     // 阻止默认滚动行为
     e.preventDefault();
@@ -1704,13 +2207,8 @@ const showSecondDescription = () => {
               // 动画完成后才添加下一个步骤的监听
               isProcessingScroll.value = false;
               
-              // 如果是通过菜单跳转的，显示完第二个 description 后解除滚动锁定
-              if (isSwitchedFromMenu.value) {
-                disableScrollLock();
-                isSwitchedFromMenu.value = false; // 重置标志
-              } else {
-                initPlaySecondVideoScroll();
-              }
+              // 继续正常的正向流程：播放第二个视频
+              initPlaySecondVideoScroll();
             }
           });
         }
@@ -1719,13 +2217,8 @@ const showSecondDescription = () => {
       // 如果没有 description 元素，直接完成
       isProcessingScroll.value = false;
       
-      // 如果是通过菜单跳转的，显示完第二个 description 后解除滚动锁定
-      if (isSwitchedFromMenu.value) {
-        disableScrollLock();
-        isSwitchedFromMenu.value = false; // 重置标志
-      } else {
-        initPlaySecondVideoScroll();
-      }
+      // 继续正常的正向流程：播放第二个视频
+      initPlaySecondVideoScroll();
     }
   } else {
     // 如果没有数据，直接完成
@@ -1750,6 +2243,17 @@ const initShowSecondDescriptionScroll = () => {
   showSecondDescriptionHandler = (e) => {
     // 如果已经显示过或正在处理，不再处理
     if (secondDescriptionShown.value || isProcessingScroll.value) return;
+    
+    // 防抖：如果距离上次正向滚动时间太短，忽略此次滚动
+    const now = Date.now();
+    if (now - lastForwardScrollTime < FORWARD_SCROLL_DEBOUNCE_TIME) {
+      e.preventDefault();
+      e.stopPropagation();
+      return false;
+    }
+    
+    // 更新时间戳，防止重复触发
+    lastForwardScrollTime = now;
     
     // 阻止默认滚动行为
     e.preventDefault();
@@ -1841,6 +2345,8 @@ const switchToSecondVideo = () => {
             enableScrollLock();
             // 重置处理标志，允许视频播放
             isProcessingScroll.value = false;
+            // 立即初始化跳过监听（支持回滚）
+            initSkipToVideoEndScroll();
           }
         };
         
@@ -1869,6 +2375,17 @@ const initPlaySecondVideoScroll = () => {
   playSecondVideoHandler = (e) => {
     // 如果已经播放过或正在处理，不再处理
     if (secondVideoStarted.value || isProcessingScroll.value) return;
+    
+    // 防抖：如果距离上次正向滚动时间太短，忽略此次滚动
+    const now = Date.now();
+    if (now - lastForwardScrollTime < FORWARD_SCROLL_DEBOUNCE_TIME) {
+      e.preventDefault();
+      e.stopPropagation();
+      return false;
+    }
+    
+    // 更新时间戳，防止重复触发
+    lastForwardScrollTime = now;
     
     // 阻止默认滚动行为
     e.preventDefault();
@@ -1934,13 +2451,8 @@ const showVideoDescriptionAfterSecondVideo = () => {
           requestAnimationFrame(() => {
             isProcessingScroll.value = false;
             
-            // 如果是通过菜单跳转的，显示 description 后解除滚动锁定
-            if (isSwitchedFromMenu.value) {
-              disableScrollLock();
-              isSwitchedFromMenu.value = false; // 重置标志
-            } else {
-              initHideVideoDescriptionAndPlayThirdVideoScroll();
-            }
+            // 继续正常的正向流程：隐藏 description 并播放第三个视频
+            initHideVideoDescriptionAndPlayThirdVideoScroll();
           });
         });
       }
@@ -1951,13 +2463,8 @@ const showVideoDescriptionAfterSecondVideo = () => {
       requestAnimationFrame(() => {
         isProcessingScroll.value = false;
         
-        // 如果是通过菜单跳转的，显示 description 后解除滚动锁定
-        if (isSwitchedFromMenu.value) {
-          disableScrollLock();
-          isSwitchedFromMenu.value = false; // 重置标志
-        } else {
-          initHideVideoDescriptionAndPlayThirdVideoScroll();
-        }
+        // 继续正常的正向流程：隐藏 description 并播放第三个视频
+        initHideVideoDescriptionAndPlayThirdVideoScroll();
       });
     });
   }
@@ -1972,6 +2479,17 @@ const initShowVideoDescriptionAfterSecondVideoScroll = () => {
   showVideoDescriptionAfterSecondVideoHandler = (e) => {
     // 如果已经显示过或正在处理，不再处理
     if (videoDescriptionShownAfterSecondVideo.value || isProcessingScroll.value) return;
+    
+    // 防抖：如果距离上次正向滚动时间太短，忽略此次滚动
+    const now = Date.now();
+    if (now - lastForwardScrollTime < FORWARD_SCROLL_DEBOUNCE_TIME) {
+      e.preventDefault();
+      e.stopPropagation();
+      return false;
+    }
+    
+    // 更新时间戳，防止重复触发
+    lastForwardScrollTime = now;
     
     // 阻止默认滚动行为
     e.preventDefault();
@@ -2063,6 +2581,8 @@ const switchToThirdVideo = () => {
             enableScrollLock();
             // 重置处理标志，允许视频播放
             isProcessingScroll.value = false;
+            // 立即初始化跳过监听（支持回滚）
+            initSkipToVideoEndScroll();
           }
         };
         
@@ -2232,6 +2752,17 @@ const initHideVideoDescriptionAndPlayThirdVideoScroll = () => {
     // 如果已经播放过或正在处理，不再处理
     if (thirdVideoStarted.value || isProcessingScroll.value) return;
     
+    // 防抖：如果距离上次正向滚动时间太短，忽略此次滚动
+    const now = Date.now();
+    if (now - lastForwardScrollTime < FORWARD_SCROLL_DEBOUNCE_TIME) {
+      e.preventDefault();
+      e.stopPropagation();
+      return false;
+    }
+    
+    // 更新时间戳，防止重复触发
+    lastForwardScrollTime = now;
+    
     // 阻止默认滚动行为
     e.preventDefault();
     e.stopPropagation();
@@ -2343,6 +2874,14 @@ const showVideoDescriptionAfterThirdVideo = () => {
           showVideoDescriptionAfterThirdVideoHandler = null;
         }
         
+        // 移除跳过到视频结尾的滚动监听（第三个视频完成后不再需要）
+        if (skipToVideoEndHandler) {
+          window.removeEventListener('wheel', skipToVideoEndHandler, { passive: false });
+          window.removeEventListener('touchmove', skipToVideoEndHandler, { passive: false });
+          window.removeEventListener('scroll', skipToVideoEndHandler, { passive: false });
+          skipToVideoEndHandler = null;
+        }
+        
         // 解除滚动锁定，允许用户正常滚动页面
         disableScrollLock();
         
@@ -2350,15 +2889,21 @@ const showVideoDescriptionAfterThirdVideo = () => {
         if (isSwitchedFromMenu.value) {
           isSwitchedFromMenu.value = false;
         }
+        
+        // 初始化滚动监听，检测用户是否回到 originVideo 区域
+        initScrollBackToOriginVideoListener();
       }
     });
   } else {
     // 如果没有 video-description 元素，直接重置标志并解除固定
     isProcessingScroll.value = false;
     
-    // 如果是通过菜单跳转的，重置标志
-    if (isSwitchedFromMenu.value) {
-      isSwitchedFromMenu.value = false;
+    // 移除跳过到视频结尾的滚动监听（第三个视频完成后不再需要）
+    if (skipToVideoEndHandler) {
+      window.removeEventListener('wheel', skipToVideoEndHandler, { passive: false });
+      window.removeEventListener('touchmove', skipToVideoEndHandler, { passive: false });
+      window.removeEventListener('scroll', skipToVideoEndHandler, { passive: false });
+      skipToVideoEndHandler = null;
     }
     
     // 解除 origin-video-wrapper 的固定
@@ -2412,7 +2957,114 @@ const showVideoDescriptionAfterThirdVideo = () => {
     
     // 解除滚动锁定，允许用户正常滚动页面
     disableScrollLock();
+    
+    // 如果是通过菜单跳转的，重置标志
+    if (isSwitchedFromMenu.value) {
+      isSwitchedFromMenu.value = false;
+    }
+    
+    // 解除 origin-video-wrapper 的固定
+    if (originVideoWrapper.value) {
+      originVideoWrapper.value.style.position = 'relative';
+    }
+    
+    // 初始化滚动监听，检测用户是否回到 originVideo 区域
+    initScrollBackToOriginVideoListener();
+    
+    // 移除所有可能还在阻止滚动的滚动事件监听器
+    if (showVideoAccessoriesHandler) {
+      window.removeEventListener('wheel', showVideoAccessoriesHandler, { passive: false });
+      window.removeEventListener('touchmove', showVideoAccessoriesHandler, { passive: false });
+      window.removeEventListener('scroll', showVideoAccessoriesHandler, { passive: false });
+      showVideoAccessoriesHandler = null;
+    }
+    if (showFirstDescriptionHandler) {
+      window.removeEventListener('wheel', showFirstDescriptionHandler, { passive: false });
+      window.removeEventListener('touchmove', showFirstDescriptionHandler, { passive: false });
+      window.removeEventListener('scroll', showFirstDescriptionHandler, { passive: false });
+      showFirstDescriptionHandler = null;
+    }
+    if (showSecondDescriptionHandler) {
+      window.removeEventListener('wheel', showSecondDescriptionHandler, { passive: false });
+      window.removeEventListener('touchmove', showSecondDescriptionHandler, { passive: false });
+      window.removeEventListener('scroll', showSecondDescriptionHandler, { passive: false });
+      showSecondDescriptionHandler = null;
+    }
+    if (playSecondVideoHandler) {
+      window.removeEventListener('wheel', playSecondVideoHandler, { passive: false });
+      window.removeEventListener('touchmove', playSecondVideoHandler, { passive: false });
+      window.removeEventListener('scroll', playSecondVideoHandler, { passive: false });
+      playSecondVideoHandler = null;
+    }
+    if (showVideoDescriptionAfterSecondVideoHandler) {
+      window.removeEventListener('wheel', showVideoDescriptionAfterSecondVideoHandler, { passive: false });
+      window.removeEventListener('touchmove', showVideoDescriptionAfterSecondVideoHandler, { passive: false });
+      window.removeEventListener('scroll', showVideoDescriptionAfterSecondVideoHandler, { passive: false });
+      showVideoDescriptionAfterSecondVideoHandler = null;
+    }
+    if (hideVideoDescriptionAndPlayThirdVideoHandler) {
+      window.removeEventListener('wheel', hideVideoDescriptionAndPlayThirdVideoHandler, { passive: false });
+      window.removeEventListener('touchmove', hideVideoDescriptionAndPlayThirdVideoHandler, { passive: false });
+      window.removeEventListener('scroll', hideVideoDescriptionAndPlayThirdVideoHandler, { passive: false });
+      hideVideoDescriptionAndPlayThirdVideoHandler = null;
+    }
+    if (showVideoDescriptionAfterThirdVideoHandler) {
+      window.removeEventListener('wheel', showVideoDescriptionAfterThirdVideoHandler, { passive: false });
+      window.removeEventListener('touchmove', showVideoDescriptionAfterThirdVideoHandler, { passive: false });
+      window.removeEventListener('scroll', showVideoDescriptionAfterThirdVideoHandler, { passive: false });
+      showVideoDescriptionAfterThirdVideoHandler = null;
+    }
+    
+    // 解除滚动锁定，允许用户正常滚动页面
+    disableScrollLock();
+    
+    // 初始化滚动监听，检测用户是否回到 originVideo 区域
+    initScrollBackToOriginVideoListener();
   }
+};
+
+// 初始化滚动监听，检测用户是否回到 originVideo 区域
+const initScrollBackToOriginVideoListener = () => {
+  // 如果已经存在监听器，先移除
+  if (scrollBackToOriginVideoHandler) {
+    window.removeEventListener('scroll', scrollBackToOriginVideoHandler, { passive: true });
+    scrollBackToOriginVideoHandler = null;
+  }
+  
+  // 创建滚动监听器
+  scrollBackToOriginVideoHandler = () => {
+    // 检查滚动位置是否接近顶部（在 originVideo 区域）
+    const scrollY = window.scrollY || window.pageYOffset || 0;
+    
+    // 如果滚动位置接近顶部（小于 100px），且 originVideo 存在，重新初始化回滚监听
+    if (scrollY < 100 && originVideo.value && originVideoWrapper.value) {
+      // 检查 originVideoWrapper 是否在视口中
+      const rect = originVideoWrapper.value.getBoundingClientRect();
+      const isInViewport = rect.top >= 0 && rect.top < window.innerHeight;
+      
+      if (isInViewport && !skipToVideoEndHandler) {
+        console.log('[initScrollBackToOriginVideoListener] 检测到回到 originVideo 区域，重新初始化回滚监听');
+        // 重新初始化跳过监听（支持回滚）
+        // 注意：只有在视频已完成或已暂停时才初始化，避免干扰视频播放
+        if (originVideo.value.paused || originVideoCompleted.value) {
+          // 如果视频在首帧，重置 canSkipToEnd，确保向下滑动时先播放视频
+          const currentTime = originVideo.value.currentTime || 0;
+          if (currentTime <= 0.1 && originVideo.value.paused) {
+            console.log('[initScrollBackToOriginVideoListener] 视频在首帧，重置 canSkipToEnd 为 false');
+            canSkipToEnd.value = false;
+            // 如果视频已完成，重置完成状态，允许重新播放
+            if (originVideoCompleted.value) {
+              originVideoCompleted.value = false;
+            }
+          }
+          initSkipToVideoEndScroll();
+        }
+      }
+    }
+  };
+  
+  // 监听滚动事件（使用 passive: true，因为不需要阻止默认行为）
+  window.addEventListener('scroll', scrollBackToOriginVideoHandler, { passive: true });
 };
 
 // 初始化显示 video-description 的滚动监听（第三个视频播放完成后）
@@ -2424,6 +3076,17 @@ const initShowVideoDescriptionAfterThirdVideoScroll = () => {
   showVideoDescriptionAfterThirdVideoHandler = (e) => {
     // 如果已经显示过或正在处理，不再处理
     if (videoDescriptionShownAfterThirdVideo.value || isProcessingScroll.value) return;
+    
+    // 防抖：如果距离上次正向滚动时间太短，忽略此次滚动
+    const now = Date.now();
+    if (now - lastForwardScrollTime < FORWARD_SCROLL_DEBOUNCE_TIME) {
+      e.preventDefault();
+      e.stopPropagation();
+      return false;
+    }
+    
+    // 更新时间戳，防止重复触发
+    lastForwardScrollTime = now;
     
     // 阻止默认滚动行为
     e.preventDefault();
@@ -3017,7 +3680,7 @@ onUnmounted(() => {
   left: 70px;
   color: #fff;
   padding: 24px 16px;
-  background-color: rgba(97,97,97,0.3);
+  background-color: rgba(0,0,0,0.3);
   border-radius: 20px;
   height: auto;
   font-size: 22px;
@@ -3028,6 +3691,7 @@ onUnmounted(() => {
   font-size: 25px;
   color: #fff;
   margin-bottom: 20px;
+  font-family: 'Alibaba-PuHuiTi-M';
 }
 .grology-water{
   position: relative;
@@ -3104,6 +3768,7 @@ onUnmounted(() => {
       .climate-title{
         font-size: 80px;
         color: #4291c4;
+        text-align: center;
       }
       .climate-description{
         font-size: 26px;

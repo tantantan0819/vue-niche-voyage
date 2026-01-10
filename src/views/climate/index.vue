@@ -587,6 +587,7 @@ onMounted(()=>{
       font-size: 52px;
       color: #fff;
       margin-bottom: 44px;
+      font-family: 'Alibaba-PuHuiTi-M';
     }
     p{
       width: 790px;
@@ -646,6 +647,7 @@ onMounted(()=>{
       font-size: 52px;
       color: #fff;
       margin-bottom: 44px;
+      font-family: 'Alibaba-PuHuiTi-M';
     }
     p{
       width: 790px;
@@ -715,6 +717,7 @@ onMounted(()=>{
       font-size: 52px;
       color: #fff;
       margin-bottom: 44px;
+      font-family: 'Alibaba-PuHuiTi-M';
     }
     p{
       width: 790px;
@@ -784,6 +787,7 @@ onMounted(()=>{
       font-size: 52px;
       color: #fff;
       margin-bottom: 44px;
+      font-family: 'Alibaba-PuHuiTi-M';
     }
     p{
       width: 790px;
@@ -831,6 +835,7 @@ onMounted(()=>{
       font-size: 52px;
       color: #fff;
       margin-bottom: 44px;
+      font-family: 'Alibaba-PuHuiTi-M';
     }
     p{
       width: 790px;

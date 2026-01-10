@@ -30,6 +30,15 @@
 }
 
 @font-face {
+    font-family: 'Alibaba-PuHuiTi-M';
+    src: url('@/assets/fonts/Alibaba-PuHuiTi-M.woff2') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+
+@font-face {
     font-family: 'EarlySummerSerif-Bold';
     src: url('@/assets/fonts/EarlySummerSerif-Bold.woff2') format('truetype');
     font-weight: normal;

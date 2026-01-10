@@ -172,8 +172,8 @@ const menuInfos = ref([
     title: '源起万万年',
     options: [
       { title: '特提斯洋的终曲' },
-      { title: '永恒的进行时' },
       { title: '崛起的高原' },
+      { title: '永恒的进行时' },
     ]
   },
   {

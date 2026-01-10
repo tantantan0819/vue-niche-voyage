@@ -252,7 +252,7 @@
            data-parallax-speed="1.1"
            data-parallax-center-lock="true">
         <div class="title alibaba-light">曲扎耶谢 噶举派红帽分支第四位上师</div>
-        <p class="alibaba-light text-justify">画面中央的他侧身而坐，周围描绘了红帽分支历代著名僧侣的生平事迹。画中使用的藏文长卷轴书写格式形成于15世纪，之后逐渐发展出用于书签和铭文的另一种书写形式，这种形式至今仍在使用。画中的僧侣形象自然，整体呈现出一种生活化的场景感。</p>
+        <p class="text-justify alibaba-light">画面中央的他侧身而坐，周围描绘了红帽分支历代著名僧侣的生平事迹。画中使用的藏文长卷轴书写格式形成于15世纪，之后逐渐发展出用于书签和铭文的另一种书写形式，这种形式至今仍在使用。画中的僧侣形象自然，整体呈现出一种生活化的场景感。</p>
       </div>
     </div>
     <div class="nine-screen screen">
@@ -288,7 +288,7 @@
            data-parallax-speed="1.1"
            data-parallax-center-lock="true">
         <div class="title alibaba-light">广目天王</div>
-        <p class="alibaba-light text-justify">广目天王的身体通常为红色，也偶见金色。他右手抓着一条蛇，左手持红色缚索。周围环绕着新密宗的上师和各类女神。画面中央的红色背景宏伟壮观，气势雄伟，极具视觉震撼力。</p>
+        <p class="text-justify alibaba-light">广目天王的身体通常为红色，也偶见金色。他右手抓着一条蛇，左手持红色缚索。周围环绕着新密宗的上师和各类女神。画面中央的红色背景宏伟壮观，气势雄伟，极具视觉震撼力。</p>
       </div>
     </div>
     <div class="ten-screen screen">
@@ -317,7 +317,7 @@
            data-parallax-speed="1.1"
            data-parallax-center-lock="true">
         <div class="title alibaba-light">噶玛巴·曲英多吉</div>
-        <p class="alibaba-light text-justify">第十世噶玛巴·曲英多吉不仅是一位伟大的画家，还是新噶玛嘎孜画派的开创者。他端坐于画面中央，头上方是他的本尊，下方则为阎王及其亲近弟子。画面色彩鲜艳丰富，以云雾、悬崖、森林等自然景观为背景，充分展现了该画派的独特风格。</p>
+        <p class="text-justify alibaba-light">第十世噶玛巴·曲英多吉不仅是一位伟大的画家，还是新噶玛嘎孜画派的开创者。他端坐于画面中央，头上方是他的本尊，下方则为阎王及其亲近弟子。画面色彩鲜艳丰富，以云雾、悬崖、森林等自然景观为背景，充分展现了该画派的独特风格。</p>
       </div>
     </div>
     <div class="eleven-screen screen">
@@ -365,7 +365,7 @@
            data-parallax-to="-20"
            data-parallax-speed="1.1"
            data-parallax-center-lock="true"></div>
-      <div class="detail-text text-justify"
+      <div class="text-justify detail-text"
            data-parallax="true"
            data-parallax-axis="y"
            data-parallax-from="100"
@@ -405,7 +405,7 @@
         <div class="title alibaba-light">寺院正面龙挂毯 ：</div>
         <p class="alibaba-light">这是一块小尺寸的寺院用毯，应该属于寺院经堂中龙抱柱的类型。其中的龙纹符号织造规整，用色沉稳。</p>
         <annotation-dot>
-          <p class="popularization-content">《藏族美术集成·工艺美术·织毯卷》（藏汉对照） 四川民族出版社 2018</p>
+          <p class="popularization-content">《藏族美术集成·工艺美术·织毯卷》（藏汉对照）<br>四川民族出版社 2018</p>
         </annotation-dot>
       </div>
     </div>
@@ -449,15 +449,16 @@
       </div>
     </div>
     <div class="fifteen-screen screen">
-      <div  data-parallax="true"
-            data-parallax-axis="y"
-            data-parallax-from="400"
-            data-parallax-to="-400"
-            data-parallax-speed="1.1"
-            data-parallax-center-lock="true">
+      <div class="img-picture-wrapper"
+           data-parallax="true"
+           data-parallax-axis="y"
+           data-parallax-from="100"
+           data-parallax-to="-100"
+           data-parallax-speed="1.1"
+           data-parallax-center-lock="true">
         <div class="img-picture"></div>
         <annotation-dot>
-          <p class="popularization-content">《藏族美术集成·工艺美术·织毯卷》（藏汉对照） 四川民族出版社 2018</p>
+          <p class="popularization-content">《藏族美术集成·工艺美术·织毯卷》（藏汉对照）<br>四川民族出版社 2018</p>
         </annotation-dot>
       </div>
 
@@ -512,7 +513,7 @@
       </div>
     </div>
     <div class="seventeen-screen screen">
-      <!-- <div class="img-bg"></div> -->
+<!--       <div class="img-bg"></div>-->
     </div>
   </div>
 </template>
@@ -1047,6 +1048,7 @@ import AnnotationDot from "@/components/AnnotationDot.vue";
         position: absolute;
         top: 0px;
         right: 0px;
+        z-index: 99;
       }
       .img-bg-2{
         width: 173px;
@@ -1058,11 +1060,12 @@ import AnnotationDot from "@/components/AnnotationDot.vue";
         position: absolute;
         bottom: 0px;
         left: 0px;
+        z-index: 99;
       }
     }
 
     .text-wrapper{
-      width: 630px;
+      width: 500px;
       position: absolute;
       top: 460px;
       left: 1008px;
@@ -1075,16 +1078,13 @@ import AnnotationDot from "@/components/AnnotationDot.vue";
     }
     .popularization-description {
       position: absolute;
-      top: 130px;
-      left: 540px;
+      top: 190px;
+      left: 200px;
       width: 500px;
-      .popularization-wrapper {
-        position: absolute;
-        top: -100px;
-        margin-top: 0px!important;
-        left: -900px!important;
-      }
     }
+   ::v-deep .popularization-wrapper{
+     left: -100px!important;
+   }
 
   }
   .fourteen-screen{
@@ -1140,17 +1140,27 @@ import AnnotationDot from "@/components/AnnotationDot.vue";
     }
   }
   .fifteen-screen{
-    .popularization-description {
+    .img-picture-wrapper{
+      width: 496px;
+      height: 496px;
       position: absolute;
-      top: 260px;
-      left: -160px;
+      top: 258px;
+      left: 314px;
+    }
+    :deep(.popularization-description) {
+      position: absolute;
+      top: 530px;
+      left: 460px;
       width: 500px;
-      .popularization-wrapper {
-        position: absolute;
-        top: -100px;
-        margin-top: 0px!important;
-        left: -600px;
-      }
+    }
+    :deep(.popularization-description .popularization-wrapper) {
+      position: relative;
+      top: -130px;
+      margin-top: 0px!important;
+      left: 0px;
+    }
+    :deep(.popularization-description .popularization-wrapper .popularization-content) {
+      position: relative;
     }
     .img-picture{
       width: 496px;
@@ -1160,8 +1170,8 @@ import AnnotationDot from "@/components/AnnotationDot.vue";
       background-position: center center;
       background-repeat: no-repeat;
       position: absolute;
-      top: 258px;
-      left: 314px;
+      top: 0;
+      left: 0;
     }
     .text-wrapper{
       width: 630px;
@@ -1229,8 +1239,10 @@ import AnnotationDot from "@/components/AnnotationDot.vue";
     }
   }
   .seventeen-screen{
-    height: 1080px;
+    height: 1372px;
     overflow: hidden;
+    margin-bottom: -500px;
+    margin-top: -200px;
     .img-bg{
       width: 1920px;
       height: 1372px;
