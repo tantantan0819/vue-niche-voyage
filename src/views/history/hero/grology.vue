@@ -221,7 +221,7 @@
           </div>
         </div>
         <div class="snowlotus">
-          <div class="snowlotus-info" @click="showPantheraDescription">
+          <div class="snowlotus-info" @click="showSnowlotusDescription">
             <div class="snowlotus-img"></div>
             <div class="snowlotus-name snowlotus-chinese"  data-parallax="true"
                  data-parallax-axis="y"
@@ -236,14 +236,14 @@
                  data-parallax-to="0"
                  data-parallax-speed="1.1"
                  data-parallax-center-lock="true">Saussurea tangutica</div>
-          </div>
-          <div class="snowlotus-description" >
+      </div>
+          <div class="snowlotus-description" ref="snowlotusDescription" @click="closeSnowlotusDescription">
             <div class="snowlotus-description-img"></div>
             <div class="snowlotus-description-text">主要分布于我国甘肃、青海、西藏、四川等地，生长在海拔3800—5000米的高山流石滩、高山草甸地带。株高约30—70厘米，茎有稀疏的白色长柔毛，能适应高寒极端环境。药用则有清热解毒的功效。</div>
           </div>
         </div>
         <div class="sheep">
-          <div class="sheep-info" @click="showPantheraDescription">
+          <div class="sheep-info" @click="showSheepDescription1">
             <div class="sheep-img"></div>
             <div class="sheep-name sheep-chinese"  data-parallax="true"
                  data-parallax-axis="y"
@@ -259,7 +259,7 @@
                  data-parallax-speed="1.1"
                  data-parallax-center-lock="true">Pseudois nayaur</div>
           </div>
-          <div class="sheep-description" >
+          <div class="sheep-description" ref="sheepDescription1" @click="closeSheepDescription1">
             <div class="sheep-description-img"></div>
             <div class="sheep-description-text">主要分布于中国西北、青藏高原等地，国家二级保护野生动物。体形中等，形态介于野山羊与野绵羊之间。两性都长角，雄性角粗大且弯曲。毛色多为青灰、褐灰色。栖息在海拔4000-5500米林线以上的高原、丘原和高山裸岩等地带，行动敏捷，善攀岩，以青草和各种灌丛枝叶为食。</div>
           </div>
@@ -272,7 +272,7 @@
           <div class="prairie-bg-grass"></div>
           <!--   黑颈鹤     -->
           <div class="grus">
-            <div class="grus-info" @click="showPantheraDescription">
+            <div class="grus-info" @click="showGrusDescription">
               <div class="grus-img"></div>
               <div class="grus-name grus-chinese"  data-parallax="true"
                    data-parallax-axis="y"
@@ -288,14 +288,14 @@
                    data-parallax-speed="1.1"
                    data-parallax-center-lock="true">Grus nigricollis</div>
             </div>
-            <div class="grus-description" >
+            <div class="grus-description" ref="grusDescription" @click="closeGrusDescription">
               <div class="grus-description-img"></div>
-              <div class="grus-description-text">唯一在高原生长繁殖的鹤类，主要分布在青藏高原和云贵高原，国家一级保护野生动物，也是拉萨市的“市鸟”。通体较白，头、枕和整个颈部均为黑色，眼先和头顶裸露皮肤为红色。主要栖息在高山沼泽、草甸、湖周沼泽地和河谷沼泽区，以植物的根、昆虫、鱼、蛙等为食。</div>
+              <div class="grus-description-text">唯一在高原生长繁殖的鹤类，主要分布在青藏高原和云贵高原，国家一级保护野生动物，也是拉萨市的"市鸟"。通体较白，头、枕和整个颈部均为黑色，眼先和头顶裸露皮肤为红色。主要栖息在高山沼泽、草甸、湖周沼泽地和河谷沼泽区，以植物的根、昆虫、鱼、蛙等为食。</div>
             </div>
           </div>
           <!--   鼠兔    -->
           <div class="rabbit">
-            <div class="rabbit-info" @click="showPantheraDescription">
+            <div class="rabbit-info" @click="showRabbitDescription">
               <div class="rabbit-img"></div>
               <div class="rabbit-name rabbit-chinese"  data-parallax="true"
                    data-parallax-axis="y"
@@ -311,14 +311,14 @@
                    data-parallax-speed="1.1"
                    data-parallax-center-lock="true">Ochotona curzoniae</div>
             </div>
-            <div class="rabbit-description" >
+            <div class="rabbit-description" ref="rabbitDescription" @click="closeRabbitDescription">
               <div class="rabbit-description-img"></div>
               <div class="rabbit-description-text">主要分布于西藏、青海、甘肃、四川等地。体型中等，体长约120-190毫米，体重可达178克，耳朵呈现圆形，唇鼻周围呈黑色，背毛为沙灰色，腹毛呈现脏白色。栖息于海拔4000米左右的高山草甸中，穴居且家族式群居，白天活动，不冬眠也不储草。</div>
             </div>
           </div>
           <!--   藏羚羊    -->
           <div class="sheep">
-            <div class="sheep-info" @click="showPantheraDescription">
+            <div class="sheep-info" @click="showSheepDescription2">
               <div class="sheep-img"></div>
               <div class="sheep-name sheep-chinese"  data-parallax="true"
                    data-parallax-axis="y"
@@ -334,19 +334,92 @@
                    data-parallax-speed="1.1"
                    data-parallax-center-lock="true">Pantholops hodgsonii</div>
             </div>
-            <div class="sheep-description" >
+            <div class="sheep-description" ref="sheepDescription2" @click="closeSheepDescription2">
               <div class="sheep-description-img"></div>
               <div class="sheep-description-text">也叫藏羚羊、长角羊，青藏高原特有物种，国家一级保护野生动物。体长120-140厘米，上体毛色呈现淡棕褐色，胸腹部和四肢内侧为白色。雄性角细长似鞭，乌黑发亮。栖息于海拔4000-5000米的高山草原和荒漠地带，善于奔跑，群居性强，以草类植物为食。</div>
+            </div>
+          </div>
+          <!-- 野牦牛 -->
+          <div class="bos-mutus">
+            <div class="bos-mutus-info" @click="showBosMutusDescription">
+              <div class="bos-mutus-img"></div>
+              <div class="bos-mutus-name bos-mutus-chinese" 
+                   data-parallax="true"
+                   data-parallax-axis="y"
+                   data-parallax-from="100"
+                   data-parallax-to="0"
+                   data-parallax-speed="1.1"
+                   data-parallax-center-lock="true"
+                  >野牦牛</div>
+              <div class="bos-mutus-name bos-mutus-english"
+                   data-parallax="true"
+                   data-parallax-axis="y"
+                   data-parallax-from="100"
+                   data-parallax-to="0"
+                   data-parallax-speed="1.1"
+                   data-parallax-center-lock="true"
+                   >Bos mutus</div>
+            </div>
+            <div class="bos-mutus-description" ref="bosMutusDescription" @click="closeBosMutusDescription">
+              <div class="bos-mutus-description-img"></div>
+              <div class="bos-mutus-description-text">主要分布于西藏、青海、四川、甘肃、新疆等地，国家一级保护野生动物，是家牦牛的祖先。体型粗壮，体长可达2米有余。雌雄均有角，雄性更大。胸腹及腿部毛长如蓑衣，可达40厘米。常栖息于海拔4000-5000米的高山草甸和荒漠地带。。</div>
             </div>
           </div>
         </div>
         <!--   森林     -->
         <div class="forest">
           <div class="forest-bg-hill"></div>
-          <div class="forest-bg-grass"></div>
+          <div class="forest-bg-grass">
+          </div>
+          <div class="forest-single-grass-1"></div>
+          <div class="forest-single-grass-2"></div>
+          <div class="forest-wood-grass">
+            <div class="forest-wood-img" src="@/assets/images/lives/lives-cjsh-wood.png"></div>
+            <div class="forest-grass-img"></div>
+          </div>
+          <!-- 熊猫 -->
+          <div class="panda">
+            <div class="panda-info" @click="showPandaDescription">
+              <div class="panda-img"></div>
+              <div class="panda-grass"></div>
+              <div class="panda-name panda-chinese"
+                   data-parallax="true"
+                   data-parallax-axis="y"
+                   data-parallax-from="100"
+                   data-parallax-to="0"
+                   data-parallax-speed="1.1"
+                   data-parallax-center-lock="true">大熊猫</div>
+              <div class="panda-name panda-english"
+                   data-parallax="true"
+                   data-parallax-axis="y"
+                   data-parallax-from="100"
+                   data-parallax-to="0"
+                   data-parallax-speed="1.1"
+                   data-parallax-center-lock="true">Ailuropoda melanoleuca</div>
+            </div>
+            <div class="panda-description" ref="pandaDescription" @click="closePandaDescription">
+              <div class="panda-description-img"></div>
+              <div class="panda-description-text">主要分布于四川、陕西和甘肃的部分山区，国家一级保护野生动物。体形似熊，但头部宽而短，毛色以黑白相间为特征，眼圈、肩部及四肢为黑色。多栖息在海拔2600—3500米的高山竹林地带，喜欢湿润、凉爽的气候。大熊猫性情较温顺，以竹子为主食，偶尔也吃小型动物。</div>
+            </div>
+          </div>
+           <!-- 川金丝猴 -->
+           <div class="cjsh">
+            <div class="cjsh-info" @click="showCjshDescription">
+              <div class="cjsh-img"></div>
+              <div class="cjsh-grass"></div>
+              <div class="cjsh-name cjsh-chinese"
+                  >川金丝猴</div>
+              <div class="cjsh-name cjsh-english"
+                   >Rhinopithecus roxellana</div>
+            </div>
+            <div class="cjsh-description" ref="cjshDescription" @click="closeCjshDescription">
+              <div class="cjsh-description-img"></div>
+              <div class="cjsh-description-text">主要分布于四川、陕西、甘肃、湖北等地，国家一级保护野生动物。体型中等，尾长与体长相近，鼻孔上翘，颜面蓝色，颊部棕红，肩背部都披有金黄色长毛。常栖息于海拔1500—3300米的森林中，并随季节垂直迁移。食性很杂，但均以植物性食物为主。</div>
+            </div>
+          </div>
         </div>
       </div>
-      <div class="horizontal-02">
+      <!-- <div class="horizontal-02">
         <div class="cloud-img-2-extended"></div>
         <div class="third-screen">
           <div class="cloud-img-1"></div>
@@ -390,7 +463,7 @@
             </div>
           </div>
         </div>
-      </div>
+      </div> -->
     </div>
     <div class="secret">
       <div class="first-screen screen">
@@ -608,10 +681,24 @@ const gooseDescription = ref(null); // goose-description 的 ref
 const gooseDescriptionShown = ref(false); // goose-description 是否已显示
 const pantheraDescription = ref(null); // panthera-description 的 ref
 const pantheraDescriptionShown = ref(false); // panthera-description 是否已显示
+const snowlotusDescription = ref(null); // snowlotus-description 的 ref
+const snowlotusDescriptionShown = ref(false); // snowlotus-description 是否已显示
+const sheepDescription1 = ref(null); // sheep-description (第一个) 的 ref
+const sheepDescription1Shown = ref(false); // sheep-description (第一个) 是否已显示
+const grusDescription = ref(null); // grus-description 的 ref
+const grusDescriptionShown = ref(false); // grus-description 是否已显示
+const rabbitDescription = ref(null); // rabbit-description 的 ref
+const rabbitDescriptionShown = ref(false); // rabbit-description 是否已显示
+const sheepDescription2 = ref(null); // sheep-description (第二个) 的 ref
+const sheepDescription2Shown = ref(false); // sheep-description (第二个) 是否已显示
+const bosMutusDescription = ref(null); // bos-mutus-description 的 ref
+const bosMutusDescriptionShown = ref(false); // bos-mutus-description 是否已显示
 const chiruDescription = ref(null); // chiru-description 的 ref
 const chiruDescriptionShown = ref(false); // chiru-description 是否已显示
 const pandaDescription = ref(null); // panda-description 的 ref
 const pandaDescriptionShown = ref(false); // panda-description 是否已显示
+const cjshDescription = ref(null); // cjsh-description 的 ref
+const cjshDescriptionShown = ref(false); // cjsh-description 是否已显示
 
 // 声音控制
 const isMuted = ref(false); // 是否静音，默认为 false（声音开启）
@@ -1154,26 +1241,26 @@ const showDescription = (elementRef, isShownRef, onClose) => {
     
     // 将详情介绍改为 fixed 定位，确保即使 body 移动也能显示在视口中
     const computedStyle = window.getComputedStyle(elementRef.value);
-    if (computedStyle.position !== 'fixed') {
-      // 保存原始定位
-      elementRef.value._originalPosition = computedStyle.position;
-      elementRef.value._originalTop = computedStyle.top;
-      elementRef.value._originalLeft = computedStyle.left;
-      elementRef.value._originalRight = computedStyle.right;
+    // if (computedStyle.position !== 'fixed') {
+    //   // 保存原始定位
+    //   elementRef.value._originalPosition = computedStyle.position;
+    //   elementRef.value._originalTop = computedStyle.top;
+    //   elementRef.value._originalLeft = computedStyle.left;
+    //   elementRef.value._originalRight = computedStyle.right;
       
-      // 获取元素相对于视口的位置
-      const rect = elementRef.value.getBoundingClientRect();
-      elementRef.value.style.position = 'fixed';
-      elementRef.value.style.top = `${rect.top}px`;
-      // 保持原有的 left 或 right 定位
-      if (computedStyle.left !== 'auto' && computedStyle.left !== '') {
-        elementRef.value.style.left = `${rect.left}px`;
-        elementRef.value.style.right = 'auto';
-      } else if (computedStyle.right !== 'auto' && computedStyle.right !== '') {
-        elementRef.value.style.right = `${window.innerWidth - rect.right}px`;
-        elementRef.value.style.left = 'auto';
-      }
-    }
+    //   // 获取元素相对于视口的位置
+    //   const rect = elementRef.value.getBoundingClientRect();
+    //   elementRef.value.style.position = 'fixed';
+    //   elementRef.value.style.top = `${rect.top}px`;
+    //   // 保持原有的 left 或 right 定位
+    //   if (computedStyle.left !== 'auto' && computedStyle.left !== '') {
+    //     elementRef.value.style.left = `${rect.left}px`;
+    //     elementRef.value.style.right = 'auto';
+    //   } else if (computedStyle.right !== 'auto' && computedStyle.right !== '') {
+    //     elementRef.value.style.right = `${window.innerWidth - rect.right}px`;
+    //     elementRef.value.style.left = 'auto';
+    //   }
+    // }
     
     // 清除之前的变换，确保从干净的状态开始
     gsap.set(elementRef.value, { 
@@ -1337,6 +1424,76 @@ const showPandaDescription = () => {
 // 关闭大熊猫详情介绍
 const closePandaDescription = () => {
   closeDescription(pandaDescription, pandaDescriptionShown);
+};
+
+// 显示唐古特雪莲详情介绍
+const showSnowlotusDescription = () => {
+  showDescription(snowlotusDescription, snowlotusDescriptionShown);
+};
+
+// 关闭唐古特雪莲详情介绍
+const closeSnowlotusDescription = () => {
+  closeDescription(snowlotusDescription, snowlotusDescriptionShown);
+};
+
+// 显示岩羊详情介绍（第一个）
+const showSheepDescription1 = () => {
+  showDescription(sheepDescription1, sheepDescription1Shown);
+};
+
+// 关闭岩羊详情介绍（第一个）
+const closeSheepDescription1 = () => {
+  closeDescription(sheepDescription1, sheepDescription1Shown);
+};
+
+// 显示黑颈鹤详情介绍
+const showGrusDescription = () => {
+  showDescription(grusDescription, grusDescriptionShown);
+};
+
+// 关闭黑颈鹤详情介绍
+const closeGrusDescription = () => {
+  closeDescription(grusDescription, grusDescriptionShown);
+};
+
+// 显示高原鼠兔详情介绍
+const showRabbitDescription = () => {
+  showDescription(rabbitDescription, rabbitDescriptionShown);
+};
+
+// 关闭高原鼠兔详情介绍
+const closeRabbitDescription = () => {
+  closeDescription(rabbitDescription, rabbitDescriptionShown);
+};
+
+// 显示藏羚详情介绍（第二个）
+const showSheepDescription2 = () => {
+  showDescription(sheepDescription2, sheepDescription2Shown);
+};
+
+// 关闭藏羚详情介绍（第二个）
+const closeSheepDescription2 = () => {
+  closeDescription(sheepDescription2, sheepDescription2Shown);
+};
+
+// 显示野牦牛详情介绍
+const showBosMutusDescription = () => {
+  showDescription(bosMutusDescription, bosMutusDescriptionShown);
+};
+
+// 关闭野牦牛详情介绍
+const closeBosMutusDescription = () => {
+  closeDescription(bosMutusDescription, bosMutusDescriptionShown);
+};
+
+// 显示川金丝猴详情介绍
+const showCjshDescription = () => {
+  showDescription(cjshDescription, cjshDescriptionShown);
+};
+
+// 关闭川金丝猴详情介绍
+const closeCjshDescription = () => {
+  closeDescription(cjshDescription, cjshDescriptionShown);
 };
 
 // welcomeVideo 滚动处理
@@ -1594,19 +1751,19 @@ const switchToOriginVideo = async () => {
     
     await nextTick(); // 确保 activeOriginVideo 更新后 DOM 已更新
     
-    if (originVideo.value) {
+          if (originVideo.value) {
       // 确保视频开始播放
       originVideo.value.currentTime = 0;
-      originVideo.value.play().catch(err => {
-        console.warn('Origin video play failed:', err);
-      });
-      
-      // 标记已开始播放
-      originVideoStarted.value = true;
-      
-      // 禁用滚动
-      enableScrollLock();
-    }
+            originVideo.value.play().catch(err => {
+              console.warn('Origin video play failed:', err);
+            });
+            
+            // 标记已开始播放
+            originVideoStarted.value = true;
+            
+            // 禁用滚动
+            enableScrollLock();
+          }
   }
   
   // 移除切换滚动事件监听
@@ -1801,19 +1958,19 @@ const jumpToPreviousVideoFirstFrame = () => {
     
     // 使用 changeOriginVideo 无缝切换视频
     changeOriginVideo(originInfos.value[1].videoUrl).then(() => {
-      nextTick(() => {
-        if (originVideo.value) {
-          originVideo.value.currentTime = 0;
-          originVideo.value.pause();
-          // 隐藏 description
-          if (videoDescription.value) {
-            gsap.to(videoDescription.value, {
-              opacity: 0,
-              duration: 0.3,
-              onComplete: () => {
-                if (videoDescription.value) {
-                  videoDescription.value.style.display = 'none';
-                }
+    nextTick(() => {
+          if (originVideo.value) {
+            originVideo.value.currentTime = 0;
+            originVideo.value.pause();
+            // 隐藏 description
+            if (videoDescription.value) {
+              gsap.to(videoDescription.value, {
+                opacity: 0,
+                duration: 0.3,
+                onComplete: () => {
+                  if (videoDescription.value) {
+                    videoDescription.value.style.display = 'none';
+                  }
                 // 动画完成后再重置处理标志
                 enableScrollLock();
                 isProcessingScroll.value = false;
@@ -1831,10 +1988,10 @@ const jumpToPreviousVideoFirstFrame = () => {
             lastRollbackTime = Date.now();
             // 重新初始化跳过监听
             initSkipToVideoEndScroll();
-          }
-        } else {
-          isProcessingScroll.value = false;
         }
+      } else {
+        isProcessingScroll.value = false;
+      }
       });
     }).catch(error => {
       console.error('切换视频失败:', error);
@@ -1855,19 +2012,19 @@ const jumpToPreviousVideoFirstFrame = () => {
     
     // 使用 changeOriginVideo 无缝切换视频
     changeOriginVideo(originInfos.value[0].videoUrl).then(() => {
-      nextTick(() => {
-        if (originVideo.value) {
-          originVideo.value.currentTime = 0;
-          originVideo.value.pause();
-          // 隐藏 description（回滚时只隐藏，不立即显示，等视频播放完成后再显示）
-          if (videoDescription.value) {
-            gsap.to(videoDescription.value, {
-              opacity: 0,
-              duration: 0.3,
-              onComplete: () => {
-                if (videoDescription.value) {
-                  videoDescription.value.style.display = 'none';
-                }
+    nextTick(() => {
+          if (originVideo.value) {
+            originVideo.value.currentTime = 0;
+            originVideo.value.pause();
+            // 隐藏 description（回滚时只隐藏，不立即显示，等视频播放完成后再显示）
+            if (videoDescription.value) {
+              gsap.to(videoDescription.value, {
+                opacity: 0,
+                duration: 0.3,
+                onComplete: () => {
+                  if (videoDescription.value) {
+                    videoDescription.value.style.display = 'none';
+                  }
                 // 动画完成后再重置处理标志
                 enableScrollLock();
                 isProcessingScroll.value = false;
@@ -1885,10 +2042,10 @@ const jumpToPreviousVideoFirstFrame = () => {
             lastRollbackTime = Date.now();
             // 重新初始化跳过监听
             initSkipToVideoEndScroll();
-          }
-        } else {
-          isProcessingScroll.value = false;
         }
+      } else {
+        isProcessingScroll.value = false;
+      }
       });
     }).catch(error => {
       console.error('切换视频失败:', error);
@@ -1911,7 +2068,7 @@ const jumpToPreviousVideoFirstFrame = () => {
       });
     } else {
       // 如果没有 description，立即重置处理标志
-      isProcessingScroll.value = false;
+    isProcessingScroll.value = false;
     }
   }
 };
@@ -1959,8 +2116,8 @@ const initSkipToVideoEndScroll = () => {
         // 只有在 originVideo 区域时才阻止向下滚动，防止漏白
         if (isInOriginVideoArea) {
           // 如果已经在顶部，阻止向下滚动，防止出现漏白
-          e.preventDefault();
-          e.stopPropagation();
+      e.preventDefault();
+      e.stopPropagation();
           
           // 确保滚动位置保持在顶部（防止出现负值）
           if (scrollY < 0) {
@@ -2057,8 +2214,8 @@ const initSkipToVideoEndScroll = () => {
         // 只有在 originVideo 区域时才阻止向上滚动，防止漏白
         if (isInOriginVideoArea) {
           // 如果已经在顶部，阻止向上滚动，防止出现漏白
-          e.preventDefault();
-          e.stopPropagation();
+        e.preventDefault();
+        e.stopPropagation();
           
           // 确保滚动位置保持在顶部（防止出现负值）
           if (scrollY < 0) {
@@ -2220,9 +2377,9 @@ const initSkipToVideoEndScroll = () => {
         videoDescriptionShownAfterSecondVideo.value = false;
         videoDescriptionShownAfterThirdVideo.value = false;
       } else if (isAtFirstFrame && currentIndex > 0 && readyState >= 2 && currentTime <= 0.1) {
-        // 只有在首帧且暂停，且不是第一个视频时，才跳转到上一个视频
-        // 额外检查：确保视频已经加载了元数据（readyState >= 2），避免在视频加载时误判
-        // 重要：还要检查视频是否真的在首帧（currentTime 必须 <= 0.1）
+      // 只有在首帧且暂停，且不是第一个视频时，才跳转到上一个视频
+      // 额外检查：确保视频已经加载了元数据（readyState >= 2），避免在视频加载时误判
+      // 重要：还要检查视频是否真的在首帧（currentTime 必须 <= 0.1）
         console.log('[回滚] 视频在首帧且暂停，跳转到上一个视频，当前索引:', currentIndex);
         // 已经在首帧且暂停，且不是第一个视频，且视频已加载，跳转到上一个视频的首帧
         // 注意：jumpToPreviousVideoFirstFrame 内部会设置 isProcessingScroll，这里不需要重置
@@ -2872,22 +3029,22 @@ const switchToSecondVideo = async () => {
     // 等待 Vue 更新 DOM
     await nextTick();
     
-    if (originVideo.value) {
+          if (originVideo.value) {
       // 确保视频开始播放
       originVideo.value.currentTime = 0;
-      originVideo.value.play().catch(err => {
-        console.warn('Second origin video play failed:', err);
-      });
-      
-      // 禁用滚动
-      enableScrollLock();
-      // 重置处理标志，允许视频播放
-      isProcessingScroll.value = false;
-      // 立即初始化跳过监听（支持回滚）
-      initSkipToVideoEndScroll();
-    } else {
-      isProcessingScroll.value = false;
-    }
+            originVideo.value.play().catch(err => {
+              console.warn('Second origin video play failed:', err);
+            });
+            
+            // 禁用滚动
+            enableScrollLock();
+            // 重置处理标志，允许视频播放
+            isProcessingScroll.value = false;
+            // 立即初始化跳过监听（支持回滚）
+            initSkipToVideoEndScroll();
+      } else {
+        isProcessingScroll.value = false;
+      }
   } else {
     isProcessingScroll.value = false;
   }
@@ -3097,22 +3254,22 @@ const switchToThirdVideo = async () => {
     // 等待 Vue 更新 DOM
     await nextTick();
     
-    if (originVideo.value) {
+          if (originVideo.value) {
       // 确保视频开始播放
       originVideo.value.currentTime = 0;
-      originVideo.value.play().catch(err => {
-        console.warn('Third origin video play failed:', err);
-      });
-      
-      // 禁用滚动
-      enableScrollLock();
-      // 重置处理标志，允许视频播放
-      isProcessingScroll.value = false;
-      // 立即初始化跳过监听（支持回滚）
-      initSkipToVideoEndScroll();
-    } else {
-      isProcessingScroll.value = false;
-    }
+            originVideo.value.play().catch(err => {
+              console.warn('Third origin video play failed:', err);
+            });
+            
+            // 禁用滚动
+            enableScrollLock();
+            // 重置处理标志，允许视频播放
+            isProcessingScroll.value = false;
+            // 立即初始化跳过监听（支持回滚）
+            initSkipToVideoEndScroll();
+      } else {
+        isProcessingScroll.value = false;
+      }
   } else {
     isProcessingScroll.value = false;
   }
@@ -3568,21 +3725,21 @@ const initScrollBackToOriginVideoListener = () => {
               rollbackStableTime = Date.now();
               console.log('[initScrollBackToOriginVideoListener] 设置回滚稳定时间戳，需要等待', ROLLBACK_STABLE_DURATION, 'ms后才能执行回滚逻辑');
               
-              // 重新初始化跳过监听（支持回滚）
-              // 注意：只有在视频已完成或已暂停时才初始化，避免干扰视频播放
-              if (originVideo.value.paused || originVideoCompleted.value) {
-                // 如果视频在首帧，重置 canSkipToEnd，确保向下滑动时先播放视频
-                const currentTime = originVideo.value.currentTime || 0;
-                if (currentTime <= 0.1 && originVideo.value.paused) {
-                  console.log('[initScrollBackToOriginVideoListener] 视频在首帧，重置 canSkipToEnd 为 false');
-                  canSkipToEnd.value = false;
-                  // 如果视频已完成，重置完成状态，允许重新播放
-                  if (originVideoCompleted.value) {
-                    originVideoCompleted.value = false;
-                  }
-                }
-                initSkipToVideoEndScroll();
-              }
+        // 重新初始化跳过监听（支持回滚）
+        // 注意：只有在视频已完成或已暂停时才初始化，避免干扰视频播放
+        if (originVideo.value.paused || originVideoCompleted.value) {
+          // 如果视频在首帧，重置 canSkipToEnd，确保向下滑动时先播放视频
+          const currentTime = originVideo.value.currentTime || 0;
+          if (currentTime <= 0.1 && originVideo.value.paused) {
+            console.log('[initScrollBackToOriginVideoListener] 视频在首帧，重置 canSkipToEnd 为 false');
+            canSkipToEnd.value = false;
+            // 如果视频已完成，重置完成状态，允许重新播放
+            if (originVideoCompleted.value) {
+              originVideoCompleted.value = false;
+            }
+          }
+          initSkipToVideoEndScroll();
+        }
             }
           }
           scrollStableTimer = null;
@@ -3929,41 +4086,21 @@ const viewDisplacement4 = async () => {
     viewDisplacementTrigger5.kill();
   }
 
-  // 第一阶段：当元素顶部到达浏览器顶部时，向右移动（x: -7680）
+  // 第一阶段：当元素顶部到达浏览器顶部时，向右移动（x: -3840）
   viewDisplacementTrigger4 = ScrollTrigger.create({
     trigger: '.lives .horizontal-03',
     start: `top+=${pxToVwPx(1080)} top`, // 当元素顶部到达视口顶部时开始
-    end: `+=${pxToVwPx(5760)}`, // 滚动 7680px
+    end: `+=${pxToVwPx(3840)}`, // 滚动 3840px
     scrub: true, // 与滚动同步，平滑跟随
     pin: true, // 在横向滚动期间固定容器
     pinSpacing: true, // 保持间距
     anticipatePin: 1,
     animation: gsap.to('.lives .horizontal-03', {
-      x: pxToVw(-5760), // 向右移动 7680px
+      x: pxToVw(-3840), // 向右移动 3840px
       ease: 'none' // 线性动画，与滚动完全同步
     }),
     invalidateOnRefresh: true,
   });
-
-  // // 等待第一个 ScrollTrigger 创建完成并刷新
-  // await nextTick();
-  // ScrollTrigger.refresh();
-  //
-  // // 第二阶段：当滚动到距离元素底部 540px 时，开始左移
-  // // 使用第一个 ScrollTrigger 的结束位置作为起始点
-  // const firstEndScroll = viewDisplacementTrigger2.end;
-  // viewDisplacementTrigger3 = ScrollTrigger.create({
-  //   trigger: '.lives .second-screen-new',
-  //   start: `${firstEndScroll} bottom-=${pxToVwPx(540)}`, // 在第一个结束后，当元素底部距离视口底部 540px 时开始
-  //   end: `+=${pxToVwPx(1920)}`, // 滚动 1920px，让左移动画与滚动平滑绑定
-  //   scrub: true, // 与滚动同步，平滑跟随
-  //   pin: false, // 不 pin，避免与第一个冲突，元素已经被第一个 pin 住了
-  //   animation: gsap.to('.lives .second-screen-new', {
-  //     x: 0, // 从当前值（-1920）左移回到 0
-  //     ease: 'none' // 线性动画，与滚动完全同步
-  //   }),
-  //   invalidateOnRefresh: true,
-  // });
 }
 
 // 初始化 fragment 透明度动画
@@ -4239,6 +4376,7 @@ onUnmounted(() => {
   min-width: 1920px;
   min-height: 1080px;
   z-index: 100;
+  pointer-events: none;
 }
 
 .welcome-video {
@@ -4950,7 +5088,7 @@ onUnmounted(() => {
       }
 
       .snowlotus-description{
-        //opacity: 0;
+        opacity: 0;
         pointer-events: none;
         cursor: pointer;
         z-index: 1000;
@@ -5012,7 +5150,7 @@ onUnmounted(() => {
       }
 
       .sheep-description{
-      //opacity: 0;
+        opacity: 0;
         pointer-events: none;
         cursor: pointer;
         z-index: 1000;
@@ -5282,7 +5420,7 @@ onUnmounted(() => {
         }
 
         .grus-description{
-          //opacity: 0;
+          opacity: 0;
           pointer-events: none;
           cursor: pointer;
           z-index: 1000;
@@ -5344,7 +5482,7 @@ onUnmounted(() => {
         }
 
         .rabbit-description{
-        //opacity: 0;
+          opacity: 0;
           pointer-events: none;
           cursor: pointer;
           z-index: 1000;
@@ -5405,7 +5543,7 @@ onUnmounted(() => {
         }
 
         .sheep-description{
-        //opacity: 0;
+         opacity: 0;
           pointer-events: none;
           cursor: pointer;
           z-index: 1000;
@@ -5434,7 +5572,64 @@ onUnmounted(() => {
           }
         }
       }
+      .bos-mutus{
+        position: absolute;
+        left: 2850px;
+        bottom: 650px;
+        .bos-mutus-info{
+          cursor: pointer;
+        }
+        .bos-mutus-img{
+          width: 353px;
+          height: 289px;
+          background-image: url("@/assets/images/lives/lives-ymn.png");
+          background-size: cover;
+        }
+        .bos-mutus-name{
+          white-space: nowrap;
+          font-size: 36px;
+          color: #fff;
+          position: absolute;
+          top: 0px;
+          right: -160px;
+          width: 100px;
+        }
+        .bos-mutus-english{
+          margin-top: 20px;
+          position: absolute;
+          top: 50px;
+          right: -160px;
+          font-style: italic;
+          font-weight: bold;
+        }
 
+        .bos-mutus-description{
+          opacity: 0;
+          pointer-events: none;
+          cursor: pointer;
+          z-index: 1000;
+          padding: 30px;
+          width: 590px;
+          border-radius: 30px;
+          background-color: rgba(213,204,152,0.7);
+          position: absolute;
+          top: -50px;
+          left: -700px;
+          .bos-mutus-description-img{
+            width: 530px;
+            height: 340px;
+            background-image: url("@/assets/images/lives/lives-ymn-image.jpg");
+            background-size: cover;
+          }
+          .bos-mutus-description-text{
+            font-size: 22px;
+            color: #fff;
+            line-height: 48px;
+            width: 530px;
+            margin-top: 40px;
+          }
+        }
+      }
     }
     .forest{
       width: 3840px;
@@ -5466,7 +5661,188 @@ onUnmounted(() => {
         background-repeat: no-repeat;
         position: absolute;
         bottom: 0;
-        left: 0;
+        left: -500px;
+        z-index: 2;
+      }
+      .forest-single-grass-1{
+          position: absolute;
+          left: -300px;
+          top: 500px;
+          width: 738px;
+          height: 1170px;
+          background-image: url("@/assets/images/lives/lives-xmetc-tree-1.png");
+          background-size: cover;
+          background-position: center center;
+          background-repeat: no-repeat;
+          z-index: 1;
+        }
+        .forest-single-grass-2{
+          position: absolute;
+          left: -200px;
+          top: 600px;
+          width: 738px;
+          height: 1170px;
+          background-image: url("@/assets/images/lives/lives-xmetc-tree-2.png");
+          background-size: cover;
+          background-position: center center;
+          background-repeat: no-repeat;
+          z-index: 1;
+        }
+      .forest-wood-grass{
+        position: absolute;
+        bottom: 0px;
+        right: -1200px;
+        .forest-wood-img{
+          width: 3402px;
+          height: 402px;
+          background-image: url("@/assets/images/lives/lives-cjsh-wood.png");
+          background-size: cover;
+          background-position: center center;
+          background-repeat: no-repeat;
+        }
+        .forest-grass-img{
+          position: absolute;
+          right: 900px;
+          bottom: 0;
+          width: 2329px;
+          height: 294px;
+          background-image: url("@/assets/images/lives/lives-cjsh-grass.png");
+          background-size: cover;
+          background-position: center center;
+          background-repeat: no-repeat;
+          z-index: 999;
+        }
+      }
+      .panda{
+      position: absolute;
+      bottom: 75px;
+      left: 90px;
+      z-index: 2;
+      .panda-info{
+        cursor: pointer;
+        position: relative; /* 确保能够接收点击事件 */
+      }
+      .panda-img{
+        width: 985px;
+        height: 550px;
+        background-image: url("@/assets/images/lives/lives-xm.png");
+        background-size: cover;
+        cursor: pointer;
+      }
+      .panda-grass{
+        width: 1264px;
+        height: 208px;
+        background-image: url("@/assets/images/lives/lives-xm-grass.png");
+        background-size: cover;
+        position: absolute;
+        bottom: 0;
+        left: -50px;
+        pointer-events: none; /* 不阻止点击事件，让点击冒泡到父元素 */
+      }
+      .panda-name{
+        white-space: nowrap;
+        font-size: 36px;
+        color: #ffffff;
+        cursor: pointer;
+      }
+      .panda-chinese{
+        position: absolute;
+        top: -120px;
+        left: 640px;
+      }
+      .panda-english{
+        margin-top: 20px;
+        position: absolute;
+        top: -84px;
+        left: 640px;
+        font-style: italic;
+
+      }
+      .panda-description{
+        opacity: 1;
+        pointer-events: none;
+        cursor: pointer;
+        z-index: 1000;
+        padding: 30px;
+        width: 570px;
+        border-radius: 30px;
+        background-color: rgba(156,173,139,0.6);
+        position: absolute;
+        top: -270px;
+        right: -720px;
+        .panda-description-img{
+          width: 510px;
+          height: 340px;
+          background-image: url("@/assets/images/lives/lives-xm-image.jpg");
+          background-size: cover;
+        }
+        .panda-description-text{
+          font-size: 22px;
+          color: #fff;
+          line-height: 48px;
+          width: 510px;
+          margin-top: 40px;
+        }
+      }
+    }
+      .cjsh{
+        position: absolute;
+        right: 500px;
+        bottom: 0px;
+        z-index: 2;
+        .cjsh-info{
+          cursor: pointer;
+        }
+        .cjsh-img{
+          width: 427px;
+          height: 508px;
+          background-image: url("@/assets/images/lives/lives-cjsh.png");
+          background-size: cover;
+        }
+        .cjsh-name{
+          white-space: nowrap;
+          font-size: 36px;
+          color: #fff;
+          position: absolute;
+          top: 0px;
+          left: -370px;
+          width: 100px;
+        }
+        .cjsh-english{
+          margin-top: 20px;
+          position: absolute;
+          top: 50px;
+          left: -370px;
+          font-style: italic;
+          font-weight: bold;
+        }
+
+        .cjsh-description{
+          pointer-events: none;
+          cursor: pointer;
+          z-index: 1000;
+          padding: 30px;
+          width: 500px;
+          border-radius: 30px;
+          background-color: rgba(156,173,139,0.6);
+          position: absolute;
+          top: -500px;
+          right: -480px;
+          .cjsh-description-img{
+            width: 440px;
+            height: 340px;
+            background-image: url("@/assets/images/lives/lives-cjsh-image.jpg");
+            background-size: cover;
+          }
+          .cjsh-description-text{
+            font-size: 22px;
+            color: #fff;
+            line-height: 48px;
+            width: 440px;
+            margin-top: 40px;
+            text-align: justify;
+          }
+        }
       }
     }
   }
