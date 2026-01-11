@@ -1,71 +1,71 @@
 <template>
   <div class="grology">
     <div class="grology-origin" ref="originContainer">
-      <div class="welcome-video-wrapper">
-        <!-- 视频元素1 -->
-        <video
-            ref="welcomeVideo1"
-            class="welcome-video"
-            :src="welcomeVideoSrc"
-            preload="auto"
-            muted
-            playsinline
-            :style="{ opacity: activeWelcomeVideo === 1 ? 1 : 0, position: 'absolute' }"
-            @ended="onWelcomeVideoEnded"
-        ></video>
-        <!-- 视频元素2 -->
-        <video
-            ref="welcomeVideo2"
-            class="welcome-video"
-            preload="auto"
-            muted
-            playsinline
-            :style="{ opacity: activeWelcomeVideo === 2 ? 1 : 0, position: 'absolute' }"
-            @ended="onWelcomeVideoEnded"
-        ></video>
-        <div class="welcome-video-roller" ref="welcomeVideoRoller"></div>
-      </div>
-      <div class="origin-video-wrapper" ref="originVideoWrapper">
-        <!-- 视频元素1 -->
-        <video
-            ref="originVideo1"
-            class="origin-video"
-            preload="auto"
-            playsinline
-            :muted="isMuted"
-            :style="{ opacity: activeOriginVideo === 1 ? 1 : 0, position: 'absolute' }"
-            @ended="onOriginVideoEnded"
-            @timeupdate="onOriginVideoTimeUpdate"
-        ></video>
-        <!-- 视频元素2 -->
-        <video
-            ref="originVideo2"
-            class="origin-video"
-            preload="auto"
-            playsinline
-            :muted="isMuted"
-            :style="{ opacity: activeOriginVideo === 2 ? 1 : 0, position: 'absolute' }"
-            @ended="onOriginVideoEnded"
-            @timeupdate="onOriginVideoTimeUpdate"
-        ></video>
-        <div class="video-sound" @click="toggleSound">
-          <div :class="isMuted ? 'video-sound-icon-off' : 'video-sound-icon-open'"></div>
-        </div>
-        <div class="video-accessories" ref="videoAccessories">
-          <div class="video-description" ref="videoDescription">
-            <p class="video-title">{{ originInfos[originCurrentIndex].title }}</p>
-            <p :style="{width: originInfos[originCurrentIndex].width}">{{ originInfos[originCurrentIndex].description[0] }}</p>
-          </div>
-          <div class="video-indicator">
-            <div
-                class="video-dot"
-                v-for="(item, index) in originInfos.length"
-                :key="index"
-                :class="{ active: originCurrentIndex === index }"
-            ></div>
-          </div>
-        </div>
-      </div>
+<!--      <div class="welcome-video-wrapper">-->
+<!--        &lt;!&ndash; 视频元素1 &ndash;&gt;-->
+<!--        <video-->
+<!--            ref="welcomeVideo1"-->
+<!--            class="welcome-video"-->
+<!--            :src="welcomeVideoSrc"-->
+<!--            preload="auto"-->
+<!--            muted-->
+<!--            playsinline-->
+<!--            :style="{ opacity: activeWelcomeVideo === 1 ? 1 : 0, position: 'absolute' }"-->
+<!--            @ended="onWelcomeVideoEnded"-->
+<!--        ></video>-->
+<!--        &lt;!&ndash; 视频元素2 &ndash;&gt;-->
+<!--        <video-->
+<!--            ref="welcomeVideo2"-->
+<!--            class="welcome-video"-->
+<!--            preload="auto"-->
+<!--            muted-->
+<!--            playsinline-->
+<!--            :style="{ opacity: activeWelcomeVideo === 2 ? 1 : 0, position: 'absolute' }"-->
+<!--            @ended="onWelcomeVideoEnded"-->
+<!--        ></video>-->
+<!--        <div class="welcome-video-roller" ref="welcomeVideoRoller"></div>-->
+<!--      </div>-->
+<!--      <div class="origin-video-wrapper" ref="originVideoWrapper">-->
+<!--        &lt;!&ndash; 视频元素1 &ndash;&gt;-->
+<!--        <video-->
+<!--            ref="originVideo1"-->
+<!--            class="origin-video"-->
+<!--            preload="auto"-->
+<!--            playsinline-->
+<!--            :muted="isMuted"-->
+<!--            :style="{ opacity: activeOriginVideo === 1 ? 1 : 0, position: 'absolute' }"-->
+<!--            @ended="onOriginVideoEnded"-->
+<!--            @timeupdate="onOriginVideoTimeUpdate"-->
+<!--        ></video>-->
+<!--        &lt;!&ndash; 视频元素2 &ndash;&gt;-->
+<!--        <video-->
+<!--            ref="originVideo2"-->
+<!--            class="origin-video"-->
+<!--            preload="auto"-->
+<!--            playsinline-->
+<!--            :muted="isMuted"-->
+<!--            :style="{ opacity: activeOriginVideo === 2 ? 1 : 0, position: 'absolute' }"-->
+<!--            @ended="onOriginVideoEnded"-->
+<!--            @timeupdate="onOriginVideoTimeUpdate"-->
+<!--        ></video>-->
+<!--        <div class="video-sound" @click="toggleSound">-->
+<!--          <div :class="isMuted ? 'video-sound-icon-off' : 'video-sound-icon-open'"></div>-->
+<!--        </div>-->
+<!--        <div class="video-accessories" ref="videoAccessories">-->
+<!--          <div class="video-description" ref="videoDescription">-->
+<!--            <p class="video-title">{{ originInfos[originCurrentIndex].title }}</p>-->
+<!--            <p :style="{width: originInfos[originCurrentIndex].width}">{{ originInfos[originCurrentIndex].description[0] }}</p>-->
+<!--          </div>-->
+<!--          <div class="video-indicator">-->
+<!--            <div-->
+<!--                class="video-dot"-->
+<!--                v-for="(item, index) in originInfos.length"-->
+<!--                :key="index"-->
+<!--                :class="{ active: originCurrentIndex === index }"-->
+<!--            ></div>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
     </div>
     <div class="grology-water">
       <div class="water-cloud-1"></div>
@@ -167,11 +167,37 @@
           </div>
         </div>
       </div>
-      <div class="second-screen">
-        <div class="second-screen-bg"></div>
-        <div class="cloud-img-1"></div>
-        <div class="cloud-img-2"></div>
-        <div class="mountain-img"></div>
+<!--      <div class="second-screen">-->
+<!--        <div class="second-screen-bg"></div>-->
+<!--        <div class="cloud-img-1"></div>-->
+<!--        <div class="cloud-img-2"></div>-->
+<!--        <div class="mountain-img"></div>-->
+<!--        <div class="panthera">-->
+<!--          <div class="panthera-info" @click="showPantheraDescription">-->
+<!--            <div class="panthera-img"></div>-->
+<!--            <div class="panthera-name panthera-chinese"  data-parallax="true"-->
+<!--                 data-parallax-axis="y"-->
+<!--                 data-parallax-from="100"-->
+<!--                 data-parallax-to="0"-->
+<!--                 data-parallax-speed="1.1"-->
+<!--                 data-parallax-center-lock="true">雪豹</div>-->
+<!--            <div class="panthera-name panthera-english"-->
+<!--                 data-parallax="true"-->
+<!--                 data-parallax-axis="y"-->
+<!--                 data-parallax-from="100"-->
+<!--                 data-parallax-to="0"-->
+<!--                 data-parallax-speed="1.1"-->
+<!--                 data-parallax-center-lock="true">Panthera uncia</div>-->
+<!--          </div>-->
+<!--          <div class="panthera-description" ref="pantheraDescription" @click="closePantheraDescription">-->
+<!--            <div class="panthera-description-img"></div>-->
+<!--            <div class="panthera-description-text">主要分布于青藏高原和新疆、青海、四川等地，国家一级保护野生动物。全身呈灰白色且满布黑斑，尾巴粗长，超过体长的2／3，四肢短粗。喜欢栖居在海拔3000—6000米的高山空旷多岩地带。主要捕食野羊、岩羊，有时也猎取狍子、旱獭、黄鼠、野兔等动物。</div>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+      <div class="second-screen-new">
+        <div class="hill-bg"></div>
+        <div class="mountain-bg"></div>
         <div class="panthera">
           <div class="panthera-info" @click="showPantheraDescription">
             <div class="panthera-img"></div>
@@ -193,6 +219,131 @@
             <div class="panthera-description-img"></div>
             <div class="panthera-description-text">主要分布于青藏高原和新疆、青海、四川等地，国家一级保护野生动物。全身呈灰白色且满布黑斑，尾巴粗长，超过体长的2／3，四肢短粗。喜欢栖居在海拔3000—6000米的高山空旷多岩地带。主要捕食野羊、岩羊，有时也猎取狍子、旱獭、黄鼠、野兔等动物。</div>
           </div>
+        </div>
+        <div class="snowlotus">
+          <div class="snowlotus-info" @click="showPantheraDescription">
+            <div class="snowlotus-img"></div>
+            <div class="snowlotus-name snowlotus-chinese"  data-parallax="true"
+                 data-parallax-axis="y"
+                 data-parallax-from="100"
+                 data-parallax-to="0"
+                 data-parallax-speed="1.1"
+                 data-parallax-center-lock="true">唐古特雪莲</div>
+            <div class="snowlotus-name snowlotus-english"
+                 data-parallax="true"
+                 data-parallax-axis="y"
+                 data-parallax-from="100"
+                 data-parallax-to="0"
+                 data-parallax-speed="1.1"
+                 data-parallax-center-lock="true">Saussurea tangutica</div>
+          </div>
+          <div class="snowlotus-description" >
+            <div class="snowlotus-description-img"></div>
+            <div class="snowlotus-description-text">主要分布于我国甘肃、青海、西藏、四川等地，生长在海拔3800—5000米的高山流石滩、高山草甸地带。株高约30—70厘米，茎有稀疏的白色长柔毛，能适应高寒极端环境。药用则有清热解毒的功效。</div>
+          </div>
+        </div>
+        <div class="sheep">
+          <div class="sheep-info" @click="showPantheraDescription">
+            <div class="sheep-img"></div>
+            <div class="sheep-name sheep-chinese"  data-parallax="true"
+                 data-parallax-axis="y"
+                 data-parallax-from="100"
+                 data-parallax-to="0"
+                 data-parallax-speed="1.1"
+                 data-parallax-center-lock="true">岩羊</div>
+            <div class="sheep-name sheep-english"
+                 data-parallax="true"
+                 data-parallax-axis="y"
+                 data-parallax-from="100"
+                 data-parallax-to="0"
+                 data-parallax-speed="1.1"
+                 data-parallax-center-lock="true">Pseudois nayaur</div>
+          </div>
+          <div class="sheep-description" >
+            <div class="sheep-description-img"></div>
+            <div class="sheep-description-text">主要分布于中国西北、青藏高原等地，国家二级保护野生动物。体形中等，形态介于野山羊与野绵羊之间。两性都长角，雄性角粗大且弯曲。毛色多为青灰、褐灰色。栖息在海拔4000-5500米林线以上的高原、丘原和高山裸岩等地带，行动敏捷，善攀岩，以青草和各种灌丛枝叶为食。</div>
+          </div>
+        </div>
+      </div>
+      <div class="horizontal-03">
+        <!--   草原部分     -->
+        <div class="prairie">
+          <div class="prairie-bg-hill"></div>
+          <div class="prairie-bg-grass"></div>
+          <!--   黑颈鹤     -->
+          <div class="grus">
+            <div class="grus-info" @click="showPantheraDescription">
+              <div class="grus-img"></div>
+              <div class="grus-name grus-chinese"  data-parallax="true"
+                   data-parallax-axis="y"
+                   data-parallax-from="100"
+                   data-parallax-to="0"
+                   data-parallax-speed="1.1"
+                   data-parallax-center-lock="true">黑颈鹤</div>
+              <div class="grus-name grus-english"
+                   data-parallax="true"
+                   data-parallax-axis="y"
+                   data-parallax-from="100"
+                   data-parallax-to="0"
+                   data-parallax-speed="1.1"
+                   data-parallax-center-lock="true">Grus nigricollis</div>
+            </div>
+            <div class="grus-description" >
+              <div class="grus-description-img"></div>
+              <div class="grus-description-text">唯一在高原生长繁殖的鹤类，主要分布在青藏高原和云贵高原，国家一级保护野生动物，也是拉萨市的“市鸟”。通体较白，头、枕和整个颈部均为黑色，眼先和头顶裸露皮肤为红色。主要栖息在高山沼泽、草甸、湖周沼泽地和河谷沼泽区，以植物的根、昆虫、鱼、蛙等为食。</div>
+            </div>
+          </div>
+          <!--   鼠兔    -->
+          <div class="rabbit">
+            <div class="rabbit-info" @click="showPantheraDescription">
+              <div class="rabbit-img"></div>
+              <div class="rabbit-name rabbit-chinese"  data-parallax="true"
+                   data-parallax-axis="y"
+                   data-parallax-from="100"
+                   data-parallax-to="0"
+                   data-parallax-speed="1.1"
+                   data-parallax-center-lock="true">高原鼠兔</div>
+              <div class="rabbit-name rabbit-english"
+                   data-parallax="true"
+                   data-parallax-axis="y"
+                   data-parallax-from="100"
+                   data-parallax-to="0"
+                   data-parallax-speed="1.1"
+                   data-parallax-center-lock="true">Ochotona curzoniae</div>
+            </div>
+            <div class="rabbit-description" >
+              <div class="rabbit-description-img"></div>
+              <div class="rabbit-description-text">主要分布于西藏、青海、甘肃、四川等地。体型中等，体长约120-190毫米，体重可达178克，耳朵呈现圆形，唇鼻周围呈黑色，背毛为沙灰色，腹毛呈现脏白色。栖息于海拔4000米左右的高山草甸中，穴居且家族式群居，白天活动，不冬眠也不储草。</div>
+            </div>
+          </div>
+          <!--   藏羚羊    -->
+          <div class="sheep">
+            <div class="sheep-info" @click="showPantheraDescription">
+              <div class="sheep-img"></div>
+              <div class="sheep-name sheep-chinese"  data-parallax="true"
+                   data-parallax-axis="y"
+                   data-parallax-from="100"
+                   data-parallax-to="0"
+                   data-parallax-speed="1.1"
+                   data-parallax-center-lock="true">藏羚</div>
+              <div class="sheep-name sheep-english"
+                   data-parallax="true"
+                   data-parallax-axis="y"
+                   data-parallax-from="100"
+                   data-parallax-to="0"
+                   data-parallax-speed="1.1"
+                   data-parallax-center-lock="true">Pantholops hodgsonii</div>
+            </div>
+            <div class="sheep-description" >
+              <div class="sheep-description-img"></div>
+              <div class="sheep-description-text">也叫藏羚羊、长角羊，青藏高原特有物种，国家一级保护野生动物。体长120-140厘米，上体毛色呈现淡棕褐色，胸腹部和四肢内侧为白色。雄性角细长似鞭，乌黑发亮。栖息于海拔4000-5000米的高山草原和荒漠地带，善于奔跑，群居性强，以草类植物为食。</div>
+            </div>
+          </div>
+        </div>
+        <!--   森林     -->
+        <div class="forest">
+          <div class="forest-bg-hill"></div>
+          <div class="forest-bg-grass"></div>
         </div>
       </div>
       <div class="horizontal-02">
@@ -3674,6 +3825,147 @@ const viewDisplacement = async () => {
   });
 }
 
+
+let viewDisplacementTrigger2 = null;
+let viewDisplacementTrigger3 = null;
+
+const viewDisplacement2 = async () => {
+  await nextTick();
+
+  const secondScreen = document.querySelector('.lives .second-screen-new');
+
+  if (!secondScreen) return;
+
+  // 如果已经创建过，先清理
+  if (viewDisplacementTrigger2) {
+    viewDisplacementTrigger2.kill();
+  }
+  if (viewDisplacementTrigger3) {
+    viewDisplacementTrigger3.kill();
+  }
+
+  // 第一阶段：当元素顶部到达浏览器顶部时，向右移动（x: -1920）
+  viewDisplacementTrigger2 = ScrollTrigger.create({
+    trigger: '.lives .second-screen-new',
+    start: 'top top', // 当元素顶部到达视口顶部时开始
+    end: `+=${pxToVwPx(1920)}`, // 滚动 1920px
+    scrub: true, // 与滚动同步，平滑跟随
+    pin: true, // 在横向滚动期间固定容器
+    pinSpacing: true, // 保持间距
+    anticipatePin: 1,
+    animation: gsap.to('.lives .second-screen-new', {
+      x: pxToVw(-1920), // 向右移动 1920px
+      ease: 'none' // 线性动画，与滚动完全同步
+    }),
+    invalidateOnRefresh: true,
+  });
+
+  // 等待第一个 ScrollTrigger 创建完成并刷新
+  await nextTick();
+  ScrollTrigger.refresh();
+
+  // 第二阶段：当滚动到距离元素底部 540px 时，开始左移
+  // 使用第一个 ScrollTrigger 的结束位置作为起始点
+  const firstEndScroll = viewDisplacementTrigger2.end;
+  viewDisplacementTrigger3 = ScrollTrigger.create({
+    trigger: '.lives .second-screen-new',
+    start: `${firstEndScroll} bottom-=${pxToVwPx(540)}`, // 在第一个结束后，当元素底部距离视口底部 540px 时开始
+    end: `+=${pxToVwPx(1920)}`, // 滚动 1920px，让左移动画与滚动平滑绑定
+    scrub: true, // 与滚动同步，平滑跟随
+    pin: false, // 不 pin，避免与第一个冲突，元素已经被第一个 pin 住了
+    animation: gsap.to('.lives .second-screen-new', {
+      x: 0, // 从当前值（-1920）左移回到 0
+      ease: 'none' // 线性动画，与滚动完全同步
+    }),
+    invalidateOnRefresh: true,
+  });
+}
+
+
+
+const viewDisplacement3 = async () => {
+  await nextTick();
+
+  const secondScreen = document.querySelector('.lives .second-screen-new');
+
+  if (!secondScreen) return;
+
+  // 如果已经创建过，先清理
+  if (viewDisplacementTrigger3) {
+    viewDisplacementTrigger3.kill();
+  }
+
+  // 当元素差540到底部的位置到达浏览器的底部，就开始左移，直到元素左边到达浏览器左边
+  viewDisplacementTrigger3 = ScrollTrigger.create({
+    trigger: '.lives .second-screen-new',
+    start: `bottom+${pxToVwPx(540)} bottom`, // 当元素差540到底部的位置到达浏览器的底部，就开始左移，直到元素左边到达浏览器左边
+    end: `left left`,
+    scrub: true, // 与滚动同步，平滑跟随
+    pin: true, // 在横向滚动期间固定容器
+    anticipatePin: 1,
+    animation: gsap.to('.lives .second-screen-new', {
+      x: pxToVw(-1920), // 左移直到元素左边到达浏览器左边
+      ease: 'none' // 线性动画，与滚动完全同步
+    }),
+    invalidateOnRefresh: true,
+  });
+}
+
+let viewDisplacementTrigger4 = null;
+let viewDisplacementTrigger5 = null;
+
+const viewDisplacement4 = async () => {
+  await nextTick();
+
+  const secondScreen = document.querySelector('.lives .horizontal-03');
+
+  if (!secondScreen) return;
+
+  // 如果已经创建过，先清理
+  if (viewDisplacementTrigger4) {
+    viewDisplacementTrigger4.kill();
+  }
+  if (viewDisplacementTrigger5) {
+    viewDisplacementTrigger5.kill();
+  }
+
+  // 第一阶段：当元素顶部到达浏览器顶部时，向右移动（x: -7680）
+  viewDisplacementTrigger4 = ScrollTrigger.create({
+    trigger: '.lives .horizontal-03',
+    start: `top+=${pxToVwPx(1080)} top`, // 当元素顶部到达视口顶部时开始
+    end: `+=${pxToVwPx(5760)}`, // 滚动 7680px
+    scrub: true, // 与滚动同步，平滑跟随
+    pin: true, // 在横向滚动期间固定容器
+    pinSpacing: true, // 保持间距
+    anticipatePin: 1,
+    animation: gsap.to('.lives .horizontal-03', {
+      x: pxToVw(-5760), // 向右移动 7680px
+      ease: 'none' // 线性动画，与滚动完全同步
+    }),
+    invalidateOnRefresh: true,
+  });
+
+  // // 等待第一个 ScrollTrigger 创建完成并刷新
+  // await nextTick();
+  // ScrollTrigger.refresh();
+  //
+  // // 第二阶段：当滚动到距离元素底部 540px 时，开始左移
+  // // 使用第一个 ScrollTrigger 的结束位置作为起始点
+  // const firstEndScroll = viewDisplacementTrigger2.end;
+  // viewDisplacementTrigger3 = ScrollTrigger.create({
+  //   trigger: '.lives .second-screen-new',
+  //   start: `${firstEndScroll} bottom-=${pxToVwPx(540)}`, // 在第一个结束后，当元素底部距离视口底部 540px 时开始
+  //   end: `+=${pxToVwPx(1920)}`, // 滚动 1920px，让左移动画与滚动平滑绑定
+  //   scrub: true, // 与滚动同步，平滑跟随
+  //   pin: false, // 不 pin，避免与第一个冲突，元素已经被第一个 pin 住了
+  //   animation: gsap.to('.lives .second-screen-new', {
+  //     x: 0, // 从当前值（-1920）左移回到 0
+  //     ease: 'none' // 线性动画，与滚动完全同步
+  //   }),
+  //   invalidateOnRefresh: true,
+  // });
+}
+
 // 初始化 fragment 透明度动画
 const initFragmentOpacityAnimation = async () => {
   await nextTick();
@@ -3750,6 +4042,8 @@ onMounted(() => {
   // initVideoScroll(); // 动效已移除
   // 视角位移
   viewDisplacement();
+  viewDisplacement2()
+  viewDisplacement4()
   // 初始化 water-bg-video 滚动固定
   initWaterVideoScroll();
   // 初始化 water-cloud-1 动画
@@ -3886,6 +4180,12 @@ onUnmounted(() => {
   // originScrollTrigger 相关清理已移除（动效已移除）
   if (viewDisplacementTrigger) {
     viewDisplacementTrigger.kill();
+  }
+  if (viewDisplacementTrigger2) {
+    viewDisplacementTrigger2.kill();
+  }
+  if (viewDisplacementTrigger3) {
+    viewDisplacementTrigger3.kill();
   }
   if (waterVideoScrollTrigger) {
     waterVideoScrollTrigger.kill();
@@ -4261,7 +4561,7 @@ onUnmounted(() => {
   }
   .biology-detail-1{
     font-size: 32px;
-    line-height: 54px;
+    line-height: 48px;
     position: absolute;
     left: 268px;
     color: #286f86;
@@ -4269,7 +4569,7 @@ onUnmounted(() => {
   }
   .biology-detail-2{
     font-size: 32px;
-    line-height: 54px;
+    line-height: 48px;
     position: absolute;
     left: 1064px;
     top: 626px;
@@ -4422,7 +4722,7 @@ onUnmounted(() => {
         .goose-description-text{
           font-size: 22px;
           color: #fff;
-          line-height: 54px;
+          line-height: 48px;
           width: 530px;
           margin-top: 40px;
         }
@@ -4430,8 +4730,8 @@ onUnmounted(() => {
     }
   }
   .second-screen{
-    width: 1920px;
-    height: 1080px;
+    width: 3840px;
+    height: 2700px;
     position: relative;
     background-color: #fff;
     .second-screen-bg{
@@ -4522,12 +4822,226 @@ onUnmounted(() => {
         .panthera-description-text{
           font-size: 22px;
           color: #434343;
-          line-height: 54px;
+          line-height: 48px;
           width: 530px;
           margin-top: 40px;
         }
       }
     }
+  }
+  .second-screen-new{
+    width: 3840px;
+    height: 2700px;
+    position: relative;
+    background-image: url("@/assets/images/lives/lives-zlyetc-bg.png");
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    .hill-bg{
+      width: 3826px;
+      height: 1467px;
+      background-image: url("@/assets/images/lives/lives-xb-hill.png");
+      background-size: cover;
+      background-position: center center;
+      background-repeat: no-repeat;
+      position: absolute;
+      top: 164px
+    }
+    .mountain-bg{
+      width: 5829px;
+      height: 2879px;
+      background-image: url("@/assets/images/lives/lives-yyetc-hill.png");
+      background-size: cover;
+      background-position: center center;
+      background-repeat: no-repeat;
+      position: absolute;
+      left: -800px;
+    }
+    .panthera{
+      position: absolute;
+      left: 456px;
+      top: 430px;
+      .panthera-info{
+        cursor: pointer;
+      }
+      .panthera-img{
+        width: 657px;
+        height: 451px;
+        background-image: url("@/assets/images/lives/lives-xb.png");
+        background-size: cover;
+      }
+      .panthera-name{
+        white-space: nowrap;
+        font-size: 36px;
+        color: #fff;
+        position: absolute;
+        top: 50px;
+        left: 700px;
+        width: 100px;
+      }
+      .panthera-english{
+        margin-top: 20px;
+        position: absolute;
+        top: 100px;
+        left: 700px;
+        font-style: italic;
+
+      }
+
+      .panthera-description{
+        opacity: 0;
+        pointer-events: none;
+        cursor: pointer;
+        z-index: 1000;
+        padding: 30px;
+        width: 590px;
+        border-radius: 30px;
+        background-color: rgba(214,230,244,0.7);
+        position: absolute;
+        top: -250px;
+        left: -250px;
+        //position: fixed;
+        //top: 200px;
+        //left: 200px;
+        .panthera-description-img{
+          width: 530px;
+          height: 340px;
+          background-image: url("@/assets/images/lives/lives-xb-image.jpg");
+          background-size: cover;
+        }
+        .panthera-description-text{
+          font-size: 22px;
+          color: #434343;
+          line-height: 48px;
+          width: 530px;
+          margin-top: 40px;
+        }
+      }
+    }
+    .snowlotus{
+      position: absolute;
+      right: 220px;
+      top: 700px;
+      .snowlotus-info{
+        cursor: pointer;
+      }
+      .snowlotus-img{
+        width: 359px;
+        height: 362px;
+        background-image: url("@/assets/images/lives/lives-tgtxl.png");
+        background-size: cover;
+      }
+      .snowlotus-name{
+        white-space: nowrap;
+        font-size: 36px;
+        color: #434343;
+        position: absolute;
+        top: -100px;
+        left: -100px;
+        width: 380px;
+      }
+      .snowlotus-english{
+        margin-top: 20px;
+        position: absolute;
+        top: -70px;
+        left: -100px;
+        font-style: italic;
+
+      }
+
+      .snowlotus-description{
+        //opacity: 0;
+        pointer-events: none;
+        cursor: pointer;
+        z-index: 1000;
+        padding: 30px;
+        width: 590px;
+        border-radius: 30px;
+        background-color: rgba(214,230,244,0.7);
+        position: absolute;
+        top: -250px;
+        right: 640px;
+        //position: fixed;
+        //top: 200px;
+        //left: 200px;
+        .snowlotus-description-img{
+          width: 530px;
+          height: 340px;
+          background-image: url("@/assets/images/lives/lives-tgtxl-image.jpg");
+          background-size: cover;
+        }
+        .snowlotus-description-text{
+          font-size: 22px;
+          color: #434343;
+          line-height: 48px;
+          width: 530px;
+          margin-top: 40px;
+        }
+      }
+    }
+    .sheep{
+      position: absolute;
+      right: 960px;
+      top: 1250px;
+      .sheep-info{
+        cursor: pointer;
+      }
+      .sheep-img{
+        width: 790px;
+        height: 617px;
+        background-image: url("@/assets/images/lives/lives-yy.png");
+        background-size: cover;
+      }
+      .sheep-name{
+        white-space: nowrap;
+        font-size: 36px;
+        color: #fff;
+        position: absolute;
+        bottom: -10px;
+        right: -260px;
+        width: 380px;
+      }
+      .sheep-english{
+        color: #fff;
+        margin-top: 20px;
+        position: absolute;
+        bottom: -60px;
+        right: -260px;
+        font-style: italic;
+
+      }
+
+      .sheep-description{
+      //opacity: 0;
+        pointer-events: none;
+        cursor: pointer;
+        z-index: 1000;
+        padding: 30px;
+        width: 590px;
+        border-radius: 30px;
+        background-color: rgba(121,143,167,0.7);
+        position: absolute;
+        top: -80px;
+        right: -820px;
+      //position: fixed;
+      //top: 200px;
+      //left: 200px;
+        .sheep-description-img{
+          width: 530px;
+          height: 340px;
+          background-image: url("@/assets/images/lives/lives-yy-image.jpg");
+          background-size: cover;
+        }
+        .sheep-description-text{
+          font-size: 22px;
+          color: #fff;
+          line-height: 48px;
+          width: 530px;
+          margin-top: 40px;
+        }
+      }
+    }
+
   }
   .third-screen{
     width: 1920px;
@@ -4595,7 +5109,7 @@ onUnmounted(() => {
         .chiru-description-text{
           font-size: 22px;
           color: #434343;
-          line-height: 54px;
+          line-height: 48px;
           width: 530px;
           margin-top: 40px;
         }
@@ -4692,13 +5206,269 @@ onUnmounted(() => {
         .panda-description-text{
           font-size: 22px;
           color: #fff;
-          line-height: 54px;
+          line-height: 48px;
           width: 510px;
           margin-top: 40px;
         }
       }
     }
 
+  }
+  .horizontal-03{
+    width: 7680px;
+    height: 2700px;
+    position: relative;
+    overflow: hidden;
+    .prairie{
+      width: 3840px;
+      height: 2160px;
+      background-image: url("@/assets/images/lives/lives-zlyetc-bg.png");
+      background-size: cover;
+      background-position: center center;
+      background-repeat: no-repeat;
+      position: absolute;
+      top: 0;
+      left: 0;
+      .prairie-bg-hill{
+        width: 3864px;
+        height: 517px;
+        background-image: url("@/assets/images/lives/lives-zlyetc-hill.png");
+        background-size: cover;
+        background-position: center center;
+        background-repeat: no-repeat;
+        position: absolute;
+        top: 866px;
+        left: 0;
+      }
+      .prairie-bg-grass{
+        width: 3871px;
+        height: 1187px;
+        background-image: url("@/assets/images/lives/lives-zlyetc-grassland.png");
+        background-size: cover;
+        background-position: center center;
+        background-repeat: no-repeat;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+      }
+      .grus{
+        position: absolute;
+        left: 830px;
+        bottom: 590px;
+        .grus-info{
+          cursor: pointer;
+        }
+        .grus-img{
+          width: 427px;
+          height: 409px;
+          background-image: url("@/assets/images/lives/lives-hjh.png");
+          background-size: cover;
+        }
+        .grus-name{
+          white-space: nowrap;
+          font-size: 36px;
+          color: #fff;
+          position: absolute;
+          top: -50px;
+          right: -20px;
+          width: 100px;
+        }
+        .grus-english{
+          margin-top: 20px;
+          position: absolute;
+          top: -20px;
+          right: -20px;
+          font-style: italic;
+        }
+
+        .grus-description{
+          //opacity: 0;
+          pointer-events: none;
+          cursor: pointer;
+          z-index: 1000;
+          padding: 30px;
+          width: 590px;
+          border-radius: 30px;
+          background-color: rgba(213,204,152,0.7);
+          position: absolute;
+          top: -506px;
+          left: -626px;
+        //position: fixed;
+        //top: 200px;
+        //left: 200px;
+          .grus-description-img{
+            width: 530px;
+            height: 340px;
+            background-image: url("@/assets/images/lives/lives-hjh-image.jpg");
+            background-size: cover;
+          }
+          .grus-description-text{
+            font-size: 22px;
+            color: #fff;
+            line-height: 48px;
+            width: 530px;
+            margin-top: 40px;
+          }
+        }
+      }
+      .rabbit{
+        position: absolute;
+        left: 324px;
+        bottom: 256px;
+        .rabbit-info{
+          cursor: pointer;
+        }
+        .rabbit-img{
+          width: 310px;
+          height: 314px;
+          background-image: url("@/assets/images/lives/lives-gyst.png");
+          background-size: cover;
+        }
+        .rabbit-name{
+          white-space: nowrap;
+          font-size: 36px;
+          color: #fff;
+          position: absolute;
+          top: 40px;
+          right: -120px;
+          width: 100px;
+          font-weight: bold;
+        }
+        .rabbit-english{
+          margin-top: 20px;
+          position: absolute;
+          top: 70px;
+          right: -120px;
+          font-style: italic;
+          font-weight: bold;
+        }
+
+        .rabbit-description{
+        //opacity: 0;
+          pointer-events: none;
+          cursor: pointer;
+          z-index: 1000;
+          padding: 30px;
+          width: 590px;
+          border-radius: 30px;
+          background-color: rgba(213,204,152,0.7);
+          position: absolute;
+          top: -250px;
+          right: -1162px;
+        //position: fixed;
+        //top: 200px;
+        //left: 200px;
+          .rabbit-description-img{
+            width: 530px;
+            height: 340px;
+            background-image: url("@/assets/images/lives/lives-gyst-image.jpg");
+            background-size: cover;
+          }
+          .rabbit-description-text{
+            font-size: 22px;
+            color: #fff;
+            line-height: 48px;
+            width: 530px;
+            margin-top: 40px;
+          }
+        }
+      }
+      .sheep{
+        position: absolute;
+        left: 2050px;
+        bottom: 190px;
+        .sheep-info{
+          cursor: pointer;
+        }
+        .sheep-img{
+          width: 617px;
+          height: 764px;
+          background-image: url("@/assets/images/lives/lives-zly.png");
+          background-size: cover;
+        }
+        .sheep-name{
+          white-space: nowrap;
+          font-size: 36px;
+          color: #fff;
+          position: absolute;
+          bottom: 120px;
+          left: 0px;
+          width: 100px;
+        }
+        .sheep-english{
+          margin-top: 20px;
+          position: absolute;
+          bottom: 80px;
+          left: 0px;
+          font-style: italic;
+          font-weight: bold;
+        }
+
+        .sheep-description{
+        //opacity: 0;
+          pointer-events: none;
+          cursor: pointer;
+          z-index: 1000;
+          padding: 30px;
+          width: 590px;
+          border-radius: 30px;
+          background-color: rgba(213,204,152,0.7);
+          position: absolute;
+          top: 90px;
+          right: -700px;
+        //position: fixed;
+        //top: 200px;
+        //left: 200px;
+          .sheep-description-img{
+            width: 530px;
+            height: 340px;
+            background-image: url("@/assets/images/lives/lives-zl-image.jpg");
+            background-size: cover;
+          }
+          .sheep-description-text{
+            font-size: 22px;
+            color: #fff;
+            line-height: 48px;
+            width: 530px;
+            margin-top: 40px;
+          }
+        }
+      }
+
+    }
+    .forest{
+      width: 3840px;
+      height: 2160px;
+      background-image: url("@/assets/images/lives/lives-zlyetc-bg.png");
+      background-size: cover;
+      background-position: center center;
+      background-repeat: no-repeat;
+      position: absolute;
+      bottom: 0;
+      left: 3840px;
+      .forest-bg-hill{
+        width: 3864px;
+        height: 517px;
+        background-image: url("@/assets/images/lives/lives-zlyetc-hill.png");
+        background-size: cover;
+        background-position: center center;
+        background-repeat: no-repeat;
+        position: absolute;
+        top: 866px;
+        left: 0;
+      }
+      .forest-bg-grass{
+        width: 4532px;
+        height: 1651px;
+        background-image: url("@/assets/images/lives/lives-xmetc-forest.png");
+        background-size: cover;
+        background-position: center center;
+        background-repeat: no-repeat;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+      }
+    }
   }
 }
 .secret{
