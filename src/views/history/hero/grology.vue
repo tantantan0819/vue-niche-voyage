@@ -1,71 +1,71 @@
 <template>
   <div class="grology">
     <div class="grology-origin" ref="originContainer">
-<!--      <div class="welcome-video-wrapper">-->
-<!--        &lt;!&ndash; 视频元素1 &ndash;&gt;-->
-<!--        <video-->
-<!--            ref="welcomeVideo1"-->
-<!--            class="welcome-video"-->
-<!--            :src="welcomeVideoSrc"-->
-<!--            preload="auto"-->
-<!--            muted-->
-<!--            playsinline-->
-<!--            :style="{ opacity: activeWelcomeVideo === 1 ? 1 : 0, position: 'absolute' }"-->
-<!--            @ended="onWelcomeVideoEnded"-->
-<!--        ></video>-->
-<!--        &lt;!&ndash; 视频元素2 &ndash;&gt;-->
-<!--        <video-->
-<!--            ref="welcomeVideo2"-->
-<!--            class="welcome-video"-->
-<!--            preload="auto"-->
-<!--            muted-->
-<!--            playsinline-->
-<!--            :style="{ opacity: activeWelcomeVideo === 2 ? 1 : 0, position: 'absolute' }"-->
-<!--            @ended="onWelcomeVideoEnded"-->
-<!--        ></video>-->
-<!--        <div class="welcome-video-roller" ref="welcomeVideoRoller"></div>-->
-<!--      </div>-->
-<!--      <div class="origin-video-wrapper" ref="originVideoWrapper">-->
-<!--        &lt;!&ndash; 视频元素1 &ndash;&gt;-->
-<!--        <video-->
-<!--            ref="originVideo1"-->
-<!--            class="origin-video"-->
-<!--            preload="auto"-->
-<!--            playsinline-->
-<!--            :muted="isMuted"-->
-<!--            :style="{ opacity: activeOriginVideo === 1 ? 1 : 0, position: 'absolute' }"-->
-<!--            @ended="onOriginVideoEnded"-->
-<!--            @timeupdate="onOriginVideoTimeUpdate"-->
-<!--        ></video>-->
-<!--        &lt;!&ndash; 视频元素2 &ndash;&gt;-->
-<!--        <video-->
-<!--            ref="originVideo2"-->
-<!--            class="origin-video"-->
-<!--            preload="auto"-->
-<!--            playsinline-->
-<!--            :muted="isMuted"-->
-<!--            :style="{ opacity: activeOriginVideo === 2 ? 1 : 0, position: 'absolute' }"-->
-<!--            @ended="onOriginVideoEnded"-->
-<!--            @timeupdate="onOriginVideoTimeUpdate"-->
-<!--        ></video>-->
-<!--        <div class="video-sound" @click="toggleSound">-->
-<!--          <div :class="isMuted ? 'video-sound-icon-off' : 'video-sound-icon-open'"></div>-->
-<!--        </div>-->
-<!--        <div class="video-accessories" ref="videoAccessories">-->
-<!--          <div class="video-description" ref="videoDescription">-->
-<!--            <p class="video-title">{{ originInfos[originCurrentIndex].title }}</p>-->
-<!--            <p :style="{width: originInfos[originCurrentIndex].width}">{{ originInfos[originCurrentIndex].description[0] }}</p>-->
-<!--          </div>-->
-<!--          <div class="video-indicator">-->
-<!--            <div-->
-<!--                class="video-dot"-->
-<!--                v-for="(item, index) in originInfos.length"-->
-<!--                :key="index"-->
-<!--                :class="{ active: originCurrentIndex === index }"-->
-<!--            ></div>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--      </div>-->
+      <div class="welcome-video-wrapper">
+        <!-- 视频元素1 -->
+        <video
+            ref="welcomeVideo1"
+            class="welcome-video"
+            :src="welcomeVideoSrc"
+            preload="auto"
+            muted
+            playsinline
+            :style="{ opacity: activeWelcomeVideo === 1 ? 1 : 0, position: 'absolute' }"
+            @ended="onWelcomeVideoEnded"
+        ></video>
+        <!-- 视频元素2 -->
+        <video
+            ref="welcomeVideo2"
+            class="welcome-video"
+            preload="auto"
+            muted
+            playsinline
+            :style="{ opacity: activeWelcomeVideo === 2 ? 1 : 0, position: 'absolute' }"
+            @ended="onWelcomeVideoEnded"
+        ></video>
+        <div class="welcome-video-roller" ref="welcomeVideoRoller"></div>
+      </div>
+      <div class="origin-video-wrapper" ref="originVideoWrapper">
+        <!-- 视频元素1 -->
+        <video
+            ref="originVideo1"
+            class="origin-video"
+            preload="auto"
+            playsinline
+            :muted="isMuted"
+            :style="{ opacity: activeOriginVideo === 1 ? 1 : 0, position: 'absolute' }"
+            @ended="onOriginVideoEnded"
+            @timeupdate="onOriginVideoTimeUpdate"
+        ></video>
+        <!-- 视频元素2 -->
+        <video
+            ref="originVideo2"
+            class="origin-video"
+            preload="auto"
+            playsinline
+            :muted="isMuted"
+            :style="{ opacity: activeOriginVideo === 2 ? 1 : 0, position: 'absolute' }"
+            @ended="onOriginVideoEnded"
+            @timeupdate="onOriginVideoTimeUpdate"
+        ></video>
+        <div class="video-sound" @click="toggleSound">
+          <div :class="isMuted ? 'video-sound-icon-off' : 'video-sound-icon-open'"></div>
+        </div>
+        <div class="video-accessories" ref="videoAccessories">
+          <div class="video-description" ref="videoDescription">
+            <p class="video-title">{{ originInfos[originCurrentIndex].title }}</p>
+            <p :style="{width: originInfos[originCurrentIndex].width}">{{ originInfos[originCurrentIndex].description[0] }}</p>
+          </div>
+          <div class="video-indicator">
+            <div
+                class="video-dot"
+                v-for="(item, index) in originInfos.length"
+                :key="index"
+                :class="{ active: originCurrentIndex === index }"
+            ></div>
+          </div>
+        </div>
+      </div>
     </div>
     <div class="grology-water">
       <div class="water-cloud-1"></div>

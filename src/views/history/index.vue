@@ -1,7 +1,7 @@
 <template>
   <div class="history">
     <!-- 加载进度条 -->
-    <splash-loader :progress="loadingProgress" :show="showSplashLoader"></splash-loader>
+    <splash-loader :progress="loadingProgress" :show="showSplashLoader" @start-journey="handleStartJourney"></splash-loader>
     <!-- 侧边导航栏 -->
     <side-menu :show="showSideMenu"></side-menu>
     <!-- 头部：加载进度条只显示头部资源，避免用户等待时间过长 -->
@@ -16,6 +16,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { ScrollToPlugin } from 'gsap/ScrollToPlugin'
 import { pxToVw, pxToVh, convertWidthPxToVw, convertHeightPxToVh, convertTransformOriginPxToVwVh } from '@/utils/viewportUtils'
 import { preloadHeroResources } from '@/utils/preloadHeroResources'
+import { preloadCriticalResources } from '@/utils/preloadCriticalResources'
 import hero from './hero/index.vue'
 import horizontal from './horizontal/index.vue'
 import SideMenu from '@/components/SiderMenu.vue'
@@ -63,6 +64,45 @@ const showSideMenu = ref(false)
 // 处理第三个视频播放完毕事件
 const handleThirdVideoEnded = () => {
   showSideMenu.value = true
+}
+
+// 处理用户点击"开启旅程"按钮
+const handleStartJourney = async () => {
+  // 恢复页面滚动
+  enableScroll()
+  
+  // 继续初始化其他功能
+  await initHorizontalScroll()
+  
+  // 等待所有子组件挂载完成后再初始化批量视差
+  await nextTick()
+  await new Promise(resolve => setTimeout(resolve, 200))
+  
+  // 初始化 vertical-section 的滚动状态（初始状态下禁用滚动）
+  const verticalSection = document.querySelector('.vertical-section')
+  if (verticalSection) {
+    const horizontalContainer = document.querySelector('.horizontal-scroll-container')
+    if (horizontalContainer) {
+      const maxScroll = horizontalContainer.scrollWidth - horizontalContainer.clientWidth
+      const currentScrollLeft = horizontalContainer.scrollLeft
+      const isAtRightEnd = currentScrollLeft >= maxScroll - 1
+      
+      if (isAtRightEnd) {
+        verticalSection.style.overflowY = 'auto'
+        verticalSection.style.pointerEvents = 'auto'
+      } else {
+        verticalSection.style.overflowY = 'hidden'
+        verticalSection.style.pointerEvents = 'none'
+      }
+      
+      // 监听 vertical-section 的滚动事件，实时保存滚动位置
+      verticalSection.addEventListener('scroll', () => {
+        verticalSectionScrollTop = verticalSection.scrollTop
+      }, { passive: true })
+    }
+  }
+  
+  initBatchParallax()
 }
 
 /**
@@ -854,53 +894,29 @@ onMounted(async () => {
   await nextTick()
   await new Promise(resolve => setTimeout(resolve, 100))
   
-  // 加载 hero 组件的资源
+  // 先加载关键资源（grology 组件的首屏资源）
   try {
-    await preloadHeroResources((progress) => {
+    await preloadCriticalResources((progress) => {
       loadingProgress.value = progress
     })
   } catch (error) {
-    console.error('加载 hero 资源时出错:', error)
+    console.error('加载关键资源时出错:', error)
   }
   
-  // 加载完成后，延迟一点时间再隐藏加载动画，让用户看到 100%
+  // 关键资源加载完成后，显示"开启旅程"按钮
+  // 延迟一点时间让用户看到 100%
   await new Promise(resolve => setTimeout(resolve, 300))
-  showSplashLoader.value = false
+  showSplashLoader.value = false // 这会显示"开启旅程"按钮
   
-  // 恢复页面滚动
-  enableScroll()
+  // 在后台继续加载其他资源（不阻塞用户进入）
+  preloadHeroResources(() => {
+    // 后台加载，不更新进度条
+  }).catch(error => {
+    console.error('后台加载其他资源时出错:', error)
+  })
   
-  await initHorizontalScroll()
-  
-  // 等待所有子组件挂载完成后再初始化批量视差
-  await nextTick()
-  await new Promise(resolve => setTimeout(resolve, 200))
-  
-  // 初始化 vertical-section 的滚动状态（初始状态下禁用滚动）
-  const verticalSection = document.querySelector('.vertical-section')
-  if (verticalSection) {
-    const horizontalContainer = document.querySelector('.horizontal-scroll-container')
-    if (horizontalContainer) {
-      const maxScroll = horizontalContainer.scrollWidth - horizontalContainer.clientWidth
-      const currentScrollLeft = horizontalContainer.scrollLeft
-      const isAtRightEnd = currentScrollLeft >= maxScroll - 1
-      
-      if (isAtRightEnd) {
-        verticalSection.style.overflowY = 'auto'
-        verticalSection.style.pointerEvents = 'auto'
-      } else {
-        verticalSection.style.overflowY = 'hidden'
-        verticalSection.style.pointerEvents = 'none'
-      }
-      
-      // 监听 vertical-section 的滚动事件，实时保存滚动位置
-      verticalSection.addEventListener('scroll', () => {
-        verticalSectionScrollTop = verticalSection.scrollTop
-      }, { passive: true })
-    }
-  }
-  
-  initBatchParallax()
+  // 注意：其他初始化逻辑（initHorizontalScroll、initBatchParallax 等）
+  // 将在用户点击"开启旅程"按钮后，在 handleStartJourney 中执行
   
   // 监听窗口大小改变，重新计算
   // 使用防抖来避免频繁触发
