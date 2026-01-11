@@ -152,7 +152,7 @@
           <p>鸿胪寺官员、吐蕃使臣</p>
           <p>禄东赞、鸿胪寺译员。</p>
         </div>
-        <annotation-dot class="annotation-dot">
+        <annotation-dot class="annotation-dot" title="内容来自">
           <p class="popularization-content">《浸润与融通 : 西藏各民族交往、交流与交融的故事.古代卷》四川民族出版社 2022</p>
         </annotation-dot>
       </div>

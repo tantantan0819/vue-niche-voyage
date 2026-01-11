@@ -553,6 +553,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
       width: 600px;
       .popularization-wrapper {
         background-color: #fff;
+        opacity: 0.7 !important;
         position: relative;
         top: -100px;
         margin-top: 0px!important;

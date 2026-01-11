@@ -6,7 +6,7 @@
     </div>
     <div class="popularization-wrapper" ref="wrapperRef">
 <!--      <div class="close" @click="handleClose">x</div>-->
-      <div class="title"><span>·</span>图片来自</div>
+      <div class="title"><span>·</span>{{ title }}</div>
       <slot></slot>
     </div>
   </div>
@@ -27,6 +27,10 @@ const props = defineProps({
   closeDirection: {
     type: Number,
     default: -50
+  },
+  title: {
+    type: String,
+    default: '图片来自'
   }
 });
 
@@ -84,7 +88,7 @@ const handleToggle = () => {
 .title{
   font-family: 'Alibaba-PuHuiTi-Light';
 }
-.popularization-content{
+::v-deep .popularization-content{
   font-family: 'Alibaba-PuHuiTi-Light'!important;
 }
 </style>
