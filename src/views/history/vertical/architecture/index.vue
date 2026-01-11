@@ -1,7 +1,14 @@
 <template>
   <div class="architecture">
     <div class="first-screen screen">
-      <div class="text-wrapper"
+      <div 
+        class="text-wrapper"
+      data-parallax="true"
+      data-parallax-axis="y"
+      data-parallax-from="200"
+      data-parallax-to="-200"
+      data-parallax-speed="1.2"
+      data-parallax-center-lock="true"
       >
           <p>走过云影掠动的群峰，翻罢岁月雕琢的时光。</p>
           <p class="earlySummer-serif">现在</p>
@@ -347,7 +354,7 @@ const initTextWrapperAnimation = () => {
   // 先设置初始状态（立即应用）
   gsap.set(textWrapper, {
     x: pxToVw(1900),
-    y: pxToVh(300)
+    // y: pxToVh(300)
   });
 
   // 第一个动画：从右向左进入（横向滚动时执行）
@@ -366,32 +373,32 @@ const initTextWrapperAnimation = () => {
   });
 
   // 第二个动画：从下往上移动（向下滑动时执行）
-  gsap.to(textWrapper, {
-    y: pxToVh(-300),
-    ease: 'none',
-    scrollTrigger: {
-      trigger: '.first-screen',
-      scroller: '.vertical-section',
-      start: 'top 90%',
-      end: 'bottom top',
-      scrub: true
-    }
-  });
+  // gsap.to(textWrapper, {
+  //   y: pxToVh(-300),
+  //   ease: 'none',
+  //   scrollTrigger: {
+  //     trigger: '.first-screen',
+  //     scroller: '.vertical-section',
+  //     start: 'top 90%',
+  //     end: 'bottom top',
+  //     scrub: true
+  //   }
+  // });
 };
 
-onMounted(async () => {
-  await nextTick();
-  await new Promise(resolve => setTimeout(resolve, 200));
-  initTextWrapperAnimation();
-});
+// onMounted(async () => {
+//   await nextTick();
+//   await new Promise(resolve => setTimeout(resolve, 200));
+//   initTextWrapperAnimation();
+// });
 
-onBeforeUnmount(() => {
-  ScrollTrigger.getAll().forEach(trigger => {
-    if (trigger.vars?.trigger === '.first-screen') {
-      trigger.kill();
-    }
-  });
-});
+// onBeforeUnmount(() => {
+//   ScrollTrigger.getAll().forEach(trigger => {
+//     if (trigger.vars?.trigger === '.first-screen') {
+//       trigger.kill();
+//     }
+//   });
+// });
 
 </script>
 <style>
