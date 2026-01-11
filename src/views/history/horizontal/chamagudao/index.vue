@@ -183,9 +183,9 @@
         <p>茶”与“马”喻示着中原与边疆，农耕与游牧之间不可分离的依存和互补关系。</p>
       </div>
       <annotation-dot>
-        <div class="popularization-content">
-          <p>《何以中华：一百件文物中的中华民族共同体历</p>
-          <p>史记忆：汉文、藏文》四川民族出版社 2023</p>
+        <div>
+          <p class="popularization-content">《何以中华：一百件文物中的中华民族共同体历</p>
+          <p class="popularization-content">史记忆：汉文、藏文》四川民族出版社 2023</p>
         </div>
       </annotation-dot>
     </div>
@@ -258,7 +258,20 @@
           <p>是维护西藏稳定，巩固国家统一的历史见证。</p>
         </div>
       </div>
-      <div
+      <annotation-dot 
+          class="popularization-description" title="图片来自"
+          data-parallax="true"
+          data-parallax-axis="x"
+          data-parallax-from="500"
+          data-parallax-to="-500"
+          data-parallax-speed="1.2"
+          data-parallax-center-lock="true">
+        <div>
+          <p class="popularization-content">《何以中华：一百件文物中的中华民族共同体历</p>
+          <p class="popularization-content">史记忆：汉文、藏文》四川民族出版社 2023</p>
+        </div>
+      </annotation-dot>
+      <!-- <div
           class="popularization-description"
           data-parallax="true"
           data-parallax-axis="x"
@@ -279,7 +292,7 @@
             <p>史记忆：汉文、藏文》四川民族出版社 2023</p>
           </div>
         </div>
-      </div>
+      </div> -->
     </div>
   </div>
 </template>
@@ -635,12 +648,12 @@ onUnmounted(() => {
       position: absolute;
       bottom: 40px;
       left: 1130px;
-      .popularization-wrapper{
+    }
+    :deep(.popularization-wrapper){
         position: relative;
         top: -60px;
-
-      }
     }
+   
   }
   .seven-screen{
     .detail{
@@ -727,13 +740,13 @@ onUnmounted(() => {
     .popularization-description{
       position: absolute;
       bottom: 22px;
-      right: 560px;
-      .popularization-wrapper{
-        position: relative;
-        top: -60px;
-        left: -480px;
-      }
+      right: 580px;
     }
+    :deep(.popularization-wrapper){
+        position: relative;
+        top: -80px;
+        left: -560px;
+      }
   }
 
 }

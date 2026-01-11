@@ -531,7 +531,7 @@ onMounted(() => {
   .drama-section{
     width: 30px;
     height: 30px;
-    //background-color: red;
+    /* background-color: red; */
     position: absolute;
     bottom: 30px;
     left: 30px;
@@ -824,12 +824,15 @@ onMounted(() => {
     width:1147px;
     height:359px;
     background: url('@/assets/images/literaryDrama/drama-character-4.png') no-repeat center center / contain;
+    z-index: 1;
+    pointer-events: none;
   }
   .dot-popover{
     top: 30px;
-    //left: -650px;
+    /* left: -650px; */
     left: 30px;
     z-index: 999;
+    position: relative;
   }
    >>> .popover-container{
     top: 30px;
@@ -924,6 +927,7 @@ onMounted(() => {
     transform: translateY(-50%);
     writing-mode: vertical-rl; /* 从右向左 从上向下 */
     opacity: 0;
+    height: 600px;
     p{
       font-family: 'EarlySummerSerif-Bold' !important;
       font-size: 40px;
