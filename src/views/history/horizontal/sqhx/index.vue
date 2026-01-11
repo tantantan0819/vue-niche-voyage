@@ -25,6 +25,14 @@
                 data-parallax-to="-900"
                 data-parallax-speed="1.3"
                 data-parallax-center-lock="true"></div>
+                <div
+                class="chip-img-1"
+                data-parallax="true"
+                data-parallax-axis="x"
+                data-parallax-from="-30"
+                data-parallax-to="30"
+                data-parallax-speed="1.3"
+                data-parallax-center-lock="true"></div>
           </div>
         </div>
       </div>
@@ -45,14 +53,14 @@
                 data-parallax-to="-200"
                 data-parallax-speed="1.3"
                 data-parallax-center-lock="true">史前回响</div>
-            <div
+            <!-- <div
                 class="chip-img-1"
                 data-parallax="true"
                 data-parallax-axis="x"
                 data-parallax-from="-50"
                 data-parallax-to="50"
                 data-parallax-speed="1.3"
-                data-parallax-center-lock="true"></div>
+                data-parallax-center-lock="true"></div> -->
             <div class="chip-img-2"></div>
             <div class="chip-img-3"></div>
             <div class="second-screen-picture"></div>
@@ -219,17 +227,26 @@ onMounted(()=> {
     // 延迟创建，确保父容器的 ScrollTrigger 已经初始化
     requestAnimationFrame(() => {
       const triggerEl = document.querySelector('.black-screen-wrapper')
-      if (!triggerEl) return
+      const horizontalContainer = document.querySelector('.horizontal-scroll-container')
+      if (!triggerEl || !horizontalContainer) return
       
       ScrollTrigger.create({
         trigger: triggerEl,
-        start: 'top top', // 当容器顶部到达视口顶部时开始
-        end: () => `+=${pxToVhPx(100)}`, // 滚动距离（响应式，基于视口高度）
-        scrub: true, // 与滚动同步，支持双向动画
-        scroller: window, // 明确指定使用窗口滚动
-        invalidateOnRefresh: true, // 刷新时重新计算位置
-        anticipatePin: 0, // 设置为 0，确保精确在顶部时才开始
-        animation: gsap.timeline().to('.black-screen-wrapper', {background: 'transparent'}).to('.black-screen',{opacity: 1}),
+        start: 'top top',
+        end: 'left right',
+        scrub: 2,
+        // scroller: horizontalContainer,
+        // horizontal: true,
+        invalidateOnRefresh: true,
+        animation: gsap.timeline()
+          .to('.black-screen-wrapper', {
+            background: 'transparent',
+            ease: 'none'
+          })
+          .to('.black-screen', {
+            opacity: 1,
+            ease: 'none'
+          }, '<'),
         onLeaveBack: () => {
           // 回滚离开时，确保恢复到初始状态
           gsap.set('.black-screen-wrapper', {background: '#000'})
@@ -279,21 +296,21 @@ onUnmounted(() => {
 
     }
     .black-screen{
-      width: 100vw;
+      width: 150vw;
     }
     .first-screen{
         .first-screen-title{
             position: absolute;
             top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
+            left: 60%;
+            transform: translate(0%, -50%);
             font-family: 'EarlySummerSerif-Bold';
             font-size: 90px;
             color: #534833;
         }
         .first-screen-cloud-img-1{
             position: absolute;
-            left: 0;
+            left: 100px;
             bottom: 0;
             width: 889px;
             height: 229px;
@@ -302,15 +319,25 @@ onUnmounted(() => {
          .first-screen-cloud-img-2{
             position: absolute;
             top: -200px;
-            right: -500px;
+            right: -700px;
             width: 1116px;
             height: 478px;
             background: url('@/assets/images/sqhx/sqhx-element-cloud-2.png') no-repeat center center / cover;
+        }
+        .chip-img-1{
+            position: absolute;
+            right: -600px;
+            bottom: 0;
+            width: 462px;
+            height: 361px;
+            background: url('@/assets/images/sqhx/sqhx-element-chip-1.png') no-repeat center center / cover;
         }
     }
     .second-screen{
         position: relative;
         width: 3217px;
+        margin-left: -40vw;
+        box-sizing: border-box;
         height: 100vh;
         .second-screen-title{
             position: absolute;
@@ -321,14 +348,6 @@ onUnmounted(() => {
             color: #534833;
             writing-mode: vertical-lr;
             height: 500px;
-        }
-        .chip-img-1{
-            position: absolute;
-            left: -400px;
-            bottom: 0;
-            width: 462px;
-            height: 361px;
-            background: url('@/assets/images/sqhx/sqhx-element-chip-1.png') no-repeat center center / cover;
         }
         .chip-img-2{
             position: absolute;

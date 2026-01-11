@@ -5473,7 +5473,7 @@ onUnmounted(() => {
 }
 .secret{
   width: 1920px;
-  height: 9540px;
+  height: 8840px;
   background-image: url("@/assets/images/secret/resource-to-history-bg.jpg");
   background-size: cover;
   background-position: center -1080px;

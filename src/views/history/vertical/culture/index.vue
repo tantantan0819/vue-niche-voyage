@@ -512,9 +512,9 @@
         <p>唐卡、壁画、织毯、羌绣，这些来自高原之上的线条、图案和色彩，将人们的精神世界与日常生活紧密相连，构成了雪域之上独具魅力的视觉与文化图景。</p>
       </div>
     </div>
-    <div class="seventeen-screen screen">
+    <!-- <div class="seventeen-screen screen"> -->
 <!--       <div class="img-bg"></div>-->
-    </div>
+    <!-- </div> -->
   </div>
 </template>
 <script setup>

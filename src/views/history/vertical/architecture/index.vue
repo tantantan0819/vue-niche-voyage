@@ -2,12 +2,7 @@
   <div class="architecture">
     <div class="first-screen screen">
       <div class="text-wrapper"
-        data-parallax="true"
-        data-parallax-axis="y"
-        data-parallax-from="300"
-        data-parallax-to="-300"
-        data-parallax-speed="1.1"
-        data-parallax-center-lock="true">
+      >
           <p>走过云影掠动的群峰，翻罢岁月雕琢的时光。</p>
           <p class="earlySummer-serif">现在</p>
           <p>请暂时从宏阔的自然与历史中抽身，</p>
@@ -342,6 +337,62 @@ import { pxToVw, pxToVh } from '@/utils/viewportUtils';
 import AnnotationDot from "@/components/AnnotationDot.vue";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
+gsap.registerPlugin(ScrollTrigger);
+
+// 初始化 text-wrapper 动画
+const initTextWrapperAnimation = () => {
+  const textWrapper = document.querySelector('.first-screen .text-wrapper');
+  if (!textWrapper) return;
+
+  // 先设置初始状态（立即应用）
+  gsap.set(textWrapper, {
+    x: pxToVw(1900),
+    y: pxToVh(300)
+  });
+
+  // 第一个动画：从右向左进入（横向滚动时执行）
+  gsap.to(textWrapper, {
+    x: 0,
+    ease: 'power2.out',
+    scrollTrigger: {
+      trigger: '.first-screen',
+      scroller: '.horizontal-scroll-container',
+      horizontal: true,
+      start: 'left right',
+      end: 'left left',
+      scrub: true,
+      invalidateOnRefresh: true
+    }
+  });
+
+  // 第二个动画：从下往上移动（向下滑动时执行）
+  gsap.to(textWrapper, {
+    y: pxToVh(-300),
+    ease: 'none',
+    scrollTrigger: {
+      trigger: '.first-screen',
+      scroller: '.vertical-section',
+      start: 'top 90%',
+      end: 'bottom top',
+      scrub: true
+    }
+  });
+};
+
+onMounted(async () => {
+  await nextTick();
+  await new Promise(resolve => setTimeout(resolve, 200));
+  initTextWrapperAnimation();
+});
+
+onBeforeUnmount(() => {
+  ScrollTrigger.getAll().forEach(trigger => {
+    if (trigger.vars?.trigger === '.first-screen') {
+      trigger.kill();
+    }
+  });
+});
+
 </script>
 <style>
 .architecture{
@@ -350,7 +401,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
   background-size: cover;
   background-repeat: no-repeat;
   min-height: 11380px;
-  //background-position: center -1080px;
+  /* background-position: center -1080px; */
   overflow-x: hidden;
   .first-screen{
     padding-top: 500px;
@@ -689,7 +740,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
         .popularization-content{
           width: 550px;
           position: relative;
-          //left: 100px;
+          /* left: 100px; */
         }
         position: relative;
         top: -100px;
@@ -924,7 +975,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
       position: absolute;
       top: 214px;
       right: 90px;
-    //right: 312px;
+    /* right: 312px; */
     }
     .third-screen-bg-text{
       width: 1371px;
