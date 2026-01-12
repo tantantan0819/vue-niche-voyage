@@ -3738,6 +3738,10 @@ const initScrollBackToOriginVideoListener = () => {
               // 重置云朵状态（当用户向上滚动回到 video-accessories 区域时）
               // 注意：不重新初始化云朵监听，只有当所有动效完成后（在 showVideoDescriptionAfterThirdVideo 的 onComplete 中）才初始化
               resetWaterCloud1();
+
+              if (videoDescriptionShownAfterThirdVideo.value) {
+                initShowWaterCloud1Scroll();
+              }
               
         // 重新初始化跳过监听（支持回滚）
         // 注意：只有在视频已完成或已暂停时才初始化，避免干扰视频播放
