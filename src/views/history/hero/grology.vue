@@ -663,6 +663,7 @@ let scrollStableTimer = null; // 用于检测滚动稳定的定时器
 let preventOverscrollHandler = null; // 防止漏白的全局滚动监听器
 let rollbackStableTime = 0; // 回滚到 originVideo 区域的稳定时间戳
 const ROLLBACK_STABLE_DURATION = 500; // 回滚稳定期持续时间（毫秒），至少500ms后才能执行回滚逻辑
+let showWaterCloud1Handler = null; // 显示 water-cloud-1 的滚动事件处理器
 
 // climate video 相关的 refs 和状态
 const climateVideo1 = ref(null);
@@ -1128,6 +1129,11 @@ const initWaterCloud1Animation = async () => {
   
   const waterCloud1 = document.querySelector('.water-cloud-1');
   if (!waterCloud1) return;
+  
+  // 如果所有动效已完成，不初始化原来的滚动动画，等待用户滚动时再显示
+  if (videoDescriptionShownAfterThirdVideo.value) {
+    return;
+  }
   
   // 如果已经创建过，先销毁
   if (waterCloud1ScrollTrigger) {
@@ -3555,6 +3561,9 @@ const showVideoDescriptionAfterThirdVideo = () => {
         
         // 初始化滚动监听，检测用户是否回到 originVideo 区域
         initScrollBackToOriginVideoListener();
+        
+        // 初始化 water-cloud-1 出现的滚动监听
+        initShowWaterCloud1Scroll();
       }
     });
   } else {
@@ -3726,6 +3735,10 @@ const initScrollBackToOriginVideoListener = () => {
               rollbackStableTime = Date.now();
               console.log('[initScrollBackToOriginVideoListener] 设置回滚稳定时间戳，需要等待', ROLLBACK_STABLE_DURATION, 'ms后才能执行回滚逻辑');
               
+              // 重置云朵状态（当用户向上滚动回到 video-accessories 区域时）
+              // 注意：不重新初始化云朵监听，只有当所有动效完成后（在 showVideoDescriptionAfterThirdVideo 的 onComplete 中）才初始化
+              resetWaterCloud1();
+              
         // 重新初始化跳过监听（支持回滚）
         // 注意：只有在视频已完成或已暂停时才初始化，避免干扰视频播放
         if (originVideo.value.paused || originVideoCompleted.value) {
@@ -3814,6 +3827,153 @@ const initWelcomeVideoScroll = () => {
   window.addEventListener('wheel', welcomeVideoScrollHandler, { passive: false });
   window.addEventListener('touchmove', welcomeVideoScrollHandler, { passive: false });
   window.addEventListener('scroll', welcomeVideoScrollHandler, { passive: false });
+};
+
+// 初始化显示 water-cloud-1 的滚动监听
+const initShowWaterCloud1Scroll = () => {
+  // 如果所有动效未完成，不初始化
+  if (!videoDescriptionShownAfterThirdVideo.value) return;
+  
+  // 如果已经存在处理器，先移除
+  if (showWaterCloud1Handler) {
+    window.removeEventListener('wheel', showWaterCloud1Handler, { passive: false });
+    window.removeEventListener('touchmove', showWaterCloud1Handler, { passive: false });
+    window.removeEventListener('scroll', showWaterCloud1Handler, { passive: false });
+    showWaterCloud1Handler = null;
+  }
+  
+  const waterCloud1 = document.querySelector('.water-cloud-1');
+  if (!waterCloud1) return;
+  
+  // 获取元素高度
+  const waterCloud1Height = waterCloud1.offsetHeight || 1054; // 元素高度，默认 1054px
+  // 计算显示三分之一的位置：元素底部在视口底部，向上移动 2/3 的高度，这样下三分之一在视口内
+  const thirdVisibleY = waterCloud1Height * 2 / 3;
+  
+  // 确保 waterCloud1ScrollTrigger 已销毁，避免干扰
+  if (waterCloud1ScrollTrigger) {
+    waterCloud1ScrollTrigger.kill();
+    waterCloud1ScrollTrigger = null;
+  }
+  
+  // 设置初始状态：云在父组件顶部，完全在视口下方（隐藏）
+  // 初始位置：translateY(waterCloud1Height) 完全在视口下方，opacity: 0 不可见
+  gsap.set(waterCloud1, {
+    y: waterCloud1Height, // 初始：完全在视口下方
+    opacity: 0, // 初始隐藏
+    visibility: 'hidden', // 初始不可见
+    zIndex: 99
+  });
+  
+  let waterCloud1Shown = false; // 标记 water-cloud-1 是否已显示三分之一
+  
+  // 创建滚动事件处理器
+  showWaterCloud1Handler = (e) => {
+    // 如果已经显示过，允许正常滚动（不再阻止）
+    if (waterCloud1Shown) {
+      return; // 不阻止默认行为，允许正常滚动到下一页
+    }
+    
+    // 阻止默认滚动行为，页面不动
+    e.preventDefault();
+    e.stopPropagation();
+    
+    // 云朵从下往上进入，显示三分之一（下三分之一在视口内，上三分之二在视口上方）
+    // 从 waterCloud1Height（完全在视口下方）移动到 -thirdVisibleY（显示三分之一）
+    gsap.to(waterCloud1, {
+      y: -300, // 显示三分之一：上三分之二在视口上方，下三分之一在视口内
+      opacity: 1, // 显示云朵
+      visibility: 'visible', // 可见
+      duration: 0.8,
+      ease: 'power2.out',
+      onComplete: () => {
+        waterCloud1Shown = true;
+        
+        // 移除滚动事件监听，允许正常滚动到下一页
+        if (showWaterCloud1Handler) {
+          window.removeEventListener('wheel', showWaterCloud1Handler, { passive: false });
+          window.removeEventListener('touchmove', showWaterCloud1Handler, { passive: false });
+          window.removeEventListener('scroll', showWaterCloud1Handler, { passive: false });
+          showWaterCloud1Handler = null;
+        }
+        
+        // 初始化 ScrollTrigger，让云继续上移直到消失
+        initWaterCloud1FinalAnimation();
+      }
+    });
+    
+    return false;
+  };
+  
+  // 监听滚动事件（使用 passive: false，以便阻止默认行为）
+  window.addEventListener('wheel', showWaterCloud1Handler, { passive: false });
+  window.addEventListener('touchmove', showWaterCloud1Handler, { passive: false });
+  window.addEventListener('scroll', showWaterCloud1Handler, { passive: false });
+};
+
+// 重置 water-cloud-1 状态（隐藏）
+const resetWaterCloud1 = () => {
+  const waterCloud1 = document.querySelector('.water-cloud-1');
+  if (!waterCloud1) return;
+  
+  const waterCloud1Height = waterCloud1.offsetHeight || 1054;
+  
+  // 重置云朵到初始状态：完全在视口下方，隐藏
+  gsap.set(waterCloud1, {
+    y: waterCloud1Height, // 完全在视口下方
+    opacity: 0, // 隐藏
+    visibility: 'hidden', // 不可见
+    zIndex: 99
+  });
+  
+  // 销毁 ScrollTrigger
+  if (waterCloud1ScrollTrigger) {
+    waterCloud1ScrollTrigger.kill();
+    waterCloud1ScrollTrigger = null;
+  }
+  
+  // 移除滚动事件监听
+  if (showWaterCloud1Handler) {
+    window.removeEventListener('wheel', showWaterCloud1Handler, { passive: false });
+    window.removeEventListener('touchmove', showWaterCloud1Handler, { passive: false });
+    window.removeEventListener('scroll', showWaterCloud1Handler, { passive: false });
+    showWaterCloud1Handler = null;
+  }
+};
+
+// 初始化 water-cloud-1 最终动画（显示三分之一后继续上移直到消失）
+const initWaterCloud1FinalAnimation = () => {
+  const waterCloud1 = document.querySelector('.water-cloud-1');
+  if (!waterCloud1) return;
+  
+  const waterCloud1Height = waterCloud1.offsetHeight || 1054;
+  const thirdVisibleY = waterCloud1Height * 2 / 3; // 显示三分之一时的位置
+  const waterBgVideo = document.querySelector('.water-bg-video');
+  if (!waterBgVideo) return;
+  
+  // 如果已经创建过，先销毁
+  if (waterCloud1ScrollTrigger) {
+    waterCloud1ScrollTrigger.kill();
+    waterCloud1ScrollTrigger = null;
+  }
+  
+  // 使用 ScrollTrigger 让云继续上移，直到完全消失
+  // 从显示三分之一 (-thirdVisibleY) 移动到完全消失 (-waterCloud1Height，完全移出视口上方)
+  // 当 water-bg-video 完全在视口时（顶部到达视口顶部），云完全消失
+  // 使用 fromTo 明确指定起始和结束位置，确保从显示三分之一开始
+  waterCloud1ScrollTrigger = gsap.fromTo(waterCloud1, {
+    y: -300 // 起始位置：显示三分之一
+  }, {
+    y: -1000, // 结束位置：完全向上移动，让云完全消失（移出视口上方）
+    ease: 'none', // 使用 linear 动画，与滚动完全同步
+    scrollTrigger: {
+      trigger: waterBgVideo,
+      start: 'top bottom-=400', // 当 water-bg-video 顶部到达视口底部时开始
+      end: 'bottom top', // 当 water-bg-video 顶部到达视口顶部时结束（下一页完全在视口）
+      scrub: true, // 与滚动同步，平滑跟随
+      invalidateOnRefresh: true
+    }
+  });
 };
 
 // 跳过到气候视频结尾
@@ -4251,6 +4411,14 @@ onUnmounted(() => {
     showVideoAccessoriesHandler = null;
   }
   
+  // 清理显示 water-cloud-1 的滚动事件监听
+  if (showWaterCloud1Handler) {
+    window.removeEventListener('wheel', showWaterCloud1Handler);
+    window.removeEventListener('touchmove', showWaterCloud1Handler);
+    window.removeEventListener('scroll', showWaterCloud1Handler);
+    showWaterCloud1Handler = null;
+  }
+  
   // 清理显示第一个 description 的滚动事件监听
   if (showFirstDescriptionHandler) {
     window.removeEventListener('wheel', showFirstDescriptionHandler);
@@ -4549,14 +4717,14 @@ onUnmounted(() => {
   background-size: 1920px 9276px;
   background-repeat: no-repeat;
   background-position: center -1080px;
-  margin-top: 700px;
+  margin-top: 300px;
 
   .water-cloud-1{
     width: 1920px;
     height: 1054px;
     background-image: url("@/assets/images/geology/geology-to-water-element-1.png");
     background-size: cover;
-    margin-top: -300px;
+    margin-top: -200px;
     position: absolute;
     top: 0;
     z-index: 99;
@@ -4582,7 +4750,7 @@ onUnmounted(() => {
     min-width: 1920px;
     height: 100vh;
     min-height: 1080px;
-    margin-top: -200px;
+    /* margin-top: -200px; */
     will-change: transform;
     transform: translateZ(0);
     overflow: hidden;
