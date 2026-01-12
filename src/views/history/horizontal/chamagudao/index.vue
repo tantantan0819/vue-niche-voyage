@@ -705,7 +705,7 @@ onUnmounted(() => {
       background-repeat: no-repeat;
       position: absolute;
       right: -790px;
-      top: 0px;
+      top: -20px;
     }
     .bottle{
       .bottle-img{

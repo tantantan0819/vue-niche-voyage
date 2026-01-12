@@ -593,7 +593,7 @@ import geologyVideo3 from '@/assets/images/geology/geology-video-3.mp4'
 const router = useRouter()
 
 // 定义 emits
-const emit = defineEmits(['thirdVideoEnded'])
+const emit = defineEmits(['thirdVideoEnded', 'welcomeVideoEnded'])
 
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
@@ -1576,6 +1576,7 @@ const onWelcomeVideoEnded = () => {
     
     // 自动切换到 originVideo
     switchToOriginVideo();
+    emit('welcomeVideoEnded');
   }
 };
 
@@ -4399,8 +4400,8 @@ onUnmounted(() => {
   left: 0;
   width: 100vw;
   height: 100vh;
-  min-width: 1920px;
-  min-height: 1080px;
+  /* min-width: 1920px;
+  min-height: 1080px; */
   display: none; /* 初始状态隐藏 */
   z-index: 99;
 }
@@ -6166,7 +6167,7 @@ onUnmounted(() => {
     z-index: 9;
     left: 50%;
     transform: translateX(-50%);
-    top: 880px;
+    bottom: 100px;
   }
 }
 </style>

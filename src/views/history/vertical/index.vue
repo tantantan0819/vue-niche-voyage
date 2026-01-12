@@ -96,9 +96,9 @@ onUnmounted(() => {
       background-position: center center;
       background-repeat: no-repeat;
       position: absolute;
-      top: 17860px;
+      top: 17160px;
       left: 0px;
-      z-index: 999;
+      z-index: 1;
     }
 }
 </style>
