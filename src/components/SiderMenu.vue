@@ -787,6 +787,7 @@ const scrollToPage = async (targetId) => {
     cursor: pointer;
   }
   .menu-wrapper{
+    box-sizing: border-box;
     padding: 86px 30px;
     display: none;
     .first-level{
@@ -794,7 +795,7 @@ const scrollToPage = async (targetId) => {
       display: flex;
       position: relative;
       justify-content: flex-end;
-      min-height: 200px;
+      min-height: 18vh;
       transition: all ease-in-out 0.5s;
       &:last-child{
         border-bottom: 1px solid #fff;

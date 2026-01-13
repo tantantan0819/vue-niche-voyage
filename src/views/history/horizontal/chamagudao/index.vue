@@ -253,7 +253,7 @@
             data-parallax-speed="1.2"
             data-parallax-center-lock="true"
         >
-          <div class="bottle-detail">金瓶掣签”苯巴瓶</div>
+          <div class="bottle-detail">“金瓶掣签”苯巴瓶</div>
           <p>用于甄选活佛转世灵童的金苯巴瓶，</p>
           <p>是维护西藏稳定，巩固国家统一的历史见证。</p>
         </div>

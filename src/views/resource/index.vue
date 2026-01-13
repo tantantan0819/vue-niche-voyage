@@ -68,6 +68,7 @@
             <div class="river"></div>
             <div class="mountain"></div>
             <div class="dam"></div>
+            <div class="desc-title">藏木水电站</div>
           </div>
           <div class="water-energy-introduction">
             <p class="earlySummer-serif">水能</p>
@@ -129,7 +130,7 @@
         </div>
         </div>
       </div>
-      <div class="green-wrapper">
+      <div class="green-wrapper" ref="greenWrapper">
         <!-- 冻土 -->
         <div class="tjaele-enery-wrapper">
           <div class="tjaele-enery-interduction-img1"></div>
@@ -244,6 +245,7 @@ const panelVideo = ref<HTMLVideoElement | null>(null);
 const panelOverlayBefore = ref<HTMLDivElement | null>(null);
 const backgroundWrapperRef = ref<HTMLDivElement | null>(null);
 const backgroundContentRef = ref<HTMLDivElement | null>(null);
+const greenWrapper = ref<HTMLDivElement | null>(null);
 const panelVideoSrc = new URL(
   "@/assets/images/resource/resource-animation-baking.mp4",
   import.meta.url
@@ -391,47 +393,74 @@ const setupContentAnimations = () => {
   }
 
   // 水电站升起 - 使用 containerAnimation 与主滚动动画同步
+  const waterEnergyWrapper = document.querySelector('.water-energy-warpper');
   const waterStation = document.querySelector('.water-energy-station');
-  if (waterStation) {
+  if (waterStation && waterEnergyWrapper) {
     // 先清理可能存在的旧动画
     const existingTriggers = ScrollTrigger.getAll().filter(trigger => {
-      return trigger.vars && trigger.vars.trigger === waterStation;
+      return trigger.vars && trigger.vars.trigger === waterEnergyWrapper;
     });
     existingTriggers.forEach(trigger => trigger.kill());
 
-    const stationTimeLine = gsap.timeline({
-      scrollTrigger: {
-        trigger: waterStation,
-        containerAnimation: scrollAnimation,
-        start: "left+=500 right",
-        end: "+=500",
-        scrub: 4,
-        invalidateOnRefresh: true,
-        markers: false,
-      }
-    });
-
     const river = waterStation.querySelector('.river');
-    const mountain = waterStation.querySelector('.mountain');
     const dam = waterStation.querySelector('.dam');
+    const mountain = waterStation.querySelector('.mountain');
     
+    // 设置初始状态：river 和 dam 完全隐藏（scaleY: 0，从底部向上生长）
     if (river) {
-      stationTimeLine.to(river, {
-        y: pxToVh(-700),
-        duration: 0.1
-      });
-    }
-    if (mountain) {
-      stationTimeLine.to(mountain, {
-        y: pxToVh(-500),
-        duration: 0.1
+      gsap.set(river, {
+        scaleY: 0,
+        transformOrigin: 'bottom center'
       });
     }
     if (dam) {
+      gsap.set(dam, {
+        scaleY: 0,
+        transformOrigin: 'bottom center'
+      });
+    }
+    if(mountain){
+      gsap.set(mountain, {
+        scaleY: 0,
+        transformOrigin: 'bottom center'
+      });
+    }
+
+
+    // 创建动画时间线，当滑动到 water-energy-wrapper 时触发
+    const stationTimeLine = gsap.timeline({
+      scrollTrigger: {
+        trigger: waterEnergyWrapper,
+        containerAnimation: scrollAnimation,
+        start: "left+=3600 right", // 当 water-energy-wrapper 的左边到达视口右边时开始
+        end: "+=300", // 滚动 800px 的距离
+        scrub: true, // 与滚动同步，支持反向滚动（快速）
+        invalidateOnRefresh: true,
+        markers: false
+      }
+    });
+
+    // river 和 dam 快速向上生长直到完全展示
+    if (river) {
+      stationTimeLine.to(river, {
+        scaleY: 1, // 从 0 生长到 1（完全展示）
+        duration:0.3,
+        ease: 'power2.out'
+      }, 0); // 同时开始
+    }
+    if (dam) {
       stationTimeLine.to(dam, {
-        y: pxToVh(-700),
-        duration: 0.1
-      }, '-=0.1');
+        scaleY: 1, // 从 0 生长到 1（完全展示）
+        duration: 0.3,
+        ease: 'power2.out'
+      }, 0.2); 
+    }
+    if(mountain){
+      stationTimeLine.to(mountain, {
+        scaleY: 1, // 从 0 生长到 1（完全展示）
+        duration: 0.2,
+        ease: 'power2.out'
+      }, 0.15); 
     }
   }
 
@@ -449,12 +478,13 @@ const setupContentAnimations = () => {
 
     gsap.to(img1, {
       y: pxToVh(-704),
+      ease: 'power2.out',
       scrollTrigger: {
         trigger: img1,
         containerAnimation: scrollAnimation,
-        start: "left right",
-        end: "+=1300",
-        scrub: 4,
+        start: "left+=2000 right",
+        end: "+=200", // 大幅减少滚动距离，实现一瞬间的效果
+        scrub: 1, // 减小 scrub 值，让动画更快速响应
         invalidateOnRefresh: true,
         markers: false,
       },
@@ -469,12 +499,13 @@ const setupContentAnimations = () => {
 
     gsap.to(img2, {
       y: pxToVh(-541),
+      ease: 'power2.out',
       scrollTrigger: {
         trigger: img2,
         containerAnimation: scrollAnimation,
-        start: "left right",
-        end: "+=1200",
-        scrub: 4,
+        start: "left+=2000 right",
+        end: "+=200", // 大幅减少滚动距离，实现一瞬间的效果
+        scrub: 1, // 减小 scrub 值，让动画更快速响应
         invalidateOnRefresh: true,
         markers: false,
       },
@@ -489,17 +520,48 @@ const setupContentAnimations = () => {
 
     gsap.to(img3, {
       y: pxToVh(-416),
+      ease: 'power2.out',
       scrollTrigger: {
         trigger: img3,
         containerAnimation: scrollAnimation,
-        start: "left right",
-        end: "+=1100",
-        scrub: 4,
+        start: "left+=2000 right",
+        end: "+=200", // 大幅减少滚动距离，实现一瞬间的效果
+        scrub: 1, // 减小 scrub 值，让动画更快速响应
         invalidateOnRefresh: true,
         markers: false,
       },
     });
   }
+
+  // tjaele-enery-wrapper 慢慢变绿 - 当左边到达视口时开始
+  const greenWrapperEl =  document.querySelector('.tjaele-enery-wrapper');
+  if (greenWrapperEl && scrollAnimation) {
+    // 先清理可能存在的旧动画
+    const existingTriggersGreen = ScrollTrigger.getAll().filter(trigger => {
+      return trigger.vars && trigger.vars.trigger === greenWrapperEl;
+    });
+    existingTriggersGreen.forEach(trigger => trigger.kill());
+
+    // 设置初始背景色为黑色（与页面背景一致）
+    gsap.set(greenWrapperEl, {
+      backgroundColor: '#030303'
+    });
+
+    // 当 tjaele-enery-wrapper 的左边到达视口时，慢慢变为绿色
+    gsap.to(greenWrapperEl, {
+      backgroundColor: '#1b1d10', // 目标绿色
+      scrollTrigger: {
+        trigger: greenWrapperEl,
+        containerAnimation: scrollAnimation,
+        start: "left+=2400 right", // 当左边到达视口右边时开始
+        end: "+=300", // 滚动 1000px 的距离内完成变色
+        scrub: 2, // 与滚动同步，慢慢变化
+        invalidateOnRefresh: true,
+        markers: false,
+      },
+    });
+  }
+
   // 内容视差 - 让 resource-background-wrapper 的内容移动，背景图保持固定
   // 这样内容会相对背景图移动，产生视差效果，同时背景图与视频最后一帧保持衔接
   const backgroundContent = backgroundContentRef.value || document.querySelector('.resource-background-content');
@@ -840,13 +902,14 @@ onUnmounted(() => {
     position: relative;
     margin-left: 50px;
     transform-style: preserve-3d; /* 保持子元素的 3D 空间 */
-    &::after {
-      content: "藏木水电站";
+    .desc-title{
       font-size: 24px;
       bottom: 620px;
       position: absolute;
-      right: 410px;
+      top: 260px;
+      right: 400px;
       color: #ead9c9;
+      font-family: 'Alibaba-PuHuiTi-Light';
     }
     .mountain {
       background-image: url("@/assets/images/resource/resource-element-mountain.png");
@@ -856,8 +919,9 @@ onUnmounted(() => {
       width: 384px;
       height: 100%;
       position: absolute;
-      bottom: -508px;
-      right: 0;
+      bottom: 40px;
+      right: 0px;
+      z-inde: 1;
     }
     .river {
       background-image: url("@/assets/images/resource/resource-element-river.png");
@@ -867,7 +931,9 @@ onUnmounted(() => {
       width: 100vw;
       height: 700px;
       position: absolute;
-      bottom: -700px;
+      bottom: 0; /* 改为 bottom: 0，通过 scaleY 控制显示/隐藏 */
+      right: 0;
+      z-index:2;
     }
     .dam {
       background-image: url("@/assets/images/resource/resource-element-dam.png");
@@ -877,7 +943,8 @@ onUnmounted(() => {
       width: 100vw;
       height: 60vh;
       position: absolute;
-      bottom: -700px;
+      bottom: 60px; /* 改为 bottom: 0，通过 scaleY 控制显示/隐藏 */
+      z-index: 3;
     }
   }
   .water-energy-introduction {
@@ -1085,13 +1152,11 @@ onUnmounted(() => {
   }
 }
 .green-wrapper {
-  background-color: #1b1d10;
   height: 100vh;
   display: flex;
   margin-left: 1000px;
 }
 .tjaele-enery-wrapper {
-  background-color: #1b1d10;
   height: 100vh;
   position: relative;
   width: 2920px;
@@ -1160,6 +1225,7 @@ onUnmounted(() => {
   }
 }
 .copper-mine-warpper {
+  background-color: #1b1d10;
   border-right: 2px solid #fff;
   border-left: 2px solid #fff;
   display: flex;

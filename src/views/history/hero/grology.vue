@@ -362,7 +362,7 @@
             </div>
             <div class="bos-mutus-description" ref="bosMutusDescription" @click="closeBosMutusDescription">
               <div class="bos-mutus-description-img"></div>
-              <div class="bos-mutus-description-text">主要分布于西藏、青海、四川、甘肃、新疆等地，国家一级保护野生动物，是家牦牛的祖先。体型粗壮，体长可达2米有余。雌雄均有角，雄性更大。胸腹及腿部毛长如蓑衣，可达40厘米。常栖息于海拔4000-5000米的高山草甸和荒漠地带。。</div>
+              <div class="bos-mutus-description-text">主要分布于西藏、青海、四川、甘肃、新疆等地，国家一级保护野生动物，是家牦牛的祖先。体型粗壮，体长可达2米有余。雌雄均有角，雄性更大。胸腹及腿部毛长如蓑衣，可达40厘米。常栖息于海拔4000-5000米的高山草甸和荒漠地带。</div>
             </div>
           </div>
         </div>
@@ -3885,7 +3885,7 @@ const initShowWaterCloud1Scroll = () => {
     // 云朵从下往上进入，显示三分之一（下三分之一在视口内，上三分之二在视口上方）
     // 从 waterCloud1Height（完全在视口下方）移动到 -thirdVisibleY（显示三分之一）
     gsap.to(waterCloud1, {
-      y: -300, // 显示三分之一：上三分之二在视口上方，下三分之一在视口内
+      y: pxToVh(-400), // 显示三分之一：上三分之二在视口上方，下三分之一在视口内
       opacity: 1, // 显示云朵
       visibility: 'visible', // 可见
       duration: 0.8,
@@ -3966,9 +3966,9 @@ const initWaterCloud1FinalAnimation = () => {
   // 当 water-bg-video 完全在视口时（顶部到达视口顶部），云完全消失
   // 使用 fromTo 明确指定起始和结束位置，确保从显示三分之一开始
   waterCloud1ScrollTrigger = gsap.fromTo(waterCloud1, {
-    y: -300 // 起始位置：显示三分之一
+    y: pxToVh(-400) // 起始位置：显示三分之一
   }, {
-    y: -1000, // 结束位置：完全向上移动，让云完全消失（移出视口上方）
+    y: pxToVh(-1200), // 结束位置：完全向上移动，让云完全消失（移出视口上方）
     ease: 'none', // 使用 linear 动画，与滚动完全同步
     scrollTrigger: {
       trigger: waterBgVideo,
@@ -4349,7 +4349,7 @@ onMounted(() => {
   // 初始化 water-bg-video 滚动固定
   initWaterVideoScroll();
   // 初始化 water-cloud-1 动画
-  initWaterCloud1Animation();
+  // initWaterCloud1Animation();
   // 初始化 water-cloud-2 动画
   initWaterCloud2Animation();
   // 大雁动画
@@ -4683,8 +4683,8 @@ onUnmounted(() => {
 .video-accessories{
   width: 100%;
   height: 100%;
-  min-width: 1920px;
-  min-height: 1080px;
+  /* min-width: 1920px;
+  min-height: 1080px; */
   position: absolute;
   top: 0;
   left: 0;
