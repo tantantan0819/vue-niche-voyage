@@ -637,6 +637,10 @@ const setupSecondScreenDisplacement = async () => {
     secondScreenDisplacementTrigger.kill();
   }
 
+
+  // 先让云朵隐藏，等滑到最左侧时再出现
+  // gsap.set('.clouds-wrapper-2', { autoAlpha: 0 });
+
   // 使用 timeline 实现三个阶段的动画：向左 -> 向上 -> 向右
   const tl = gsap.timeline({
     scrollTrigger: {
@@ -658,6 +662,13 @@ const setupSecondScreenDisplacement = async () => {
     ease: 'none'
   });
 
+  // 雪莲名字向左移动
+  tl.to('.lives .snowlotus-name', {
+    x: pxToVw(-200),
+    duration: 1,
+    ease: 'none'
+  },'<');
+
   // 第二步：向上移动
   tl.to('.lives .second-screen-new', {
     y: pxToVw(-1080),
@@ -665,10 +676,24 @@ const setupSecondScreenDisplacement = async () => {
     ease: 'none'
   });
 
+  // 雪莲名字向上移动
+  tl.to('.lives .snowlotus-name', {
+    y: pxToVw(-200),
+    duration: 1,
+    ease: 'none'
+  },'<');
+
   // 第三步：向右移动（回到初始 x 位置）
   tl.to('.lives .second-screen-new', {
     x: pxToVw(0),
     duration: 1,
+    ease: 'none'
+  });
+
+    // 到达最左侧后再显示云朵
+    tl.to('.clouds-wrapper-2', {
+    autoAlpha: 1,
+    duration: 0.5,
     ease: 'none'
   });
 
@@ -730,6 +755,12 @@ const setupThirdScreenDisplacement = async () => {
     ease: 'none'
   });
 
+  tl.to('.clouds-wrapper-3', {
+    y: pxToVh(-300),
+    duration: 0.5,
+    ease: 'none'
+  });
+
   // 保存 ScrollTrigger 引用以便后续清理
   thirdScreenDisplacementTrigger.value = tl.scrollTrigger;
 };
@@ -772,11 +803,11 @@ const setupCloud2Parallax = async () => {
   }
 
   liveCloud2ScrollTrigger = gsap.to(liveCloud, {
-    y: pxToVh(-500),
+    y: pxToVh(-100),
     ease: 'none', // 线性动画，与滚动完全同步
     scrollTrigger: {
       trigger: liveCloud,
-      start: 'top bottom-=500', // 当元素顶部到达视口底部时开始
+      start: 'top bottom', // 当元素顶部到达视口底部时开始
       end: `top top`, // 当元素顶部到达视口顶部时结束
       scrub: true, // 与滚动同步，平滑跟随
       invalidateOnRefresh: true,
