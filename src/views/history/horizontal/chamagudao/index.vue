@@ -185,7 +185,7 @@
       <annotation-dot>
         <div>
           <p class="popularization-content">《何以中华：一百件文物中的中华民族共同体历</p>
-          <p class="popularization-content">史记忆：汉文、藏文》四川民族出版社 2023</p>
+          <p class="popularization-content">史记忆》（汉藏双语）四川民族出版社 2023</p>
         </div>
       </annotation-dot>
     </div>
@@ -268,7 +268,7 @@
           data-parallax-center-lock="true">
         <div>
           <p class="popularization-content">《何以中华：一百件文物中的中华民族共同体历</p>
-          <p class="popularization-content">史记忆：汉文、藏文》四川民族出版社 2023</p>
+          <p class="popularization-content">史记忆》（汉藏双语）四川民族出版社 2023</p>
         </div>
       </annotation-dot>
       <!-- <div

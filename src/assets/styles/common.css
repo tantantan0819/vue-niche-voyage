@@ -101,7 +101,7 @@ div{
         color: #403321;
         line-height: 36px;
         margin-left: 0!important;
-
+        cursor: pointer;
     }
 }
 ._flex{

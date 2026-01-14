@@ -7,8 +7,8 @@
     <div class="popularization-wrapper" ref="wrapperRef">
 <!--      <div class="close" @click="handleClose">x</div>-->
       <div class="title"><span>·</span>{{ title }}</div>
-      <div ref="slotWrapper">
-        <slot @click="openLink"></slot>
+      <div ref="slotWrapper" @click="openLink">
+        <slot></slot>
       </div>
     </div>
   </div>
@@ -81,7 +81,6 @@ const handleToggle = () => {
 
 // 跳转链接
 const openLink = () => {
-  console.log(1111);
   const link = linkMap[slotText.value];
   window.open(link, '_blank');
 }
@@ -91,8 +90,7 @@ const slotText = ref('');
 onMounted(() => {
   if (slotWrapper.value) {
     // 获取容器內所有文字
-    slotText.value = slotWrapper.value.innerText.trim();
-    console.log('Slot content:', slotText.value);
+    slotText.value = slotWrapper.value.innerText.replace(/[\r\n]+/g, "");
   }
 })
 </script>
