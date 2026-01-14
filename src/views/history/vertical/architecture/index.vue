@@ -403,11 +403,11 @@ const initTextWrapperAnimation = () => {
 </script>
 <style>
 .architecture{
-  width: 100vw;
+  width: 1920px;
   background-image: url("@/assets/images/architecture/architecture-bg.jpg");
   background-size: cover;
   background-repeat: no-repeat;
-  min-height: 11380px;
+  min-height: 12960px;
   /* background-position: center -1080px; */
   overflow-x: hidden;
   .first-screen{
@@ -610,8 +610,6 @@ const initTextWrapperAnimation = () => {
       left: -80px;
       width: 600px;
       .popularization-wrapper {
-        background-color: #fff;
-        opacity: 0.7 !important;
         position: relative;
         top: -100px;
         margin-top: 0px!important;

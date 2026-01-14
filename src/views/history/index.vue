@@ -5,7 +5,7 @@
     <!-- 侧边导航栏 -->
     <side-menu :show="showSideMenu"></side-menu>
     <!-- 头部：加载进度条只显示头部资源，避免用户等待时间过长 -->
-    <hero @third-video-ended="handleThirdVideoEnded"></hero>
+    <hero @welcome-video-ended="handleWelcomeVideoEnded"></hero>
     <horizontal></horizontal>
   </div>
 </template>
@@ -60,10 +60,14 @@ const showSplashLoader = ref(true)
 // 侧边菜单显示控制
 const showSideMenu = ref(false)
 
-// 处理第三个视频播放完毕事件
-const handleThirdVideoEnded = () => {
+const handleWelcomeVideoEnded = () => {
+  console.log('welcomeVideoEnded')
   showSideMenu.value = true
 }
+// 处理第三个视频播放完毕事件
+// const handleThirdVideoEnded = () => {
+//   showSideMenu.value = true
+// }
 
 /**
  * 临时解除 horizontal 的 pin 状态，用于 scrollIntoView 跳转
