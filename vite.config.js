@@ -1,35 +1,37 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
-import viteImagemin from 'vite-plugin-imagemin'
+// import viteImagemin from 'vite-plugin-imagemin' // 已禁用：图片文件夹有814MB，524张图片，压缩会导致构建卡住
 import path from 'path'
 
 export default defineConfig({
   plugins: [
     vue(),
-    // 图片压缩配置
-    viteImagemin({
-      gifsicle: {
-        optimizationLevel: 7, // gif 压缩级别
-        interlaced: false
-      },
-      optipng: {
-        optimizationLevel: 7 // png 压缩级别
-      },
-      mozjpeg: {
-        quality: 80, // jpg 质量（0-100，数值越小体积越小）
-        progressive: true
-      },
-      pngquant: {
-        quality: [0.7, 0.8], // png 质量范围
-        speed: 4
-      },
-      svgo: {
-        plugins: [
-          { name: 'removeViewBox' },
-          { name: 'removeEmptyAttrs', active: false }
-        ]
-      }
-    })
+    // 图片压缩已禁用：图片文件夹有814MB，524张图片，压缩会导致构建非常慢甚至卡住
+    // 建议在开发前使用专业工具（如 ImageOptim、TinyPNG、Squoosh）预先优化图片
+    // 如果需要启用，可以取消下面的注释，但建议降低压缩级别（optimizationLevel: 3, speed: 1）
+    // viteImagemin({
+    //   gifsicle: {
+    //     optimizationLevel: 7, // gif 压缩级别
+    //     interlaced: false
+    //   },
+    //   optipng: {
+    //     optimizationLevel: 7 // png 压缩级别
+    //   },
+    //   mozjpeg: {
+    //     quality: 80, // jpg 质量（0-100，数值越小体积越小）
+    //     progressive: true
+    //   },
+    //   pngquant: {
+    //     quality: [0.7, 0.8], // png 质量范围
+    //     speed: 4
+    //   },
+    //   svgo: {
+    //     plugins: [
+    //       { name: 'removeViewBox' },
+    //       { name: 'removeEmptyAttrs', active: false }
+    //     ]
+    //   }
+    // })
   ],
   // 静态资源处理：大文件不打包进 bundle，改为外部引用
   assetsInclude: ['**/*.mp4', '**/*.webm'],
