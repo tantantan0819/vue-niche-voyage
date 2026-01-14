@@ -76,6 +76,7 @@ const hideSplashLoader = () => {
   font-size: 120px;
   color: #2c7aa5;
   text-align: center;
+  font-weight: 'Alibaba-PuHuiTi-Bold'!important;
 }
 
 .progress-wrapper {

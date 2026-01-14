@@ -638,7 +638,7 @@ onMounted(() => {
 })
 
 const toAnswerPage = () =>{
-  router.push('/voyage/unopen')
+  router.push('/voyage/answer')
 }
 </script>
 
