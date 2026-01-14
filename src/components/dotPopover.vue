@@ -1,13 +1,13 @@
+<!--
+ * @Author: ShirleyWang 1374901698@qq.com
+ * @Date: 2026-01-04 23:32:55
+ * @LastEditors: ShirleyWang 1374901698@qq.com
+ * @LastEditTime: 2026-01-13 23:16:04
+ * @FilePath: /vue-niche-voyage/src/components/dotPopover.vue
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+-->
 <template>
    <div class="dot-content-container">
-     <!-- <div class="dot-box"  @click="showPopover" >
-        <div class="dot-outer"> <div class="dot-inner"> </div></div>
-     </div> -->
-       <!-- <div class="popover-container" v-if="popoverVisible">
-        <div class="popover-title">·{{ title }}</div>
-        <div class="popover-divider"></div>
-        <div class="popover-content"></div>
-    </div> -->
       <div class="lamp-item-wrap" @click="openOrClosePopover">
         <div class="lamp-item-core"></div>
         <div class="lamp-item"></div>
@@ -15,14 +15,15 @@
       <div class="popover-container" ref="popoverElement">
         <div class="popover-title">·{{ title }}</div>
         <div class="popover-divider"></div>
-        <div class="popover-content">{{ content }}</div>
+        <div class="popover-content" @click="openLink">{{ content }}</div>
       </div>
    </div>
 </template>
 <script setup>
 import { ref } from 'vue'
 import { gsap } from 'gsap';
-import { pxToVw, pxToVh } from '../utils/viewportUtils';
+import { pxToVw } from '../utils/viewportUtils';
+import { linkMap } from '../utils/linkMap';
 const props = defineProps({
   title: String,
   content: String
@@ -65,6 +66,12 @@ const closeProcession = () => {
     duration: 0.5
   });
 };
+
+// 跳转链接
+const openLink = () => {
+  const link = linkMap[props.content];
+  window.open(link, '_blank');
+}
 </script>
 <style scoped>
     .dot-content-container{
@@ -90,6 +97,9 @@ const closeProcession = () => {
             height: 2px;
             margin: 10px 0;
             background: url('../assets/images/literaryDrama/drama-popup-divider-1.png') no-repeat center center / cover;
+        }
+        .popover-content{
+          cursor: pointer;
         }
     }
 </style>
