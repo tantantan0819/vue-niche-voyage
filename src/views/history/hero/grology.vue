@@ -295,6 +295,59 @@ const toggleSound = () => {
   isMuted.value = !isMuted.value;
 };
 
+// 暴露全局控制对象，用于菜单点击时控制视频和滚动锁定
+if (typeof window !== 'undefined') {
+  window.__grologyVideoControl = {
+    // 停止所有视频
+    stopAllVideos: () => {
+      // 停止welcomeVideo
+      if (welcomeVideo1.value) welcomeVideo1.value.pause();
+      if (welcomeVideo2.value) welcomeVideo2.value.pause();
+      // 停止originVideo
+      if (originVideo1.value) originVideo1.value.pause();
+      if (originVideo2.value) originVideo2.value.pause();
+      // 停止climateVideo
+      if (climateVideo1.value) climateVideo1.value.pause();
+    },
+    // 释放所有滚动锁定
+    releaseScrollLocks: () => {
+      disableScrollLock();
+      disableLightScrollLock();
+    },
+    // 停止视频并释放滚动锁定
+    stopVideosAndReleaseScroll: () => {
+      window.__grologyVideoControl.stopAllVideos();
+      window.__grologyVideoControl.releaseScrollLocks();
+    },
+    // 切换到指定标题的originVideo
+    switchToOriginVideoByTitle: async (title) => {
+      const index = originInfos.value.findIndex(info => info.title === title);
+      if (index !== -1) {
+        // 停止所有视频，确保不会有多个视频同时播放
+        window.__grologyVideoControl.stopAllVideos();
+        
+        // 释放滚动锁定
+        disableScrollLock();
+        disableLightScrollLock();
+        
+        // 如果还没有显示originVideo，先切换到originVideo
+        if (!welcomeVideoHidden.value) {
+          await switchToOriginVideo();
+        }
+        
+        // 更新当前视频索引
+        originCurrentIndex.value = index;
+        
+        // 切换到对应的视频
+        await changeOriginVideo(originInfos.value[index].videoUrl);
+        
+        // 启用滚动锁定（如果需要）
+        enableScrollLock();
+      }
+    }
+  };
+}
+
 // 监听第一个视频的时间更新
 const onClimateVideo1TimeUpdate = () => {
   if (!climateVideo1.value) return;
@@ -835,6 +888,11 @@ const changeOriginVideo = async (videoSrc) => {
   }
   
   try {
+    // 停止当前正在播放的视频
+    if (currentVideoElement) {
+      currentVideoElement.pause();
+    }
+    
     // 设置新视频源并加载
     nextVideoElement.src = newVideoUrl;
     
@@ -884,6 +942,16 @@ const switchToOriginVideo = async () => {
   if (welcomeVideoHidden.value) return;
   
   welcomeVideoHidden.value = true;
+  
+  // 停止所有视频，确保不会有多个视频同时播放
+  // 停止welcomeVideo
+  if (welcomeVideo1.value) welcomeVideo1.value.pause();
+  if (welcomeVideo2.value) welcomeVideo2.value.pause();
+  // 停止originVideo
+  if (originVideo1.value) originVideo1.value.pause();
+  if (originVideo2.value) originVideo2.value.pause();
+  // 停止climateVideo
+  if (climateVideo1.value) climateVideo1.value.pause();
   
   // 确保页面滚动位置在顶部
   window.scrollTo(0, 0);
@@ -3635,7 +3703,7 @@ onUnmounted(() => {
   background-repeat: no-repeat;
   position: absolute;
   bottom: 70px;
-  left: 70px;
+  left: 1.5%;
   cursor: pointer;
   display: flex;
   justify-content: center;
@@ -3765,13 +3833,13 @@ onUnmounted(() => {
     background-size: cover;
     margin-top: -200px;
     position: absolute;
-    top: 0;
+    top: -130px;
     z-index: 99;
   }
   .water-cloud-2-wrapper{
     width: 1920px;
     height: 746px;
-    background-color: #e1e1e1;
+    //background-color: #e1e1e1;
     position: absolute;
     top: 1080px;
   }
@@ -3941,8 +4009,8 @@ onUnmounted(() => {
     position: absolute;
   }
   .cloud-2{
-    width: 1391px;
-    height: 1238px;
+    width: 1393px;
+    height: 1444px;
     background-image: url("@/assets/images/geology/geology-to-water-element-5.png");
     background-size: cover;
     left: 0px;
