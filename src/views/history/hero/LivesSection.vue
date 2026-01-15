@@ -56,7 +56,7 @@
                  data-parallax-from="100"
                  data-parallax-to="0"
                  data-parallax-speed="1.1"
-                 data-parallax-center-lock="true">大红景天</div>
+                 data-parallax-center-lock="true">大花红景天</div>
             <div class="flower-name flower-english"
                  data-parallax="true"
                  data-parallax-axis="y"
@@ -179,18 +179,9 @@
               <div class="sheep-img"></div>
               <div class="sheep-img-grass"></div>
               <div class="sheep-name sheep-chinese"  data-parallax="true"
-                   data-parallax-axis="y"
-                   data-parallax-from="100"
-                   data-parallax-to="0"
-                   data-parallax-speed="1.1"
-                   data-parallax-center-lock="true">藏羚</div>
+                  >藏羚</div>
               <div class="sheep-name sheep-english"
-                   data-parallax="true"
-                   data-parallax-axis="y"
-                   data-parallax-from="100"
-                   data-parallax-to="0"
-                   data-parallax-speed="1.1"
-                   data-parallax-center-lock="true">Pantholops hodgsonii</div>
+                  >Pantholops hodgsonii</div>
             </div>
             <div class="sheep-description" ref="sheepDescription2" @click="handleSheep2Close">
               <div class="sheep-description-img"></div>
@@ -203,20 +194,8 @@
               <div class="bos-mutus-img"></div>
               <div class="bos-mutus-img-grass"></div>
               <div class="bos-mutus-name bos-mutus-chinese"
-                   data-parallax="true"
-                   data-parallax-axis="y"
-                   data-parallax-from="100"
-                   data-parallax-to="0"
-                   data-parallax-speed="1.1"
-                   data-parallax-center-lock="true"
               >野牦牛</div>
               <div class="bos-mutus-name bos-mutus-english"
-                   data-parallax="true"
-                   data-parallax-axis="y"
-                   data-parallax-from="100"
-                   data-parallax-to="0"
-                   data-parallax-speed="1.1"
-                   data-parallax-center-lock="true"
               >Bos mutus</div>
             </div>
             <div class="bos-mutus-description" ref="bosMutusDescription" @click="handleBosMutusClose">
@@ -664,7 +643,7 @@ const setupSecondScreenDisplacement = async () => {
 
   // 雪莲名字向左移动
   tl.to('.lives .snowlotus-name', {
-    x: pxToVw(-200),
+    x: pxToVw(-300),
     duration: 1,
     ease: 'none'
   },'<');
@@ -683,6 +662,13 @@ const setupSecondScreenDisplacement = async () => {
     ease: 'none'
   },'<');
 
+  // 岩羊名字向上移动
+  tl.to('.lives .sheep1-name ', {
+    y: pxToVh(-300),
+    duration: 1,
+    ease: 'none'
+  },'<');
+
   // 第三步：向右移动（回到初始 x 位置）
   tl.to('.lives .second-screen-new', {
     x: pxToVw(0),
@@ -690,12 +676,33 @@ const setupSecondScreenDisplacement = async () => {
     ease: 'none'
   });
 
-    // 到达最左侧后再显示云朵
-    tl.to('.clouds-wrapper-2', {
+  // 岩羊名字向右移动
+  tl.to('.lives .sheep1-name ', {
+    x: pxToVw(300),
+    duration: 1,
+    ease: 'none'
+  },'<');
+
+  // 大花红景天名字向右移动
+  tl.to('.lives .flower-name ', {
+    x: pxToVw(300),
+    duration: 1,
+    ease: 'none'
+  },'<');
+
+   // 到达最左侧后再显示云朵
+  tl.to('.clouds-wrapper-2', {
     autoAlpha: 1,
     duration: 0.5,
     ease: 'none'
   });
+
+  // 大花红景天名字向上移动（等clouds-wrapper-2显示完成后再移动）
+  tl.to('.lives .flower-name ', {
+    y: pxToVh(-200),
+    duration: 0.5,
+    ease: 'none'
+  },'>');
 
   // 保存 ScrollTrigger 引用以便后续清理
   secondScreenDisplacementTrigger = tl.scrollTrigger;
@@ -734,12 +741,48 @@ const setupThirdScreenDisplacement = async () => {
     ease: 'none'
   });
 
+  tl.to('.lives .grus-name', {
+    y: pxToVh(-200),
+    duration: 1,
+    ease: 'none'
+  },'<');
+
+  tl.to('.lives .rabbit-name', {
+    y: pxToVh(-200),
+    duration: 1,
+    ease: 'none'
+  },'<');
+
   // 第二步：向左移动
   tl.to('.lives .horizontal-03', {
     x: pxToVw(-3840),
     duration: 3,
     ease: 'none'
   });
+
+  tl.to('.lives .grus-name', {
+    x: pxToVw(-300),
+    duration: 1,
+    ease: 'none'
+  },'<');
+
+  tl.to('.lives .rabbit-name', {
+    x: pxToVw(-300),
+    duration: 1,
+    ease: 'none'
+  },'<');
+
+  tl.to('.lives .sheep-name', {
+    x: pxToVw(-300),
+    duration: 1,
+    ease: 'none'
+  },'<');
+
+  tl.to('.lives .bos-mutus-name', {
+    x: pxToVw(-600),
+    duration: 3,
+    ease: 'none'
+  },'<');
 
   // 第三步：继续向上移动（如果需要）
   tl.to('.lives .horizontal-03', {
@@ -748,6 +791,12 @@ const setupThirdScreenDisplacement = async () => {
     ease: 'none'
   });
 
+  tl.to('.lives .panda-name', {
+    y: pxToVw(-100),
+    duration: 0.5,
+    ease: 'none'
+  },'<');
+
   // 第四步：继续向左移动（如果需要）
   tl.to('.lives .horizontal-03', {
     x: pxToVw(-5760),
@@ -755,11 +804,29 @@ const setupThirdScreenDisplacement = async () => {
     ease: 'none'
   });
 
+  tl.to('.lives .panda-name', {
+    x: pxToVw(-300),
+    duration: 1.5,
+    ease: 'none'
+  },'<');
+
+  tl.to('.lives .cjsh-name', {
+    x: pxToVw(-300),
+    duration: 1,
+    ease: 'none'
+  },'<');
+
   tl.to('.clouds-wrapper-3', {
-    y: pxToVh(-300),
+    y: pxToVh(-200),
     duration: 0.5,
     ease: 'none'
   });
+
+  // tl.to('.lives .cjsh-name', {
+  //   y: pxToVh(-100),
+  //   duration: 0.5,
+  //   ease: 'none'
+  // },'>');
 
   // 保存 ScrollTrigger 引用以便后续清理
   thirdScreenDisplacementTrigger.value = tl.scrollTrigger;
@@ -1262,12 +1329,12 @@ onMounted(() => {
   
   // 动物名称视差动画
   setupPantheraNameParallax();
-  setupGrusNameParallax();
-  setupRabbitNameParallax();
-  setupSheepNameParallax();
-  setupBosMutusNameParallax();
-  setupPandaNameParallax();
-  setupCjshNameParallax();
+  // setupGrusNameParallax();
+  // setupRabbitNameParallax();
+  // setupSheepNameParallax();
+  // setupBosMutusNameParallax();
+  // setupPandaNameParallax();
+  // setupCjshNameParallax();
 });
 
 onUnmounted(() => {
@@ -1565,15 +1632,14 @@ onUnmounted(() => {
         color: #fff;
         position: absolute;
         bottom: 160px;
-        left: 500px;
+        left: 300px;
         width: 100px;
-        font-weight: bold;
       }
       .flower-english{
         margin-top: 20px;
         position: absolute;
         bottom: 100px;
-        left: 450px;
+        left: 250px;
         font-style: italic;
 
       }
@@ -1626,15 +1692,15 @@ onUnmounted(() => {
         font-size: 36px;
         color: #434343;
         position: absolute;
-        top: -100px;
-        left: -100px;
+        top: -170px;
+        left: 100px;
         width: 380px;
       }
       .snowlotus-english{
         margin-top: 20px;
         position: absolute;
-        top: -70px;
-        left: -100px;
+        top: -140px;
+        left: 100px;
         font-style: italic;
 
       }
@@ -1687,7 +1753,7 @@ onUnmounted(() => {
         font-size: 36px;
         color: #fff;
         position: absolute;
-        bottom: -10px;
+        bottom: -300px;
         right: -260px;
         width: 380px;
       }
@@ -1695,7 +1761,7 @@ onUnmounted(() => {
         color: #fff;
         margin-top: 20px;
         position: absolute;
-        bottom: -60px;
+        bottom: -350px;
         right: -260px;
         font-style: italic;
 
@@ -1822,14 +1888,14 @@ onUnmounted(() => {
             font-size: 36px;
             color: #fff;
             position: absolute;
-            top: -50px;
+            top: 130px;
             right: -20px;
             width: 100px;
           }
           .grus-english{
             margin-top: 20px;
             position: absolute;
-            top: -20px;
+            top: 160px;
             right: -20px;
             font-style: italic;
           }
@@ -1891,18 +1957,16 @@ onUnmounted(() => {
             font-size: 36px;
             color: #fff;
             position: absolute;
-            top: 40px;
+            top: 240px;
             right: -120px;
             width: 100px;
-            font-weight: bold;
           }
           .rabbit-english{
             margin-top: 20px;
             position: absolute;
-            top: 70px;
+            top: 270px;
             right: -120px;
             font-style: italic;
-            font-weight: bold;
           }
 
           .rabbit-description{
@@ -1963,16 +2027,14 @@ onUnmounted(() => {
             color: #fff;
             position: absolute;
             bottom: 120px;
-            left: 0px;
+            left: 200px;
             width: 100px;
           }
           .sheep-english{
-            margin-top: 20px;
             position: absolute;
-            bottom: 80px;
-            left: 0px;
+            bottom: 10px;
+            left: 200px;
             font-style: italic;
-            font-weight: bold;
           }
 
           .sheep-description{
@@ -2033,16 +2095,15 @@ onUnmounted(() => {
             color: #fff;
             position: absolute;
             top: 0px;
-            right: -160px;
+            right: -400px;
             width: 100px;
           }
           .bos-mutus-english{
-            margin-top: 20px;
+            margin-top: 30px;
             position: absolute;
-            top: 50px;
-            right: -160px;
+            top: 30px;
+            right: -400px;
             font-style: italic;
-            font-weight: bold;
           }
 
           .bos-mutus-description{
@@ -2214,14 +2275,14 @@ onUnmounted(() => {
           }
           .panda-chinese{
             position: absolute;
-            top: -120px;
-            left: 640px;
+            top: 20px;
+            left: 740px;
           }
           .panda-english{
             margin-top: 20px;
             position: absolute;
-            top: -84px;
-            left: 640px;
+            top: 50px;
+            left: 740px;
             font-style: italic;
 
           }
@@ -2273,16 +2334,15 @@ onUnmounted(() => {
             color: #fff;
             position: absolute;
             top: 0px;
-            left: -370px;
+            left: -130px;
             width: 100px;
           }
           .cjsh-english{
             margin-top: 20px;
             position: absolute;
             top: 50px;
-            left: -370px;
+            left: -130px;
             font-style: italic;
-            font-weight: bold;
           }
 
           .cjsh-description{
