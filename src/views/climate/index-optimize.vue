@@ -250,8 +250,8 @@ const contentAnimation = () => {
   })
   
   // 创建一个统一的 timeline，控制所有屏幕的动画
-  // 总滚动距离：第一屏2400px + 5屏各2000px = 12400px，使用14000px确保足够
-  const totalScrollDistance = 14000
+  // 总滚动距离：第一屏2400px + 5屏各2000px = 12400px，使用13000px确保足够
+  const totalScrollDistance = 13000
   
   const masterTl = gsap.timeline({
     scrollTrigger: {
