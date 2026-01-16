@@ -1,7 +1,7 @@
 <template>
   <div class="resource-page">
     <!-- 返回按钮 -->
-    <return-button/>
+    <return-button @close="handleClose"/>
     <!-- 水平滚动容器 -->
     <section ref="videoSection" class="snap-section video-section">
       <div ref="snapTrack" class="snap-track">
@@ -251,6 +251,14 @@ const panelVideoSrc = new URL(
   import.meta.url
 ).href;
 
+// 定义 emits
+const emit = defineEmits(['close'])
+
+// 处理关闭
+const handleClose = () => {
+  emit('close')
+}
+
 const VIDEO_SCRUB_AMPLIFIER = 0.4;
 let scrollAnimation: gsap.core.Timeline | null = null;
 let panelVideoHandler: (() => void) | null = null;
@@ -286,6 +294,7 @@ const createScrollTrigger = async () => {
     0
   );
 
+
   videoWeight = Math.max(panelVideoDuration * VIDEO_SCRUB_AMPLIFIER, 0.1);
   
   if (horizontalDistance > 0) {
@@ -305,6 +314,7 @@ const createScrollTrigger = async () => {
     ? panelVideo.value.currentTime / panelVideoDuration || 0
     : 0;
 
+    console.log(panelVideoDuration, videoProgressProxy.progress)
   const timeline = gsap.timeline({ defaults: { ease: "none" } });
 
   // 视频播放部分
@@ -314,6 +324,7 @@ const createScrollTrigger = async () => {
     onUpdate: () => {
       if (!panelVideo.value) return;
       const targetTime = videoProgressProxy.progress * panelVideoDuration;
+      console.log( videoProgressProxy.progress)
       if (Math.abs(panelVideo.value.currentTime - targetTime) > 0.02) {
         panelVideo.value.currentTime = targetTime;
       }

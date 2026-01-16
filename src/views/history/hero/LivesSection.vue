@@ -878,9 +878,6 @@ const setupCloud2Parallax = async () => {
       end: `top top`, // 当元素顶部到达视口顶部时结束
       scrub: true, // 与滚动同步，平滑跟随
       invalidateOnRefresh: true,
-      onUpdate: self => {
-        console.log(self.progress,'--第二朵云')
-      }
     }
   });
 };
@@ -1056,9 +1053,6 @@ const setupGrusNameParallax = async () => {
       end: `center center`,
       scrub: true,
       invalidateOnRefresh: true,
-      onUpdate:(self=>{
-        console.log(self.progress)
-      })
     }
   });
 
@@ -1243,9 +1237,6 @@ const setupPandaNameParallax = async () => {
       end: `+=${pxToVwPx(960)}`,
       scrub: true,
       invalidateOnRefresh: true,
-      onUpdate: self=>{
-        console.log(self.progress,'---大熊猫')
-      }
     }
   });
 

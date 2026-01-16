@@ -181,7 +181,8 @@ const linkTo = path =>{
     const event = new CustomEvent('showClimate')
     window.dispatchEvent(event)
   } else {
-    router.push(path)
+    const event = new CustomEvent('showLandscape')
+    window.dispatchEvent(event)
   }
 }
 

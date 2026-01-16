@@ -125,7 +125,14 @@ const router = useRouter()
 gsap.registerPlugin(ScrollTrigger);
 
 const linkTo = path => {
-  router.push(path)
+  // 如果是 resource 页面，在当前页面展示而不是路由跳转
+  if (path === '/voyage/resource') {
+    // 触发自定义事件，通知 history 页面显示 resource 组件
+    const event = new CustomEvent('showResource')
+    window.dispatchEvent(event)
+  } else {
+    router.push(path)
+  }
 }
 
 // 初始化 fragment 透明度动画

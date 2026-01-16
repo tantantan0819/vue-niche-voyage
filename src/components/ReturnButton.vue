@@ -23,35 +23,13 @@ const props = defineProps({
   }
 })
 
-const emit = defineEmits(['close','backTohistory'])
+const emit = defineEmits(['close'])
 
 // 尝试注入关闭弹窗的函数
 const closeDetailModal = inject('closeDetailModal', null)
 
 const returnHome = async () => {
-  // 如果提供了 onClose 回调，优先使用它
-  if (props.onClose) {
-    props.onClose()
-    return
-  }
-  
-  // 如果注入了关闭弹窗函数，使用它（在弹窗模式下）
-  if (closeDetailModal) {
-    closeDetailModal()
-    return
-  }
-  
-  // 如果是气候页面，触发 close 事件（由父组件处理关闭）
-  if(props.type === 'climate'){
-    emit('close')
-    return
-  }
-  
-  // 如果触发了 close 事件，使用它
   emit('close')
-  
-  // 否则使用原来的路由跳转逻辑
-  router.push('/home')
 }
 </script>
 <style scoped>
