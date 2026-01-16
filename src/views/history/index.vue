@@ -7,6 +7,12 @@
     <!-- 头部：加载进度条只显示头部资源，避免用户等待时间过长 -->
     <hero @welcome-video-ended="handleWelcomeVideoEnded"></hero>
     <horizontal></horizontal>
+    <!-- 气候组件（在当前页面展示，使用 Teleport 渲染到 body） -->
+    <Teleport to="body">
+      <div v-if="showClimate" class="climate-overlay">
+        <climate-page @close="handleCloseClimate"></climate-page>
+      </div>
+    </Teleport>
   </div>
 </template>
 <script setup>
@@ -20,6 +26,7 @@ import hero from './hero/index.vue'
 import horizontal from './horizontal/index.vue'
 import SideMenu from '@/components/SiderMenu.vue'
 import SplashLoader from '@/components/SplashLoader.vue'
+import ClimatePage from '@/views/climate/index-optimize.vue'
 
 // 注册 ScrollToPlugin
 gsap.registerPlugin(ScrollToPlugin)
@@ -59,6 +66,58 @@ const showSplashLoader = ref(true)
 
 // 侧边菜单显示控制
 const showSideMenu = ref(false)
+
+// 气候组件显示控制
+const showClimate = ref(false)
+// 保存显示气候组件前的滚动位置
+let savedScrollPosition = 0
+
+// 处理关闭气候组件
+const handleCloseClimate = () => {
+  showClimate.value = false
+  // 恢复外部页面滚动
+  enableExternalScroll()
+}
+
+// 监听显示气候组件的事件
+const handleShowClimate = () => {
+  // 保存当前滚动位置
+  savedScrollPosition = window.pageYOffset || document.documentElement.scrollTop
+  // 显示组件
+  showClimate.value = true
+}
+
+// 恢复外部页面滚动
+const enableExternalScroll = () => {
+  // 移除滚动阻止事件监听
+  // if (window._climateScrollPreventers) {
+  //   const { wheelHandler, preventScrollPropagation } = window._climateScrollPreventers
+  //   if (wheelHandler) {
+  //     window.removeEventListener('wheel', wheelHandler, { capture: true })
+  //   }
+  //   if (preventScrollPropagation) {
+  //     window.removeEventListener('scroll', preventScrollPropagation, { capture: true })
+  //   }
+  //   delete window._climateScrollPreventers
+  // }
+  
+  // 恢复 history 容器的样式
+  // const historyContainer = document.querySelector('.history')
+  // if (historyContainer) {
+  //   historyContainer.style.position = ''
+  //   historyContainer.style.top = ''
+  //   historyContainer.style.width = ''
+  //   historyContainer.style.left = ''
+  //   historyContainer.style.pointerEvents = ''
+  // }
+  
+  // 恢复 body 和 html 的滚动
+  // document.body.style.overflow = ''
+  // document.documentElement.style.overflow = ''
+  
+  // 恢复滚动位置
+  window.scrollTo(0, savedScrollPosition)
+}
 
 const handleWelcomeVideoEnded = () => {
   console.log('welcomeVideoEnded')
@@ -927,11 +986,22 @@ onMounted(async () => {
   }
   
   window.addEventListener('resize', resizeHandler)
+  
+  // 监听显示气候组件的事件
+  window.addEventListener('showClimate', handleShowClimate)
 })
 
 onUnmounted(() => {
   // 恢复页面滚动
   enableScroll()
+  
+  // 如果气候组件还在显示，恢复外部滚动
+  if (showClimate.value) {
+    enableExternalScroll()
+  }
+  
+  // 移除事件监听
+  window.removeEventListener('showClimate', handleShowClimate)
   
   if (horizontalScrollTrigger) {
     horizontalScrollTrigger.kill()
@@ -945,3 +1015,24 @@ onUnmounted(() => {
 })
 
 </script>
+<style scoped>
+.climate-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 10000;
+  overflow-y: auto;
+  overflow-x: hidden;
+  background: #000;
+  /* 确保可以滚动 */
+  -webkit-overflow-scrolling: touch;
+}
+
+.climate-overlay :deep(.climate) {
+  min-height: 15000px; /* 确保有足够的高度供滚动，总滚动距离约13000px */
+  width: 100%;
+  position: relative;
+}
+</style>

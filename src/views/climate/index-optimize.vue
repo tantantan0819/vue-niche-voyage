@@ -1,7 +1,7 @@
 <template>
   <div class="climate">
      <!-- 返回按钮 -->
-     <return-button type="climate" />
+     <return-button type="climate" @close="handleClose" />
      <!-- 滚动指示器（从第二屏开始显示，共5个点） -->
      <div class="scroll-indicator" v-show="currentScreenIndex >= 1">
        <div class="indicator-dots">
@@ -142,8 +142,16 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import ReturnButton from "@/components/ReturnButton.vue";
 gsap.registerPlugin(ScrollTrigger)
 
+// 定义 emits
+const emit = defineEmits(['close'])
+
 // 当前屏幕索引，用于指示器
 const currentScreenIndex = ref(0)
+
+// 处理关闭
+const handleClose = () => {
+  emit('close')
+}
 
 const calDistance = (distance) =>{
   return distance / 6480
@@ -160,7 +168,7 @@ const firstAnimation = () =>{
   // 第一屏：元素向Z轴移动的动效
   const firstTl = gsap.timeline({
     scrollTrigger: {
-      trigger: 'body',
+      trigger: '.climate-overlay',
       start: 'top top',
       end: '+=2400', // 增加到 2400，确保第二屏能完全显示
       scrub: 0.1,
@@ -255,7 +263,7 @@ const contentAnimation = () => {
   
   const masterTl = gsap.timeline({
     scrollTrigger: {
-      trigger: 'body',
+      trigger: '.climate-overlay',
       start: 'top top',
       end: `+=${totalScrollDistance}`,
       scrub: 0.5,

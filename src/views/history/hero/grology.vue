@@ -175,7 +175,14 @@ const emit = defineEmits(['thirdVideoEnded', 'welcomeVideoEnded'])
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
 const linkTo = path =>{
-  router.push(path)
+  // 如果是气候页面，在当前页面展示而不是路由跳转
+  if (path === '/voyage/climate') {
+    // 触发自定义事件，通知 history 页面显示气候组件
+    const event = new CustomEvent('showClimate')
+    window.dispatchEvent(event)
+  } else {
+    router.push(path)
+  }
 }
 
 const welcomeVideoSrc = ref(startPage1); // 初始为 startPage1
