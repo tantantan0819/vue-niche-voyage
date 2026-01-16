@@ -118,7 +118,7 @@
             </div>
           </div>
           <div class="salt-energy-introduction-1">
-            <p class="alibaba-light text-justify">
+            <p class="text-justify alibaba-light">
               这里的盐湖锂盐资源十分丰富，储量占我国锂资源总储量的80%以上，占世界盐湖锂总储量的1/3，是全球重要的新能源金属（锂）资源地，为锂电产业提供战略保障。
             </p>
           </div>
@@ -1429,8 +1429,9 @@ onUnmounted(() => {
         font-size: 24px;
         bottom: 0;
         position: absolute;
-        right: -180px;
+        right: 20px;
         color: #ead9c9;
+        z-index: 1;
       }
       .fountain {
         width: 800px;

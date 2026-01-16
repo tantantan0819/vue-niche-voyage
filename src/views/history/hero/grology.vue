@@ -745,7 +745,7 @@ const initWaterCloud1Animation = async () => {
   }
 
   waterCloud1ScrollTrigger = gsap.to('.water-cloud-1', {
-    y: pxToVh(-1400),
+    y: pxToVh(-1600),
     ease: 'none', // 线性动画，与滚动完全同步
     scrollTrigger: {
       trigger: '.water-cloud-1',
@@ -2860,8 +2860,8 @@ const showVideoDescriptionAfterThirdVideo = () => {
         // 初始化滚动监听，检测用户是否回到 originVideo 区域
         initScrollBackToOriginVideoListener();
         
-        // 初始化 water-cloud-1 出现的滚动监听
-        initShowWaterCloud1Scroll();
+        // 初始化 water-cloud-1 出现的滚动监听，暂时隐藏云朵滚动
+        // initShowWaterCloud1Scroll();
       }
     });
   } else {
@@ -3035,10 +3035,12 @@ const initScrollBackToOriginVideoListener = () => {
               
               // 重置云朵状态（当用户向上滚动回到 video-accessories 区域时）
               // 注意：不重新初始化云朵监听，只有当所有动效完成后（在 showVideoDescriptionAfterThirdVideo 的 onComplete 中）才初始化
-              resetWaterCloud1();
+              // 暂时隐藏云朵滚动
+              // resetWaterCloud1();
 
               if (videoDescriptionShownAfterThirdVideo.value) {
-                initShowWaterCloud1Scroll();
+                // 暂时隐藏云朵滚动
+                // initShowWaterCloud1Scroll();
               }
               
         // 重新初始化跳过监听（支持回滚）
@@ -3471,6 +3473,8 @@ onMounted(() => {
   initWelcomeVideoScroll();
   // 初始化 water-bg-video 滚动固定
   initWaterVideoScroll();
+  // 初始化 water-cloud-1 动画
+  initWaterCloud1Animation();
   // 初始化 water-cloud-2 动画
   initWaterCloud2Animation();
   // 初始化 horizontal-02 横向滚动
@@ -3703,7 +3707,7 @@ onUnmounted(() => {
   background-repeat: no-repeat;
   position: absolute;
   bottom: 70px;
-  left: 1.5%;
+  left: 1%;
   cursor: pointer;
   display: flex;
   justify-content: center;
@@ -3824,16 +3828,17 @@ onUnmounted(() => {
   background-size: 1920px 9276px;
   background-repeat: no-repeat;
   background-position: center -1080px;
-  margin-top: 300px;
+  //margin-top: 300px;
 
   .water-cloud-1{
     width: 1920px;
     height: 1054px;
     background-image: url("@/assets/images/geology/geology-to-water-element-1.png");
     background-size: cover;
-    margin-top: -200px;
+    margin-top: 0px;
     position: absolute;
-    top: -130px;
+    top: 0;
+    //top: -100px;
     z-index: 99;
   }
   .water-cloud-2-wrapper{

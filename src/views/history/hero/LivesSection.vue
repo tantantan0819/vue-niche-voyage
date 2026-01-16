@@ -1393,7 +1393,7 @@ onUnmounted(() => {
       background-image: url("@/assets/images/lives/lives-bty-bg.png");
       background-size: cover;
       position: absolute;
-      top: 0;
+      top: -1px;
       left: 0;
     }
     .first-screen-bg-2{
