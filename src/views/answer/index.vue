@@ -91,6 +91,9 @@ gsap.registerPlugin(SplitText)
 // 路由
 const router = useRouter()
 
+// 定义 emits
+const emit = defineEmits(['close'])
+
 // 答题状态
 const currentQuestionIndex = ref(0)
 const selectedAnswers = ref({})
@@ -303,7 +306,7 @@ const challengeAgain = () => {
 }
 
 const goBack = () => {
-  router.go(-1)
+  emit('close')
 }
 </script>
 

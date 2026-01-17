@@ -25,6 +25,12 @@
         <resource-page @close="handleCloseResource"></resource-page>
       </div>
     </Teleport>
+    <!-- Answer 组件（在当前页面展示，使用 Teleport 渲染到 body） -->
+    <Teleport to="body">
+      <div v-if="showAnswer" class="overlay-component">
+        <answer-page @close="handleCloseAnswer"></answer-page>
+      </div>
+    </Teleport>
   </div>
 </template>
 <script setup>
@@ -41,6 +47,7 @@ import SplashLoader from '@/components/SplashLoader.vue'
 import ClimatePage from '@/views/climate/index-optimize.vue'
 import LandscapePage from '@/views/landscape/index.vue'
 import ResourcePage from '@/views/resource/index.vue'
+import AnswerPage from '@/views/answer/index.vue'
 
 // 注册 ScrollToPlugin
 gsap.registerPlugin(ScrollToPlugin)
@@ -85,6 +92,7 @@ const showSideMenu = ref(true)
 const showClimate = ref(false)
 const showLandscape = ref(false)
 const showResource = ref(false)
+const showAnswer = ref(false)
 // 保存显示组件前的滚动位置
 let savedScrollPosition = 0
 // 当前显示的组件类型
@@ -114,6 +122,14 @@ const handleCloseResource = () => {
   // 恢复外部页面滚动
   enableExternalScroll()
   // 滚动到 resource 对应页面位置
+}
+
+// 处理关闭 Answer 组件
+const handleCloseAnswer = () => {
+  showAnswer.value = false
+  currentOverlayType = null
+  // 恢复外部页面滚动
+  enableExternalScroll()
 }
 
 // 监听显示气候组件的事件
@@ -150,6 +166,19 @@ const handleShowResource = () => {
   showResource.value = true
   currentOverlayType = 'resource'
   document.documentElement.scrollTop = 0;
+}
+
+// 监听显示 Answer 组件的事件
+const handleShowAnswer = () => {
+  // 保存当前滚动位置
+  savedScrollPosition = window.pageYOffset || document.documentElement.scrollTop
+  // 显示组件
+  showAnswer.value = true
+  currentOverlayType = 'answer'
+  // 重置滚动位置
+  nextTick(() => {
+    resetOverlayScroll('.overlay-component')
+  })
 }
 
 // 重置 overlay 组件的滚动位置
@@ -1051,6 +1080,7 @@ onMounted(async () => {
   window.addEventListener('showClimate', handleShowClimate)
   window.addEventListener('showLandscape', handleShowLandscape)
   window.addEventListener('showResource', handleShowResource)
+  window.addEventListener('showAnswer', handleShowAnswer)
 })
 
 onUnmounted(() => {
@@ -1058,7 +1088,7 @@ onUnmounted(() => {
   enableScroll()
   
   // 如果有组件还在显示，恢复外部滚动
-  if (showClimate.value || showLandscape.value || showResource.value) {
+  if (showClimate.value || showLandscape.value || showResource.value || showAnswer.value) {
     enableExternalScroll()
   }
   
@@ -1066,6 +1096,7 @@ onUnmounted(() => {
   window.removeEventListener('showClimate', handleShowClimate)
   window.removeEventListener('showLandscape', handleShowLandscape)
   window.removeEventListener('showResource', handleShowResource)
+  window.removeEventListener('showAnswer', handleShowAnswer)
   
   if (horizontalScrollTrigger) {
     horizontalScrollTrigger.kill()

@@ -651,8 +651,10 @@ onMounted(() => {
     initGsapAnimation()
 })
 
-const toAnswerPage = () =>{
-  router.push('/voyage/answer')
+const toAnswerPage = () => {
+  // 触发自定义事件，通知 history 页面显示 answer 组件
+  const event = new CustomEvent('showAnswer')
+  window.dispatchEvent(event)
 }
 </script>
 
