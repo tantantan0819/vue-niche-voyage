@@ -107,8 +107,9 @@
         </div>
         <div class="explore-button explore-btn"  @click="linkTo('/voyage/landscape')">深入探索</div>
       </div>
-      <div class="biology">
-        <div class="page-highland-spirit-trail page-point" id="page-highland-spirit-trail"></div>
+      <div class="biology" >
+        <div class="biology-title-target"  id="page-highland-spirit-trail"></div>
+        <div class="page-highland-spirit-trail page-point"></div>
         <div class="biology-detail-1"
              data-parallax="true"
              data-parallax-axis="y"
@@ -3709,8 +3710,8 @@ onUnmounted(() => {
   background-position: center center;
   background-repeat: no-repeat;
   position: absolute;
-  bottom: 70px;
-  left: 1%;
+  top: 70px;
+  left: 70px;
   cursor: pointer;
   display: flex;
   justify-content: center;
@@ -3978,6 +3979,10 @@ onUnmounted(() => {
   position: absolute;
   left: 0;
   bottom: 0;
+  .biology-title-target{
+    position: absolute;
+    top: -200px;
+  }
   .page-highland-spirit-trail{
     top: -100px;
   }

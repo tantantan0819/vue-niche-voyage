@@ -210,12 +210,16 @@
           </video>
           <div class="geothermy-enery-line">
             <!-- 喷泉 -->
-            <div class="fountain-wrapper">
-              <div class="fountain scroller-img"></div>
+            <div class="fountain-box-wrapper">
+              <div class="fountain-wrapper">
+                <div class="fountain scroller-img"></div>
+              </div>
             </div>
             <!-- 热田 -->
-            <div class="atsuta-wrapper">
-              <div class="atsuta scroller-img"></div>
+            <div class="atsuta-box-wrapper">
+              <div class="atsuta-wrapper">
+                <div class="atsuta scroller-img"></div>
+              </div>
             </div>
             <div class="atsuta-interduction">
               地热资源可用于发电、供暖及旅游开发，是一种洁净且蕴藏量巨大的能源，在国家能源建设方面有巨大价值。
@@ -1427,23 +1431,29 @@ onUnmounted(() => {
     position: absolute;
     top: 50%;
     border-top: 1px dotted #838383;
+    .fountain-box-wrapper{
+      width: 700px;
+      height: 340px;
+      position: absolute;
+      &::after {
+        content: "达格架喷泉";
+        font-size: 24px;
+        bottom: 50px;
+        position: absolute;
+        right: -150px;
+        color: #ead9c9;
+        z-index: 1;
+        font-family: 'Alibaba-PuHuiTi-Light'!important;
+      }
+    }
     .fountain-wrapper{
-      width: 600px;
+      width: 500px;
       height: 340px;
       position: absolute;
       top: -60px;
       left: 200px;
       overflow: hidden;
-      &::after {
-        content: "达格架喷泉";
-        font-size: 24px;
-        bottom: 0;
-        position: absolute;
-        right: 20px;
-        color: #ead9c9;
-        z-index: 1;
-        font-family: 'Alibaba-PuHuiTi-Light'!important;
-      }
+
       .fountain {
         width: 800px;
         height: 340px;
@@ -1456,22 +1466,30 @@ onUnmounted(() => {
         background-repeat: no-repeat;
       }
     }
-    .atsuta-wrapper{
-      width: 600px;
+    .atsuta-box-wrapper{
+      width: 500px;
       height: 340px;
       position: absolute;
       top: -240px;
       left: 840px;
-      overflow: hidden;
       &::after {
         content: "羊八井地热田";
         font-size: 24px;
         top: 0;
         position: absolute;
-        right: -200px;
+        right: -180px;
         color: #ead9c9;
         font-family: 'Alibaba-PuHuiTi-Light'!important;
       }
+    }
+    .atsuta-wrapper{
+      width: 500px;
+      height: 340px;
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      overflow: hidden;
+
       .atsuta {
         width: 800px;
         height: 340px;

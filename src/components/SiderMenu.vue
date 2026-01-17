@@ -778,7 +778,7 @@ const scrollToPage = async (targetId) => {
   position: fixed;
   top: 0;
   right: 0;
-  z-index: 999;
+  z-index: 99999;
   width: 100px;
   transition: all ease-in-out 0.3s;
   .menu-icon{

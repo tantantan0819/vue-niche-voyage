@@ -1,6 +1,6 @@
 <template>
     <div class="sqhx-container" :data-bg="sqhx_bg">
-      <div class="black-screen-wrapper">
+      <div class="black-screen-wrapper" id="page-prehistoric-echoes">
         <div class="black-screen">
           <!-- 第一幕 -->
           <div
@@ -11,8 +11,7 @@
               data-parallax-to="-400"
               data-parallax-speed="1.3"
               data-parallax-center-lock="true">
-            <div class="first-screen-title"
-                 id="page-prehistoric-echoes">
+            <div class="first-screen-title">
               <span ref="numberRef">{{ displayNumber }}</span>
               <span>万年前</span>
             </div>
