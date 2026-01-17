@@ -36,8 +36,9 @@
           <p>也储藏着巨量的宝藏。</p>
         </div>
       </div>
-      <div class="second-screen screen" id="page-snow-covered-treasures">
+      <div class="second-screen screen">
         <div class="secret-title"
+            id="page-snow-covered-treasures"
              data-parallax="true"
              data-parallax-axis="y"
              data-parallax-from="100"

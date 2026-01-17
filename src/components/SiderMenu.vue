@@ -764,7 +764,39 @@ const scrollToPage = async (targetId) => {
       })
     }
   } else {
-    // 目标元素不在 horizontal 容器内（在 hero 中），直接使用 scrollIntoView
+    // 目标元素不在 horizontal 容器内（在 hero 中）
+    if (targetId === 'page-snow-covered-treasures') {
+      // 特殊处理雪域秘藏页面，确保滚动到正确的视觉位置
+      const secondScreen = targetElement
+      const secretContainer = document.querySelector('.secret')
+      
+      if (secondScreen && secretContainer) {
+        // 获取当前滚动位置
+        const currentScroll = window.pageYOffset || document.documentElement.scrollTop
+        
+        // 使用getBoundingClientRect获取元素相对于视口的位置
+        const secondScreenRect = secondScreen.getBoundingClientRect()
+        
+        // 计算正确的滚动位置：
+        // 1. 当前滚动位置 + secondScreen相对于视口的top位置
+        // 2. 减去视口高度的1/4，确保标题居中显示
+        const viewportHeight = window.innerHeight
+        const targetScrollPosition = currentScroll + secondScreenRect.top - (viewportHeight / 4)
+        
+        // 使用GSAP进行平滑滚动
+        gsap.to(window, {
+          scrollTo: {
+            y: targetScrollPosition,
+            autoKill: false
+          },
+          duration: 0.8,
+          ease: 'power2.out'
+        })
+        return
+      }
+    }
+    
+    // 其他情况，直接使用 scrollIntoView
     targetElement.scrollIntoView({
       behavior: 'smooth',
       block: 'start'
