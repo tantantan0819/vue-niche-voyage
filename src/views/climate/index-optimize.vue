@@ -43,10 +43,10 @@
     </div>
     <div class="content-box">
       <div class="third-screen screen second-single">
-        <div class="img-bg"></div>
+        <!-- <div class="img-bg"></div> -->
         <div class="img-bg-video">
           <video
-              src="@/assets/images/climate/climate-cdm-storm.mov"
+              src="@/assets/images/climate/climate-cdm-bg.mp4"
               autoplay
               loop
               disablePictureInPicture
@@ -89,10 +89,10 @@
     </div>
     <div class="content-box">
       <div class="five-screen screen second-single">
-        <div class="img-bg"></div>
+        <!-- <div class="img-bg"></div> -->
         <div class="img-bg-2">
           <video
-              src="@/assets/images/climate/climate-hds-cloud.mov"
+              src="@/assets/images/climate/climate-hds-bg.mp4"
               autoplay
               loop
               muted
@@ -710,10 +710,10 @@ onMounted(()=>{
 }
 .third-screen{
   z-index: 8;
-  background-image: url("@/assets/images/climate/climate-cdm-bg-1.png");
+  /* background-image: url("@/assets/images/climate/climate-cdm-bg-1.png");
   background-size: cover;
   background-position: center center;
-  background-repeat: no-repeat;
+  background-repeat: no-repeat; */
   .img-bg{
     width: 1920px;
     height: 492px;
@@ -772,7 +772,6 @@ onMounted(()=>{
   /* background-size: cover; */
   /* background-position: center center; */
   /* background-repeat: no-repeat; */
-
   .img-bg{
     video{
       width: 1920px;
@@ -783,8 +782,8 @@ onMounted(()=>{
     }
   }
   .img-bg-2{
-    width: 1920px;
-    height: 1080px;
+    width: 100vw;
+    height: 100vh;
     background-image: url("@/assets/images/climate/climate-zngd-bg-2.png");
     background-size: cover;
     background-position: center center;
