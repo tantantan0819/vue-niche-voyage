@@ -29,27 +29,7 @@ const emit = defineEmits(['close'])
 const closeDetailModal = inject('closeDetailModal', null)
 
 const returnHome = async () => {
-  // 如果提供了 onClose 回调，优先使用它
-  if (props.onClose) {
-    props.onClose()
-    return
-  }
-  
-  // 如果注入了关闭弹窗函数，使用它（在弹窗模式下）
-  if (closeDetailModal) {
-    closeDetailModal()
-    return
-  }
-  
-  // 如果触发了 close 事件，使用它
   emit('close')
-  
-  // 否则使用原来的路由跳转逻辑
-  if(props.type === 'climate'){
-    router.push({path: '/voyage/history'})
-  }else{
-    router.push('/home')
-  }
 }
 </script>
 <style scoped>

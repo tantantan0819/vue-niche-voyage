@@ -1,7 +1,7 @@
 <template>
   <div class="climate">
      <!-- 返回按钮 -->
-     <return-button type="climate" />
+     <return-button type="climate" @close="handleClose" />
      <!-- 滚动指示器（从第二屏开始显示，共5个点） -->
      <div class="scroll-indicator" v-show="currentScreenIndex >= 1">
        <div class="indicator-dots">
@@ -142,25 +142,33 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import ReturnButton from "@/components/ReturnButton.vue";
 gsap.registerPlugin(ScrollTrigger)
 
+// 定义 emits
+const emit = defineEmits(['close'])
+
 // 当前屏幕索引，用于指示器
 const currentScreenIndex = ref(0)
+
+// 处理关闭
+const handleClose = () => {
+  emit('close')
+}
 
 const calDistance = (distance) =>{
   return distance / 6480
 }
 const firstAnimation = () =>{
   // 设置所有 screen 的初始状态
-  gsap.set('.first-screen', { opacity: 1, zIndex: 10 })
-  gsap.set('.second-screen', { opacity: 0, zIndex: 9 })
-  gsap.set('.third-screen', { opacity: 0, zIndex: 8 })
-  gsap.set('.four-screen', { opacity: 0, zIndex: 7 })
-  gsap.set('.five-screen', { opacity: 0, zIndex: 6 })
-  gsap.set('.six-screen', { opacity: 0, zIndex: 5 })
+  gsap.set('.climate .first-screen', { opacity: 1, zIndex: 10 })
+  gsap.set('.climate .second-screen', { opacity: 0, zIndex: 9 })
+  gsap.set('.climate .third-screen', { opacity: 0, zIndex: 8 })
+  gsap.set('.climate .four-screen', { opacity: 0, zIndex: 7 })
+  gsap.set('.climate .five-screen', { opacity: 0, zIndex: 6 })
+  gsap.set('.climate .six-screen', { opacity: 0, zIndex: 5 })
   
   // 第一屏：元素向Z轴移动的动效
   const firstTl = gsap.timeline({
     scrollTrigger: {
-      trigger: 'body',
+      trigger: '.climate-overlay',
       start: 'top top',
       end: '+=2400', // 增加到 2400，确保第二屏能完全显示
       scrub: 0.1,
@@ -172,7 +180,7 @@ const firstAnimation = () =>{
   
   // 根据层级向Z轴移动，后面元素移动更多，前面元素移动较少
   // 最远的背景层 - 移动最多
-  firstTl.to('.first-screen .mountain-1', {
+  firstTl.to('.climate .first-screen .mountain-1', {
     translateZ: 300,
     opacity: 0,
     duration: 0.8,
@@ -180,10 +188,10 @@ const firstAnimation = () =>{
   }, 0)
   // 中后层 - 移动较多
   firstTl.to([
-    '.first-screen .mountain-2',
-    '.first-screen .mountain-3',
-    '.first-screen .cloud-1',
-    '.first-screen .cloud-2'
+    '.climate .first-screen .mountain-2',
+    '.climate .first-screen .mountain-3',
+    '.climate .first-screen .cloud-1',
+    '.climate .first-screen .cloud-2'
   ], {
     translateZ: 250,
     opacity: 0,
@@ -192,10 +200,10 @@ const firstAnimation = () =>{
   }, 0)
   // 中层 - 移动中等
   firstTl.to([
-    '.first-screen .mountain-4',
-    '.first-screen .mountain-5',
-    '.first-screen .cloud-5',
-    '.first-screen .cloud-6'
+    '.climate .first-screen .mountain-4',
+    '.climate .first-screen .mountain-5',
+    '.climate .first-screen .cloud-5',
+    '.climate .first-screen .cloud-6'
   ], {
     translateZ: 200,
     opacity: 0,
@@ -204,8 +212,8 @@ const firstAnimation = () =>{
   }, 0)
   // 前层 - 移动较少
   firstTl.to([
-    '.first-screen .cloud-3',
-    '.first-screen .cloud-4'
+    '.climate .first-screen .cloud-3',
+    '.climate .first-screen .cloud-4'
   ], {
     translateZ: 150,
     opacity: 0,
@@ -213,7 +221,7 @@ const firstAnimation = () =>{
     ease: 'power2.in'
   }, 0)
   // 最前面的文字层 - 移动最少
-  firstTl.to('.first-screen .text', {
+  firstTl.to('.climate .first-screen .text', {
     translateZ: 100,
     opacity: 0,
     duration: 0.8,
@@ -222,7 +230,7 @@ const firstAnimation = () =>{
   
   // 第一屏动效完成后（约在 800px 位置），第一屏快速消失
   const transitionPoint = 800 / 2400 // 约 0.33
-  firstTl.to('.first-screen', {
+  firstTl.to('.climate .first-screen', {
     opacity: 0,
     duration: 0.3, // 快速消失
     ease: 'power2.in'
@@ -230,7 +238,7 @@ const firstAnimation = () =>{
   
   // 第二屏淡入（在第一屏完全消失后，约在 1600px 位置）
   const secondScreenPoint = 1600 / 2400 // 约 0.67
-  firstTl.to('.second-screen', {
+  firstTl.to('.climate .second-screen', {
     opacity: 1,
     duration: 0.5,
     ease: 'power2.out',
@@ -240,7 +248,7 @@ const firstAnimation = () =>{
 
 const contentAnimation = () => {
   // 从第二屏开始的屏幕列表
-  const screens = ['.second-screen', '.third-screen', '.four-screen', '.five-screen', '.six-screen']
+  const screens = ['.climate .second-screen', '.climate .third-screen', '.climate .four-screen', '.climate .five-screen', '.climate .six-screen']
   
   // 设置所有屏幕内容的初始状态
   screens.forEach(selector => {
@@ -255,7 +263,7 @@ const contentAnimation = () => {
   
   const masterTl = gsap.timeline({
     scrollTrigger: {
-      trigger: 'body',
+      trigger: '.climate-overlay',
       start: 'top top',
       end: `+=${totalScrollDistance}`,
       scrub: 0.5,

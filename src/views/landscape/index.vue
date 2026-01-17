@@ -1,7 +1,7 @@
 <template>
   <div class="landscape" @click="handleScreenClick">
     <!-- 返回按钮 -->
-    <return-button/>
+    <return-button type="landscape" @close="handleClose"/>
     <div class="landscape-video">
       <!-- 视频元素1 -->
       <video
@@ -63,6 +63,14 @@
 import { ref, onMounted, computed } from "vue";
 import gsap from "gsap";
 import ReturnButton from "@/components/ReturnButton.vue";
+
+// 定义 emits
+const emit = defineEmits(['close'])
+
+// 处理关闭
+const handleClose = () => {
+  emit('close')
+}
 
 // 入场视频
 import glacierInto from '@/assets/images/landscape/videos/glacier-into.mp4'

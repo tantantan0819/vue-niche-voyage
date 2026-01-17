@@ -7,6 +7,24 @@
     <!-- 头部：加载进度条只显示头部资源，避免用户等待时间过长 -->
     <hero @originVideoPlay="handleOriginVideoPlay"></hero>
     <horizontal></horizontal>
+    <!-- 气候组件（在当前页面展示，使用 Teleport 渲染到 body） -->
+    <Teleport to="body">
+      <div v-if="showClimate" class="climate-overlay">
+        <climate-page @close="handleCloseClimate"></climate-page>
+      </div>
+    </Teleport>
+    <!-- Landscape 组件（在当前页面展示，使用 Teleport 渲染到 body） -->
+    <Teleport to="body">
+      <div v-if="showLandscape" class="overlay-component">
+        <landscape-page @close="handleCloseLandscape"></landscape-page>
+      </div>
+    </Teleport>
+    <!-- Resource 组件（在当前页面展示，使用 Teleport 渲染到 body） -->
+    <Teleport to="body">
+      <div v-if="showResource" class="overlay-component">
+        <resource-page @close="handleCloseResource"></resource-page>
+      </div>
+    </Teleport>
   </div>
 </template>
 <script setup>
@@ -20,6 +38,9 @@ import hero from './hero/index.vue'
 import horizontal from './horizontal/index.vue'
 import SideMenu from '@/components/SiderMenu.vue'
 import SplashLoader from '@/components/SplashLoader.vue'
+import ClimatePage from '@/views/climate/index-optimize.vue'
+import LandscapePage from '@/views/landscape/index.vue'
+import ResourcePage from '@/views/resource/index.vue'
 
 // 注册 ScrollToPlugin
 gsap.registerPlugin(ScrollToPlugin)
@@ -59,6 +80,97 @@ const showSplashLoader = ref(true)
 
 // 侧边菜单显示控制
 const showSideMenu = ref(true)
+
+// 组件显示控制
+const showClimate = ref(false)
+const showLandscape = ref(false)
+const showResource = ref(false)
+// 保存显示组件前的滚动位置
+let savedScrollPosition = 0
+// 当前显示的组件类型
+let currentOverlayType = null
+
+// 处理关闭气候组件
+const handleCloseClimate = () => {
+  showClimate.value = false
+  currentOverlayType = null
+  // 恢复外部页面滚动
+  enableExternalScroll()
+}
+
+// 处理关闭 Landscape 组件
+const handleCloseLandscape = () => {
+  showLandscape.value = false
+  currentOverlayType = null
+  // 恢复外部页面滚动
+  enableExternalScroll()
+  // // 滚动到 landscape 对应页面位置
+}
+
+// 处理关闭 Resource 组件
+const handleCloseResource = () => {
+  showResource.value = false
+  currentOverlayType = null
+  // 恢复外部页面滚动
+  enableExternalScroll()
+  // 滚动到 resource 对应页面位置
+}
+
+// 监听显示气候组件的事件
+const handleShowClimate = () => {
+  // 保存当前滚动位置
+  savedScrollPosition = window.pageYOffset || document.documentElement.scrollTop
+  // 显示组件
+  showClimate.value = true
+  currentOverlayType = 'climate'
+  // 重置滚动位置
+  nextTick(() => {
+    resetOverlayScroll('.climate-overlay')
+  })
+}
+
+// 监听显示 Landscape 组件的事件
+const handleShowLandscape = () => {
+  // 保存当前滚动位置
+  savedScrollPosition = window.pageYOffset || document.documentElement.scrollTop
+  // 显示组件
+  showLandscape.value = true
+  currentOverlayType = 'landscape'
+  // 重置滚动位置
+  nextTick(() => {
+    resetOverlayScroll('.overlay-component')
+  })
+}
+
+// 监听显示 Resource 组件的事件
+const handleShowResource = () => {
+  // 保存当前滚动位置
+  savedScrollPosition = window.pageYOffset || document.documentElement.scrollTop
+  // 显示组件
+  showResource.value = true
+  currentOverlayType = 'resource'
+  document.documentElement.scrollTop = 0;
+}
+
+// 重置 overlay 组件的滚动位置
+const resetOverlayScroll = (selector) => {
+  const overlay = document.querySelector(selector)
+  if (overlay) {
+    overlay.scrollTop = 0
+    requestAnimationFrame(() => {
+      overlay.scrollTop = 0
+      requestAnimationFrame(() => {
+        overlay.scrollTop = 0
+      })
+    })
+  }
+}
+
+// 恢复外部页面滚动
+const enableExternalScroll = () => {
+  // 恢复滚动位置
+  window.scrollTo(0, savedScrollPosition)
+}
 
 const handleOriginVideoPlay = () => {
   showSideMenu.value = true
@@ -934,11 +1046,26 @@ onMounted(async () => {
   }
   
   window.addEventListener('resize', resizeHandler)
+  
+  // 监听显示组件的事件
+  window.addEventListener('showClimate', handleShowClimate)
+  window.addEventListener('showLandscape', handleShowLandscape)
+  window.addEventListener('showResource', handleShowResource)
 })
 
 onUnmounted(() => {
   // 恢复页面滚动
   enableScroll()
+  
+  // 如果有组件还在显示，恢复外部滚动
+  if (showClimate.value || showLandscape.value || showResource.value) {
+    enableExternalScroll()
+  }
+  
+  // 移除事件监听
+  window.removeEventListener('showClimate', handleShowClimate)
+  window.removeEventListener('showLandscape', handleShowLandscape)
+  window.removeEventListener('showResource', handleShowResource)
   
   if (horizontalScrollTrigger) {
     horizontalScrollTrigger.kill()
@@ -952,3 +1079,40 @@ onUnmounted(() => {
 })
 
 </script>
+<style scoped>
+.climate-overlay,
+.overlay-component {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 10000;
+  overflow-y: auto;
+  overflow-x: hidden;
+  background: #000;
+  /* 确保可以滚动 */
+  -webkit-overflow-scrolling: touch;
+}
+
+.climate-overlay :deep(.climate) {
+  min-height: 15000px; /* 确保有足够的高度供滚动，总滚动距离约13000px */
+  width: 100%;
+  position: relative;
+}
+
+.overlay-component :deep(.landscape),
+.overlay-component :deep(.resource-page) {
+  width: 100%;
+  position: relative;
+  /* 确保有足够的高度支持滚动 */
+  min-height: 100vh;
+}
+
+.overlay-component :deep(.snap-section) {
+  /* 防止 pin 时产生晃动 */
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+</style>
