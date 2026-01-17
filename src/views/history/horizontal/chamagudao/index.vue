@@ -1,8 +1,9 @@
 <template>
-  <div class="chamagudao" ref="chamagudaoRef">
+  <div class="chamagudao" ref="chamagudaoRef" :data-bg="cmgd_bg">
     <div class="first-screen screen">
       <div
           class="road"
+          :data-bg="cmgd_mural_detail_1"
           data-parallax="true"
           data-parallax-axis="x"
           data-parallax-from="400"
@@ -10,10 +11,10 @@
           data-parallax-speed="1.1"
           data-parallax-center-lock="true"
       ></div>
-      <div class="tea"></div>
+      <div class="tea" :data-bg="tea_falling"></div>
     </div>
     <div class="second-screen screen" id="page-yidaowanli">
-      <div class="light-bg"></div>
+      <div class="light-bg" :data-bg="cmgd_silutu_lineart"></div>
       <div
           class="title"
           data-parallax="true"
@@ -25,6 +26,7 @@
       >公元<span class="change-number" ref="number14Ref">{{ displayNumber14 }}</span>世纪-<span class="change-number" ref="number19Ref">{{ displayNumber19 }}</span>世纪</div>
       <div
           class="grass"
+          :data-bg="cmgd_mural_tea"
           data-parallax="true"
           data-parallax-axis="x"
           data-parallax-from="450"
@@ -45,6 +47,7 @@
       >易道万里</div>
       <div
           class="tree"
+          :data-bg="tree_gif"
           data-parallax="true"
           data-parallax-axis="x"
           data-parallax-from="500"
@@ -70,6 +73,7 @@
       </div>
       <div
           class="wine-1"
+          :data-bg="cmgd_basin"
           data-parallax="true"
           data-parallax-axis="x"
           data-parallax-from="100"
@@ -79,6 +83,7 @@
       ></div>
       <div
           class="wine-2"
+          :data-bg="cmgd_tea_boiling"
           data-parallax="true"
           data-parallax-axis="x"
           data-parallax-from="400"
@@ -90,6 +95,7 @@
     <div class="ml-80 four-screen screen">
       <div
           class="stone"
+          :data-bg="cmgd_stone"
           data-parallax="true"
           data-parallax-axis="x"
           data-parallax-from="400"
@@ -99,6 +105,7 @@
       ></div>
       <div
           class="person"
+          :data-bg="cmgd_mural_detail_2"
           data-parallax="true"
           data-parallax-axis="x"
           data-parallax-from="400"
@@ -138,6 +145,7 @@
     <div class="ml-80 five-screen screen">
       <div
           class="temple"
+          :data-bg="cmgd_ruins_chamasi"
           data-parallax="true"
           data-parallax-axis="x"
           data-parallax-from="400"
@@ -147,6 +155,7 @@
       ></div>
       <div
           class="tree"
+          :data-bg="terr_brach_2"
           data-parallax="true"
           data-parallax-axis="x"
           data-parallax-from="600"
@@ -176,7 +185,7 @@
         data-parallax-speed="1.1"
         data-parallax-center-lock="true"
     >
-      <div class="inform-img"></div>
+      <div class="inform-img" :data-bg="cmgd_artifact_chamahushibugao_large"></div>
       <div class="detail">
         <div class="title">《茶马互市布告》</div>
         <p>这则布告发布于明万历二十年，用最明白晓畅的白话文向藏民昭示了政府的茶马互市政策。</p>
@@ -204,6 +213,7 @@
       </div>
       <div
           class="house"
+          :data-bg="cmgd_mural_detail_3"
           data-parallax="true"
           data-parallax-axis="x"
           data-parallax-from="300"
@@ -227,6 +237,7 @@
       </div>
       <div
           class="tree"
+          :data-bg="terr_brach_1"
           data-parallax="true"
           data-parallax-axis="x"
           data-parallax-from="600"
@@ -237,6 +248,7 @@
       <div class="bottle">
         <div
             class="bottle-img"
+            :data-bg="cmgd_artifact_benbaping"
             data-parallax="true"
             data-parallax-axis="x"
             data-parallax-from="600"
@@ -302,6 +314,24 @@ import { gsap } from 'gsap';
 import { pxToVw, pxToVh } from '@/utils/viewportUtils';
 import AnnotationDot from "@/components/AnnotationDot.vue";
 import { useAnimateNumber } from '@/utils/animateNumber';
+
+// 背景图资源懒加载
+const cmgd_bg = new URL('@/assets/images/chamagudao/cmgd-bg.jpg', import.meta.url).href;
+const cmgd_mural_detail_1 = new URL('@/assets/images/chamagudao/cmgd-mural-detail-1.png', import.meta.url).href;
+const tea_falling = new URL('@/assets/images/chamagudao/tea-falling.gif', import.meta.url).href;
+const cmgd_silutu_lineart = new URL('@/assets/images/chamagudao/cmgd-silutu-lineart.png', import.meta.url).href;
+const cmgd_mural_tea = new URL('@/assets/images/chamagudao/cmgd-mural-tea.png', import.meta.url).href;
+const tree_gif = new URL('@/assets/images/chamagudao/tree.gif', import.meta.url).href;
+const cmgd_basin = new URL('@/assets/images/chamagudao/cmgd-basin.png', import.meta.url).href;
+const cmgd_tea_boiling = new URL('@/assets/images/chamagudao/cmgd-tea-boiling.png', import.meta.url).href;
+const cmgd_stone = new URL('@/assets/images/chamagudao/cmgd-stone.png', import.meta.url).href;
+const cmgd_mural_detail_2 = new URL('@/assets/images/chamagudao/cmgd-mural-detail-2.png', import.meta.url).href;
+const cmgd_ruins_chamasi = new URL('@/assets/images/chamagudao/cmgd-ruins-chamasi.png', import.meta.url).href;
+const terr_brach_2 = new URL('@/assets/images/chamagudao/terr-brach-2.gif', import.meta.url).href;
+const cmgd_artifact_chamahushibugao_large = new URL('@/assets/images/chamagudao/cmgd-artifact-chamahushibugao-large.jpg', import.meta.url).href;
+const cmgd_mural_detail_3 = new URL('@/assets/images/chamagudao/cmgd-mural-detail-3.png', import.meta.url).href;
+const terr_brach_1 = new URL('@/assets/images/chamagudao/terr-brach-1.gif', import.meta.url).href;
+const cmgd_artifact_benbaping = new URL('@/assets/images/chamagudao/cmgd-artifact-benbaping.png', import.meta.url).href;
 
 /**
  * 初始化所有描述文本渐显动画
@@ -393,6 +423,11 @@ onUnmounted(() => {
 })
 </script>
 <style scoped>
+[data-bg] {
+  --bg-image: attr(data-bg url);
+  background-image: var(--bg-image);
+}
+
 .screen{
   position: relative;
   width: 1920px;
@@ -405,7 +440,6 @@ onUnmounted(() => {
   width: 17764px;
   height: 1080px;
   margin-left: -1800px;
-  background-image: url("@/assets/images/chamagudao/cmgd-bg.jpg");
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
@@ -419,7 +453,6 @@ onUnmounted(() => {
     .road{
       width: 2997px;
       height: 655px;
-      background-image: url("@/assets/images/chamagudao/cmgd-mural-detail-1.png");
       background-size: cover;
       background-position: center center;
       background-repeat: no-repeat;
@@ -430,7 +463,6 @@ onUnmounted(() => {
     .tea{
       width: 1208px;
       height: 687px;
-      background-image: url("@/assets/images/chamagudao/tea-falling.gif");
       background-size: cover;
       background-position: center center;
       background-repeat: no-repeat;
@@ -447,7 +479,6 @@ onUnmounted(() => {
     .light-bg{
       width: 3725px;
       height: 918px;
-      background-image: url("@/assets/images/chamagudao/cmgd-silutu-lineart.png");
       background-size: cover;
       background-position: center center;
       background-repeat: no-repeat;
@@ -468,7 +499,6 @@ onUnmounted(() => {
     .grass{
       width: 577px;
       height: 158px;
-      background-image: url("@/assets/images/chamagudao/cmgd-mural-tea.png");
       background-size: cover;
       background-position: center center;
       background-repeat: no-repeat;
@@ -502,7 +532,6 @@ onUnmounted(() => {
     .tree{
       width: 2030px;
       height: 1157px;
-      background-image: url("@/assets/images/chamagudao/tree.gif");
       background-size: cover;
       background-position: center center;
       background-repeat: no-repeat;
@@ -513,7 +542,6 @@ onUnmounted(() => {
     .wine-1{
       width: 167px;
       height: 131px;
-      background-image: url("@/assets/images/chamagudao/cmgd-basin.png");
       background-size: cover;
       background-position: center center;
       background-repeat: no-repeat;
@@ -524,7 +552,6 @@ onUnmounted(() => {
     .wine-2{
       width: 134px;
       height: 144px;
-      background-image: url("@/assets/images/chamagudao/cmgd-tea-boiling.png");
       background-size: cover;
       background-position: center center;
       background-repeat: no-repeat;
@@ -552,7 +579,6 @@ onUnmounted(() => {
     .stone{
       width: 886px;
       height: 232px;
-      background-image: url("@/assets/images/chamagudao/cmgd-stone.png");
       background-size: cover;
       background-position: center center;
       background-repeat: no-repeat;
@@ -563,7 +589,6 @@ onUnmounted(() => {
     .person{
       width: 2088px;
       height: 556px;
-      background-image: url("@/assets/images/chamagudao/cmgd-mural-detail-2.png");
       background-size: cover;
       background-position: center center;
       background-repeat: no-repeat;
@@ -595,7 +620,6 @@ onUnmounted(() => {
     .temple{
       width: 1797px;
       height: 629px;
-      background-image: url("@/assets/images/chamagudao/cmgd-ruins-chamasi.png");
       background-size: cover;
       background-position: center center;
       background-repeat: no-repeat;
@@ -606,7 +630,6 @@ onUnmounted(() => {
     .tree{
       width: 1622px;
       height: 1021px;
-      background-image: url("@/assets/images/chamagudao/terr-brach-2.gif");
       background-size: cover;
       background-position: center center;
       background-repeat: no-repeat;
@@ -619,7 +642,6 @@ onUnmounted(() => {
     .inform-img{
       width: 1447px;
       height: 353px;
-      background-image: url("@/assets/images/chamagudao/cmgd-artifact-chamahushibugao-large.jpg");
       background-size: cover;
       background-position: center center;
       background-repeat: no-repeat;
@@ -667,7 +689,6 @@ onUnmounted(() => {
     .house{
       width: 1404px;
       height: 980px;
-      background-image: url("@/assets/images/chamagudao/cmgd-mural-detail-3.png");
       background-size: cover;
       background-position: center center;
       background-repeat: no-repeat;
@@ -699,7 +720,6 @@ onUnmounted(() => {
     .tree{
       width: 1789px;
       height: 1054px;
-      background-image: url("@/assets/images/chamagudao/terr-brach-1.gif");
       background-size: cover;
       background-position: center center;
       background-repeat: no-repeat;
@@ -711,7 +731,6 @@ onUnmounted(() => {
       .bottle-img{
         width: 470px;
         height: 591px;
-        background-image: url("@/assets/images/chamagudao/cmgd-artifact-benbaping.png");
         background-size: cover;
         background-position: center center;
         background-repeat: no-repeat;

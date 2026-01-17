@@ -1,5 +1,5 @@
 <template>
-  <div class="architecture">
+  <div class="architecture" :data-bg="architecture_bg">
     <div class="first-screen screen">
       <div 
         class="text-wrapper"
@@ -17,6 +17,7 @@
     </div>
     <div class="second-screen screen">
       <div class="cloud-1"
+           :data-bg="architecture_element_cloud"
            data-parallax="true"
            data-parallax-axis="y"
            data-parallax-from="300"
@@ -33,9 +34,9 @@
           data-parallax-speed="1.1"
           data-parallax-center-lock="true"
       >
-        <div class="second-screen-img-1"></div>
-        <div class="second-screen-img-2"></div>
-        <div class="second-screen-img-3"></div>
+        <div class="second-screen-img-3" :data-bg="architecture_element_arrow"></div>
+        <div class="second-screen-img-1" :data-bg="architecture_element_speed_line_1"></div>
+        <div class="second-screen-img-2" :data-bg="architecture_element_speed_line_2"></div>
       </div>
       <div class="content"
            data-parallax="true"
@@ -48,7 +49,7 @@
         <p>继续前行，感受极境之上，</p>
         <div class="architecture-text">
           <div class="architecture-text-1-wrapper">
-            <div class="architecture-text-1"></div>
+            <div class="architecture-text-1" :data-bg="architecture_characters_1"></div>
             <p>的</p>
           </div>
           <p>温度与华彩。</p>
@@ -64,6 +65,7 @@
            data-parallax-to="-300"
            data-parallax-speed="1.1"
            data-parallax-center-lock="true"
+           :data-bg="architecture_element_bg_1"
       ></div>
       <div class="third-screen-bg-2"
            data-parallax="true"
@@ -72,6 +74,7 @@
            data-parallax-to="-300"
            data-parallax-speed="1.1"
            data-parallax-center-lock="true"
+           :data-bg="architecture_element_bg_2"
       ></div>
       <div class="third-screen-bg-3"
            data-parallax="true"
@@ -79,21 +82,27 @@
            data-parallax-from="300"
            data-parallax-to="-300"
            data-parallax-speed="1.2"
-           data-parallax-center-lock="true"></div>
+           data-parallax-center-lock="true"
+           :data-bg="architecture_element_mg_1"
+      ></div>
       <div class="third-screen-bg-4"
            data-parallax="true"
            data-parallax-axis="y"
            data-parallax-from="300"
            data-parallax-to="-300"
            data-parallax-speed="1.2"
-           data-parallax-center-lock="true"></div>
+           data-parallax-center-lock="true"
+           :data-bg="architecture_element_mg_2"
+      ></div>
       <div class="third-screen-bg-text"
            data-parallax="true"
            data-parallax-axis="y"
            data-parallax-from="600"
            data-parallax-to="-200"
            data-parallax-speed="1.5"
-           data-parallax-center-lock="true"></div>
+           data-parallax-center-lock="true"
+           :data-bg="architecture_character_2"
+      ></div>
       <p
           data-parallax="true"
           data-parallax-axis="y"
@@ -108,6 +117,7 @@
            data-parallax-to="-300"
            data-parallax-speed="1.3"
            data-parallax-center-lock="true"
+           :data-bg="architecture_element_fg_1"
       ></div>
       <div class="third-screen-bg-6"
            data-parallax="true"
@@ -115,7 +125,9 @@
            data-parallax-from="300"
            data-parallax-to="-300"
            data-parallax-speed="1.3"
-           data-parallax-center-lock="true"></div>
+           data-parallax-center-lock="true"
+           :data-bg="architecture_element_fg_2"
+      ></div>
       <div class="third-screen-bg-7"
            data-parallax="true"
            data-parallax-axis="y"
@@ -123,10 +135,11 @@
            data-parallax-to="-50"
            data-parallax-speed="1.05"
            data-parallax-center-lock="true"
+           :data-bg="architecture_element_bdlg"
       ></div>
     </div>
     <div class="four-screen screen">
-      <div class="four-screen-bg-1"></div>
+      <div class="four-screen-bg-1" :data-bg="architecture_element_qzjz_1"></div>
       <div class="four-screen-bg-2"
            data-parallax="true"
            data-parallax-axis="y"
@@ -134,6 +147,7 @@
            data-parallax-to="-100"
            data-parallax-speed="1.1"
            data-parallax-center-lock="true"
+           :data-bg="architecture_element_qzjz_2"
       ></div>
       <div class="four-screen-bg-3"
            data-parallax="true"
@@ -142,6 +156,7 @@
            data-parallax-to="-200"
            data-parallax-speed="1.2"
            data-parallax-center-lock="true"
+           :data-bg="architecture_element_wall"
       ></div>
       <div class="four-screen-detail"
            data-parallax="true"
@@ -161,7 +176,7 @@
            data-parallax-speed="1.2"
            data-parallax-center-lock="true">
         <p class="alibaba-light">马尔康脚木足扎依碉楼</p>
-        <div class="img-1"></div>
+        <div class="img-1" :data-bg="architecture_image_1"></div>
         <annotation-dot :openDirection="-50" :closeDirection="50">
           <p class="popularization-content">《嘉绒藏族古碉文明》四川民族出版社 2020</p>
         </annotation-dot>
@@ -184,7 +199,7 @@
            data-parallax-to="-300"
            data-parallax-speed="1.1"
            data-parallax-center-lock="true">
-        <div class="img-1"></div>
+        <div class="img-1" :data-bg="architecture_image_2"></div>
         <p class="alibaba-light">汶川县龙溪乡阿尔寨碉楼</p>
         <annotation-dot >
           <p class="popularization-content">《羌族建筑》 四川民族出版社 2021</p>
@@ -213,7 +228,7 @@
            data-parallax-to="-200"
            data-parallax-speed="1.1"
            data-parallax-center-lock="true">
-        <div class="img-1"></div>
+        <div class="img-1" :data-bg="architecture_image_3"></div>
         <p class="alibaba-light">巴底吐司官寨结构图</p>
         <annotation-dot >
           <p class="popularization-content">《藏族美术集成·建筑艺术·民居建筑·川滇卷》（藏汉对照）</p>
@@ -233,7 +248,7 @@
       </div>
     </div>
     <div class="eight-screen screen">
-      <div class="eight-screen-bg"></div>
+      <div class="eight-screen-bg" :data-bg="architecture_element_guidingline_3"></div>
       <div class="eight-screen-detail"
            data-parallax="true"
            data-parallax-axis="y"
@@ -260,7 +275,7 @@
            data-parallax-speed="1.2"
            data-parallax-center-lock="true"
       >
-        <div class="img-1"></div>
+        <div class="img-1" :data-bg="architecture_image_4"></div>
         <p class="alibaba-light">道孚民居原木风格的客厅</p>
         <annotation-dot :openDirection="-50" :closeDirection="50">
           <p class="popularization-content">《藏族美术集成·建筑艺术·民居建筑·川滇卷》（藏汉对照）<br>四川民族出版社 2023</p>
@@ -276,7 +291,7 @@
            data-parallax-to="-200"
            data-parallax-speed="1.2"
            data-parallax-center-lock="true">
-        <div class="img-1"></div>
+        <div class="img-1" :data-bg="architecture_image_6"></div>
         <p class="alibaba-light">布达拉宫近景</p>
       </div>
       <div class="img-wrapper-2"
@@ -286,7 +301,7 @@
            data-parallax-to="-200"
            data-parallax-speed="1.3"
            data-parallax-center-lock="true">
-        <div class="img-2"></div>
+        <div class="img-2" :data-bg="architecture_image_5"></div>
         <p class="alibaba-light">布达拉宫</p>
         <p class="description">布达拉宫始建于公元7世纪，17世纪重建扩建后成为政治与宗教中心。它依山而筑，气势雄浑。红宫居中、白宫横展，十余层红墙与金色屋檐在高原阳光下熠熠生辉。1994年，布达拉宫被列入《世界遗产名录》，它不仅是文成公主入藏，汉藏交流等早期历史的见证，更成为中华民族文化互鉴融通的重要标志和全人类共同的文化财富。</p>
         <annotation-dot :openDirection="-50" :closeDirection="50">
@@ -308,7 +323,9 @@
            data-parallax-from="600"
            data-parallax-to="-600"
            data-parallax-speed="1.2"
-           data-parallax-center-lock="true"></div>
+           data-parallax-center-lock="true"
+           :data-bg="architecture_element_sys"
+      ></div>
     </div>
     <div class="eleven-screen screen">
       <div class="eleven-screen-warpper-1"
@@ -318,7 +335,7 @@
            data-parallax-to="-200"
            data-parallax-speed="1.2"
            data-parallax-center-lock="true">
-        <div class="img-1"></div>
+        <div class="img-1" :data-bg="architecture_image_7"></div>
         <p class="alibaba-light">桑耶寺乌孜大殿</p>
         <annotation-dot>
           <p class="popularization-content">《物里中华：一文一物话西藏》<br> 四川民族出版社 2025</p>
@@ -332,7 +349,7 @@
            data-parallax-speed="1.2"
            data-parallax-center-lock="true">
         <p class="alibaba-light">桑耶寺全景</p>
-        <div class="img-2"></div>
+        <div class="img-2" :data-bg="architecture_image_8"></div>
       </div>
     </div>
   </div>
@@ -343,6 +360,38 @@ import { gsap } from 'gsap';
 import { pxToVw, pxToVh } from '@/utils/viewportUtils';
 import AnnotationDot from "@/components/AnnotationDot.vue";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+// 背景图资源懒加载
+const architecture_bg = new URL('@/assets/images/architecture/architecture-bg.jpg', import.meta.url).href;
+const architecture_element_arrow = new URL('@/assets/images/architecture/architecture-element-arrow.png', import.meta.url).href;
+const architecture_element_speed_line_1 = new URL('@/assets/images/architecture/architecture-element-speed-line-1.png', import.meta.url).href;
+const architecture_element_speed_line_2 = new URL('@/assets/images/architecture/architecture-element-speed-line-2.png', import.meta.url).href;
+const architecture_element_cloud = new URL('@/assets/images/architecture/architecture-element-cloud.png', import.meta.url).href;
+const architecture_element_bg_2 = new URL('@/assets/images/architecture/architecture-element-bg-2.png', import.meta.url).href;
+const architecture_element_mg_1 = new URL('@/assets/images/architecture/architecture-element-mg-1.png', import.meta.url).href;
+const architecture_element_mg_2 = new URL('@/assets/images/architecture/architecture-element-mg-2.png', import.meta.url).href;
+const architecture_character_2 = new URL('@/assets/images/architecture/architecture-characters-2.png', import.meta.url).href;
+const architecture_element_fg_1 = new URL('@/assets/images/architecture/architecture-element-fg-1.png', import.meta.url).href;
+const architecture_element_fg_2 = new URL('@/assets/images/architecture/architecture-element-fg-2.png', import.meta.url).href;
+const architecture_element_bdlg = new URL('@/assets/images/architecture/architecture-element-bdlg.png', import.meta.url).href;
+const architecture_element_qzjz_1 = new URL('@/assets/images/architecture/architecture-element-qzjz-1.png', import.meta.url).href;
+const architecture_element_qzjz_2 = new URL('@/assets/images/architecture/architecture-element-qzjz-2.png', import.meta.url).href;
+const architecture_element_wall = new URL('@/assets/images/architecture/architecture-element-wall.png', import.meta.url).href;
+const architecture_image_1 = new URL('@/assets/images/architecture/architecture-image-1.jpg', import.meta.url).href;
+const architecture_image_2 = new URL('@/assets/images/architecture/architecture-image-2.jpg', import.meta.url).href;
+const architecture_image_3 = new URL('@/assets/images/architecture/architecture-image-3.png', import.meta.url).href;
+const architecture_image_4 = new URL('@/assets/images/architecture/architecture-image-4.jpg', import.meta.url).href;
+const architecture_image_5 = new URL('@/assets/images/architecture/architecture-image-5.jpg', import.meta.url).href;
+const architecture_image_6 = new URL('@/assets/images/architecture/architecture-image-6.jpg', import.meta.url).href;
+const architecture_image_7 = new URL('@/assets/images/architecture/architecture-image-7.jpg', import.meta.url).href;
+const architecture_image_8 = new URL('@/assets/images/architecture/architecture-image-8.jpg', import.meta.url).href;
+const architecture_element_guidingline_1 = new URL('@/assets/images/architecture/architecture-element-guidingline-1.png', import.meta.url).href;
+const architecture_element_guidingline_2 = new URL('@/assets/images/architecture/architecture-element-guidingline-2.png', import.meta.url).href;
+const architecture_element_guidingline_3 = new URL('@/assets/images/architecture/architecture-element-guidingline-3.png', import.meta.url).href;
+const architecture_element_sys = new URL('@/assets/images/architecture/architecture-element-sys.png', import.meta.url).href;
+const architecture_characters_1 = new URL('@/assets/images/architecture/architecture-characters-1.png', import.meta.url).href;
+const architecture_element_bg_1 = new URL('@/assets/images/architecture/architecture-element-bg-1.png', import.meta.url).href;
+const architecture_characters_2 = new URL('@/assets/images/architecture/architecture-characters-2.png', import.meta.url).href;
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -402,9 +451,14 @@ const initTextWrapperAnimation = () => {
 
 </script>
 <style>
+/* 背景图懒加载通用规则 */
+[data-bg] {
+  --bg-image: attr(data-bg url);
+  background-image: var(--bg-image);
+}
+
 .architecture{
   width: 1920px;
-  background-image: url("@/assets/images/architecture/architecture-bg.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   min-height: 12960px;
@@ -442,7 +496,6 @@ const initTextWrapperAnimation = () => {
       .second-screen-img-3{
         width: 40px;
         height: 581px;
-        background-image: url("@/assets/images/architecture/architecture-element-arrow.png");
         background-size: cover;
         background-position: center center;
         background-repeat: no-repeat;
@@ -453,7 +506,6 @@ const initTextWrapperAnimation = () => {
       .second-screen-img-1{
         width: 176px;
         height: 492px;
-        background-image: url("@/assets/images/architecture/architecture-element-speed-line-1.png");
         background-size: cover;
         background-position: center center;
         background-repeat: no-repeat;
@@ -464,7 +516,6 @@ const initTextWrapperAnimation = () => {
       .second-screen-img-2{
         width: 176px;
         height: 492px;
-        background-image: url("@/assets/images/architecture/architecture-element-speed-line-2.png");
         background-size: cover;
         background-position: center center;
         background-repeat: no-repeat;
@@ -477,7 +528,6 @@ const initTextWrapperAnimation = () => {
     .cloud-1{
       width: 3962px;
       height: 1826px;
-      background-image: url("@/assets/images/architecture/architecture-element-cloud.png");
       background-size: cover;
       background-position: center center;
       background-repeat: no-repeat;
@@ -506,9 +556,8 @@ const initTextWrapperAnimation = () => {
         }
       }
       .architecture-text-1{
-        width: 396px;
-        height: 94px;
-        background-image: url("@/assets/images/architecture/architecture-characters-1.png");
+        width: 443px;
+        height: 272px;
         background-size: cover;
         background-position: center center;
         background-repeat: no-repeat;
@@ -533,7 +582,6 @@ const initTextWrapperAnimation = () => {
       .img-1{
         width: 646px;
         height: 410px;
-        background-image: url("@/assets/images/architecture/architecture-image-7.jpg");
         background-size: cover;
         background-position: center center;
         background-repeat: no-repeat;
@@ -566,7 +614,6 @@ const initTextWrapperAnimation = () => {
       .img-2{
         width: 610px;
         height: 408px;
-        background-image: url("@/assets/images/architecture/architecture-image-8.jpg");
         background-size: cover;
         background-position: center center;
         background-repeat: no-repeat;
@@ -594,7 +641,6 @@ const initTextWrapperAnimation = () => {
     .img-1{
       width: 1448px;
       height: 817px;
-      background-image: url("@/assets/images/architecture/architecture-element-sys.png");
       background-size: cover;
       background-position: center center;
       background-repeat: no-repeat;
@@ -631,7 +677,6 @@ const initTextWrapperAnimation = () => {
       .img-1{
         width: 360px;
         height: 470px;
-        background-image: url("@/assets/images/architecture/architecture-image-6.jpg");
         background-size: cover;
         background-position: center center;
         background-repeat: no-repeat;
@@ -652,7 +697,6 @@ const initTextWrapperAnimation = () => {
       .img-2{
         width: 710px;
         height: 470px;
-        background-image: url("@/assets/images/architecture/architecture-image-5.jpg");
         background-size: cover;
         background-position: center center;
         background-repeat: no-repeat;
@@ -692,7 +736,6 @@ const initTextWrapperAnimation = () => {
     .eight-screen-bg{
       width: 1920px;
       height: 1488px;
-      background-image: url("@/assets/images/architecture/architecture-element-guidingline-3.png");
       background-size: cover;
       background-position: center center;
       background-repeat: no-repeat;

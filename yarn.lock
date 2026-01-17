@@ -3117,6 +3117,11 @@ vue-burger-menu@^2.0.5:
   dependencies:
     vue "^2.5.17"
 
+vue-demi@^0.12.5:
+  version "0.12.5"
+  resolved "https://registry.npmmirror.com/vue-demi/-/vue-demi-0.12.5.tgz"
+  integrity sha512-BREuTgTYlUr0zw0EZn3hnhC3I6gPWv+Kwh4MCih6QcAeaTlaIX0DwOVN0wHej7hSvDPecz4jygy/idsgKfW58Q==
+
 vue-lazyload@^3.0.0:
   version "3.0.0"
   resolved "https://registry.npmmirror.com/vue-lazyload/-/vue-lazyload-3.0.0.tgz"
@@ -3129,15 +3134,7 @@ vue-router@^4.6.3:
   dependencies:
     "@vue/devtools-api" "^6.6.4"
 
-vue@^2.5.17:
-  version "2.7.16"
-  resolved "https://registry.npmmirror.com/vue/-/vue-2.7.16.tgz"
-  integrity sha512-4gCtFXaAA3zYZdTp5s4Hl2sozuySsgz4jy1EnpBHNfpMa9dK1ZCG7viqBPCwXtmgc8nHqUsAu3G4gtmXkkY3Sw==
-  dependencies:
-    "@vue/compiler-sfc" "2.7.16"
-    csstype "^3.1.0"
-
-vue@^3.2.25, vue@^3.5.0, vue@^3.5.24, vue@3.5.24:
+"vue@^2.0.0 || >=3.0.0", "vue@^3.0.0-0 || ^2.6.0", vue@^3.2.25, vue@^3.5.0, vue@^3.5.24, vue@3.5.24:
   version "3.5.24"
   resolved "https://registry.npmmirror.com/vue/-/vue-3.5.24.tgz"
   integrity sha512-uTHDOpVQTMjcGgrqFPSb8iO2m1DUvo+WbGqoXQz8Y1CeBYQ0FXf2z1gLRaBtHjlRz7zZUBHxjVB5VTLzYkvftg==
@@ -3147,6 +3144,21 @@ vue@^3.2.25, vue@^3.5.0, vue@^3.5.24, vue@3.5.24:
     "@vue/runtime-dom" "3.5.24"
     "@vue/server-renderer" "3.5.24"
     "@vue/shared" "3.5.24"
+
+vue@^2.5.17:
+  version "2.7.16"
+  resolved "https://registry.npmmirror.com/vue/-/vue-2.7.16.tgz"
+  integrity sha512-4gCtFXaAA3zYZdTp5s4Hl2sozuySsgz4jy1EnpBHNfpMa9dK1ZCG7viqBPCwXtmgc8nHqUsAu3G4gtmXkkY3Sw==
+  dependencies:
+    "@vue/compiler-sfc" "2.7.16"
+    csstype "^3.1.0"
+
+vue3-lazyload@^0.3.8:
+  version "0.3.8"
+  resolved "https://registry.npmmirror.com/vue3-lazyload/-/vue3-lazyload-0.3.8.tgz"
+  integrity sha512-UiJHRT7mzry102WbhtrRgJh+f8Z8u4Z+H1RU4dvPmQeq7wFSDFxZB9iJOWGihH2FscXN/8rMGLDOQJAmjwqpCg==
+  dependencies:
+    vue-demi "^0.12.5"
 
 which-typed-array@^1.1.16:
   version "1.1.19"

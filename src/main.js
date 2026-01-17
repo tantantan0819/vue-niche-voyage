@@ -8,22 +8,15 @@ const app = createApp(App)
 
 // 注册路由
 app.use(router)
-// 注册插件 + 核心配置（重点是preLoad和背景图修饰符）
+// 注册插件 + 核心配置（重点是observerOptions.rootMargin实现提前加载）
 app.use(lazyLoad, {
-  preLoad: 1.5, // 核心！提前1.5倍屏高加载（用户滚动到前就加载完）
-  silent: true, // 关闭日志，避免控制台冗余输出
-  // 自定义修饰符：专门处理背景图（关键适配你的CSS背景图场景）
-  modifier: {
-    bg: {
-      bind(el, binding) {
-        // 把背景图URL存到元素的data-bg属性里
-        el.setAttribute('data-bg', binding.value)
-      },
-      update(el, binding) {
-        el.setAttribute('data-bg', binding.value)
-      }
-    }
-  }
+  observerOptions: {
+    rootMargin: '100% 1000%', // 核心！垂直方向提前1倍屏高，水平方向提前10倍屏宽加载
+    threshold: 0
+  },
+  log: false, // 关闭日志，避免控制台冗余输出
+  loading: '', // 可选：设置加载中占位图
+  error: '' // 可选：设置加载失败占位图
 })
 
 app.mount('#app')

@@ -1,5 +1,5 @@
 <template>
-  <div class="literary-drama">
+  <div class="literary-drama" :data-bg="drama_bg">
     <!-- 第一屏 -->
     <div class="screen first-screen">
       <div class="drama-section" ></div>
@@ -430,6 +430,9 @@ import { ref, onMounted, onUnmounted,nextTick } from 'vue'
 import { gsap } from 'gsap';
 import DotPopover from '@/components/dotPopover.vue';
 
+// 背景图资源懒加载
+const drama_bg = new URL('@/assets/images/literaryDrama/drama-bg.jpg', import.meta.url).href;
+
 const initGsapAnimation = () => {
     gsap.to('.forth-screen .text-font', {
         opacity: 1,
@@ -516,11 +519,19 @@ onMounted(() => {
   line-height: 50px;
   color: #534833;
 }
+/* 背景图懒加载通用规则 */
+[data-bg] {
+  --bg-image: attr(data-bg url);
+  background-image: var(--bg-image);
+}
+
 .literary-drama {
   width: 100vw;
   position: relative;
   overflow-x: hidden;
-  background: url('@/assets/images/literaryDrama/drama-bg.jpg') no-repeat center center / cover;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
   .screen {
     position: relative;
     width: 100vw;

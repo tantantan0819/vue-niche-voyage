@@ -1,6 +1,6 @@
 <template>
   <div class="folkways-wrapper">
-    <div class="folkways-container" >
+    <div class="folkways-container" :data-bg="folkways_bg">
       <div class="screen"></div>
       <!-- 第一幕 -->
       <div
@@ -13,7 +13,7 @@
           data-parallax-center-lock="true">
         <div class="page-point" id="page-folkways-section"></div>
         <div class="left-pattern-container">
-          <div class="left-pattern-img"></div>
+          <div class="left-pattern-img" :data-bg="folkways_element_1_4"></div>
           <div
               class="first-screen-cloud-container"
               data-parallax="true"
@@ -23,14 +23,15 @@
               data-parallax-speed="1.2"
               data-parallax-center-lock="true"
           >
-            <div class="left-cloud-img-1"></div>
-            <div class="left-cloud-img-2"></div>
+            <div class="left-cloud-img-1" :data-bg="folkways_element_1_6"></div>
+            <div class="left-cloud-img-2" :data-bg="folkways_element_1_7"></div>
           </div>
         </div>
-        <div class="background-people-img"></div>
+        <div class="background-people-img" :data-bg="folkways_element_1_1"></div>
         <div class="center-title-container">
           <div
               class="title-img"
+              :data-bg="folkways_character_1"
               data-parallax="true"
               data-parallax-axis="y"
               data-parallax-from="200"
@@ -39,6 +40,7 @@
               data-parallax-center-lock="true"></div>
           <div
               class="subtitle-img"
+              :data-bg="folkways_character_2"
               data-parallax="true"
               data-parallax-axis="y"
               data-parallax-from="300"
@@ -47,9 +49,10 @@
               data-parallax-center-lock="true"></div>
         </div>
         <div class="right-pattern-container">
-          <div class="right-pattern-img"></div>
+          <div class="right-pattern-img" :data-bg="folkways_element_1_3"></div>
           <div
               class="right-ribbon-img"
+              :data-bg="folkways_element_1_2"
               data-parallax="true"
               data-parallax-axis="y"
               data-parallax-from="100"
@@ -564,6 +567,17 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import DotPopover from '@/components/dotPopover.vue';
 import { useRouter } from 'vue-router'
 const router = useRouter()
+
+// 背景图资源懒加载
+const folkways_bg = new URL('@/assets/images/folkways/folkways-bg.png', import.meta.url).href;
+const folkways_element_1_1 = new URL('@/assets/images/folkways/folkways-element-1-1.png', import.meta.url).href;
+const folkways_element_1_4 = new URL('@/assets/images/folkways/folkways-element-1-4.png', import.meta.url).href;
+const folkways_element_1_6 = new URL('@/assets/images/folkways/folkways-element-1-6.png', import.meta.url).href;
+const folkways_element_1_7 = new URL('@/assets/images/folkways/folkways-element-1-7.png', import.meta.url).href;
+const folkways_character_1 = new URL('@/assets/images/folkways/folkways-character-1.png', import.meta.url).href;
+const folkways_character_2 = new URL('@/assets/images/folkways/folkways-character-2.png', import.meta.url).href;
+const folkways_element_1_3 = new URL('@/assets/images/folkways/folkways-element-1-3.png', import.meta.url).href;
+const folkways_element_1_2 = new URL('@/assets/images/folkways/folkways-element-1-2.png', import.meta.url).href;
 const initGsapAnimation = () => {
     gsap.to('.second-screen-text-content', {
         y: pxToVh(-100),
@@ -663,14 +677,21 @@ const toAnswerPage = () =>{
       background-color: #e6e1cd;
       height: 13000px;
     }
+    /* 背景图懒加载通用规则 */
+    [data-bg] {
+      --bg-image: attr(data-bg url);
+      background-image: var(--bg-image);
+    }
+
     .folkways-container {
         position: relative;
         top: -800px;
         width: 100vw;
         //height: 1500vh;
         overflow-x: hidden;
-        background: url('@/assets/images/folkways/folkways-bg.png') no-repeat center center;
         background-size: 100vw 1500vh;
+        background-repeat: no-repeat;
+        background-position: center center;
     }
     .first-screen{
       .page-point{
@@ -682,14 +703,18 @@ const toAnswerPage = () =>{
             left: 0;
             width: 1910px;
             height: 1218px;
-            background: url('@/assets/images/folkways/folkways-element-1-1.png') no-repeat center center / cover;
+            background-size: cover;
+            background-position: center center;
+            background-repeat: no-repeat;
         }
         .left-pattern-img{
             position: absolute;
             top: 200px;
             width: 501px;
             height: 1114px;
-            background: url('@/assets/images/folkways/folkways-element-1-4.png') no-repeat center center / cover;
+            background-size: cover;
+            background-position: center center;
+            background-repeat: no-repeat;
         }
         .left-cloud-img-1{
             position: absolute;
@@ -697,7 +722,9 @@ const toAnswerPage = () =>{
             top: 740px;
             width: 775px;
             height: 570px;
-            background: url('@/assets/images/folkways/folkways-element-1-6.png') no-repeat center center / cover;
+            background-size: cover;
+            background-position: center center;
+            background-repeat: no-repeat;
         }
         .left-cloud-img-2{
             position: absolute;
@@ -705,7 +732,9 @@ const toAnswerPage = () =>{
             top: 860px;
             width: 703px;
             height: 448px;
-            background: url('@/assets/images/folkways/folkways-element-1-7.png') no-repeat center center / cover;
+            background-size: cover;
+            background-position: center center;
+            background-repeat: no-repeat;
         }
         .center-title-container{
             position: absolute;
@@ -716,7 +745,9 @@ const toAnswerPage = () =>{
                 width: 1383px;
                 height: 331px;
                 z-index: 99;
-                background: url('@/assets/images/folkways/folkways-character-1.png') no-repeat center center / cover;
+                background-size: cover;
+                background-position: center center;
+                background-repeat: no-repeat;
             }
             .subtitle-img{
                 position: relative;
@@ -725,7 +756,9 @@ const toAnswerPage = () =>{
                 transform: translateX(-50%);
                 width: 469px;
                 height: 152px;
-                background: url('@/assets/images/folkways/folkways-character-2.png') no-repeat center center / cover;
+                background-size: cover;
+                background-position: center center;
+                background-repeat: no-repeat;
             }
         }
         .right-pattern-img{
@@ -734,7 +767,9 @@ const toAnswerPage = () =>{
             right: 0;
             width: 718px;
             height: 1089px;
-            background: url('@/assets/images/folkways/folkways-element-1-3.png') no-repeat center center / cover;
+            background-size: cover;
+            background-position: center center;
+            background-repeat: no-repeat;
         }
         .right-ribbon-img{
             position: absolute;
@@ -742,7 +777,9 @@ const toAnswerPage = () =>{
             right: 0;
             width: 363px;
             height: 542px;
-            background: url('@/assets/images/folkways/folkways-element-1-2.png') no-repeat center center / cover;
+            background-size: cover;
+            background-position: center center;
+            background-repeat: no-repeat;
         }
         .right-human-img{
             position: absolute;

@@ -88,7 +88,7 @@
           </div>
           <div class="climate-btn explore-btn" @click="linkTo('/voyage/climate')">深入探索</div>
         </div>
-      </div> 
+      </div>
       <div class="water-cloud-2-wrapper">
         <div class="water-cloud-2"></div>
       </div>

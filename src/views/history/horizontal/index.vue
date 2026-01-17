@@ -251,11 +251,20 @@ onMounted(async () => {
   await nextTick(); // 等待DOM挂载完成
   await preloadImages();
   // 缓存待懒加载元素与位置信息，避免滚动时重复测量
-  lazyBgElements = Array.from(document.querySelectorAll('[data-bg]')).map(el => ({
-    el,
-    left: el.offsetLeft,
-    width: el.offsetWidth || (parseFloat(getComputedStyle(el).width) || 0)
-  }));
+  lazyBgElements = Array.from(document.querySelectorAll('[data-bg]')).map(el => {
+    // 计算元素相对于水平滚动容器的总偏移量
+    let totalLeft = 0;
+    let current = el;
+    while (current && current !== container.value) {
+      totalLeft += current.offsetLeft;
+      current = current.offsetParent;
+    }
+    return {
+      el,
+      left: totalLeft,
+      width: el.offsetWidth || (parseFloat(getComputedStyle(el).width) || 0)
+    };
+  });
 
   smoothScrollLeft = gsap.quickTo(container.value, "scrollLeft", {
     duration: 0.5,

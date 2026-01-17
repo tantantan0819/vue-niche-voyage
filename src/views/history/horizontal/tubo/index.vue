@@ -1,12 +1,12 @@
 <template>
   <div class="tubo">
-    <div class="tubo-bg"></div>
+    <div class="tubo-bg" :data-bg="tb_bg"></div>
     <div class="first-screen">
       <div class="red-cloud-container">
-        <div class="mask-red-cloud"></div>
-        <div class="red-cloud-1"></div>
-        <div class="red-cloud-2"></div>
-        <div class="red-cloud-3"></div>
+        <div class="mask-red-cloud" :data-bg="tb_mask_redcloud"></div>
+        <div class="red-cloud-1" :data-bg="tb_redcloud_1"></div>
+        <div class="red-cloud-2" :data-bg="tb_redcloud_2"></div>
+        <div class="red-cloud-3" :data-bg="tb_redcloud_3"></div>
       </div>
       <div class="page-point"  id="page-tubo-dynasty"></div>
       <!-- <div class="moon" data-speed="1.2"></div>
@@ -47,12 +47,12 @@
         data-parallax-to="-800"
         data-parallax-speed="1.2"
         data-parallax-center-lock="true">
-        <div class="deer-img-1"></div>
-        <div class="deer-img-2"></div>
+        <div class="deer-img-1" :data-bg="tb_gif_deer"></div>
+        <div class="deer-img-2" :data-bg="tb_gif_deer"></div>
       </div>
-      <div class="first-img-bg">
+      <div class="first-img-bg" :data-bg="tb_desert">
         <div 
-          class="persons"
+          class="persons" :data-bg="tb_gif_camelcaravan"
           data-parallax="true"
           data-parallax-axis="x"
           data-parallax-from="600"
@@ -63,8 +63,8 @@
     </div>
     <div class="second-screen-wrapper">
       <div class="second-screen">
-        <div class="map-bg"></div>
-        <div class="map-bg2"></div>
+        <div class="map-bg" :data-bg="tb_minimap"></div>
+        <div class="map-bg2" :data-bg="tb_minimap"></div>
         <div 
           class="map"
           data-parallax="true"
@@ -97,9 +97,9 @@
       data-parallax-speed="1.2"
       data-parallax-center-lock="true"
       >
-      <div class="cloud-1"></div>
-      <div class="cloud-2"></div>
-      <div class="cloud-3"></div>
+      <div class="cloud-1" :data-bg="tb_cloud_1"></div>
+        <div class="cloud-2" :data-bg="tb_cloud_2"></div>
+        <div class="cloud-3" :data-bg="tb_cloud_3"></div>
       <div 
         class="description description-1"
         data-parallax="true"
@@ -157,7 +157,7 @@
         </annotation-dot>
       </div>
       <div 
-          class="person-left"
+          class="person-left" :data-bg="tb_gif_buniantu_left"
           data-parallax="true"
           data-parallax-axis="x"
           data-parallax-from="500"
@@ -165,7 +165,7 @@
           data-parallax-speed="1.3"
           data-parallax-center-lock="true"></div>
       <div 
-          class="person-right"
+          class="person-right" :data-bg="tb_gif_buniantu_right"
           data-parallax="true"
           data-parallax-axis="x"
           data-parallax-from="200"
@@ -174,7 +174,7 @@
           data-parallax-center-lock="true"></div>
     </div>
     <div class="five-screen">
-      <div class="cloud-1"></div>
+      <div class="cloud-1" :data-bg="tb_cloud_4"></div>
       <!-- <div class="cloud-2"></div> -->
       <!--          <div class="cloud-3"></div>-->
       <!--          <div class="cloud-4"></div>-->
@@ -190,9 +190,9 @@
       </div>
     </div>
     <div class="six-screen">
-      <div class="cloud-1"></div>
-      <div class="cloud-2"></div>
-      <div class="cloud-3"></div>
+      <div class="cloud-1" :data-bg="tb_cloud_7"></div>
+      <div class="cloud-2" :data-bg="tb_cloud_6"></div>
+      <div class="cloud-3" :data-bg="tb_cloud_5"></div>
       <div 
           class="stele-img-container"
           data-parallax="true"
@@ -201,8 +201,8 @@
           data-parallax-to="-800"
           data-parallax-speed="1.3"
           data-parallax-center-lock="true">
-        <div class="stele-img-1"></div>
-        <div class="stele-img-2"></div>
+        <div class="stele-img-1" :data-bg="tb_artifact_tbhmb_1"></div>
+        <div class="stele-img-2" :data-bg="tb_artifact_tbhmb_2"></div>
       </div>
       <div 
         class="stele-description stele-description-tl description"
@@ -240,9 +240,9 @@
           data-parallax-from="300"
           data-parallax-to="-300"
           data-parallax-speed="1.3"
-          data-parallax-center-lock="true"></div>
-      <div class="cloud-2"></div>
-      <div class="cloud-3"></div>
+          data-parallax-center-lock="true" :data-bg="tb_cloud_8"></div>
+      <div class="cloud-2" :data-bg="tb_cloud_9"></div>
+      <div class="cloud-3" :data-bg="tb_cloud_10"></div>
       <div 
           class="description"
           data-parallax="true"
@@ -264,6 +264,34 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import AnnotationDot from '@/components/AnnotationDot.vue';
 import { useAnimateNumber } from '@/utils/animateNumber';
 import DotPopover from '../../../../components/dotPopover.vue';
+
+// 背景图资源懒加载
+const tb_bg = new URL('@/assets/images/tubo/tb-bg.jpg', import.meta.url).href;
+const tb_mask_redcloud = new URL('@/assets/images/tubo/tb-mask-redcloud.png', import.meta.url).href;
+const tb_redcloud_1 = new URL('@/assets/images/tubo/tb-redcloud-1.png', import.meta.url).href;
+const tb_redcloud_2 = new URL('@/assets/images/tubo/tb-redcloud-2.png', import.meta.url).href;
+const tb_redcloud_3 = new URL('@/assets/images/tubo/tb-redcloud-3.png', import.meta.url).href;
+const tb_bg_silkroad = new URL('@/assets/images/tubo/tb-bg-silkroad.png', import.meta.url).href;
+const tb_foreground_moon = new URL('@/assets/images/tubo/tb-foreground-moon.png', import.meta.url).href;
+const tb_moon = new URL('@/assets/images/tubo/tb-moon.png', import.meta.url).href;
+const tb_desert = new URL('@/assets/images/tubo/tb-desert.png', import.meta.url).href;
+const tb_gif_camelcaravan = new URL('@/assets/images/tubo/tb-gif-camelcaravan.gif', import.meta.url).href;
+const tb_gif_deer = new URL('@/assets/images/tubo/tb-gif-deer.gif', import.meta.url).href;
+const tb_minimap = new URL('@/assets/images/tubo/tb-minimap.png', import.meta.url).href;
+const tb_cloud_1 = new URL('@/assets/images/tubo/tb-cloud-1.png', import.meta.url).href;
+const tb_cloud_2 = new URL('@/assets/images/tubo/tb-cloud-2.png', import.meta.url).href;
+const tb_cloud_3 = new URL('@/assets/images/tubo/tb-cloud-3.png', import.meta.url).href;
+const tb_gif_buniantu_left = new URL('@/assets/images/tubo/tb-gif-buniantu-left.gif', import.meta.url).href;
+const tb_gif_buniantu_right = new URL('@/assets/images/tubo/tb-gif-buniantu-right.gif', import.meta.url).href;
+const tb_cloud_4 = new URL('@/assets/images/tubo/tb-cloud-4.png', import.meta.url).href;
+const tb_cloud_7 = new URL('@/assets/images/tubo/tb-cloud-7.png', import.meta.url).href;
+const tb_cloud_6 = new URL('@/assets/images/tubo/tb-cloud-6.png', import.meta.url).href;
+const tb_cloud_5 = new URL('@/assets/images/tubo/tb-cloud-5.png', import.meta.url).href;
+const tb_artifact_tbhmb_1 = new URL('@/assets/images/tubo/tb-artifact-tbhmb-1.jpg', import.meta.url).href;
+const tb_artifact_tbhmb_2 = new URL('@/assets/images/tubo/tb-artifact-tbhmb-2.jpg', import.meta.url).href;
+const tb_cloud_8 = new URL('@/assets/images/tubo/tb-cloud-8.png', import.meta.url).href;
+const tb_cloud_9 = new URL('@/assets/images/tubo/tb-cloud-9.png', import.meta.url).href;
+const tb_cloud_10 = new URL('@/assets/images/tubo/tb-cloud-10.png', import.meta.url).href;
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -397,6 +425,12 @@ onUnmounted(() => {
 
 </script>
 <style scoped>
+/* 背景图懒加载通用规则 */
+[data-bg] {
+  --bg-image: attr(data-bg url);
+  background-image: var(--bg-image);
+}
+
 .tubo .first-screen .first-img-bg,
 .tubo {
   @extend .pin-trigger; /* 继承pin基础样式 */
@@ -411,7 +445,6 @@ onUnmounted(() => {
     width: 18856px;
     /* width: 20930px; */
     height: 1080px;
-    background-image: url("@/assets/images/tubo/tb-bg.jpg");
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
@@ -434,7 +467,6 @@ onUnmounted(() => {
       bottom: 20px;
       width: 1924px;
       height: 330px;
-      background-image: url("@/assets/images/tubo/tb-mask-redcloud.png");
       background-size: cover;
       background-position: center center;
       background-repeat: no-repeat;
@@ -445,7 +477,6 @@ onUnmounted(() => {
       bottom: 360px;
       width: 1804px;
       height: 110px;
-      background-image: url("@/assets/images/tubo/tb-redcloud-1.png");
       background-size: cover;
       background-position: center center;
       background-repeat: no-repeat;
@@ -456,7 +487,6 @@ onUnmounted(() => {
       bottom: 280px;
       width: 1962px;
       height: 118px;
-      background-image: url("@/assets/images/tubo/tb-redcloud-2.png");
       background-size: cover;
       background-position: center center;
       background-repeat: no-repeat;
@@ -467,7 +497,6 @@ onUnmounted(() => {
       bottom: 210px;
       width: 1511px;
       height: 60px;
-      background-image: url("@/assets/images/tubo/tb-redcloud-3.png");
       background-size: cover;
       background-position: center center;
       background-repeat: no-repeat;
@@ -475,7 +504,6 @@ onUnmounted(() => {
     .first-img-1{
       width: 8535px;
       height: 1080px;
-      background-image: url("@/assets/images/tubo/tb-bg-silkroad.png");
       background-size: cover;
       background-position: center center;
       background-repeat: no-repeat;
@@ -484,7 +512,6 @@ onUnmounted(() => {
     .first-img-2{
       width: 1678px;
       height: 453px;
-      background-image: url("@/assets/images/tubo/tb-foreground-moon.png");
       background-size: cover;
       background-position: center center;
       background-repeat: no-repeat;
@@ -496,7 +523,6 @@ onUnmounted(() => {
     .moon{
       width: 846px;
       height: 579px;
-      background-image: url("@/assets/images/tubo/tb-moon.png");
       background-size: cover;
       background-position: center center;
       background-repeat: no-repeat;
@@ -508,7 +534,6 @@ onUnmounted(() => {
     .first-img-bg{
       width: 5015px;
       height: 166px;
-      background-image: url("@/assets/images/tubo/tb-desert.png");
       background-size: cover;
       background-position: center center;
       background-repeat: no-repeat;
@@ -521,7 +546,6 @@ onUnmounted(() => {
       .persons{
         width: 1912px;
         height: 538px;
-        background-image: url("@/assets/images/tubo/tb-gif-camelcaravan.gif");
         background-size: cover;
         background-position: center center;
         background-repeat: no-repeat;
@@ -571,7 +595,6 @@ onUnmounted(() => {
       .deer-img-1{
         width: 1158px;
         height: 1008px;
-        background-image: url("@/assets/images/tubo/tb-gif-deer.gif");
         background-size: cover;
         transform: scale(0.6);
         background-position: center center;
@@ -584,7 +607,6 @@ onUnmounted(() => {
       .deer-img-2{
         width: 1158px;
         height: 1008px;
-        background-image: url("@/assets/images/tubo/tb-gif-deer.gif");
         background-size: cover;
         transform: scale(0.6) scaleX(-1);
         background-position: center center;
@@ -612,7 +634,7 @@ onUnmounted(() => {
       transform: translate(-50%, -50%);
       width: 1920px;
       height: 1080px;
-      background: url("@/assets/images/tubo/tb-bg-map.png") center/cover no-repeat;
+      background: center/cover no-repeat;
     }
     .map-bg2{
       position: absolute;
@@ -621,13 +643,12 @@ onUnmounted(() => {
       transform: translate(-50%, -50%);
       width: 1920px;
       height: 1080px;
-      background: url("@/assets/images/tubo/tb-bg-mapline.png") center/cover no-repeat;
+      background: center/cover no-repeat;
       opacity: 0;
     }
     .map{
       width: 804px;
       height: 527px;
-      background-image: url("@/assets/images/tubo/tb-minimap.png");
       background-size: cover;
       background-position: center center;
       background-repeat: no-repeat;
@@ -710,7 +731,6 @@ onUnmounted(() => {
     .cloud-1{
       width: 1042px;
       height: 478px;
-      background-image: url("@/assets/images/tubo/tb-cloud-1.png");
       background-size: cover;
       background-position: center center;
       background-repeat: no-repeat;
@@ -722,7 +742,6 @@ onUnmounted(() => {
     .cloud-2{
       width: 665px;
       height: 514px;
-      background-image: url("@/assets/images/tubo/tb-cloud-2.png");
       background-size: cover;
       background-position: center center;
       background-repeat: no-repeat;
@@ -735,7 +754,6 @@ onUnmounted(() => {
     .cloud-3{
       width: 608px;
       height: 475px;
-      background-image: url("@/assets/images/tubo/tb-cloud-3.png");
       background-size: cover;
       background-position: center center;
       background-repeat: no-repeat;
@@ -791,7 +809,6 @@ onUnmounted(() => {
     .person-left{
       width: 960px;
       height: 960px;
-      background-image: url("@/assets/images/tubo/tb-gif-buniantu-left.gif");
       background-size: cover;
       background-position: center center;
       background-repeat: no-repeat;
@@ -802,7 +819,6 @@ onUnmounted(() => {
     .person-right{
       width: 900px;
       height: 840px;
-      background-image: url("@/assets/images/tubo/tb-gif-buniantu-right.gif");
       background-size: cover;
       background-position: center center;
       background-repeat: no-repeat;
@@ -819,7 +835,6 @@ onUnmounted(() => {
     .cloud-1{
       width: 1918px;
       height: 1080px;
-      background-image: url("@/assets/images/tubo/tb-cloud-4.png");
       background-size: cover;
       background-position: center center;
       background-repeat: no-repeat;
@@ -850,7 +865,7 @@ onUnmounted(() => {
     .cloud-1{
       width: 802px;
       height: 796px;
-      background-image: url("@/assets/images/tubo/tb-cloud-7.png");
+
       background-size: cover;
       background-position: center center;
       background-repeat: no-repeat;
@@ -864,7 +879,6 @@ onUnmounted(() => {
     .cloud-2{
       width: 1141px;
       height: 722px;
-      background-image: url("@/assets/images/tubo/tb-cloud-6.png");
       background-size: cover;
       background-position: center center;
       background-repeat: no-repeat;
@@ -877,7 +891,6 @@ onUnmounted(() => {
     .cloud-3{
       width: 921px;
       height: 739px;
-      background-image: url("@/assets/images/tubo/tb-cloud-5.png");
       background-size: cover;
       background-position: center center;
       background-repeat: no-repeat;
@@ -897,7 +910,6 @@ onUnmounted(() => {
     .stele-img-1{
       width: 188px;
       height: 667px;
-      background-image: url("@/assets/images/tubo/tb-artifact-tbhmb-1.jpg");
       background-size: cover;
       background-position: center center;
       background-repeat: no-repeat;
@@ -908,7 +920,6 @@ onUnmounted(() => {
       left: 240px;
       width: 108px;
       height: 667px;
-      background-image: url("@/assets/images/tubo/tb-artifact-tbhmb-2.jpg");
       background-size: cover;
       background-position: center center;
       background-repeat: no-repeat;
@@ -983,7 +994,7 @@ onUnmounted(() => {
     .cloud-1{
       width: 630px;
       height: 517px;
-      background-image: url("@/assets/images/tubo/tb-cloud-8.png");
+
       background-size: cover;
       background-position: center center;
       background-repeat: no-repeat;
@@ -997,7 +1008,7 @@ onUnmounted(() => {
     .cloud-2{
       width: 314px;
       height: 365px;
-      background-image: url("@/assets/images/tubo/tb-cloud-9.png");
+
       background-size: cover;
       background-position: center center;
       background-repeat: no-repeat;
@@ -1011,7 +1022,7 @@ onUnmounted(() => {
     .cloud-3{
       width: 248px;
       height: 164px;
-      background-image: url("@/assets/images/tubo/tb-cloud-10.png");
+
       background-size: cover;
       background-position: center center;
       background-repeat: no-repeat;

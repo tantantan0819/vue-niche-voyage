@@ -1,5 +1,5 @@
 <template>
-    <div class="sqhx-container">
+    <div class="sqhx-container" :data-bg="sqhx_bg">
       <div class="black-screen-wrapper">
         <div class="black-screen">
           <!-- 第一幕 -->
@@ -16,17 +16,19 @@
               <span ref="numberRef">{{ displayNumber }}</span>
               <span>万年前</span>
             </div>
-            <div class="first-screen-cloud-img-1"></div>
+            <div class="first-screen-cloud-img-1" :data-bg="sqhx_element_cloud_1"></div>
             <div
-                class="first-screen-cloud-img-2"
-                data-parallax="true"
-                data-parallax-axis="x"
-                data-parallax-from="900"
-                data-parallax-to="-900"
-                data-parallax-speed="1.3"
-                data-parallax-center-lock="true"></div>
+            class="first-screen-cloud-img-2"
+            :data-bg="sqhx_element_cloud_2"
+            data-parallax="true"
+            data-parallax-axis="x"
+            data-parallax-from="900"
+            data-parallax-to="-900"
+            data-parallax-speed="1.3"
+            data-parallax-center-lock="true"></div>
                 <div
                 class="chip-img-1"
+                :data-bg="sqhx_element_chip_1"
                 data-parallax="true"
                 data-parallax-axis="x"
                 data-parallax-from="-30"
@@ -61,9 +63,9 @@
                 data-parallax-to="50"
                 data-parallax-speed="1.3"
                 data-parallax-center-lock="true"></div> -->
-            <div class="chip-img-2"></div>
-            <div class="chip-img-3"></div>
-            <div class="second-screen-picture"></div>
+            <div class="chip-img-2" :data-bg="sqhx_element_chip_2"></div>
+            <div class="chip-img-3" :data-bg="sqhx_element_chip_3"></div>
+            <div class="second-screen-picture" :data-bg="sqhx_element_chip_4"></div>
           </div>
         <!-- 第三幕 -->
         <div 
@@ -76,6 +78,7 @@
             data-parallax-center-lock="true">
             <div 
                 class="third-screen-cloud-img"
+                :data-bg="sqhx_element_cloud_3"
                 data-parallax="true"
                 data-parallax-axis="x"
                 data-parallax-from="400"
@@ -86,7 +89,7 @@
                 <p class="first-paragragh">稻城皮洛遗址位于四川甘孜稻城县金珠镇，海拔约3750米，占地近百万平方米，是川西高原发现的最大旧石器时代遗址。</p>
                 <p>这里保存着超过20万年的远古遗迹，考古人员出土了6000多件石制工具，从最早的砾石工具，到精巧的手斧和石片工具，完整地展现了古人类技术的发展。</p>
             </div>
-            <div class="third-screen-pattern-img"></div>
+            <div class="third-screen-pattern-img" :data-bg="sqhx_element_pattern"></div>
         </div>
         <!-- 第四幕 -->
         <div 
@@ -98,7 +101,7 @@
             data-parallax-speed="1.3"
             data-parallax-center-lock="true">
             <div class="forth-screen-picture-container">
-                <div class="picture-img"></div>
+                <div class="picture-img" :data-bg="sqhx_element_stone_1"></div>
                 <div class="illustration-title-font">稻城皮洛遗址出土的阿舍利技术手斧和薄刃斧</div>
             </div>
             <div class="forth-screen-text-content text-font">
@@ -107,6 +110,7 @@
             </div>
             <div 
                 class="forth-screen-cloud-img"
+                :data-bg="sqhx_element_cloud_4"
                 data-parallax="true"
                 data-parallax-axis="x"
                 data-parallax-from="800"
@@ -124,8 +128,8 @@
             data-parallax-speed="1.3"
             data-parallax-center-lock="true">
             <div class="center-stone-container">
-                <div class="fifth-screen-stone-img-1"></div>
-                <div class="fifth-screen-stone-img-2"></div>
+                <div class="fifth-screen-stone-img-1" :data-bg="sqhx_element_stone_2"></div>
+            <div class="fifth-screen-stone-img-2" :data-bg="sqhx_element_stone_3"></div>
             </div>
             <div 
                 class="fifth-screen-text-content text-font"
@@ -137,12 +141,13 @@
                 data-parallax-center-lock="true">
                 而位于藏北羌塘高原，距今4-3万年前的尼阿底遗址则被认为是早期现代人登陆高原腹地的最早考古证据。作为一处旧石器时代旷野遗址，这里石制品分布密集，地层保存完整。
             </div>
-            <div class="fifth-screen-stone-img-3"></div>
+            <div class="fifth-screen-stone-img-3" :data-bg="sqhx_element_stone_4"></div>
         </div>
         <!-- 第六幕 -->
         <div class="screen sixth-screen">
             <div 
                 class="sixth-screen-stone-img"
+                :data-bg="sqhx_element_stone_5"
                 data-parallax="true"
                 data-parallax-axis="x"
                 data-parallax-from="200"
@@ -161,7 +166,8 @@
             </div>
         </div>
         <!-- 第七幕 -->
-        <div 
+        <div
+
             class="seventh-screen"
             data-parallax="true"
             data-parallax-axis="x"
@@ -169,7 +175,7 @@
             data-parallax-to="-300"
             data-parallax-speed="1.3"
             data-parallax-center-lock="true">
-            <div class="seventh-screen-circle-img"></div>
+            <div class="seventh-screen-circle-img" :data-bg="sqhx_element_circle"></div>
             <div 
                 class="seventh-screen-text-content-1 text-font"
                 data-parallax="true"
@@ -181,7 +187,7 @@
                 <span>考古学家认为，尼阿底遗址发现的细石叶明晰了该技术从华北，经青藏高原东北缘，深入高原腹地的过程；揭示了青藏高原史前人类演化和迁徙的历史，为西藏地区人群的起源与族群形成提供了重要线索。</span>
                 <DotPopover class="dot-popover" title="内容来自" content="《物里中华：一文一物话西藏》 四川民族出版社 2025"></DotPopover>
             </div>
-            <div class="seventh-screen-mountain-img"></div>
+            <div class="seventh-screen-mountain-img" :data-bg="sqhx_element_mountain"></div>
             <div 
             class="seventh-screen-text-content-2 text-font"
             data-parallax="true"
@@ -202,7 +208,24 @@ import { useAnimateNumber } from '@/utils/animateNumber';
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { pxToVw, pxToVh, pxToVwPx, pxToVhPx  } from '@/utils/viewportUtils';
-
+// 背景图资源导入
+import sqhx_bg from '@/assets/images/sqhx/sqhx-bg.jpg'
+import sqhx_element_cloud_1 from '@/assets/images/sqhx/sqhx-element-cloud-1.png'
+import sqhx_element_cloud_2 from '@/assets/images/sqhx/sqhx-element-cloud-2.png'
+import sqhx_element_chip_1 from '@/assets/images/sqhx/sqhx-element-chip-1.png'
+import sqhx_element_chip_2 from '@/assets/images/sqhx/sqhx-element-chip-2.png'
+import sqhx_element_chip_3 from '@/assets/images/sqhx/sqhx-element-chip-3.png'
+import sqhx_element_chip_4 from '@/assets/images/sqhx/sqhx-element-chip-4.png'
+import sqhx_element_cloud_3 from '@/assets/images/sqhx/sqhx-element-cloud-3.png'
+import sqhx_element_pattern from '@/assets/images/sqhx/sqhx-element-pattern.png'
+import sqhx_element_stone_1 from '@/assets/images/sqhx/sqhx-element-stone-1.png'
+import sqhx_element_cloud_4 from '@/assets/images/sqhx/sqhx-element-cloud-4.png'
+import sqhx_element_stone_2 from '@/assets/images/sqhx/sqhx-element-stone-2.png'
+import sqhx_element_stone_3 from '@/assets/images/sqhx/sqhx-element-stone-3.png'
+import sqhx_element_stone_4 from '@/assets/images/sqhx/sqhx-element-stone-4.png'
+import sqhx_element_stone_5 from '@/assets/images/sqhx/sqhx-element-stone-5.png'
+import sqhx_element_mountain from '@/assets/images/sqhx/sqhx-element-mountain.png'
+import sqhx_element_circle from '@/assets/images/sqhx/sqhx-element-circle.png'
 
 
 const numberRef = ref(null)
@@ -266,6 +289,12 @@ onUnmounted(() => {
 
 </script>
 <style scoped>
+/* 背景图懒加载通用规则 */
+[data-bg] {
+  --bg-image: attr(data-bg url);
+  background-image: var(--bg-image);
+}
+
     .text-font{
         font: 33px/54px "Alibaba-PuHuiTi-Regular";
         color: #534833;
@@ -292,7 +321,7 @@ onUnmounted(() => {
         white-space: normal;
         overflow-y: hidden;
         overflow-x: auto; /* 关键：允许水平滚动 */
-        background: url('@/assets/images/sqhx/sqhx-bg.jpg') no-repeat center center / cover;
+
 
     }
     .black-screen{
@@ -314,7 +343,9 @@ onUnmounted(() => {
             bottom: 0;
             width: 889px;
             height: 229px;
-            background: url('@/assets/images/sqhx/sqhx-element-cloud-1.png') no-repeat center center / cover;
+            background-size: cover;
+            background-position: center center;
+            background-repeat: no-repeat;
         }
          .first-screen-cloud-img-2{
             position: absolute;
@@ -322,7 +353,9 @@ onUnmounted(() => {
             right: -700px;
             width: 1116px;
             height: 478px;
-            background: url('@/assets/images/sqhx/sqhx-element-cloud-2.png') no-repeat center center / cover;
+            background-size: cover;
+            background-position: center center;
+            background-repeat: no-repeat;
         }
         .chip-img-1{
             position: absolute;
@@ -330,7 +363,9 @@ onUnmounted(() => {
             bottom: 0;
             width: 462px;
             height: 361px;
-            background: url('@/assets/images/sqhx/sqhx-element-chip-1.png') no-repeat center center / cover;
+            background-size: cover;
+            background-position: center center;
+            background-repeat: no-repeat;
         }
     }
     .second-screen{
@@ -355,7 +390,9 @@ onUnmounted(() => {
             bottom: 200px;
             width: 228px;
             height: 213px;
-            background: url('@/assets/images/sqhx/sqhx-element-chip-2.png') no-repeat center center / cover;
+            background-size: cover;
+            background-position: center center;
+            background-repeat: no-repeat;
         }
         .chip-img-3{
             position: absolute;
@@ -363,7 +400,9 @@ onUnmounted(() => {
             left: 200px;
             width: 279px;
             height: 271px;
-            background: url('@/assets/images/sqhx/sqhx-element-chip-3.png') no-repeat center center / cover;
+            background-size: cover;
+            background-position: center center;
+            background-repeat: no-repeat;
         }
         .second-screen-picture{
             position: absolute;
@@ -371,7 +410,9 @@ onUnmounted(() => {
             left: 500px;
             width: 2717px;
             height: 1080px;
-            background: url('@/assets/images/sqhx/sqhx-element-chip-4.png') no-repeat center center / cover;
+            background-size: cover;
+            background-position: center center;
+            background-repeat: no-repeat;
         }
     }
     .third-screen{
@@ -381,7 +422,9 @@ onUnmounted(() => {
             left: -350px;
             width: 1202px;
             height: 288px;
-            background: url('@/assets/images/sqhx/sqhx-element-cloud-3.png') no-repeat center center / cover;
+            background-size: cover;
+            background-position: center center;
+            background-repeat: no-repeat;
         }
         .third-screen-text-content{
             position: absolute;
@@ -396,7 +439,9 @@ onUnmounted(() => {
             bottom: 30px;
             width: 599px;
             height: 623px;
-            background: url('@/assets/images/sqhx/sqhx-element-pattern.png') no-repeat center center / cover;
+            background-size: cover;
+            background-position: center center;
+            background-repeat: no-repeat;
         }
     }
     .forth-screen{
@@ -407,7 +452,9 @@ onUnmounted(() => {
             width: 796px;
             height: 450px;
             margin-bottom: 30px;
-            background: url('@/assets/images/sqhx/sqhx-element-stone-1.png') no-repeat center center / cover;
+            background-size: cover;
+            background-position: center center;
+            background-repeat: no-repeat;
         }
         .forth-screen-text-content{
             width: 740px;
@@ -421,7 +468,9 @@ onUnmounted(() => {
             bottom: 0;
             width: 1502px;
             height: 288px;
-            background: url('@/assets/images/sqhx/sqhx-element-cloud-4.png') no-repeat center center / cover;
+            background-size: cover;
+            background-position: center center;
+            background-repeat: no-repeat;
         }
     }
     .fifth-screen{
@@ -434,7 +483,9 @@ onUnmounted(() => {
         .fifth-screen-stone-img-1{
             width: 1526px;
             height: 325px;
-            background: url('@/assets/images/sqhx/sqhx-element-stone-2.png') no-repeat center center / cover;
+            background-size: cover;
+            background-position: center center;
+            background-repeat: no-repeat;
         }
         .fifth-screen-stone-img-2{
             position: absolute;
@@ -442,7 +493,9 @@ onUnmounted(() => {
             right: 0;
             width: 339px;
             height: 352px;
-            background: url('@/assets/images/sqhx/sqhx-element-stone-3.png') no-repeat center center / cover;
+            background-size: cover;
+            background-position: center center;
+            background-repeat: no-repeat;
         }
         .fifth-screen-stone-img-3{
             position: absolute;
@@ -450,7 +503,9 @@ onUnmounted(() => {
             bottom: 0;
             width: 647px;
             height: 185px;
-            background: url('@/assets/images/sqhx/sqhx-element-stone-4.png') no-repeat center center / cover;
+            background-size: cover;
+            background-position: center center;
+            background-repeat: no-repeat;
         }
         .fifth-screen-text-content{
             position: absolute;
@@ -467,7 +522,9 @@ onUnmounted(() => {
         .sixth-screen-stone-img{
             width: 581px;
             height: 375px;
-            background: url('@/assets/images/sqhx/sqhx-element-stone-5.png') no-repeat center center / cover;
+            background-size: cover;
+            background-position: center center;
+            background-repeat: no-repeat;
         }
         .sixth-screen-text-content{
             width: 830px;
@@ -486,7 +543,7 @@ onUnmounted(() => {
             left: 800px;
             width: 1922px;
             height: 1080px;
-            background: url('@/assets/images/sqhx/sqhx-element-circle.png') no-repeat center center / cover;
+            //background: url('@/assets/images/sqhx/sqhx-element-circle.png') no-repeat center center / cover;
         }
         .seventh-screen-text-content-1{
             position: absolute;
@@ -510,7 +567,9 @@ onUnmounted(() => {
             bottom: -100px;
             width: 3373px;
             height: 901px;
-            background: url('@/assets/images/sqhx/sqhx-element-mountain.png') no-repeat center center / cover;
+            background-size: cover;
+            background-position: center center;
+            background-repeat: no-repeat;
         }
         .seventh-screen-text-content-2{
             position: absolute;

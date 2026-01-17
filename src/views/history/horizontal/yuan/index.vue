@@ -1,10 +1,11 @@
 <template>
-    <div class="yuan" ref="container">
-      <div class="first-screen">
+    <div class="yuan" ref="container" :data-bg="yuan_bg">
+      <div class="first-screen" :data-bg="yuan_bg_mountain_1">
         <div class="page-point" id="page-unification"></div>
         <div
           class="cloud-1"
           data-parallax="true"
+          :data-bg="yuan_cloud_1"
           data-parallax-axis="x"
           data-parallax-from="1200"
           data-parallax-to="-1200"
@@ -14,6 +15,7 @@
         <div
           class="cloud-2"
           data-parallax="true"
+          :data-bg="yuan_cloud_2"
           data-parallax-axis="x"
           data-parallax-from="800"
           data-parallax-to="-800"
@@ -43,6 +45,7 @@
           <div 
             class="cloud-1"
             data-parallax="true"
+            :data-bg="yuan_cloud_3"
             data-parallax-axis="x"
             data-parallax-from="600"
             data-parallax-to="-600"
@@ -52,6 +55,7 @@
           <div 
             class="person"
             data-parallax="true"
+            :data-bg="gif_huimengtu"
             data-parallax-axis="x"
             data-parallax-from="400"
             data-parallax-to="-400"
@@ -90,7 +94,7 @@
             这次会盟总体过程很顺利。会后，萨迦班智达向藏区各派发布了著名的
             《萨迦班智达致蕃人书》，为此后西藏纳入元朝的版图奠定了坚实基础。这是西藏地方与祖国关系发展史上具有里程碑意义的重大事件，是蒙藏民族共同为缔造祖国和平统一、发展民族团结关系作出的重大贡献。
           </div>
-          <div class="mountain"></div>
+          <div class="mountain" :data-bg="yuan_bg_mountain_2"></div>
       </div>
       <div class="four-screen">
         <div 
@@ -108,6 +112,7 @@
         <div
             class="horse"
             data-parallax="true"
+            :data-bg="gif_hubilie"
             data-parallax-axis="x"
             data-parallax-from="400"
             data-parallax-to="-400"
@@ -117,6 +122,7 @@
         <div 
             class="cloud-1"
             data-parallax="true"
+            :data-bg="yuan_cloud_4"
             data-parallax-axis="x"
             data-parallax-from="600"
             data-parallax-to="-600"
@@ -140,6 +146,7 @@
         <div
           class="person"
           data-parallax="true"
+          :data-bg="gif_basiba"
           data-parallax-axis="x"
           data-parallax-from="400"
           data-parallax-to="-400"
@@ -151,6 +158,7 @@
         <div 
           class="cloud-1"
           data-parallax="true"
+          :data-bg="yuan_cloud_5"
           data-parallax-axis="x"
           data-parallax-from="600"
           data-parallax-to="-600"
@@ -164,7 +172,7 @@
              data-parallax-to="-200"
              data-parallax-speed="1.2"
              data-parallax-center-lock="true">
-          <div class="seal-img"></div>
+          <div class="seal-img" :data-bg="yuan_artifact_guoshiyin"></div>
           <p>统领释教大元国师印</p>
           <annotation-dot>
             <p class="popularization-content">《物里中华：一文一物话西藏》 四川民族出版社 2025</p>
@@ -190,7 +198,7 @@
         >总而言之，“宣政院”以及宣慰使司都帅府的建立是中国历史上，中央政府首次对全国藏区实现系统化的行政管辖，开创了中央专管民族地区的先例，将青藏高原正式纳入统一的行政体系，奠定了此后多元一体的民族格局。</div>
       </div>
       <div class="eight-screen">
-        <div class="mountain"></div>
+        <div class="mountain" :data-bg="yuan_fuchunshanjutu"></div>
       </div>
     </div>
   </template>
@@ -201,6 +209,21 @@
   import { pxToVw, pxToVh } from '@/utils/viewportUtils';
   import AnnotationDot from '@/components/AnnotationDot.vue';
   import { useAnimateNumber } from '@/utils/animateNumber';
+
+  // 背景图资源懒加载
+  const yuan_bg = new URL('@/assets/images/yuan/yuan-bg.jpg', import.meta.url).href;
+  const yuan_bg_mountain_1 = new URL('@/assets/images/yuan/yuan-bg-mountain-1.png', import.meta.url).href;
+  const yuan_bg_mountain_2 = new URL('@/assets/images/yuan/yuan-bg-mountain-2.png', import.meta.url).href;
+  const yuan_cloud_1 = new URL('@/assets/images/yuan/yuan-cloud-1.png', import.meta.url).href;
+  const yuan_cloud_2 = new URL('@/assets/images/yuan/yuan-cloud-2.png', import.meta.url).href;
+  const yuan_cloud_3 = new URL('@/assets/images/yuan/yuan-cloud-3.png', import.meta.url).href;
+  const yuan_cloud_4 = new URL('@/assets/images/yuan/yuan-cloud-4.png', import.meta.url).href;
+  const yuan_cloud_5 = new URL('@/assets/images/yuan/yuan-cloud-5.png', import.meta.url).href;
+  const gif_huimengtu = new URL('@/assets/images/yuan/animated/gif-huimengtu.gif', import.meta.url).href;
+  const gif_hubilie = new URL('@/assets/images/yuan/animated/gif-hubilie.gif', import.meta.url).href;
+  const gif_basiba = new URL('@/assets/images/yuan/animated/gif-basiba.gif', import.meta.url).href;
+  const yuan_artifact_guoshiyin = new URL('@/assets/images/yuan/yuan-artifact-guoshiyin.png', import.meta.url).href;
+  const yuan_fuchunshanjutu = new URL('@/assets/images/yuan/yuan-fuchunshanjutu.png', import.meta.url).href;
 
   /**
  * 初始化所有描述文本渐显动画
@@ -252,6 +275,12 @@ onMounted(() => {
   </script>
   
   <style scoped>
+  /* 背景图懒加载通用规则 */
+  [data-bg] {
+    --bg-image: attr(data-bg url);
+    background-image: var(--bg-image);
+  }
+
   .screen{
     position: relative;
     width: 1920px;
@@ -263,7 +292,6 @@ onMounted(() => {
     //height: 100%;
     height: 1080px;
     margin-left: -1px;
-    background-image: url("@/assets/images/yuan/yuan-bg.jpg");
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
@@ -281,7 +309,6 @@ onMounted(() => {
     .first-screen {
       width: 3176px;
       height: 100%;
-      background-image: url("@/assets/images/yuan/yuan-bg-mountain-1.png");
       background-size: cover;
       background-position: center center;
       background-repeat: no-repeat;
@@ -293,7 +320,6 @@ onMounted(() => {
       .cloud-1 {
         width: 929px;
         height: 390px;
-        background-image: url("@/assets/images/yuan/yuan-cloud-1.png");
         background-size: cover;
         position: absolute;
         top: -60px;
@@ -306,7 +332,6 @@ onMounted(() => {
       .cloud-2 {
         width: 1571px;
         height: 480px;
-        background-image: url("@/assets/images/yuan/yuan-cloud-2.png");
         background-size: cover;
         position: absolute;
         bottom: -140px;
@@ -349,7 +374,6 @@ onMounted(() => {
       .cloud-1 {
         width: 1571px;
         height: 480px;
-        background-image: url("@/assets/images/yuan/yuan-cloud-3.png");
         background-size: cover;
         position: absolute;
         top: -290px;
@@ -361,7 +385,6 @@ onMounted(() => {
       .person {
         width: 800px;
         height: 1422px;
-        background-image: url("@/assets/images/yuan/animated/gif-huimengtu.gif");
         background-size: cover;
         position: absolute;
         transform: scale(0.7);
@@ -383,7 +406,6 @@ onMounted(() => {
       .mountain{
         width: 1305px;
         height: 932px;
-        background-image: url("@/assets/images/yuan/yuan-bg-mountain-2.png");
         background-size: cover;
         position: absolute;
         bottom: 0px;
@@ -402,7 +424,6 @@ onMounted(() => {
       .horse{
         width: 800px;
         height: 1422px;
-        background-image: url("@/assets/images/yuan/animated/gif-hubilie.gif");
         background-size: cover;
         position: absolute;
         bottom: -300px;
@@ -412,7 +433,6 @@ onMounted(() => {
       .cloud-1 {
         width: 1571px;
         height: 480px;
-        background-image: url("@/assets/images/yuan/yuan-cloud-4.png");
         background-size: cover;
         position: absolute;
         bottom: -240px;
@@ -437,7 +457,6 @@ onMounted(() => {
       .person{
         width: 800px;
         height: 1422px;
-        background-image: url("@/assets/images/yuan/animated/gif-basiba.gif");
         background-size: cover;
         position: relative;
         transform: scale(0.53);
@@ -458,7 +477,6 @@ onMounted(() => {
       .cloud-1 {
         width: 1571px;
         height: 480px;
-        background-image: url("@/assets/images/yuan/yuan-cloud-5.png");
         background-size: cover;
         position: absolute;
         top: -100px;
@@ -475,7 +493,6 @@ onMounted(() => {
         .seal-img{
           width: 305px;
           height: 306px;
-          background-image: url("@/assets/images/yuan/yuan-artifact-guoshiyin.png");
           background-size: cover;
   
         }
@@ -510,7 +527,6 @@ onMounted(() => {
       .mountain{
         width: 3002px;
         height: 1173px;
-        background-image: url("@/assets/images/yuan/yuan-fuchunshanjutu.png");
         background-size: cover;
         position: relative;
         z-index: 4;

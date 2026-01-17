@@ -58,7 +58,7 @@ const loadingProgress = ref(0)
 const showSplashLoader = ref(true)
 
 // 侧边菜单显示控制
-const showSideMenu = ref(false)
+const showSideMenu = ref(true)
 
 const handleWelcomeVideoEnded = () => {
   console.log('welcomeVideoEnded')
@@ -291,6 +291,14 @@ const initHorizontalScroll = async (isResize = false) => {
       
       // 确保 scrollLeft 在有效范围内
       horizontalContainer.scrollLeft = Math.max(0, Math.min(targetScrollLeft, maxScroll))
+      
+      // 手动触发水平滚动容器的懒加载检查
+      // 查找 lazyLoadImages 函数并调用
+      const horizontalComponent = document.querySelector('.horizontal-scroll-container')
+      if (horizontalComponent) {
+        // 尝试触发懒加载检查（通过自定义事件）
+        horizontalComponent.dispatchEvent(new CustomEvent('lazy-load-check'))
+      }
       
       // 检查是否到达横向滚动的最右边
       const verticalSection = document.querySelector('.vertical-section')

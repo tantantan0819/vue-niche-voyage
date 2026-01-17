@@ -1,7 +1,7 @@
 <template>
   <div class="lives">
     <div class="first-screen" >
-      <div class="first-screen-bg-1"></div>
+      <div class="first-screen-bg-1" v-lazy="lives_bty_bg"></div>
       <div class="first-screen-bg-2"></div>
       <div class="mountain-img"></div>
       <div class="cloud-img"></div>
@@ -269,7 +269,7 @@ import { onMounted, onUnmounted, ref, nextTick } from "vue";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { pxToVw, pxToVh, pxToVwPx, pxToVhPx } from '@/utils/viewportUtils';
-
+import lives_bty_bg from '@/assets/images/lives/lives-bty-bg.png'
 gsap.registerPlugin(ScrollTrigger);
 
 // 所有生物详情介绍的 refs
@@ -1390,7 +1390,7 @@ onUnmounted(() => {
     .first-screen-bg-1{
       width: 2880px;
       height: 2160px;
-      background-image: url("@/assets/images/lives/lives-bty-bg.png");
+      //background-image: url("@/assets/images/lives/lives-bty-bg.png");
       background-size: cover;
       position: absolute;
       top: -1px;

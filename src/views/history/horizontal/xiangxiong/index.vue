@@ -1,6 +1,6 @@
 <template>
   <div class="xiangxiong">
-    <div class="xiangxiong-bg"></div>
+    <div class="xiangxiong-bg" :data-bg="xx_bg"></div>
     <div class="first-screen">
       <div class="page-point" id="page-xiangxiong-civilization"></div>
       <p
@@ -12,13 +12,14 @@
           data-parallax-speed="1.3"
           data-parallax-center-lock="true">约公元前<span ref="bcNumberRef">{{bcNumber}}</span>世纪-公元<span>{{adNumber}}</span>世纪</p>
       <div
-          class="first-screen-stone"
-          data-parallax="true"
-          data-parallax-axis="x"
-          data-parallax-from="600"
-          data-parallax-to="-300"
-          data-parallax-speed="1.3"
-          data-parallax-center-lock="true"></div>
+            class="first-screen-stone"
+            :data-bg="xx_image_1"
+            data-parallax="true"
+            data-parallax-axis="x"
+            data-parallax-from="600"
+            data-parallax-to="-300"
+            data-parallax-speed="1.3"
+            data-parallax-center-lock="true"></div>
     </div>
     <div class="second-screen">
       <p
@@ -29,13 +30,13 @@
         data-parallax-to="-300"
         data-parallax-speed="1.3"
         data-parallax-center-lock="true">象雄文明</p>
-      <div class="palace"></div>
-      <div class="stone"></div>
+      <div class="palace" :data-bg="xx_image_2_wind"></div>
+      <div class="stone" :data-bg="xx_image_3_wind"></div>
     </div>
     <div class="third-screen">
-      <div class="palace"></div>
+      <div class="palace" :data-bg="xx_multiply_line_art"></div>
       <!-- 视差元素：wind -->
-      <div class="wind" data-speed="1.2"></div>
+      <div class="wind" :data-bg="xx_elements_wind_strong" data-speed="1.2"></div>
       <p 
           class="description-0 description"
           data-parallax="true"
@@ -77,6 +78,7 @@
       >虽然有关象雄文明的官方史料较少，但近年来一系列的考古发现可以让我们一窥古象雄的踪迹。</p>
       <div
           class="cloud-1"
+          :data-bg="xx_cloud_1"
           data-parallax="true"
           data-parallax-axis="x"
           data-parallax-from="900"
@@ -86,6 +88,7 @@
       ></div>
       <div
           class="cloud-2"
+          :data-bg="xx_cloud_2"
           data-parallax="true"
           data-parallax-axis="x"
           data-parallax-from="900"
@@ -95,6 +98,7 @@
       ></div>
       <div
           class="mountain-1"
+          :data-bg="xx_bg_mountain_ink_1"
           data-parallax="true"
           data-parallax-axis="x"
           data-parallax-from="-100"
@@ -104,6 +108,7 @@
       ></div>
       <div
           class="mountain-2"
+          :data-bg="xx_bg_mountain_ink_2"
           data-parallax="true"
           data-parallax-axis="x"
           data-parallax-from="200"
@@ -116,22 +121,24 @@
       <div class="brocade">
         <div class="brocade-wrapper">
           <div 
-              class="brocade-img-1"
-              data-parallax="true"
-              data-parallax-axis="x"
-              data-parallax-from="200"
-              data-parallax-to="-200"
-              data-parallax-speed="1.2"
-              data-parallax-center-lock="true"
-            ></div>
+            class="brocade-img-1"
+            :data-bg="xx_artifact_silk_lineart_brighter"
+            data-parallax="true"
+            data-parallax-axis="x"
+            data-parallax-from="200"
+            data-parallax-to="-200"
+            data-parallax-speed="1.2"
+            data-parallax-center-lock="true"
+          ></div>
           <div 
-              class="brocade-img-2"
-              data-parallax="true"
-              data-parallax-axis="x"
-              data-parallax-from="300"
-              data-parallax-to="-300"
-              data-parallax-speed="1.2"
-              data-parallax-center-lock="true"></div>
+            class="brocade-img-2"
+            :data-bg="xx_artifact_silk"
+            data-parallax="true"
+            data-parallax-axis="x"
+            data-parallax-from="300"
+            data-parallax-to="-300"
+            data-parallax-speed="1.2"
+            data-parallax-center-lock="true"></div>
         </div>
         <div 
             class="description description-wrapper brocade-description"
@@ -149,8 +156,8 @@
       </div>
       <div class="mask">
         <div class="mask-img-wrapper">
-          <div class="mask-img-1"></div>
-          <div class="mask-img-2"></div>
+          <div class="mask-img-1" :data-bg="xx_artifact_goidmask_lineart_brighter"></div>
+          <div class="mask-img-2" :data-bg="xx_artifact_goldmask"></div>
         </div>
         <div class="description description-wrapper description-1">
           <p class="description-1-title">黄金面具</p>
@@ -161,6 +168,7 @@
         </div>
         <div
             class="mountain-1"
+            :data-bg="xx_bg_mountain_ink_3"
             data-parallax="true"
             data-parallax-axis="x"
             data-parallax-from="100"
@@ -170,6 +178,7 @@
         ></div>
         <div
             class="cloud-1"
+            :data-bg="xx_cloud_3"
             data-parallax="true"
             data-parallax-axis="x"
             data-parallax-from="400"
@@ -207,6 +216,7 @@
 
         <div
             class="mountain-1"
+            :data-bg="xx_bg_mountain_ink_4"
             data-parallax="true"
             data-parallax-axis="x"
             data-parallax-from="400"
@@ -224,6 +234,26 @@ import { gsap } from 'gsap';
 import { pxToVw, pxToVh } from '@/utils/viewportUtils';
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import AnnotationDot from '@/components/AnnotationDot.vue';
+
+// 背景图资源导入
+import xx_bg from '@/assets/images/xiangxiong/xx-bg.jpg'
+import xx_image_1 from '@/assets/images/xiangxiong/xx-image-1.png'
+import xx_image_2_wind from '@/assets/images/xiangxiong/xx-image-2-wind.png'
+import xx_image_3_wind from '@/assets/images/xiangxiong/xx-image-3-wind.png'
+import xx_multiply_line_art from '@/assets/images/xiangxiong/xx-multiply-line-art.png'
+import xx_elements_wind_strong from '@/assets/images/xiangxiong/xx-elements-wind-strong.png'
+import xx_cloud_1 from '@/assets/images/xiangxiong/xx-cloud-1.png'
+import xx_cloud_2 from '@/assets/images/xiangxiong/xx-cloud-2.png'
+import xx_bg_mountain_ink_1 from '@/assets/images/xiangxiong/xx-bg-mountain-ink-1.png'
+import xx_bg_mountain_ink_2 from '@/assets/images/xiangxiong/xx-bg-mountain-ink-2.png'
+import xx_artifact_silk_lineart_brighter from '@/assets/images/xiangxiong/xx-artifact-silk-lineart-brighter.png'
+import xx_artifact_silk from '@/assets/images/xiangxiong/xx-artifact-silk.png'
+import xx_artifact_goidmask_lineart_brighter from '@/assets/images/xiangxiong/xx-artifact-goidmask-lineart-brighter.png'
+import xx_artifact_goldmask from '@/assets/images/xiangxiong/xx-artifact-goldmask.png'
+import xx_bg_mountain_ink_3 from '@/assets/images/xiangxiong/xx-bg-mountain-ink-3.png'
+import xx_cloud_3 from '@/assets/images/xiangxiong/xx-cloud-3.png'
+import xx_bg_mountain_ink_4 from '@/assets/images/xiangxiong/xx-bg-mountain-ink-4.png'
+
 gsap.registerPlugin(ScrollTrigger);
 
 const bcNumberRef = ref(null);
@@ -426,6 +456,12 @@ onMounted(async ()=>{
 
 </script>
 <style scoped>
+/* 背景图懒加载通用规则 */
+[data-bg] {
+  --bg-image: attr(data-bg url);
+  background-image: var(--bg-image);
+}
+
 .description{
   font-size: 33px;
   color: #534833;
@@ -444,7 +480,6 @@ onMounted(async ()=>{
   .xiangxiong-bg{
     width: 19676px;
     height: 1080px;
-    background-image: url("@/assets/images/xiangxiong/xx-bg.jpg");
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
@@ -467,7 +502,6 @@ onMounted(async ()=>{
       margin-left: 860px;
       width: 4380px;
       height: 1998px;
-      background-image: url("@/assets/images/xiangxiong/xx-image-1.png");
       background-size: cover;
       background-position: center center;
       background-repeat: no-repeat;
@@ -497,7 +531,6 @@ onMounted(async ()=>{
     .palace{
       width: 2861px;
       height: 1205px;
-      background-image: url("@/assets/images/xiangxiong/xx-image-2-wind.png");
       background-size: cover;
       background-position: center center;
       background-repeat: no-repeat;
@@ -508,7 +541,6 @@ onMounted(async ()=>{
     .stone{
       width: 4071px;
       height: 881px;
-      background-image: url("@/assets/images/xiangxiong/xx-image-3-wind.png");
       background-size: cover;
       background-position: center center;
       background-repeat: no-repeat;
@@ -527,7 +559,6 @@ onMounted(async ()=>{
       width: 1958px;
       height: 572px;
       background-color: rgba(255, 255, 255, 0.01);
-      background-image: url("@/assets/images/xiangxiong/xx-multiply-line-art.png");
       background-size: cover;
       background-position: center center;
       background-repeat: no-repeat;
@@ -540,7 +571,6 @@ onMounted(async ()=>{
     .wind{
       width: 2542px;
       height: 936px;
-      background-image: url("@/assets/images/xiangxiong/xx-elements-wind-strong.png");
       background-size: cover;
       background-position: center center;
       background-repeat: no-repeat;
@@ -612,7 +642,6 @@ onMounted(async ()=>{
     .cloud-1{
       width: 1561px;
       height: 669px;
-      background-image: url("@/assets/images/xiangxiong/xx-cloud-1.png");
       background-size: cover;
       background-position: center center;
       background-repeat: no-repeat;
@@ -625,7 +654,6 @@ onMounted(async ()=>{
     .cloud-2{
       width: 1561px;
       height: 669px;
-      background-image: url("@/assets/images/xiangxiong/xx-cloud-2.png");
       background-size: cover;
       background-position: center center;
       background-repeat: no-repeat;
@@ -639,7 +667,6 @@ onMounted(async ()=>{
     .mountain-1{
       width: 1926px;
       height: 1056px;
-      background-image: url("@/assets/images/xiangxiong/xx-bg-mountain-ink-1.png");
       background-size: cover;
       background-position: center center;
       background-repeat: no-repeat;
@@ -651,7 +678,6 @@ onMounted(async ()=>{
     .mountain-2{
       width: 1888px;
       height: 1128px;
-      background-image: url("@/assets/images/xiangxiong/xx-bg-mountain-ink-2.png");
       background-size: cover;
       background-position: center center;
       background-repeat: no-repeat;
@@ -674,7 +700,6 @@ onMounted(async ()=>{
         .brocade-img-1{
           width: 857px;
           height: 575px;
-          background-image: url("@/assets/images/xiangxiong/xx-artifact-silk-lineart-brighter.png");
           background-size: cover;
           background-position: center center;
           background-repeat: no-repeat;
@@ -686,7 +711,6 @@ onMounted(async ()=>{
         .brocade-img-2{
           width: 645px;
           height: 391px;
-          background-image: url("@/assets/images/xiangxiong/xx-artifact-silk.png");
           background-size: cover;
           background-position: center center;
           background-repeat: no-repeat;
@@ -735,7 +759,6 @@ onMounted(async ()=>{
         .mask-img-1{
           width: 577px;
           height: 541px;
-          background-image: url("@/assets/images/xiangxiong/xx-artifact-goidmask-lineart-brighter.png");
           background-size: cover;
           background-position: center center;
           background-repeat: no-repeat;
@@ -747,7 +770,6 @@ onMounted(async ()=>{
         .mask-img-2{
           width: 379px;
           height: 344px;
-          background-image: url("@/assets/images/xiangxiong/xx-artifact-goldmask.png");
           background-size: cover;
           background-position: center center;
           background-repeat: no-repeat;
@@ -786,7 +808,6 @@ onMounted(async ()=>{
       .mountain-1{
         width: 1926px;
         height: 1056px;
-        background-image: url("@/assets/images/xiangxiong/xx-bg-mountain-ink-3.png");
         background-size: cover;
         background-position: center center;
         background-repeat: no-repeat;
@@ -796,7 +817,6 @@ onMounted(async ()=>{
       .cloud-1{
         width: 1561px;
         height: 670px;
-        background-image: url("@/assets/images/xiangxiong/xx-cloud-3.png");
         background-size: cover;
         background-position: center center;
         background-repeat: no-repeat;
@@ -835,7 +855,6 @@ onMounted(async ()=>{
       .mountain-1{
         width: 3808px;
         height: 1652px;
-        background-image: url("@/assets/images/xiangxiong/xx-bg-mountain-ink-4.png");
         background-size: cover;
         background-position: center center;
         background-repeat: no-repeat;

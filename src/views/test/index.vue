@@ -1,13 +1,20 @@
 <template>
   <div class="wrapper">
+    22
+    <div class="box-1"></div>
+    <div class="box-1"></div>
+    <div class="box-1"></div>
+    <div class="box-1"></div>
+    <div class="box-1"></div>
+    <div class="box-1"></div>
+    <div class="box-1"></div>
     <div class="box-1"></div>
     <div class="box-wrapper">
-      <div class="box">
-        <div class="item item-1"></div>
-        <div class="item item-2"></div>
-        <div class="item item-3"></div>
-        <div class="item item-4"></div>
-      </div>
+
+    </div>
+    <p>222  </p>
+    <div class="img-bg" v-lazy="bgUrl">
+
     </div>
   </div>
 </template>
@@ -18,39 +25,14 @@ import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { ScrollToPlugin } from 'gsap/ScrollToPlugin'
 import {pxToVhPx, pxToVw, pxToVwPx} from "@/utils/viewportUtils";
+import bgUrl from '@/assets/images/xiangxiong/xx-image-3-wind.png'
+import bgImg from "@/assets/images/sqhx/sqhx-element-circle.png";
 // 注册 ScrollToPlugin
 gsap.registerPlugin(ScrollToPlugin)
 
 // 注册 ScrollTrigger 插件
 gsap.registerPlugin(ScrollTrigger)
 
-onMounted(()=>{
-  const tl = gsap.timeline({
-    scrollTrigger: {
-      trigger: '.box-wrapper',
-      start: 'top top', // 当元素顶部到达视口顶部时开始
-      end: '+=3000', // 增加滚动距离，让动画更平滑（约3个视口高度）
-      scrub: 1, // 平滑跟随，数值越大越平滑（1表示轻微延迟）
-      pin: true,
-      invalidateOnRefresh: true
-    }
-  })
-  // 第一步：向左移动
-  tl.to('.box',{
-    x: pxToVw(-1920),
-    duration: 1
-  })
-  // 第二步：向上移动
-  tl.to('.box',{
-    y: pxToVw(-1080),
-    duration: 1
-  })
-  // 第三步：向右移动
-  tl.to('.box',{
-    x: pxToVw(0), // 回到初始位置（向右移动）
-    duration: 1
-  })
-})
 </script>
 <style>
 .wrapper{
@@ -64,6 +46,7 @@ onMounted(()=>{
     width: 1920px;
     height: 1080px;
     overflow: hidden;
+    background-color: red;
   }
   .box{
     width: 3840px;
@@ -99,5 +82,13 @@ onMounted(()=>{
       background-color: rgba(112, 219, 174, 0.33);
     }
   }
+}
+.img-bg{
+  width: 4071px;
+  height: 881px;
+  //background-image: url("@/assets/images/xiangxiong/xx-image-3-wind.png");
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
 }
 </style>
