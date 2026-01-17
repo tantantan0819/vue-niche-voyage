@@ -3765,7 +3765,7 @@ onUnmounted(() => {
   position: absolute;
   bottom: 60px;
   left: 50%;
-  transform: translateY(-50%);
+  transform: translateX(-50%);
 }
 
 .video-dot {
