@@ -1,153 +1,154 @@
 <template>
   <div class="grology">
-<!--    <div class="grology-origin" ref="originContainer">-->
-<!--      <div class="welcome-video-wrapper">-->
-<!--        &lt;!&ndash; 视频元素1 &ndash;&gt;-->
-<!--        <video-->
-<!--            ref="welcomeVideo1"-->
-<!--            class="welcome-video"-->
-<!--            :src="welcomeVideoSrc"-->
-<!--            preload="auto"-->
-<!--            muted-->
-<!--            playsinline-->
-<!--            :style="{ opacity: activeWelcomeVideo === 1 ? 1 : 0, position: 'absolute' }"-->
-<!--            @ended="onWelcomeVideoEnded"-->
-<!--        ></video>-->
-<!--        &lt;!&ndash; 视频元素2 &ndash;&gt;-->
-<!--        <video-->
-<!--            ref="welcomeVideo2"-->
-<!--            class="welcome-video"-->
-<!--            preload="auto"-->
-<!--            muted-->
-<!--            playsinline-->
-<!--            :style="{ opacity: activeWelcomeVideo === 2 ? 1 : 0, position: 'absolute' }"-->
-<!--            @ended="onWelcomeVideoEnded"-->
-<!--        ></video>-->
-<!--        <div class="welcome-video-roller" ref="welcomeVideoRoller"></div>-->
-<!--      </div>-->
-<!--      <div class="origin-video-wrapper" ref="originVideoWrapper">-->
-<!--        &lt;!&ndash; 视频元素1 &ndash;&gt;-->
-<!--        <video-->
-<!--            ref="originVideo1"-->
-<!--            class="origin-video"-->
-<!--            preload="auto"-->
-<!--            playsinline-->
-<!--            :muted="isMuted"-->
-<!--            :style="{ opacity: activeOriginVideo === 1 ? 1 : 0, position: 'absolute' }"-->
-<!--            @ended="onOriginVideoEnded"-->
-<!--            @timeupdate="onOriginVideoTimeUpdate"-->
-<!--        ></video>-->
-<!--        &lt;!&ndash; 视频元素2 &ndash;&gt;-->
-<!--        <video-->
-<!--            ref="originVideo2"-->
-<!--            class="origin-video"-->
-<!--            preload="auto"-->
-<!--            playsinline-->
-<!--            :muted="isMuted"-->
-<!--            :style="{ opacity: activeOriginVideo === 2 ? 1 : 0, position: 'absolute' }"-->
-<!--            @ended="onOriginVideoEnded"-->
-<!--            @timeupdate="onOriginVideoTimeUpdate"-->
-<!--        ></video>-->
-<!--        <div class="video-sound" @click="toggleSound">-->
-<!--          <div :class="isMuted ? 'video-sound-icon-off' : 'video-sound-icon-open'"></div>-->
-<!--        </div>-->
-<!--        <div class="video-accessories" ref="videoAccessories">-->
-<!--          <div class="video-description" ref="videoDescription">-->
-<!--            <p class="video-title">{{ originInfos[originCurrentIndex].title }}</p>-->
-<!--            <p :style="{width: originInfos[originCurrentIndex].width}">{{ originInfos[originCurrentIndex].description[0] }}</p>-->
-<!--          </div>-->
-<!--          <div class="video-indicator">-->
-<!--            <div-->
-<!--                class="video-dot"-->
-<!--                v-for="(item, index) in originInfos.length"-->
-<!--                :key="index"-->
-<!--                :class="{ active: originCurrentIndex === index }"-->
-<!--            ></div>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--    <div class="grology-water">-->
-<!--      <div class="water-cloud-1"></div>-->
-<!--      <div class="water-bg-video" id="page-mountains-to-rainforests">-->
-<!--        <video-->
-<!--            ref="climateVideo1"-->
-<!--            src="@/assets/images/geology/geology-to-water-climate-video.mp4"-->
-<!--            preload="auto"-->
-<!--            muted-->
-<!--            playsinline-->
-<!--            @ended="climateVideoEnded"-->
-<!--            @timeupdate="onClimateVideo1TimeUpdate"-->
-<!--            @loadeddata="onClimateVideo1LoadedData"-->
-<!--        ></video>-->
-<!--        <div class="climate-wrapper" id="climateHome">-->
-<!--          <div class="climate-title">从雪山到雨林</div>-->
-<!--          <div class="climate-description">-->
-<!--            <p>准备好了吗？</p>-->
-<!--            <p>我们先深入高原内部，感受阳光、雨雪和温度！</p>-->
-<!--          </div>-->
-<!--          <div class="climate-btn explore-btn" @click="linkTo('/voyage/climate')">深入探索</div>-->
-<!--        </div>-->
-<!--      </div>-->
-<!--      <div class="water-cloud-2-wrapper">-->
-<!--        <div class="water-cloud-2"></div>-->
-<!--      </div>-->
-<!--      <div class="water-description">-->
-<!--        <div class="water-description-line"></div>-->
-<!--        <div class="page-the-asian-water-tower" id="page-the-asian-water-tower"></div>-->
-<!--        <div class="title">亚洲水塔</div>-->
-<!--        <div class="water-detail water-detail-1">-->
-<!--          <p>这里，</p>-->
-<!--          <p>滋养着世界上人口最多最稠密的大洲。</p>-->
-<!--        </div>-->
-<!--        <div class="water-detail water-detail-2">-->
-<!--          <p>众多冰川提供源源融水，让湖泊映照星空和雪山，</p>-->
-<!--          <p>河流自此奔涌而下，流向远方的土地……</p>-->
-<!--        </div>-->
-<!--        <div class="explore-button explore-btn"  @click="linkTo('/voyage/landscape')">深入探索</div>-->
-<!--      </div>-->
-<!--      <div class="biology">-->
-<!--        <div class="page-highland-spirit-trail page-point" id="page-highland-spirit-trail"></div>-->
-<!--        <div class="biology-detail-1"-->
-<!--             data-parallax="true"-->
-<!--             data-parallax-axis="y"-->
-<!--             data-parallax-from="150"-->
-<!--             data-parallax-to="-150"-->
-<!--             data-parallax-speed="1.1"-->
-<!--             data-parallax-center-lock="true"-->
-<!--        >-->
-<!--          <p>青藏高原是世界屋脊，</p>-->
-<!--          <p>也是独特的生物多样性宝库。</p>-->
-<!--        </div>-->
-<!--        <div class="biology-detail-2"-->
-<!--             data-parallax="true"-->
-<!--             data-parallax-axis="y"-->
-<!--             data-parallax-from="150"-->
-<!--             data-parallax-to="-150"-->
-<!--             data-parallax-speed="1.1"-->
-<!--             data-parallax-center-lock="true">-->
-<!--          <p>草原、湖泊、高山和密林为动植物提供了</p>-->
-<!--          <p>多样的栖息环境。</p>-->
-<!--        </div>-->
-<!--        <div-->
-<!--            class="biology-title"-->
-<!--            data-parallax="true"-->
-<!--            data-parallax-axis="y"-->
-<!--            data-parallax-from="250"-->
-<!--            data-parallax-to="-250"-->
-<!--            data-parallax-speed="1.1"-->
-<!--            data-parallax-center-lock="true"-->
-<!--        ></div>-->
-<!--        <div class="cloud-1"></div>-->
-<!--        <div class="cloud-2"-->
-<!--             data-parallax-axis="y"-->
-<!--             data-parallax-from="350"-->
-<!--             data-parallax-to="-350"-->
-<!--             data-parallax-speed="1.1"-->
-<!--             data-parallax-center-lock="true"></div>-->
-<!--        <div class="bird"></div>-->
-<!--      </div>-->
-<!--    </div>-->
+    <div class="grology-origin" ref="originContainer">
+      <div class="welcome-video-wrapper">
+        <!-- 视频元素1 -->
+        <video
+            ref="welcomeVideo1"
+            class="welcome-video"
+            :src="welcomeVideoSrc"
+            preload="auto"
+            muted
+            playsinline
+            :style="{ opacity: activeWelcomeVideo === 1 ? 1 : 0, position: 'absolute' }"
+            @ended="onWelcomeVideoEnded"
+        ></video>
+        <!-- 视频元素2 -->
+        <video
+            ref="welcomeVideo2"
+            class="welcome-video"
+            preload="auto"
+            muted
+            playsinline
+            :style="{ opacity: activeWelcomeVideo === 2 ? 1 : 0, position: 'absolute' }"
+            @ended="onWelcomeVideoEnded"
+        ></video>
+        <div class="welcome-video-roller" ref="welcomeVideoRoller"></div>
+      </div>
+      <div class="origin-video-wrapper" ref="originVideoWrapper">
+        <!-- 视频元素1 -->
+        <video
+            ref="originVideo1"
+            class="origin-video"
+            preload="auto"
+            playsinline
+            :muted="isMuted"
+            :style="{ opacity: activeOriginVideo === 1 ? 1 : 0, position: 'absolute' }"
+            @ended="onOriginVideoEnded"
+            @timeupdate="onOriginVideoTimeUpdate"
+        ></video>
+        <!-- 视频元素2 -->
+        <video
+            ref="originVideo2"
+            class="origin-video"
+            preload="auto"
+            playsinline
+            :muted="isMuted"
+            :style="{ opacity: activeOriginVideo === 2 ? 1 : 0, position: 'absolute' }"
+            @play="onOriginVideoPlay"
+            @ended="onOriginVideoEnded"
+            @timeupdate="onOriginVideoTimeUpdate"
+        ></video>
+        <div class="video-sound" @click="toggleSound">
+          <div :class="isMuted ? 'video-sound-icon-off' : 'video-sound-icon-open'"></div>
+        </div>
+        <div class="video-accessories" ref="videoAccessories">
+          <div class="video-description" ref="videoDescription">
+            <p class="video-title">{{ originInfos[originCurrentIndex].title }}</p>
+            <p :style="{width: originInfos[originCurrentIndex].width}">{{ originInfos[originCurrentIndex].description[0] }}</p>
+          </div>
+          <div class="video-indicator">
+            <div
+                class="video-dot"
+                v-for="(item, index) in originInfos.length"
+                :key="index"
+                :class="{ active: originCurrentIndex === index }"
+            ></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="grology-water">
+      <div class="water-cloud-1"></div>
+      <div class="water-bg-video" id="page-mountains-to-rainforests">
+        <video
+            ref="climateVideo1"
+            src="@/assets/images/geology/geology-to-water-climate-video.mp4"
+            preload="auto"
+            muted
+            playsinline
+            @ended="climateVideoEnded"
+            @timeupdate="onClimateVideo1TimeUpdate"
+            @loadeddata="onClimateVideo1LoadedData"
+        ></video>
+        <div class="climate-wrapper" id="climateHome">
+          <div class="climate-title">从雪山到雨林</div>
+          <div class="climate-description">
+            <p>准备好了吗？</p>
+            <p>我们先深入高原内部，感受阳光、雨雪和温度！</p>
+          </div>
+          <div class="climate-btn explore-btn" @click="linkTo('/voyage/climate')">深入探索</div>
+        </div>
+      </div> 
+      <div class="water-cloud-2-wrapper">
+        <div class="water-cloud-2"></div>
+      </div>
+      <div class="water-description">
+        <div class="water-description-line"></div>
+        <div class="page-the-asian-water-tower" id="page-the-asian-water-tower"></div>
+        <div class="title">亚洲水塔</div>
+        <div class="water-detail water-detail-1">
+          <p>这里，</p>
+          <p>滋养着世界上人口最多最稠密的大洲。</p>
+        </div>
+        <div class="water-detail water-detail-2">
+          <p>众多冰川提供源源融水，让湖泊映照星空和雪山，</p>
+          <p>河流自此奔涌而下，流向远方的土地……</p>
+        </div>
+        <div class="explore-button explore-btn"  @click="linkTo('/voyage/landscape')">深入探索</div>
+      </div>
+      <div class="biology">
+        <div class="page-highland-spirit-trail page-point" id="page-highland-spirit-trail"></div>
+        <div class="biology-detail-1"
+             data-parallax="true"
+             data-parallax-axis="y"
+             data-parallax-from="150"
+             data-parallax-to="-150"
+             data-parallax-speed="1.1"
+             data-parallax-center-lock="true"
+        >
+          <p>青藏高原是世界屋脊，</p>
+          <p>也是独特的生物多样性宝库。</p>
+        </div>
+        <div class="biology-detail-2"
+             data-parallax="true"
+             data-parallax-axis="y"
+             data-parallax-from="150"
+             data-parallax-to="-150"
+             data-parallax-speed="1.1"
+             data-parallax-center-lock="true">
+          <p>草原、湖泊、高山和密林为动植物提供了</p>
+          <p>多样的栖息环境。</p>
+        </div>
+        <div
+            class="biology-title"
+            data-parallax="true"
+            data-parallax-axis="y"
+            data-parallax-from="250"
+            data-parallax-to="-250"
+            data-parallax-speed="1.1"
+            data-parallax-center-lock="true"
+        ></div>
+        <div class="cloud-1"></div>
+        <div class="cloud-2"
+             data-parallax-axis="y"
+             data-parallax-from="350"
+             data-parallax-to="-350"
+             data-parallax-speed="1.1"
+             data-parallax-center-lock="true"></div>
+        <div class="bird"></div>
+      </div>
+    </div>
     <LivesSection />
     <SecretSection />
   </div>
@@ -170,7 +171,7 @@ import LivesSection from './LivesSection.vue'
 const router = useRouter()
 
 // 定义 emits
-const emit = defineEmits(['thirdVideoEnded', 'welcomeVideoEnded'])
+const emit = defineEmits(['thirdVideoEnded', 'originVideoPlay'])
 
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
@@ -859,10 +860,9 @@ const onWelcomeVideoEnded = () => {
       window.removeEventListener('scroll', playStartPage2Handler, { passive: false });
       playStartPage2Handler = null;
     }
-    
+
     // 自动切换到 originVideo
     switchToOriginVideo();
-    emit('welcomeVideoEnded');
   }
 };
 
@@ -1077,6 +1077,9 @@ const switchToOriginVideo = async () => {
   }
 };
 
+const onOriginVideoPlay = () => {
+  emit('originVideoPlay');
+}
 // originVideo 时间更新监听
 const onOriginVideoTimeUpdate = () => {
   if (!originVideo.value) return;
