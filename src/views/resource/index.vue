@@ -235,7 +235,7 @@ import { onMounted, onUnmounted, onBeforeUnmount, ref } from "vue";
 import gsap from "gsap";
 import ReturnButton from "@/components/ReturnButton.vue";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { pxToVw, pxToVh } from '@/utils/viewportUtils';
+import { pxToVw, pxToVh, pxToVwPx } from '@/utils/viewportUtils';
 gsap.registerPlugin(ScrollTrigger);
 
 const videoSection = ref<HTMLElement | null>(null);
@@ -313,8 +313,6 @@ const createScrollTrigger = async () => {
   videoProgressProxy.progress = panelVideo.value
     ? panelVideo.value.currentTime / panelVideoDuration || 0
     : 0;
-
-    console.log(panelVideoDuration, videoProgressProxy.progress)
   const timeline = gsap.timeline({ defaults: { ease: "none" } });
 
   // 视频播放部分
@@ -324,7 +322,6 @@ const createScrollTrigger = async () => {
     onUpdate: () => {
       if (!panelVideo.value) return;
       const targetTime = videoProgressProxy.progress * panelVideoDuration;
-      console.log( videoProgressProxy.progress)
       if (Math.abs(panelVideo.value.currentTime - targetTime) > 0.02) {
         panelVideo.value.currentTime = targetTime;
       }
@@ -443,8 +440,8 @@ const setupContentAnimations = () => {
       scrollTrigger: {
         trigger: waterEnergyWrapper,
         containerAnimation: scrollAnimation,
-        start: "left+=3600 right", // 当 water-energy-wrapper 的左边到达视口右边时开始
-        end: "+=300", // 滚动 800px 的距离
+        start: `left+=${pxToVwPx(3600)} right`, // 根据屏幕宽度适配
+        end: `+=${pxToVwPx(300)}`, // 根据屏幕高度适配
         scrub: true, // 与滚动同步，支持反向滚动（快速）
         invalidateOnRefresh: true,
         markers: false
@@ -493,8 +490,8 @@ const setupContentAnimations = () => {
       scrollTrigger: {
         trigger: img1,
         containerAnimation: scrollAnimation,
-        start: "left+=2000 right",
-        end: "+=200", // 大幅减少滚动距离，实现一瞬间的效果
+        start: `left+=${pxToVwPx(2000)} right`,
+        end: `+=${pxToVwPx(200)}`, // 大幅减少滚动距离，实现一瞬间的效果
         scrub: 1, // 减小 scrub 值，让动画更快速响应
         invalidateOnRefresh: true,
         markers: false,
@@ -514,8 +511,8 @@ const setupContentAnimations = () => {
       scrollTrigger: {
         trigger: img2,
         containerAnimation: scrollAnimation,
-        start: "left+=2000 right",
-        end: "+=200", // 大幅减少滚动距离，实现一瞬间的效果
+        start: `left+=${pxToVwPx(2000)} right`,
+        end: `+=${pxToVwPx(200)}`, // 大幅减少滚动距离，实现一瞬间的效果
         scrub: 1, // 减小 scrub 值，让动画更快速响应
         invalidateOnRefresh: true,
         markers: false,
@@ -535,8 +532,8 @@ const setupContentAnimations = () => {
       scrollTrigger: {
         trigger: img3,
         containerAnimation: scrollAnimation,
-        start: "left+=2000 right",
-        end: "+=200", // 大幅减少滚动距离，实现一瞬间的效果
+        start: `left+=${pxToVwPx(2000)} right`,
+        end: `+=${pxToVwPx(200)}`, // 大幅减少滚动距离，实现一瞬间的效果
         scrub: 1, // 减小 scrub 值，让动画更快速响应
         invalidateOnRefresh: true,
         markers: false,
@@ -564,8 +561,8 @@ const setupContentAnimations = () => {
       scrollTrigger: {
         trigger: greenWrapperEl,
         containerAnimation: scrollAnimation,
-        start: "left+=2400 right", // 当左边到达视口右边时开始
-        end: "+=300", // 滚动 1000px 的距离内完成变色
+        start: `left+=${pxToVwPx(2400)} right`, // 当左边到达视口右边时开始
+        end: `+=${pxToVwPx(300)}`, // 滚动 1000px 的距离内完成变色
         scrub: 2, // 与滚动同步，慢慢变化
         invalidateOnRefresh: true,
         markers: false,
@@ -599,6 +596,33 @@ const setupContentAnimations = () => {
         markers: false,
       },
     });
+  }
+
+  // 监听 geothermy-enery-interduction，当它完全滑完后阻止滚动
+  const geothermyInterduction = document.querySelector('.geothermy-enery-line');
+  if (geothermyInterduction && scrollAnimation) {
+    // 先清理可能存在的旧触发器
+    const existingTriggers = ScrollTrigger.getAll().filter(trigger => {
+      return trigger.vars && trigger.vars.trigger === geothermyInterduction;
+    });
+    existingTriggers.forEach(trigger => trigger.kill());
+
+    ScrollTrigger.create({
+      trigger: geothermyInterduction,
+      containerAnimation: scrollAnimation,
+      horizontal: true,
+    // 注意这里：我们把触发点设为容器的右侧触碰屏幕右侧
+    start: "right right", 
+    end: "right right", 
+    onUpdate: (self) => {
+      if (self.direction === 1 && self.progress > 0) {
+        // 无法阻止向后滚动，会展示黑屏，先跳回到第一屏吧
+        window.scrollTo(0,0);
+      }
+    },
+    // 必须开启这个，否则在滚动过快时可能会失效
+    fastScrollEnd: true
+  });
   }
 };
 
