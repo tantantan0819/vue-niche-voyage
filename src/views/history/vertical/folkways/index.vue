@@ -689,9 +689,9 @@ const toAnswerPage = () => {
         position: relative;
         top: -800px;
         width: 100vw;
-        //height: 1500vh;
+        /* height: 1500vh; */
         overflow-x: hidden;
-        background-size: 100vw 1500vh;
+        background-size: cover;
         background-repeat: no-repeat;
         background-position: center center;
     }
@@ -1248,9 +1248,8 @@ const toAnswerPage = () => {
     }
     .eleventh-screen{
         position: relative;
-        box-sizing: border-box;
         width: 100vw;
-        padding: 100px 120px;
+        padding: 120px;
         .container-header{
             padding: 20px 0;
             font-size: 33px;
