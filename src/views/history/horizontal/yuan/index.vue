@@ -173,12 +173,12 @@
              data-parallax-speed="1.2"
              data-parallax-center-lock="true">
           <div class="seal-img" :data-bg="yuan_artifact_guoshiyin"></div>
-          <p>统领释教大元国师印</p>
+          <p class="alibaba-light">统领释教大元国师印</p>
           <annotation-dot>
             <p class="popularization-content">《物里中华：一文一物话西藏》 四川民族出版社 2025</p>
           </annotation-dot>
         </div>
-        <div class="description yuan-descript-1"
+        <div class="description yuan-descript-1 alibaba-light"
              data-parallax="true"
              data-parallax-axis="x"
              data-parallax-from="300"

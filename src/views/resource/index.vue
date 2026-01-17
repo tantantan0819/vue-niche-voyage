@@ -46,9 +46,9 @@
               />
             </div>
           </div>
-          <div class="light-energy-station">
-            <div class="light-energy-station-img scroller-img">
-
+          <div class="light-energy-station-wrapper">
+            <div class="light-energy-station">
+              <div class="light-energy-station-img scroller-img"></div>
             </div>
           </div>
           <div class="light-energy-radiation">
@@ -846,6 +846,9 @@ onUnmounted(() => {
       top: 0;
       left: 0;
     }
+  }
+  .light-energy-station-wrapper{
+    position: relative;
     &::after {
       content: "青海省德令哈熔盐光能电站";
       font-size: 24px;
@@ -853,6 +856,7 @@ onUnmounted(() => {
       position: absolute;
       left: -350px;
       color: #ead9c9;
+      font-family: 'Alibaba-PuHuiTi-Light'!important;
     }
   }
   .light-energy-radiation {
@@ -977,6 +981,7 @@ onUnmounted(() => {
     position: relative;
     &::after {
       content: "黄河辫状水系";
+      font-family: 'Alibaba-PuHuiTi-Light'!important;
       font-size: 24px;
       bottom: 120px;
       position: absolute;
@@ -1030,6 +1035,7 @@ onUnmounted(() => {
     position: relative;
     &::before {
       content: "青海贵德龙羊峡水电站";
+      font-family: 'Alibaba-PuHuiTi-Light'!important;
       font-size: 24px;
       bottom: 50px;
       position: absolute;
@@ -1102,6 +1108,7 @@ onUnmounted(() => {
         position: absolute;
         right: 100px;
         color: #ead9c9;
+        font-family: 'Alibaba-PuHuiTi-Light'!important;
       }
     }
   }
@@ -1128,6 +1135,7 @@ onUnmounted(() => {
       position: absolute;
       right: 320px;
       color: #ead9c9;
+      font-family: 'Alibaba-PuHuiTi-Light'!important;
     }
   }
   .salt-energy-introduction-2-wrapper{
@@ -1293,6 +1301,7 @@ onUnmounted(() => {
       position: absolute;
       left: -170px;
       color: #ead9c9;
+      font-family: 'Alibaba-PuHuiTi-Light'!important;
     }
   }
   .copper-mine-interduction-img-wrapper{
@@ -1327,6 +1336,7 @@ onUnmounted(() => {
       position: absolute;
       left: -170px;
       color: #ead9c9;
+      font-family: 'Alibaba-PuHuiTi-Light'!important;
     }
   }
   .copper-mine-interduction-img-1-wrapper{
@@ -1432,6 +1442,7 @@ onUnmounted(() => {
         right: 20px;
         color: #ead9c9;
         z-index: 1;
+        font-family: 'Alibaba-PuHuiTi-Light'!important;
       }
       .fountain {
         width: 800px;
@@ -1459,6 +1470,7 @@ onUnmounted(() => {
         position: absolute;
         right: -200px;
         color: #ead9c9;
+        font-family: 'Alibaba-PuHuiTi-Light'!important;
       }
       .atsuta {
         width: 800px;

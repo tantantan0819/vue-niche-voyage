@@ -458,7 +458,7 @@
            data-parallax-center-lock="true">
         <div class="img-picture"></div>
         <annotation-dot>
-          <p class="popularization-content">《藏族美术集成·工艺美术·织毯卷》（藏汉对照）<br>四川民族出版社 2018</p>
+          <p class="popularization-content">《藏羌布贴画》 四川民族出版社 2020</p>
         </annotation-dot>
       </div>
 
@@ -1151,7 +1151,7 @@ import AnnotationDot from "@/components/AnnotationDot.vue";
       position: absolute;
       top: 530px;
       left: 460px;
-      width: 500px;
+      width: 400px;
     }
     :deep(.popularization-description .popularization-wrapper) {
       position: relative;
