@@ -66,17 +66,18 @@ const closeCurrentMenu = () => {
   const arrow = currentFirstTitle.querySelector('.arrow')
   const tl = gsap.timeline()
   
-  // 4. first-title-wrapper 向上移动 y-10 然后回到 y:0（倒序执行展开动画）
-  tl.to(currentFirstTitle, {
-    y: -10,
-    duration: 0.1,
-    ease: 'power2.in'
-  })
-  tl.to(currentFirstTitle, {
-    y: 0,
-    duration: 0.1,
-    ease: 'power2.in'
-  })
+      // 4. first-title-wrapper 添加缩放效果
+      tl.to(currentFirstTitle, {
+        scale: 0.7, // 增加缩小幅度
+        duration: 0.12, // 增加持续时间，使动画更丝滑
+        ease: 'power2.out' // 使用更平滑的缓动函数
+      })
+      tl.to(currentFirstTitle, {
+        scale: 1,
+        clearProps: 'scale', // 动画完成后清除 scale transform
+        duration: 0.12, // 增加持续时间，使动画更丝滑
+        ease: 'power2.out' // 使用更平滑的缓动函数
+      })
   
   // 3. 箭头旋转回到 0度（倒序执行展开动画）
   if (arrow) {
@@ -134,7 +135,7 @@ const closeCurrentMenu = () => {
   // 2. first-title-wrapper 回到原位置（倒序执行展开动画）
   tl.to(currentFirstTitle, {
     left: 'auto', // 清除 left 定位
-    right: 88, // 恢复初始的 right 定位
+    right: 0, // 恢复初始的 right 定位
     width: 'auto', // 恢复初始宽度
     duration: 0.2,
     ease: 'power2.in'
@@ -265,16 +266,17 @@ const collapseMenu = async (index,menu) => {
     const arrow = currentFirstTitle.querySelector('.arrow')
     const tl = gsap.timeline()
     
-    // 4. first-title-wrapper 向上移动 y-10 然后回到 y:0（倒序执行展开动画）
+    // 4. first-title-wrapper 添加缩放效果
     tl.to(currentFirstTitle, {
-      y: -10,
-      duration: 0.1,
-      ease: 'power2.in'
+      scale: 0.7, // 增加缩小幅度
+      duration: 0.12, // 增加持续时间，使动画更丝滑
+      ease: 'power2.out' // 使用更平滑的缓动函数
     })
     tl.to(currentFirstTitle, {
-      y: 0,
-      duration: 0.1,
-      ease: 'power2.in'
+      scale: 1,
+      clearProps: 'scale', // 动画完成后清除 scale transform
+      duration: 0.12, // 增加持续时间，使动画更丝滑
+      ease: 'power2.out' // 使用更平滑的缓动函数
     })
     // 3. 箭头旋转回到 0度（倒序执行展开动画）
     if (arrow) {
@@ -329,7 +331,7 @@ const collapseMenu = async (index,menu) => {
     }
     tl.to(currentFirstTitle, {
       left: 'auto', // 清除 left 定位
-      right: 88, // 恢复初始的 right 定位
+      // right: 88, // 恢复初始的 right 定位
       width: 'auto', // 恢复初始宽度
       duration: 0.5,
       ease: 'power2.in'
@@ -367,6 +369,7 @@ const collapseMenu = async (index,menu) => {
       // })
       // prevTl.to(prevFirstTitle, {
       //   y: 0,
+      //   clearProps: 'y', // 清除 y transform，确保回到原位置
       //   duration: 0.1,
       //   ease: 'power2.in'
       // })
@@ -427,7 +430,7 @@ const collapseMenu = async (index,menu) => {
       // 2. first-title-wrapper 回到原位置（倒序执行展开动画）
       prevTl.to(prevFirstTitle, {
         left: 'auto', // 清除 left 定位
-        right: 88, // 恢复初始的 right 定位
+        // right: 0, // 恢复初始的 right 定位
         width: 'auto', // 恢复初始宽度
         duration: 0.2,
         ease: 'power2.in'
@@ -458,17 +461,16 @@ const collapseMenu = async (index,menu) => {
   // 2. 同时旋转箭头
   const arrow = currentFirstTitle.querySelector('.arrow')
   const tl = gsap.timeline()
-  
-  // 1. 让 first-title-wrapper 向下移动 y+10
+  // 1. 添加快速缩放效果，与收起动画保持一致
   tl.to(currentFirstTitle, {
-    y: 10,
-    duration: 0.1,
-    ease: 'power2.out'
+    scale: 0.7, // 增加缩小幅度
+    duration: 0.12, // 增加持续时间，使动画更丝滑
+    ease: 'power2.out' // 使用更平滑的缓动函数
   })
   tl.to(currentFirstTitle, {
-    y: 0,
-    duration: 0.1,
-    ease: 'power2.out'
+    scale: 1,
+    duration: 0.12, // 增加持续时间，使动画更丝滑
+    ease: 'power2.out' // 使用更平滑的缓动函数
   })
   tl.to(arrow, {
     rotation: 90,
@@ -569,12 +571,15 @@ const handleMenuClick = async (menuTitle, option) => {
       return;
     }
   } else {
-    // 其他菜单项，先停止视频并释放滚动锁定
-    if (videoControl && videoControl.stopVideosAndReleaseScroll) {
-      videoControl.stopVideosAndReleaseScroll();
+    // 其他菜单项，先将所有视频跳转到尾帧并释放滚动锁定，使页面可以正常滚动
+    if (videoControl && videoControl.jumpAllVideosToEndAndReleaseScroll) {
+      // 等待视频跳转到尾帧并释放滚动锁定完成
+      // 注意：滚动锁定会在函数开始时就立即释放，不需要等待视频跳转完成
+      await videoControl.jumpAllVideosToEndAndReleaseScroll();
     }
     
-    // 使用原来的跳转逻辑
+    // 使用原来的跳转逻辑，滚动到菜单指定位置
+    // 滚动锁定已经释放，页面现在可以正常滚动
     if (option.id) {
       await scrollToPage(option.id);
     }
@@ -864,7 +869,7 @@ const scrollToPage = async (targetId) => {
           margin-left: 28px;
           position: absolute;
           top: 50%;
-          right: -50px;
+          right: -40px;
           transform: translateY(-50%);
           transform-origin: center center;
         }
@@ -875,6 +880,9 @@ const scrollToPage = async (targetId) => {
         white-space: nowrap;
         line-height: 50px;
         text-align: right;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
         .second-title{
           display: none;
           opacity: 0;

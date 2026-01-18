@@ -86,7 +86,7 @@ const loadingProgress = ref(0)
 const showSplashLoader = ref(true)
 
 // 侧边菜单显示控制
-const showSideMenu = ref(true)
+const showSideMenu = ref(false)
 
 // 组件显示控制
 const showClimate = ref(false)
@@ -101,6 +101,7 @@ let currentOverlayType = null
 // 处理关闭气候组件
 const handleCloseClimate = () => {
   showClimate.value = false
+  showSideMenu.value = true;
   currentOverlayType = null
   // 恢复外部页面滚动
   enableExternalScroll()
@@ -108,7 +109,8 @@ const handleCloseClimate = () => {
 
 // 处理关闭 Landscape 组件
 const handleCloseLandscape = () => {
-  showLandscape.value = false
+  showLandscape.value = false;
+  showSideMenu.value = true;
   currentOverlayType = null
   // 恢复外部页面滚动
   enableExternalScroll()
@@ -118,6 +120,7 @@ const handleCloseLandscape = () => {
 // 处理关闭 Resource 组件
 const handleCloseResource = () => {
   showResource.value = false
+  showSideMenu.value = true;
   currentOverlayType = null
   // 恢复外部页面滚动
   enableExternalScroll()
@@ -126,7 +129,8 @@ const handleCloseResource = () => {
 
 // 处理关闭 Answer 组件
 const handleCloseAnswer = () => {
-  showAnswer.value = false
+  showAnswer.value = false;
+  showSideMenu.value = true;
   currentOverlayType = null
   // 恢复外部页面滚动
   enableExternalScroll()
@@ -138,6 +142,7 @@ const handleShowClimate = () => {
   savedScrollPosition = window.pageYOffset || document.documentElement.scrollTop
   // 显示组件
   showClimate.value = true
+  showSideMenu.value = false;
   currentOverlayType = 'climate'
   // 重置滚动位置
   nextTick(() => {
@@ -151,6 +156,7 @@ const handleShowLandscape = () => {
   savedScrollPosition = window.pageYOffset || document.documentElement.scrollTop
   // 显示组件
   showLandscape.value = true
+  showSideMenu.value = false;
   currentOverlayType = 'landscape'
   // 重置滚动位置
   nextTick(() => {
@@ -164,6 +170,7 @@ const handleShowResource = () => {
   savedScrollPosition = window.pageYOffset || document.documentElement.scrollTop
   // 显示组件
   showResource.value = true
+  showSideMenu.value = false;
   currentOverlayType = 'resource'
   document.documentElement.scrollTop = 0;
 }
@@ -173,7 +180,8 @@ const handleShowAnswer = () => {
   // 保存当前滚动位置
   savedScrollPosition = window.pageYOffset || document.documentElement.scrollTop
   // 显示组件
-  showAnswer.value = true
+  showAnswer.value = true;
+  showSideMenu.value = false;
   currentOverlayType = 'answer'
   // 重置滚动位置
   nextTick(() => {
