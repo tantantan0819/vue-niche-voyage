@@ -748,7 +748,7 @@ const toAnswerPage = () => {
         position: relative;
         top: -800px;
         width: 100vw;
-        /* height: 1500vh; */
+        height: 16028px; 
         overflow-x: hidden;
         background-size: cover;
         background-repeat: no-repeat;
@@ -1308,7 +1308,7 @@ const toAnswerPage = () => {
     .eleventh-screen{
         position: relative;
         width: 100vw;
-        padding: 120px;
+        padding: 800px 120px 100px 120px;
         .container-header{
             padding: 20px 0;
             font-size: 33px;
@@ -1318,7 +1318,7 @@ const toAnswerPage = () => {
             border-image: url('@/assets/images/folkways/end-line.png') 30 30 round;
             .header-divider-img{
                 position: absolute;
-                top: 20px;
+                top: 720px;
                 right: 100px;
                 width: 424px;
                 height: 142px;
