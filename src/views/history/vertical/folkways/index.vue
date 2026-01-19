@@ -61,6 +61,7 @@
               data-parallax-center-lock="true"></div>
           <div
               class="right-human-img"
+              :data-bg="folkways_element_1_5"
               data-parallax="true"
               data-parallax-axis="y"
               data-parallax-from="200"
@@ -74,6 +75,7 @@
         <div class="text-container">
           <div
               class="text-header-img"
+              :data-bg="folkways_character_3"
               data-parallax="true"
               data-parallax-axis="y"
               data-parallax-from="100"
@@ -97,18 +99,19 @@
             data-parallax-to="-200"
             data-parallax-speed="1.2"
             data-parallax-center-lock="true">
-          <img class="picture-img" src="@/assets/images/folkways/folkways-image-1.png"></img>
+          <img class="picture-img" :src="folkways_image_1"></img>
           <div class="illustration-title-font">
             <DotPopover class="dot-popover" title="图片来自" content="《中国藏餐》 四川民族出版社 2023"></DotPopover>
             <span>牛排糌粑丸</span>
           </div>
         </div>
-        <div class="background-img"></div>
+        <div class="background-img" :data-bg="folkways_element_1_8"></div>
       </div>
       <!-- 第三幕 -->
       <div class="screen third-screen">
         <div
             class="background-pattern-img-1"
+            :data-bg="folkways_element_1_9"
             data-parallax="true"
             data-parallax-axis="y"
             data-parallax-from="150"
@@ -122,7 +125,7 @@
             data-parallax-to="-250"
             data-parallax-speed="1.2"
             data-parallax-center-lock="true">
-          <img class="picture-img" src="@/assets/images/folkways/folkways-image-2.png" alt="">
+          <img class="picture-img" :src="folkways_image_2" alt="">
           <div class="illustration-title-font">
             <span>冬虫夏草：藏药珍贵药材，有补肺益肾，止血止痛，止咳化痰等功效。</span>
             <DotPopover class="dot-popover" title="图片来自" content="《晶珠本草药录》 四川民族出版社 2017 "></DotPopover>
@@ -131,6 +134,7 @@
         <div class="text-container">
           <div
               class="text-header-img"
+              :data-bg="folkways_character_4"
               data-parallax="true"
               data-parallax-axis="y"
               data-parallax-from="100"
@@ -149,13 +153,14 @@
             <p>藏医药源远流长，是藏族人民长期在与自然环境抗争中不断积累和总结的成果。其在发展过程中广泛吸收了中医、古印度医药和大食医药的精华，经过历代藏医的补充与完善，最终形成了体系完整、理论成熟的民族医学，是我国传统医学的重要组成部分。</p>
           </div>
         </div>
-        <div class="background-pattern-img-2"></div>
+        <div class="background-pattern-img-2" :data-bg="folkways_element_1_9"></div>
       </div>
       <!-- 第四幕 -->
       <div class="screen forth-screen">
         <div class="text-container">
           <div
               class="text-title-img"
+              :data-bg="folkways_character_5"
               data-parallax="true"
               data-parallax-axis="y"
               data-parallax-from="100"
@@ -179,7 +184,7 @@
               data-parallax-to="-200"
               data-parallax-speed="1.2"
               data-parallax-center-lock="true">
-            <img class="picture-img" src="@/assets/images/folkways/folkways-image-3.png" alt="">
+            <img class="picture-img" :src="folkways_image_3" alt="">
           </div>
           <div
               class="illustration-title-font"
@@ -200,8 +205,8 @@
             data-parallax-to="-100"
             data-parallax-speed="1.1"
             data-parallax-center-lock="true">
-          <div class="background-img-1"></div>
-          <div class="background-img-2"></div>
+          <div class="background-img-1" :data-bg="folkways_element_3_3"></div>
+          <div class="background-img-2" :data-bg="folkways_element_3_4"></div>
         </div>
       </div>
       <!-- 第五幕 -->
@@ -214,7 +219,7 @@
               data-parallax-to="-200"
               data-parallax-speed="1.2"
               data-parallax-center-lock="true">
-            <img src="@/assets/images/folkways/folkways-image-4.png" alt="" class="picture-img">
+            <img :src="folkways_image_4" alt="" class="picture-img">
           </div>
           <div
               class="illustration-title-font"
@@ -254,6 +259,7 @@
       <div class="screen sixth-screen">
         <div
             class="left-fire-img"
+            :data-bg="folkways_element_3_5"
             data-parallax="true"
             data-parallax-axis="y"
             data-parallax-from="200"
@@ -293,7 +299,7 @@
               data-parallax-to="-100"
               data-parallax-speed="1.2"
               data-parallax-center-lock="true">
-            <img src="@/assets/images/folkways/folkways-image-5.jpg" alt="" class="picture-img">
+            <img :src="folkways_image_5" alt="" class="picture-img">
           </div>
           <div class="illustration-title-font">
             <span>彝族火把节场景</span>
@@ -344,6 +350,7 @@
         <div class="right-pattern-container">
           <div
               class="right-pattern-img-1"
+              :data-bg="folkways_element_3_8"
               data-parallax="true"
               data-parallax-axis="y"
               data-parallax-from="300"
@@ -352,6 +359,7 @@
               data-parallax-center-lock="true"></div>
           <div
               class="right-pattern-img-2"
+              :data-bg="folkways_element_3_9"
               data-parallax="true"
               data-parallax-axis="y"
               data-parallax-from="200"
@@ -365,9 +373,11 @@
         <div class="left-pattern-container">
           <div
               class="left-pattern-img-1"
+              :data-bg="folkways_element_3_11"
           ></div>
           <div
               class="left-pattern-img-2"
+              :data-bg="folkways_element_3_12"
               data-parallax="true"
               data-parallax-axis="y"
               data-parallax-from="200"
@@ -388,27 +398,29 @@
               data-parallax-speed="1.2"
               data-parallax-center-lock="true"
           >
-            <img src="@/assets/images/folkways/folkways-image-6.png" alt="" class="picture-img-1">
-            <img src="@/assets/images/folkways/folkways-image-7.jpg" alt="" class="picture-img-2">
+            <img :src="folkways_image_6" alt="" class="picture-img-1">
+            <img :src="folkways_image_7" alt="" class="picture-img-2">
           </div>
 
         </div>
         <div class="right-pattern-container">
           <div
               class="right-pattern-img-1"
+              :data-bg="folkways_element_3_13"
               data-parallax="true"
               data-parallax-axis="y"
               data-parallax-from="100"
               data-parallax-to="-100"
               data-parallax-speed="1.1"
               data-parallax-center-lock="true"></div>
-          <div class="right-pattern-img-2"></div>
+          <div class="right-pattern-img-2" :data-bg="folkways_element_3_14"></div>
         </div>
       </div>
       <!-- 第九幕 -->
       <div class="screen ninth-screen">
         <div
             class="back-pattern-img"
+            :data-bg="folkways_element_3_15"
             data-parallax="true"
             data-parallax-axis="y"
             data-parallax-from="100"
@@ -417,6 +429,7 @@
             data-parallax-center-lock="true"></div>
         <div
             class="front-pattern-img"
+            :data-bg="folkways_element_3_16"
             data-parallax="true"
             data-parallax-axis="y"
             data-parallax-from="300"
@@ -434,11 +447,12 @@
             data-parallax-to="-100"
             data-parallax-speed="1.1"
             data-parallax-center-lock="true">
-          <div class="left-cloud-img-1"></div>
-          <div class="left-cloud-img-2"></div>
+          <div class="left-cloud-img-1" :data-bg="folkways_element_4_2"></div>
+          <div class="left-cloud-img-2" :data-bg="folkways_element_4_3"></div>
         </div>
         <div
             class="right-cloud-img"
+            :data-bg="folkways_element_4_1"
             data-parallax="true"
             data-parallax-axis="y"
             data-parallax-from="300"
@@ -477,7 +491,7 @@
         <div class="container-header">
           <p>参考资料</p>
           <div class="cloud-img"></div>
-          <div class="header-divider-img"></div>
+          <div class="header-divider-img" :data-bg="folkways_element_4_4"></div>
         </div>
         <div class="books-resource-container">
           <p class="books-resource-header">图书资源</p>
@@ -571,13 +585,58 @@ const router = useRouter()
 // 背景图资源懒加载
 const folkways_bg = new URL('@/assets/images/folkways/folkways-bg.png', import.meta.url).href;
 const folkways_element_1_1 = new URL('@/assets/images/folkways/folkways-element-1-1.png', import.meta.url).href;
+const folkways_element_1_2 = new URL('@/assets/images/folkways/folkways-element-1-2.png', import.meta.url).href;
+const folkways_element_1_3 = new URL('@/assets/images/folkways/folkways-element-1-3.png', import.meta.url).href;
 const folkways_element_1_4 = new URL('@/assets/images/folkways/folkways-element-1-4.png', import.meta.url).href;
+const folkways_element_1_5 = new URL('@/assets/images/folkways/folkways-element-1-5.png', import.meta.url).href;
 const folkways_element_1_6 = new URL('@/assets/images/folkways/folkways-element-1-6.png', import.meta.url).href;
 const folkways_element_1_7 = new URL('@/assets/images/folkways/folkways-element-1-7.png', import.meta.url).href;
+const folkways_element_1_8 = new URL('@/assets/images/folkways/folkways-element-1-8.png', import.meta.url).href;
+const folkways_element_1_9 = new URL('@/assets/images/folkways/folkways-element-1-9.png', import.meta.url).href;
+
+const folkways_element_2_1 = new URL('@/assets/images/folkways/folkways-element-2-1.png', import.meta.url).href;
+const folkways_element_2_2 = new URL('@/assets/images/folkways/folkways-element-2-2.png', import.meta.url).href;
+const folkways_element_2_3 = new URL('@/assets/images/folkways/folkways-element-2-3.png', import.meta.url).href;
+const folkways_element_2_4 = new URL('@/assets/images/folkways/folkways-element-2-4.png', import.meta.url).href;
+const folkways_element_2_5 = new URL('@/assets/images/folkways/folkways-element-2-5.png', import.meta.url).href;
+const folkways_element_2_6 = new URL('@/assets/images/folkways/folkways-element-2-6.png', import.meta.url).href;
+
+const folkways_element_3_1 = new URL('@/assets/images/folkways/folkways-element-3-1.png', import.meta.url).href;
+const folkways_element_3_2 = new URL('@/assets/images/folkways/folkways-element-3-2.png', import.meta.url).href;
+const folkways_element_3_3 = new URL('@/assets/images/folkways/folkways-element-3-3.png', import.meta.url).href;
+const folkways_element_3_4 = new URL('@/assets/images/folkways/folkways-element-3-4.png', import.meta.url).href;
+const folkways_element_3_5 = new URL('@/assets/images/folkways/folkways-element-3-5.png', import.meta.url).href;
+const folkways_element_3_6 = new URL('@/assets/images/folkways/folkways-element-3-6.png', import.meta.url).href;
+const folkways_element_3_7 = new URL('@/assets/images/folkways/folkways-element-3-7.png', import.meta.url).href;
+const folkways_element_3_8 = new URL('@/assets/images/folkways/folkways-element-3-8.png', import.meta.url).href;
+const folkways_element_3_9 = new URL('@/assets/images/folkways/folkways-element-3-9.png', import.meta.url).href;
+const folkways_element_3_10 = new URL('@/assets/images/folkways/folkways-element-3-10.png', import.meta.url).href;
+const folkways_element_3_11 = new URL('@/assets/images/folkways/folkways-element-3-11.png', import.meta.url).href;
+const folkways_element_3_12 = new URL('@/assets/images/folkways/folkways-element-3-12.png', import.meta.url).href;
+const folkways_element_3_13 = new URL('@/assets/images/folkways/folkways-element-3-13.png', import.meta.url).href;
+const folkways_element_3_14 = new URL('@/assets/images/folkways/folkways-element-3-14.png', import.meta.url).href;
+const folkways_element_3_15 = new URL('@/assets/images/folkways/folkways-element-3-15.png', import.meta.url).href;
+const folkways_element_3_16 = new URL('@/assets/images/folkways/folkways-element-3-16.png', import.meta.url).href;
+
+const folkways_element_4_1 = new URL('@/assets/images/folkways/folkways-element-4-1.png', import.meta.url).href;
+const folkways_element_4_2 = new URL('@/assets/images/folkways/folkways-element-4-2.png', import.meta.url).href;
+const folkways_element_4_3 = new URL('@/assets/images/folkways/folkways-element-4-3.png', import.meta.url).href;
+const folkways_element_4_4 = new URL('@/assets/images/folkways/folkways-element-4-4.png', import.meta.url).href;
+
 const folkways_character_1 = new URL('@/assets/images/folkways/folkways-character-1.png', import.meta.url).href;
 const folkways_character_2 = new URL('@/assets/images/folkways/folkways-character-2.png', import.meta.url).href;
-const folkways_element_1_3 = new URL('@/assets/images/folkways/folkways-element-1-3.png', import.meta.url).href;
-const folkways_element_1_2 = new URL('@/assets/images/folkways/folkways-element-1-2.png', import.meta.url).href;
+const folkways_character_3 = new URL('@/assets/images/folkways/folkways-character-3.png', import.meta.url).href;
+const folkways_character_4 = new URL('@/assets/images/folkways/folkways-character-4.png', import.meta.url).href;
+const folkways_character_5 = new URL('@/assets/images/folkways/folkways-character-5.png', import.meta.url).href;
+const folkways_character_6 = new URL('@/assets/images/folkways/folkways-character-6.png', import.meta.url).href;
+
+const folkways_image_1 = new URL('@/assets/images/folkways/folkways-image-1.png', import.meta.url).href;
+const folkways_image_2 = new URL('@/assets/images/folkways/folkways-image-2.png', import.meta.url).href;
+const folkways_image_3 = new URL('@/assets/images/folkways/folkways-image-3.png', import.meta.url).href;
+const folkways_image_4 = new URL('@/assets/images/folkways/folkways-image-4.png', import.meta.url).href;
+const folkways_image_5 = new URL('@/assets/images/folkways/folkways-image-5.jpg', import.meta.url).href;
+const folkways_image_6 = new URL('@/assets/images/folkways/folkways-image-6.png', import.meta.url).href;
+const folkways_image_7 = new URL('@/assets/images/folkways/folkways-image-7.jpg', import.meta.url).href;
 const initGsapAnimation = () => {
     gsap.to('.second-screen-text-content', {
         y: pxToVh(-100),

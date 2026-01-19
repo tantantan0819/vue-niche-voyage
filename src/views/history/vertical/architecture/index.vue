@@ -220,7 +220,7 @@
     </div>
     <div class="seven-screen screen">
 
-      <div class="seven-screen-bg"></div>
+      <div class="seven-screen-bg" :data-bg="architecture_element_guidingline_2"></div>
       <div class="img-wrapper-1"
            data-parallax="true"
            data-parallax-axis="y"
@@ -556,8 +556,8 @@ const initTextWrapperAnimation = () => {
         }
       }
       .architecture-text-1{
-        width: 443px;
-        height: 272px;
+        width: 396px;
+        height: 94px;
         background-size: cover;
         background-position: center center;
         background-repeat: no-repeat;
@@ -765,7 +765,6 @@ const initTextWrapperAnimation = () => {
       .img-1{
         width: 694px;
         height: 524px;
-        background-image: url("@/assets/images/architecture/architecture-image-4.jpg");
         background-size: cover;
         background-position: center center;
         background-repeat: no-repeat;
@@ -797,10 +796,10 @@ const initTextWrapperAnimation = () => {
     .seven-screen-bg{
       width: 1920px;
       height: 1488px;
-      background-image: url("@/assets/images/architecture/architecture-element-guidingline-2.png");
       background-size: cover;
       background-position: center center;
       background-repeat: no-repeat;
+
       position: absolute;
       top: -60px
     }
@@ -813,7 +812,6 @@ const initTextWrapperAnimation = () => {
       .img-1{
         width: 672px;
         height: 484px;
-        background-image: url("@/assets/images/architecture/architecture-image-3.png");
         background-size: cover;
         background-position: center center;
         background-repeat: no-repeat;
@@ -850,7 +848,6 @@ const initTextWrapperAnimation = () => {
     .six-screen-bg{
       width: 1920px;
       height: 1488px;
-      background-image: url("@/assets/images/architecture/architecture-element-guidingline-1.png");
       background-size: cover;
       background-position: center center;
       background-repeat: no-repeat;
@@ -875,7 +872,6 @@ const initTextWrapperAnimation = () => {
       .img-1{
         width: 640px;
         height: 430px;
-        background-image: url("@/assets/images/architecture/architecture-image-2.jpg");
         background-size: cover;
         background-position: center center;
         background-repeat: no-repeat;
@@ -907,7 +903,6 @@ const initTextWrapperAnimation = () => {
       .img-1{
         width: 440px;
         height: 600px;
-        background-image: url("@/assets/images/architecture/architecture-image-1.jpg");
         background-size: cover;
         background-position: center center;
         background-repeat: no-repeat;
@@ -935,7 +930,6 @@ const initTextWrapperAnimation = () => {
     .four-screen-bg-1{
       width: 1920px;
       height: 1869px;
-      background-image: url("@/assets/images/architecture/architecture-element-qzjz-1.png");
       background-size: cover;
       background-position: center center;
       background-repeat: no-repeat;
@@ -945,7 +939,6 @@ const initTextWrapperAnimation = () => {
     .four-screen-bg-2{
       width: 1066px;
       height: 1306px;
-      background-image: url("@/assets/images/architecture/architecture-element-qzjz-2.png");
       background-size: cover;
       background-position: center center;
       background-repeat: no-repeat;
@@ -956,7 +949,6 @@ const initTextWrapperAnimation = () => {
     .four-screen-bg-3{
       width: 1920px;
       height: 860px;
-      background-image: url("@/assets/images/architecture/architecture-element-wall.png");
       background-size: cover;
       background-position: center center;
       background-repeat: no-repeat;
@@ -984,7 +976,6 @@ const initTextWrapperAnimation = () => {
     .third-screen-bg-1{
       width: 455px;
       height: 507px;
-      background-image: url("@/assets/images/architecture/architecture-element-bg-1.png");
       background-size: cover;
       background-position: center center;
       background-repeat: no-repeat;
@@ -994,7 +985,6 @@ const initTextWrapperAnimation = () => {
     .third-screen-bg-2{
       width: 455px;
       height: 538px;
-      background-image: url("@/assets/images/architecture/architecture-element-bg-2.png");
       background-size: cover;
       background-position: center center;
       background-repeat: no-repeat;
@@ -1005,7 +995,6 @@ const initTextWrapperAnimation = () => {
     .third-screen-bg-3{
       width: 581px;
       height: 579px;
-      background-image: url("@/assets/images/architecture/architecture-element-mg-1.png");
       background-size: cover;
       background-position: center center;
       background-repeat: no-repeat;
@@ -1016,7 +1005,6 @@ const initTextWrapperAnimation = () => {
     .third-screen-bg-4{
       width: 610px;
       height: 658px;
-      background-image: url("@/assets/images/architecture/architecture-element-mg-2.png");
       background-size: cover;
       background-position: center center;
       background-repeat: no-repeat;
@@ -1028,7 +1016,6 @@ const initTextWrapperAnimation = () => {
     .third-screen-bg-text{
       width: 1371px;
       height: 297px;
-      background-image: url("@/assets/images/architecture/architecture-characters-2.png");
       background-size: cover;
       background-position: center center;
       background-repeat: no-repeat;
@@ -1049,7 +1036,6 @@ const initTextWrapperAnimation = () => {
     .third-screen-bg-5{
       width: 641px;
       height: 1105px;
-      background-image: url("@/assets/images/architecture/architecture-element-fg-1.png");
       background-size: cover;
       background-position: center center;
       background-repeat: no-repeat;
@@ -1059,7 +1045,6 @@ const initTextWrapperAnimation = () => {
     .third-screen-bg-6{
       width: 569px;
       height: 980px;
-      background-image: url("@/assets/images/architecture/architecture-element-fg-2.png");
       background-size: cover;
       background-position: center center;
       background-repeat: no-repeat;
@@ -1070,7 +1055,6 @@ const initTextWrapperAnimation = () => {
     .third-screen-bg-7{
       width: 1920px;
       height: 424px;
-      background-image: url("@/assets/images/architecture/architecture-element-bdlg.png");
       background-size: cover;
       background-position: center center;
       background-repeat: no-repeat;

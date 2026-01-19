@@ -11,7 +11,7 @@ app.use(router)
 // 注册插件 + 核心配置（重点是observerOptions.rootMargin实现提前加载）
 app.use(lazyLoad, {
   observerOptions: {
-    rootMargin: '300% 1000%', // 核心！垂直方向提前1倍屏高，水平方向提前10倍屏宽加载
+    rootMargin: '300% 300%', // 核心！垂直方向提前1倍屏高，水平方向提前10倍屏宽加载
     threshold: 0
   },
   log: false, // 关闭日志，避免控制台冗余输出

@@ -68,8 +68,10 @@ let isScrollComplete = false; // 标记横向滚动是否完成
  */
 const lazyLoadImages = () => {
   if (!container.value || lazyBgElements.length === 0) return;
-  const viewLeft = container.value.scrollLeft - 200;
-  const viewRight = viewLeft + container.value.clientWidth + 400; // 预加载 200px
+  // 计算预加载距离：容器宽度的300%（与main.js中的rootMargin设置保持一致）
+  const preloadDistance = container.value.clientWidth * 3;
+  const viewLeft = container.value.scrollLeft - preloadDistance;
+  const viewRight = viewLeft + container.value.clientWidth + preloadDistance * 2; // 两边都预加载
 
   lazyBgElements = lazyBgElements.filter(item => {
     const elRight = item.left + item.width;

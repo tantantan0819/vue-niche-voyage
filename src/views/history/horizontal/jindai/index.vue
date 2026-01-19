@@ -1,9 +1,10 @@
 <template>
-  <div class="jindai" ref="jindaiRef">
+  <div class="jindai" ref="jindaiRef" :data-bg="jindai_bg">
     <div class="first-screen screen">
       <div
           id="page-jindai"
           class="cloud-1"
+          :data-bg="jindai_bg_comiccloud_1"
           data-parallax="true"
           data-parallax-axis="x"
           data-parallax-from="200"
@@ -13,6 +14,7 @@
       ></div>
       <div
           class="house-1"
+          :data-bg="jindai_image_jingzigubao"
           data-parallax="true"
           data-parallax-axis="x"
           data-parallax-from="200"
@@ -31,6 +33,7 @@
       ><span class="change-number" ref="number19Ref">{{ displayNumber19 }}</span>世纪末-<span class="change-number" ref="number20Ref">{{ displayNumber20 }}</span>世纪初</div>
       <div
           class="cloud-2"
+          :data-bg="jindai_fg_comic_cloud_1"
           data-parallax="true"
           data-parallax-axis="x"
           data-parallax-from="600"
@@ -51,6 +54,7 @@
       >守土抗侵</div>
       <div
           class="cloud-1"
+          :data-bg="jindai_fg_comic_cloud_2"
           data-parallax="true"
           data-parallax-axis="x"
           data-parallax-from="200"
@@ -60,6 +64,7 @@
       ></div>
       <div
           class="cloud-2"
+          :data-bg="jindai_bg_comiccloud_2"
           data-parallax="true"
           data-parallax-axis="x"
           data-parallax-from="150"
@@ -83,6 +88,7 @@
     <div class="third-screen screen">
       <div
           class="cloud-1"
+          :data-bg="jindai_lineart_stonefortress_1"
           data-parallax="true"
           data-parallax-axis="x"
           data-parallax-from="100"
@@ -109,6 +115,7 @@
       </div>
       <div
           class="stone"
+          :data-bg="jindai_lineart_stonefortress_2"
           data-parallax="true"
           data-parallax-axis="x"
           data-parallax-from="100"
@@ -120,6 +127,7 @@
     <div class="four-screen screen">
       <div
           class="route-img"
+          :data-bg="jindai_routemap_invasion"
           data-parallax="true"
           data-parallax-axis="x"
           data-parallax-from="200"
@@ -152,6 +160,7 @@
     <div class="five-screen screen">
       <div
           class="cloud-1"
+          :data-bg="jindai_bg_comic_smoke"
           data-parallax="true"
           data-parallax-axis="x"
           data-parallax-from="400"
@@ -161,6 +170,7 @@
       ></div>
       <div
           class="cloud-2"
+          :data-bg="jindai_cloud_ending"
           data-parallax="true"
           data-parallax-axis="x"
           data-parallax-from="600"
@@ -170,6 +180,7 @@
       ></div>
       <div
           class="person"
+          :data-bg="jindai_sketch"
           data-parallax-axis="x"
           data-parallax-from="450"
           data-parallax-to="-450"
@@ -192,6 +203,11 @@
   </div>
 </template>
 <style scoped>
+[data-bg] {
+  --bg-image: attr(data-bg url);
+  background-image: var(--bg-image);
+}
+
 .screen{
   position: relative;
   width: 1920px;
@@ -200,7 +216,6 @@
 .jindai{
   width: 13502px;
   height: 1080px;
-  background-image: url("@/assets/images/jindai/jindai-bg.jpg");
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
@@ -212,7 +227,6 @@
     .cloud-1{
       width: 2609px;
       height: 959px;
-      background-image: url("@/assets/images/jindai/jindai-bg-comiccloud-1.png");
       background-size: cover;
       position: absolute;
       bottom: 0px;
@@ -225,7 +239,6 @@
       transform: scale(0.83);
       width: 2654px;
       height: 1769px;
-      background-image: url("@/assets/images/jindai/jindai-image-jingzigubao.png");
       background-size: cover;
       position: absolute;
       bottom: -480px;
@@ -235,7 +248,6 @@
     .cloud-2{
       width: 2218px;
       height: 779px;
-      background-image: url("@/assets/images/jindai/jindai-fg-comic-cloud-1.png");
       background-size: cover;
       position: absolute;
       left: -400px;
@@ -267,7 +279,6 @@
     .cloud-1{
       width: 2218px;
       height: 779px;
-      background-image: url("@/assets/images/jindai/jindai-fg-comic-cloud-2.png");
       background-size: cover;
       position: absolute;
       bottom: -460px;
@@ -281,7 +292,6 @@
     .cloud-2{
       width: 2064px;
       height: 677px;
-      background-image: url("@/assets/images/jindai/jindai-bg-comiccloud-2.png");
       background-size: cover;
       position: absolute;
       bottom:0;
@@ -311,7 +321,6 @@
     .stone{
       width: 2571px;
       height: 504px;
-      background-image: url("@/assets/images/jindai/jindai-lineart-stonefortress-2.png");
       background-size: cover;
       position: absolute;
       bottom: -200px;
@@ -320,7 +329,6 @@
     .cloud-1{
       width: 2588px;
       height: 508px;
-      background-image: url("@/assets/images/jindai/jindai-lineart-stonefortress-1.png");
       background-size: cover;
       position: absolute;
       bottom: -200px;
@@ -405,7 +413,6 @@
     .route-img{
       width: 712px;
       height: 704px;
-      background-image: url("@/assets/images/jindai/jindai-routemap-invasion.png");
       background-size: cover;
       position: absolute;
       top: 250px;
@@ -440,7 +447,6 @@
     .cloud-1{
       width: 1380px;
       height: 948px;
-      background-image: url("@/assets/images/jindai/jindai-bg-comic-smoke.png");
       background-size: cover;
       position: absolute;
       top: 140px;
@@ -449,7 +455,6 @@
     .cloud-2{
       width: 2987px;
       height: 1446px;
-      background-image: url("@/assets/images/jindai/jindai-cloud-ending.png");
       background-size: cover;
       position: absolute;
       top: 140px;
@@ -458,7 +463,6 @@
     .person{
       width: 1314px;
       height: 984px;
-      background-image: url("@/assets/images/jindai/jindai-sketch.png");
       background-size: cover;
       position: absolute;
       bottom: 0px;
@@ -478,6 +482,20 @@
 import { ref, onMounted, onUnmounted } from 'vue'
 import { gsap } from 'gsap';
 import { useAnimateNumber } from '@/utils/animateNumber'
+
+// 背景图资源懒加载
+const jindai_bg = new URL('@/assets/images/jindai/jindai-bg.jpg', import.meta.url).href;
+const jindai_bg_comiccloud_1 = new URL('@/assets/images/jindai/jindai-bg-comiccloud-1.png', import.meta.url).href;
+const jindai_image_jingzigubao = new URL('@/assets/images/jindai/jindai-image-jingzigubao.png', import.meta.url).href;
+const jindai_fg_comic_cloud_1 = new URL('@/assets/images/jindai/jindai-fg-comic-cloud-1.png', import.meta.url).href;
+const jindai_fg_comic_cloud_2 = new URL('@/assets/images/jindai/jindai-fg-comic-cloud-2.png', import.meta.url).href;
+const jindai_bg_comiccloud_2 = new URL('@/assets/images/jindai/jindai-bg-comiccloud-2.png', import.meta.url).href;
+const jindai_lineart_stonefortress_1 = new URL('@/assets/images/jindai/jindai-lineart-stonefortress-1.png', import.meta.url).href;
+const jindai_lineart_stonefortress_2 = new URL('@/assets/images/jindai/jindai-lineart-stonefortress-2.png', import.meta.url).href;
+const jindai_routemap_invasion = new URL('@/assets/images/jindai/jindai-routemap-invasion.png', import.meta.url).href;
+const jindai_bg_comic_smoke = new URL('@/assets/images/jindai/jindai-bg-comic-smoke.png', import.meta.url).href;
+const jindai_cloud_ending = new URL('@/assets/images/jindai/jindai-cloud-ending.png', import.meta.url).href;
+const jindai_sketch = new URL('@/assets/images/jindai/jindai-sketch.png', import.meta.url).href;
 /**
  * 初始化所有描述文本渐显动画
  */

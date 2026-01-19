@@ -63,9 +63,10 @@
     </div>
     <div class="second-screen-wrapper">
       <div class="second-screen">
-        <div class="map-bg" :data-bg="tb_minimap"></div>
+        <div class="map-bg" :data-bg="tb_bg_map"></div>
         <div class="map-bg2" :data-bg="tb_minimap"></div>
-        <div 
+        <div
+          :data-bg="tb_minimap"
           class="map"
           data-parallax="true"
           data-parallax-axis="x"
@@ -277,6 +278,7 @@ const tb_moon = new URL('@/assets/images/tubo/tb-moon.png', import.meta.url).hre
 const tb_desert = new URL('@/assets/images/tubo/tb-desert.png', import.meta.url).href;
 const tb_gif_camelcaravan = new URL('@/assets/images/tubo/tb-gif-camelcaravan.gif', import.meta.url).href;
 const tb_gif_deer = new URL('@/assets/images/tubo/tb-gif-deer.gif', import.meta.url).href;
+const tb_bg_map = new URL('@/assets/images/tubo/tb-bg-map.png', import.meta.url).href;
 const tb_minimap = new URL('@/assets/images/tubo/tb-minimap.png', import.meta.url).href;
 const tb_cloud_1 = new URL('@/assets/images/tubo/tb-cloud-1.png', import.meta.url).href;
 const tb_cloud_2 = new URL('@/assets/images/tubo/tb-cloud-2.png', import.meta.url).href;

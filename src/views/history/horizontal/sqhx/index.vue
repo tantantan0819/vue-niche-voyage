@@ -288,6 +288,9 @@ onUnmounted(() => {
 
 </script>
 <style scoped>
+.screen{
+  height: 100vh!important;
+}
 /* 背景图懒加载通用规则 */
 [data-bg] {
   --bg-image: attr(data-bg url);
@@ -320,13 +323,15 @@ onUnmounted(() => {
         white-space: normal;
         overflow-y: hidden;
         overflow-x: auto; /* 关键：允许水平滚动 */
-
-
+        background-image: url("@/assets/images/sqhx/sqhx-bg.jpg");
+        background-size: contain;
+        background-repeat: no-repeat;
     }
     .black-screen{
       width: 150vw;
     }
     .first-screen{
+        height: 100vh;
         .first-screen-title{
             position: absolute;
             top: 50%;
@@ -542,6 +547,8 @@ onUnmounted(() => {
             left: 800px;
             width: 1922px;
             height: 1080px;
+            background-repeat: no-repeat;
+            background-size: contain;
             //background: url('@/assets/images/sqhx/sqhx-element-circle.png') no-repeat center center / cover;
         }
         .seventh-screen-text-content-1{
