@@ -75,7 +75,7 @@
         <div class="text-container">
           <div
               class="text-header-img"
-              :data-bg="folkways_character_3"
+              :data-bg="folkways_element_2_1"
               data-parallax="true"
               data-parallax-axis="y"
               data-parallax-from="100"
@@ -134,7 +134,7 @@
         <div class="text-container">
           <div
               class="text-header-img"
-              :data-bg="folkways_character_4"
+              :data-bg="folkways_element_2_2"
               data-parallax="true"
               data-parallax-axis="y"
               data-parallax-from="100"
@@ -160,7 +160,7 @@
         <div class="text-container">
           <div
               class="text-title-img"
-              :data-bg="folkways_character_5"
+              :data-bg="folkways_element_2_3"
               data-parallax="true"
               data-parallax-axis="y"
               data-parallax-from="100"
@@ -236,6 +236,7 @@
         <div class="text-container">
           <div
               class="text-header-img"
+              :data-bg="folkways_element_2_4"
               data-parallax="true"
               data-parallax-axis="y"
               data-parallax-from="100"
@@ -269,6 +270,7 @@
         <div class="text-container">
           <div
               class="text-header-img"
+              :data-bg="folkways_element_2_5"
               data-parallax="true"
               data-parallax-axis="y"
               data-parallax-from="100"
@@ -332,6 +334,7 @@
         <div class="text-container">
           <div
               class="text-header-img"
+              :data-bg="folkways_element_2_6"
               data-parallax="true"
               data-parallax-axis="y"
               data-parallax-from="100"
@@ -625,10 +628,10 @@ const folkways_element_4_4 = new URL('@/assets/images/folkways/folkways-element-
 
 const folkways_character_1 = new URL('@/assets/images/folkways/folkways-character-1.png', import.meta.url).href;
 const folkways_character_2 = new URL('@/assets/images/folkways/folkways-character-2.png', import.meta.url).href;
-const folkways_character_3 = new URL('@/assets/images/folkways/folkways-character-3.png', import.meta.url).href;
-const folkways_character_4 = new URL('@/assets/images/folkways/folkways-character-4.png', import.meta.url).href;
-const folkways_character_5 = new URL('@/assets/images/folkways/folkways-character-5.png', import.meta.url).href;
-const folkways_character_6 = new URL('@/assets/images/folkways/folkways-character-6.png', import.meta.url).href;
+//const folkways_character_3 = new URL('@/assets/images/folkways/folkways-character-3.png', import.meta.url).href;
+//const folkways_character_4 = new URL('@/assets/images/folkways/folkways-character-4.png', import.meta.url).href;
+//const folkways_character_5 = new URL('@/assets/images/folkways/folkways-character-5.png', import.meta.url).href;
+//const folkways_character_6 = new URL('@/assets/images/folkways/folkways-character-6.png', import.meta.url).href;
 
 const folkways_image_1 = new URL('@/assets/images/folkways/folkways-image-1.png', import.meta.url).href;
 const folkways_image_2 = new URL('@/assets/images/folkways/folkways-image-2.png', import.meta.url).href;
@@ -865,7 +868,7 @@ const toAnswerPage = () => {
                 width: 801px;
                 height: 102px;
                 margin-bottom: 80px;
-                background: url('@/assets/images/folkways/folkways-element-2-1.png') no-repeat center center / cover;
+                /* background: url('@/assets/images/folkways/folkways-element-2-1.png') no-repeat center center / cover; */
             }
         }
         .picture-container{
@@ -936,7 +939,7 @@ const toAnswerPage = () => {
                 width: 821px;
                 height: 102px;
                 margin-bottom: 80px;
-                background: url('@/assets/images/folkways/folkways-element-2-2.png') no-repeat center center / cover;
+                /* background: url('@/assets/images/folkways/folkways-element-2-2.png') no-repeat center center / cover; */
             }
             .text-content{
                 opacity: 0;
@@ -1045,7 +1048,7 @@ const toAnswerPage = () => {
                 width: 800px;
                 height: 102px;
                 margin-bottom: 80px;
-                background: url('@/assets/images/folkways/folkways-element-2-4.png') no-repeat center center / cover;
+                /* background: url('@/assets/images/folkways/folkways-element-2-4.png') no-repeat center center / cover; */
             }
             .fifth-screen-text-content{
                 opacity: 0;
@@ -1078,7 +1081,7 @@ const toAnswerPage = () => {
                 width: 821px;
                 height: 102px;
                 margin-bottom: 80px;
-                background: url('@/assets/images/folkways/folkways-element-2-5.png') no-repeat center center / cover;
+                /* background: url('@/assets/images/folkways/folkways-element-2-5.png') no-repeat center center / cover; */
             }
             .sixth-screen-text-content{
                 opacity: 0;
@@ -1141,7 +1144,7 @@ const toAnswerPage = () => {
                 width: 821px;
                 height: 102px;
                 margin-bottom: 80px;
-                background: url('@/assets/images/folkways/folkways-element-2-6.png') no-repeat center center / cover;
+                /* background: url('@/assets/images/folkways/folkways-element-2-6.png') no-repeat center center / cover; */
             }
             .seventh-screen-text-content{
                 opacity: 0;
@@ -1308,7 +1311,7 @@ const toAnswerPage = () => {
     .eleventh-screen{
         position: relative;
         width: 100vw;
-        padding: 800px 120px 100px 120px;
+        padding: 120px ;
         .container-header{
             padding: 20px 0;
             font-size: 33px;
