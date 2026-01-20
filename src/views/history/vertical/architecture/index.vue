@@ -411,13 +411,13 @@ const initTextWrapperAnimation = () => {
     x: 0,
     ease: 'power2.out',
     scrollTrigger: {
-      trigger: '.first-screen',
+      trigger: '.architecture .first-screen',
       scroller: '.horizontal-scroll-container',
       horizontal: true,
       start: 'left right',
       end: 'left left',
       scrub: true,
-      invalidateOnRefresh: true
+      invalidateOnRefresh: true,
     }
   });
 
@@ -435,19 +435,19 @@ const initTextWrapperAnimation = () => {
   // });
 };
 
-// onMounted(async () => {
-//   await nextTick();
-//   await new Promise(resolve => setTimeout(resolve, 200));
-//   initTextWrapperAnimation();
-// });
+onMounted(async () => {
+  await nextTick();
+  await new Promise(resolve => setTimeout(resolve, 200));
+  initTextWrapperAnimation();
+});
 
-// onBeforeUnmount(() => {
-//   ScrollTrigger.getAll().forEach(trigger => {
-//     if (trigger.vars?.trigger === '.first-screen') {
-//       trigger.kill();
-//     }
-//   });
-// });
+onBeforeUnmount(() => {
+  ScrollTrigger.getAll().forEach(trigger => {
+    if (trigger.vars?.trigger === '.architecture .first-screen') {
+      trigger.kill();
+    }
+  });
+});
 
 </script>
 <style>

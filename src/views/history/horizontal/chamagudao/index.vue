@@ -514,7 +514,7 @@ onUnmounted(() => {
       color: #4e4832;
       position: relative;
       writing-mode: vertical-rl;
-      left: 90px;
+      left: 200px;
       top: 250px;
     }
     .description{

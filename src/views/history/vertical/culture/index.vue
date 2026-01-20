@@ -321,6 +321,7 @@
       </div>
     </div>
     <div class="eleven-screen screen">
+      <div class="eleven-screen-bg"></div>
       <div class="img-bg"
            data-parallax="true"
            data-parallax-axis="y"
@@ -894,6 +895,8 @@ import AnnotationDot from "@/components/AnnotationDot.vue";
     }
   }
   .ten-screen{
+    position: relative;
+    z-index: 99;
     .img-picture{
       width: 580px;
       height: 880px;
@@ -920,6 +923,17 @@ import AnnotationDot from "@/components/AnnotationDot.vue";
   }
   .eleven-screen{
     padding-bottom: 500px;
+    position: relative;
+    .eleven-screen-bg{
+      width: 1920px;
+      height: 2226px;
+      background-image: url("@/assets/images/culture/art-element-2-1.png");
+      background-size: cover;
+      background-position: center center;
+      background-repeat: no-repeat;
+      position: absolute;
+      top: -1300px;
+    }
     .img-bg{
       width: 1920px;
       height: 758px;
@@ -1004,7 +1018,7 @@ import AnnotationDot from "@/components/AnnotationDot.vue";
       background-position: center center;
       background-repeat: no-repeat;
       position: absolute;
-      top: 300px;
+      top: 440px;
       right: 434px;
     }
     .img-picture-2{
@@ -1015,7 +1029,7 @@ import AnnotationDot from "@/components/AnnotationDot.vue";
       background-position: center center;
       background-repeat: no-repeat;
       position: absolute;
-      top: 258px;
+      top: 398px;
       right: 264px;
     }
   }

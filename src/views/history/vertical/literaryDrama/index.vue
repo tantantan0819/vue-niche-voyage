@@ -1096,6 +1096,6 @@ onMounted(() => {
 }
 .last-screen{
   width: 100vw;
-  height: 80vh;
+  height: 450px;
 }
 </style>
