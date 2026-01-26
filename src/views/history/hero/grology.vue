@@ -3650,9 +3650,9 @@ onUnmounted(() => {
 
 .grology-origin {
   position: relative;
-  width: 1920px;
+  //width: 1920px;
   min-width: 100vw;
-  height: 1080px;
+  //height: 1080px;
   min-height: 100vh;
   opacity: 1;
   pointer-events: auto;
@@ -3665,8 +3665,8 @@ onUnmounted(() => {
   left: 0;
   width: 100vw;
   height: 100vh;
-  min-width: 1920px;
-  min-height: 1080px;
+  //min-width: 1920px;
+  //min-height: 1080px;
   z-index: 100;
   pointer-events: none;
 }
@@ -3677,8 +3677,8 @@ onUnmounted(() => {
   left: 0;
   width: 100%;
   height: 100%;
-  min-width: 1920px;
-  min-height: 1080px;
+  //min-width: 1920px;
+  //min-height: 1080px;
   object-fit: cover;
   display: block;
   /* 不使用 CSS transition，完全由 GSAP 控制 */
@@ -3703,8 +3703,8 @@ onUnmounted(() => {
   left: 0;
   width: 100%;
   height: 100%;
-  min-width: 1920px;
-  min-height: 1080px;
+  //min-width: 1920px;
+  //min-height: 1080px;
   object-fit: cover;
   /* 不使用 CSS transition，完全由 GSAP 控制 */
   z-index: 2;
@@ -3813,7 +3813,8 @@ onUnmounted(() => {
 }
 .video-description {
   position: absolute;
-  top: 620px;
+  //top: 620px;
+  bottom: 40px;
   left: 70px;
   color: #fff;
   padding: 24px 16px;

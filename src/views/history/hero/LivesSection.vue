@@ -2211,6 +2211,7 @@ onUnmounted(() => {
           position: absolute;
           bottom: 0px;
           right: -1200px;
+          z-index:2;
           .forest-wood-img{
             width: 3402px;
             height: 402px;
