@@ -798,6 +798,7 @@ onUnmounted(() => {
       position: absolute;
       left: -560px;
       top: 50px;
+      z-index: 999;
       .title{
         border-color: #967c58;
       }
@@ -810,12 +811,12 @@ onUnmounted(() => {
     }
     .person-left{
       width: 960px;
-      height: 960px;
+      height: 760px;
       background-size: cover;
       background-position: center center;
       background-repeat: no-repeat;
       position: absolute;
-      bottom: -150px;
+      bottom: -50px;
       left: 500px;
     }
     .person-right{

@@ -82,7 +82,7 @@ const handleToggle = () => {
 // 跳转链接
 const openLink = () => {
   const link = linkMap[slotText.value];
-  window.open(link, '_blank');
+  link ? window.open(link, '_blank') : '';
 }
 
 const slotWrapper = ref(null);

@@ -70,7 +70,7 @@ const closeProcession = () => {
 // 跳转链接
 const openLink = () => {
   const link = linkMap[props.content];
-  window.open(link, '_blank');
+  link ? window.open(link, '_blank') : '';
 }
 </script>
 <style scoped>
