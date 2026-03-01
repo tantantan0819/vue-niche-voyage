@@ -42,6 +42,7 @@
       >
         <div class="lamp-item-core"></div>
         <div class="lamp-item"></div>
+        <div class="lamp-name">{{ point.name }}</div>
       </div>
     </div>
    <!--  导航栏  -->
@@ -87,12 +88,22 @@ import glacierIn4 from '@/assets/images/landscape/videos/glacier4-in.mp4'
 import glacierOut4 from '@/assets/images/landscape/videos/glacier4-out.mp4'
 import glacierIn5 from '@/assets/images/landscape/videos/glacier5-in.mp4'
 import glacierOut5 from '@/assets/images/landscape/videos/glacier5-out.mp4'
+import glacierIn6 from '@/assets/images/landscape/videos/glacier6-in.mp4'
+import glacierOut6 from '@/assets/images/landscape/videos/glacier6-out.mp4'
 import lakeIn1 from '@/assets/images/landscape/videos/lake1-in.mp4'
 import lakeOut1 from '@/assets/images/landscape/videos/lake1-out.mp4'
 import lakeIn2 from '@/assets/images/landscape/videos/lake2-in.mp4'
 import lakeOut2 from '@/assets/images/landscape/videos/lake2-out.mp4'
 import lakeIn3 from '@/assets/images/landscape/videos/lake3-in.mp4'
 import lakeOut3 from '@/assets/images/landscape/videos/lake3-out.mp4'
+import lakeIn5 from '@/assets/images/landscape/videos/lake5-in.mp4'
+import lakeOut5 from '@/assets/images/landscape/videos/lake5-out.mp4'
+import lakeIn6 from '@/assets/images/landscape/videos/lake6-in.mp4'
+import lakeOut6 from '@/assets/images/landscape/videos/lake6-out.mp4'
+import lakeIn7 from '@/assets/images/landscape/videos/lake7-in.mp4'
+import lakeOut7 from '@/assets/images/landscape/videos/lake7-out.mp4'
+import lakeIn8 from '@/assets/images/landscape/videos/lake8-in.mp4'
+import lakeOut8 from '@/assets/images/landscape/videos/lake8-out.mp4'
 import lakeIn4 from '@/assets/images/landscape/videos/lake4-in.mp4'
 import lakeOut4 from '@/assets/images/landscape/videos/lake4-out.mp4'
 import riverIn1 from '@/assets/images/landscape/videos/river1-in.mp4'
@@ -105,21 +116,29 @@ import riverIn4 from '@/assets/images/landscape/videos/river4-in.mp4'
 import riverOut4 from '@/assets/images/landscape/videos/river4-out.mp4'
 import riverIn5 from '@/assets/images/landscape/videos/river5-in.mp4'
 import riverOut5 from '@/assets/images/landscape/videos/river5-out.mp4'
+import riverIn6 from '@/assets/images/landscape/videos/river6-in.mp4'
+import riverOut6 from '@/assets/images/landscape/videos/river6-out.mp4'
 // 详情图片
 import glacierImg1 from '@/assets/images/landscape/watersystem-glacier-1.jpg'
 import glacierImg2 from '@/assets/images/landscape/watersystem-glacier-2.jpg'
 import glacierImg3 from '@/assets/images/landscape/watersystem-glacier-3.jpg'
 import glacierImg4 from '@/assets/images/landscape/watersystem-glacier-4.jpg'
 import glacierImg5 from '@/assets/images/landscape/watersystem-glacier-5.jpg'
+import glacierImg6 from '@/assets/images/landscape/watersystem-glacier-6.jpg'
 import lakeImg1 from '@/assets/images/landscape/watersystem-lake-1.jpg'
 import lakeImg2 from '@/assets/images/landscape/watersystem-lake-2.jpg'
 import lakeImg3 from '@/assets/images/landscape/watersystem-lake-3.jpg'
 import lakeImg4 from '@/assets/images/landscape/watersystem-lake-4.jpg'
+import lakeImg5 from '@/assets/images/landscape/watersystem-lake-5.jpg'
+import lakeImg6 from '@/assets/images/landscape/watersystem-lake-6.jpg'
+import lakeImg7 from '@/assets/images/landscape/watersystem-lake-7.jpg'
+import lakeImg8 from '@/assets/images/landscape/watersystem-lake-8.jpg'
 import riverImg1 from '@/assets/images/landscape/watersystem-river-1.jpg'
 import riverImg2 from '@/assets/images/landscape/watersystem-river-2.jpg'
 import riverImg3 from '@/assets/images/landscape/watersystem-river-3.jpg'
 import riverImg4 from '@/assets/images/landscape/watersystem-river-4.jpg'
 import riverImg5 from '@/assets/images/landscape/watersystem-river-5.jpg'
+import riverImg6 from '@/assets/images/landscape/watersystem-river-6.jpg'
 
 
 
@@ -178,7 +197,14 @@ const landscapeInfos = ref([
         position: 'right',
         description: '横断山是四川西部最大的冰川作用区，也是青藏高原东部海洋型冰川的集中分布区，较大的冰川有海螺沟冰川、燕子沟冰川、磨子沟冰川、南门关沟冰川、大小贡巴冰川等。其中，四川贡嘎山海螺沟冰川冰瀑布是我国已知最大的冰瀑布，而阿坝藏族羌族自治州黑水县的达古冰川则被认为是最年轻，离城市最近的冰川。'
       },
-
+      {
+        name: '祁连山现代冰川',
+        videoIn: glacierIn6,
+        videoOut: glacierOut6,
+        img: glacierImg6,
+        position: 'right',
+        description: '祁连山位于青藏高原东北缘，是中国西北地区重要的冰川分布区，也是河西走廊多条河流的重要水源地。这里的冰川规模较小但数量较多，共有冰川2683条，面积约1600平方公里。其中老虎沟12号冰川、七一冰川等已经成为我国西北地区驰名的冰川景观。'
+      },
     ]
   },
   // 湖泊
@@ -219,6 +245,38 @@ const landscapeInfos = ref([
         img: lakeImg1,
         position: 'left',
         description: '青海湖位于青藏高原东北部，是中国最大的内陆咸水湖，总面积约4600平方公里。湖水碧蓝广阔。四周被祁连山、阿尔金山等山脉环绕。青海湖不仅是候鸟迁徙的重要栖息地，也以湖光山色和环湖草原闻名，是高原生态环境和旅游资源的重要象征。'
+      },
+      {
+        name: '泸沽湖',
+        videoIn: lakeIn5,
+        videoOut: lakeOut5,
+        img: lakeImg5,
+        position: 'right',
+        description: '泸沽湖位于四川省盐源县和云南省宁蒗县交界处，是高原断陷形成的淡水湖，海拔约2690米，面积约50平方公里。湖水清澈透明，四周群山环抱，自然景观秀丽。这里不仅是重要的高原湖泊生态系统，也因独特的摩梭文化与人文景观而闻名。'
+      },
+      {
+        name: '色林错',
+        videoIn: lakeIn6,
+        videoOut: lakeOut6,
+        img: lakeImg6,
+        position: 'left',
+        description: '色林错位于冈底斯山北麓，是西藏面积最大的湖泊，也是中国第二大咸水湖，海拔约4530米，面积约2300多平方公里。湖区地势开阔，水域辽阔，对维系藏北高原生态系统、水循环与气候调节具有重要意义。'
+      },
+      {
+        name: '羊卓雍错',
+        videoIn: lakeIn7,
+        videoOut: lakeOut7,
+        img: lakeImg7,
+        position: 'left',
+        description: '羊卓雍错位于西藏南部，是西藏三大圣湖之一，海拔4441米，面积约600多平方公里。湖岸曲折如珊瑚枝状，景观独特。它不仅是高原重要的内陆湖泊水体，也在区域生态调节与自然景观体系中具有重要地位。'
+      },
+      {
+        name: '木格措',
+        videoIn: lakeIn8,
+        videoOut: lakeOut8,
+        img: lakeImg8,
+        position: 'right',
+        description: '木格措位于四川甘孜康定市以北，海拔约3700米，是典型的高山冰蚀湖泊之一。湖水清澈湛蓝，四周被雪山、森林与高山草甸环绕，景观层次丰富。木格措既是当地重要的高原湖泊生态系统，也因优美的湖光山色和“康定情歌”的文化意象而成为川西高原上著名的旅游景区。'
       },
     ]
   },
@@ -268,7 +326,14 @@ const landscapeInfos = ref([
         position: 'right',
         description: '发源于青藏高原巴颜喀拉山脉。河水经高原东北部流向远方，串联起中国9个省份，最终注入渤海。全长约5464公里，是中国第二长河。黄河水系在中国的地形格局塑造、流域生态维系以及中华文明的孕育与发展中都发挥着不可替代的作用。'
       },
-
+      {
+        name: '狮泉河',
+        videoIn: riverIn6,
+        videoOut: riverOut6,
+        img: riverImg6,
+        position: 'right',
+        description: '发源于青藏高原冈底斯山北麓，是印度河的上游河源，中国境内河长约400公里。河水自高原腹地向西流出国境，最终汇入印度河并注入阿拉伯海。尽管其在中国境内流程较短，但作为高原西部外流河体系的重要组成部分，狮泉河在亚洲水系格局中具有重要意义。'
+      },
 
 
     ]
@@ -725,20 +790,24 @@ const changeVideo = async (videoSrc) => {
         left: 390px;
       }
       &:nth-child(2){
-        top: 810px;
+        top: 770px;
         left: 918px;
       }
       &:nth-child(3){
-        top: 468px;
+        top: 368px;
         left: 1014px;
       }
       &:nth-child(4){
-        top: 670px;
+        top: 540px;
         left: 1354px;
       }
       &:nth-child(5){
-        top: 728px;
-        left: 1794px;
+        top: 558px;
+        left: 1784px;
+      }
+      &:nth-child(6){
+        top: 88px;
+        left: 1444px;
       }
     }
   }
@@ -749,16 +818,32 @@ const changeVideo = async (videoSrc) => {
         left: 630px;
       }
       &:nth-child(2){
-        top: 650px;
-        left: 1094px;
+        top: 620px;
+        left: 1174px;
       }
       &:nth-child(3){
-        top: 434px;
+        top: 354px;
         left: 1458px;
       }
       &:nth-child(4){
-        top: 344px;
-        left: 1600px;
+        top: 224px;
+        left: 1580px;
+      }
+      &:nth-child(5){
+        top: 654px;
+        left: 1760px;
+      }
+      &:nth-child(6){
+        top: 390px;
+        left: 1000px;
+      }
+      &:nth-child(7){
+        top: 520px;
+        left: 1110px;
+      }
+      &:nth-child(8){
+        top: 434px;
+        left: 1780px;
       }
     }
   }
@@ -769,20 +854,24 @@ const changeVideo = async (videoSrc) => {
       left: 836px;
     }
     &:nth-child(2){
-      top: 446px;
+      top: 396px;
       left: 1180px;
     }
     &:nth-child(3){
-      top: 610px;
-      left: 1190px;
+      top: 530px;
+      left: 1180px;
     }
     &:nth-child(4){
-      top: 516px;
+      top: 430px;
       left: 1400px;
     }
     &:nth-child(5){
-      top: 430px;
+      top: 260px;
       left: 1500px;
+    }
+    &:nth-child(6){
+      top: 290px;
+      left: 500px;
     }
   }
 }
@@ -796,6 +885,17 @@ const changeVideo = async (videoSrc) => {
     justify-content: center;
     cursor: pointer;
     transform: translate(-50%, -50%);
+    position: relative;
+    .lamp-name{
+      position: absolute;
+      top: -26px;
+      font-size: 16px;
+      color: #fff;
+      opacity: 0;
+      transition: all ease-in-out 0.15s;
+      font-family: 'Alibaba-PuHuiTi-Regular';
+      white-space: nowrap;
+    }
     &:hover{
       .lamp-item{
         /* 强制覆盖动画的缩放值，确保目标大小统一（!important 提升优先级） */
@@ -805,13 +905,18 @@ const changeVideo = async (videoSrc) => {
         border: 3px solid #fff;
       //border: 3px solid #fff;
       }
+      .lamp-name{
+        opacity: 1;
+      }
     }
+
+
   }
 
   .lamp-item-core {
     position: absolute;
-    width: 26px;
-    height: 26px;
+    width: 20px;
+    height: 20px;
     background-color: rgba(255, 255, 255, 0.8);
     border-radius: 50%;
     //animation: pulse 2s infinite;
@@ -819,14 +924,13 @@ const changeVideo = async (videoSrc) => {
 
   .lamp-item {
     position: absolute;
-    width: 38px;
-    height: 38px;
+    width: 30px;
+    height: 30px;
     //background-color: rgba(255, 255, 255, 0.4);
     border: 2px solid #fff;
     border-radius: 50%;
     animation: pulseOuter 2s infinite;
     transition: transform 0.3s ease-in-out;
-
   }
 
 
