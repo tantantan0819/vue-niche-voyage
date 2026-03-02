@@ -447,9 +447,9 @@ const disableScrollLock = () => {
   
   if (scrollDisabledHandler) {
     // 移除事件监听
-    window.removeEventListener('wheel', scrollDisabledHandler);
-    window.removeEventListener('touchmove', scrollDisabledHandler);
-    window.removeEventListener('scroll', scrollDisabledHandler);
+    window.removeEventListener('wheel', scrollDisabledHandler, { passive: false });
+    window.removeEventListener('touchmove', scrollDisabledHandler, { passive: false });
+    window.removeEventListener('scroll', scrollDisabledHandler, { passive: false });
     
     if (scrollDisabledHandler._keyHandler) {
       window.removeEventListener('keydown', scrollDisabledHandler._keyHandler);
@@ -570,9 +570,9 @@ const disableLightScrollLock = () => {
   if (!lightScrollLockHandler) return;
   
   // 移除事件监听
-  window.removeEventListener('wheel', lightScrollLockHandler);
-  window.removeEventListener('touchmove', lightScrollLockHandler);
-  window.removeEventListener('scroll', lightScrollLockHandler);
+  window.removeEventListener('wheel', lightScrollLockHandler, { passive: false });
+  window.removeEventListener('touchmove', lightScrollLockHandler, { passive: false });
+  window.removeEventListener('scroll', lightScrollLockHandler, { passive: false });
   
   if (lightScrollLockHandler._touchStartHandler) {
     window.removeEventListener('touchstart', lightScrollLockHandler._touchStartHandler);
@@ -1477,6 +1477,9 @@ const initSkipToVideoEndScroll = () => {
               window.removeEventListener('scroll', skipToVideoEndHandler, { passive: false });
               skipToVideoEndHandler = null;
             }
+            // 禁用滚动锁定，确保可以正常滚动
+            disableScrollLock();
+            disableLightScrollLock();
             // 不阻止默认滚动行为，允许继续向下滚动
             return true;
           }
